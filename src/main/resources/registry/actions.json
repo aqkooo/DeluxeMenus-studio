@@ -1,0 +1,146 @@
+[
+  {
+    "id": "console",
+    "prefix": "[console]",
+    "argumentHint": "command",
+    "descriptionRu": "Выполнить команду от имени консоли сервера",
+    "descriptionEn": "Execute command as server console",
+    "supportsModifiers": true
+  },
+  {
+    "id": "player",
+    "prefix": "[player]",
+    "argumentHint": "command",
+    "descriptionRu": "Выполнить команду от имени игрока",
+    "descriptionEn": "Execute command as player",
+    "supportsModifiers": true
+  },
+  {
+    "id": "commandevent",
+    "prefix": "[commandevent]",
+    "argumentHint": "command",
+    "descriptionRu": "Вызвать событие команды игрока (PlayerCommandPreprocessEvent)",
+    "descriptionEn": "Fire PlayerCommandPreprocessEvent",
+    "supportsModifiers": true
+  },
+  {
+    "id": "message",
+    "prefix": "[message]",
+    "argumentHint": "text",
+    "descriptionRu": "Отправить личное сообщение игроку",
+    "descriptionEn": "Send message to player",
+    "supportsModifiers": true
+  },
+  {
+    "id": "broadcast",
+    "prefix": "[broadcast]",
+    "argumentHint": "text",
+    "descriptionRu": "Отправить сообщение всем игрокам на сервере",
+    "descriptionEn": "Broadcast message to all players",
+    "supportsModifiers": true
+  },
+  {
+    "id": "chat",
+    "prefix": "[chat]",
+    "argumentHint": "text",
+    "descriptionRu": "Отправить сообщение в чат от имени игрока",
+    "descriptionEn": "Send message in chat as player",
+    "supportsModifiers": true
+  },
+  {
+    "id": "json",
+    "prefix": "[json]",
+    "argumentHint": "{\"text\":\"Hello\"}",
+    "descriptionRu": "Отправить сырой JSON-текст игроку",
+    "descriptionEn": "Send raw JSON component to player",
+    "supportsModifiers": true
+  },
+  {
+    "id": "openguimenu",
+    "prefix": "[openguimenu]",
+    "argumentHint": "menu_name",
+    "descriptionRu": "Открыть другое меню DeluxeMenus",
+    "descriptionEn": "Open another DeluxeMenu",
+    "supportsModifiers": true
+  },
+  {
+    "id": "connect",
+    "prefix": "[connect]",
+    "argumentHint": "server_name",
+    "descriptionRu": "Перенаправить игрока на другой Bungee/Velocity сервер",
+    "descriptionEn": "Connect player to another Bungee/Velocity server",
+    "supportsModifiers": true
+  },
+  {
+    "id": "close",
+    "prefix": "[close]",
+    "argumentHint": "",
+    "descriptionRu": "Закрыть текущий инвентарь игрока",
+    "descriptionEn": "Close player's inventory",
+    "supportsModifiers": true
+  },
+  {
+    "id": "refresh",
+    "prefix": "[refresh]",
+    "argumentHint": "",
+    "descriptionRu": "Обновить текущее меню без закрытия",
+    "descriptionEn": "Refresh current menu without closing",
+    "supportsModifiers": true
+  },
+  {
+    "id": "sound",
+    "prefix": "[sound]",
+    "argumentHint": "SOUND_NAME <volume> <pitch>",
+    "descriptionRu": "Воспроизвести звук игроку",
+    "descriptionEn": "Play sound to player",
+    "supportsModifiers": true
+  },
+  {
+    "id": "broadcastsound",
+    "prefix": "[broadcastsound]",
+    "argumentHint": "SOUND_NAME <volume> <pitch>",
+    "descriptionRu": "Воспроизвести звук всем игрокам",
+    "descriptionEn": "Play sound to all players",
+    "supportsModifiers": true
+  },
+  {
+    "id": "takemoney",
+    "prefix": "[takemoney]",
+    "argumentHint": "amount",
+    "descriptionRu": "Снять баланс игрока через Vault",
+    "descriptionEn": "Take money via Vault",
+    "supportsModifiers": true
+  },
+  {
+    "id": "givemoney",
+    "prefix": "[givemoney]",
+    "argumentHint": "amount",
+    "descriptionRu": "Выдать баланс игроку через Vault",
+    "descriptionEn": "Give money via Vault",
+    "supportsModifiers": true
+  },
+  {
+    "id": "takeexp",
+    "prefix": "[takeexp]",
+    "argumentHint": "amount [L]",
+    "descriptionRu": "Забрать опыт игрока (с флагом L — уровни)",
+    "descriptionEn": "Take player experience (with L for levels)",
+    "supportsModifiers": true
+  },
+  {
+    "id": "giveexp",
+    "prefix": "[giveexp]",
+    "argumentHint": "amount [L]",
+    "descriptionRu": "Выдать опыт игроку (с флагом L — уровни)",
+    "descriptionEn": "Give player experience (with L for levels)",
+    "supportsModifiers": true
+  },
+  {
+    "id": "meta",
+    "prefix": "[meta]",
+    "argumentHint": "key value",
+    "descriptionRu": "Установить метаданные игрока",
+    "descriptionEn": "Set player metadata",
+    "supportsModifiers": true
+  }
+]

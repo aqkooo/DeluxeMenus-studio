@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ejyqyl.dmstudio.controller.ItemInspectorController"
+            fitToWidth="true" hbarPolicy="NEVER">
+    <VBox spacing="10.0">
+        <padding>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+        </padding>
+
+        <Label text="%inspector.title" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #3498db;"/>
+
+        <!-- Section 1: Identity & Position -->
+        <TitledPane text="%inspector.section.identity" expanded="true">
+            <VBox spacing="8.0">
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.name"/>
+                        <TextField fx:id="itemKeyField"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.material"/>
+                        <ComboBox fx:id="materialCombo" maxWidth="Infinity"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.slot"/>
+                        <Spinner fx:id="slotSpinner" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.slots"/>
+                        <TextField fx:id="slotsField" promptText="0-8, 18-26"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.priority"/>
+                        <Spinner fx:id="prioritySpinner" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.amount"/>
+                        <Spinner fx:id="amountSpinner" maxWidth="Infinity"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.damage"/>
+                        <Spinner fx:id="damageSpinner" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.dynamic_amount"/>
+                        <TextField fx:id="dynamicAmountField"/>
+                    </VBox>
+                </HBox>
+
+                <CheckBox fx:id="updateCheck" text="%item.update"/>
+            </VBox>
+        </TitledPane>
+
+        <!-- Section 2: Appearance & Minecraft Tooltip Preview -->
+        <TitledPane text="%inspector.section.appearance" expanded="true">
+            <VBox spacing="8.0">
+                <VBox spacing="4.0">
+                    <Label text="%item.display_name"/>
+                    <TextField fx:id="displayNameField" promptText="&amp;aItem Name"/>
+                </VBox>
+
+                <!-- Live Minecraft Tooltip Preview -->
+                <VBox spacing="4.0">
+                    <Label text="Minecraft Tooltip Preview" style="-fx-font-size: 11px; -fx-text-fill: #888899;"/>
+                    <VBox fx:id="tooltipPreviewBox" styleClass="minecraft-tooltip-box" minHeight="50.0"/>
+                </VBox>
+
+                <VBox spacing="4.0">
+                    <Label text="%item.lore"/>
+                    <TextArea fx:id="loreArea" prefRowCount="4" promptText="%item.lore_placeholder"/>
+                </VBox>
+
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.lore_append_mode"/>
+                        <ComboBox fx:id="loreAppendModeCombo" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.enchantments"/>
+                        <TextField fx:id="enchantmentsField" promptText="SHARPNESS;5"/>
+                    </VBox>
+                </HBox>
+
+                <Label text="%item.item_flags" style="-fx-font-weight: bold; -fx-padding: 4 0 0 0;"/>
+                <FlowPane hgap="8.0" vgap="4.0">
+                    <CheckBox fx:id="flagEnchants" text="HIDE_ENCHANTS"/>
+                    <CheckBox fx:id="flagAttributes" text="HIDE_ATTRIBUTES"/>
+                    <CheckBox fx:id="flagUnbreakable" text="HIDE_UNBREAKABLE"/>
+                    <CheckBox fx:id="flagDestroys" text="HIDE_DESTROYS"/>
+                    <CheckBox fx:id="flagPlacedOn" text="HIDE_PLACED_ON"/>
+                    <CheckBox fx:id="flagPotionEffects" text="HIDE_POTION_EFFECTS"/>
+                    <CheckBox fx:id="flagDye" text="HIDE_DYE"/>
+                </FlowPane>
+
+                <HBox spacing="10.0">
+                    <CheckBox fx:id="unbreakableCheck" text="%item.unbreakable"/>
+                    <CheckBox fx:id="glintOverrideCheck" text="%item.glint"/>
+                    <CheckBox fx:id="hideTooltipCheck" text="%item.hide_tooltip"/>
+                </HBox>
+
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.model_data"/>
+                        <TextField fx:id="modelDataField" promptText="1001"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.item_model"/>
+                        <TextField fx:id="itemModelField" promptText="custom:ruby_sword"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%item.rgb"/>
+                        <TextField fx:id="rgbField" promptText="#FF0000"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </TitledPane>
+
+        <!-- Section 3: Click Actions -->
+        <TitledPane text="%inspector.section.actions" expanded="false">
+            <VBox spacing="8.0">
+                <HBox spacing="8.0" alignment="CENTER_LEFT">
+                    <Label text="%action.click_type"/>
+                    <ComboBox fx:id="clickTypeCombo" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <TableView fx:id="actionsTable" prefHeight="140.0">
+                    <columns>
+                        <TableColumn fx:id="colActionType" text="%action.type" prefWidth="110.0"/>
+                        <TableColumn fx:id="colActionArg" text="%action.argument" prefWidth="180.0"/>
+                        <TableColumn fx:id="colActionDelay" text="%action.delay" prefWidth="60.0"/>
+                        <TableColumn fx:id="colActionChance" text="%action.chance" prefWidth="60.0"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="6.0" alignment="CENTER_LEFT">
+                    <ComboBox fx:id="newActionTypeCombo" prefWidth="120.0"/>
+                    <TextField fx:id="newActionArgField" promptText="%action.argument" HBox.hgrow="ALWAYS"/>
+                    <Spinner fx:id="newActionDelaySpinner" prefWidth="70.0"/>
+                    <Spinner fx:id="newActionChanceSpinner" prefWidth="70.0"/>
+                </HBox>
+                <HBox spacing="8.0">
+                    <Button fx:id="btnAddAction" text="%action.add" styleClass="button-primary"/>
+                    <Button fx:id="btnDeleteAction" text="%action.remove"/>
+                </HBox>
+            </VBox>
+        </TitledPane>
+
+        <!-- Section 4: Requirements -->
+        <TitledPane text="%inspector.section.requirements" expanded="false">
+            <VBox spacing="8.0">
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="%req.type"/>
+                        <ComboBox fx:id="reqTypeCombo" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox spacing="4.0" alignment="BOTTOM_LEFT">
+                        <CheckBox fx:id="reqInvertedCheck" text="%req.inverted"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="8.0">
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="Input / Permission:"/>
+                        <TextField fx:id="reqField1"/>
+                    </VBox>
+                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                        <Label text="Output / Amount:"/>
+                        <TextField fx:id="reqField2"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="8.0" alignment="CENTER_LEFT">
+                    <Label text="%req.min_req"/>
+                    <Spinner fx:id="minReqSpinner" prefWidth="80.0"/>
+                    <CheckBox fx:id="stopAtSuccessCheck" text="%req.stop_at_success"/>
+                </HBox>
+
+                <Button fx:id="btnSaveRequirement" text="Save Requirement" styleClass="button-primary"/>
+            </VBox>
+        </TitledPane>
+    </VBox>
+</ScrollPane>

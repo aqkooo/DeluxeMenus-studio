@@ -1,0 +1,384 @@
+[
+  {
+    "id": "has_permission",
+    "type": "has permission",
+    "allowInversion": true,
+    "descriptionRu": "Проверка наличия права у игрока",
+    "descriptionEn": "Check if player has a permission",
+    "fields": [
+      {
+        "name": "permission",
+        "type": "string",
+        "labelRu": "Право (permission node)",
+        "labelEn": "Permission node",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "has_permissions",
+    "type": "has permissions",
+    "allowInversion": true,
+    "descriptionRu": "Проверка нескольких прав с минимальным порогом",
+    "descriptionEn": "Check multiple permissions with minimum match threshold",
+    "fields": [
+      {
+        "name": "permissions",
+        "type": "list",
+        "labelRu": "Список прав",
+        "labelEn": "List of permissions",
+        "required": true
+      },
+      {
+        "name": "minimum",
+        "type": "number",
+        "labelRu": "Минимум совпадений",
+        "labelEn": "Minimum matches",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "has_money",
+    "type": "has money",
+    "allowInversion": true,
+    "descriptionRu": "Проверка баланса игрока через Vault",
+    "descriptionEn": "Check player Vault balance",
+    "fields": [
+      {
+        "name": "amount",
+        "type": "number",
+        "labelRu": "Сумма",
+        "labelEn": "Amount",
+        "required": true
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "labelRu": "Кастомный плейсхолдер баланса",
+        "labelEn": "Custom balance placeholder",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "has_exp",
+    "type": "has exp",
+    "allowInversion": true,
+    "descriptionRu": "Проверка опыта или уровней игрока",
+    "descriptionEn": "Check player exp or levels",
+    "fields": [
+      {
+        "name": "amount",
+        "type": "number",
+        "labelRu": "Количество",
+        "labelEn": "Amount",
+        "required": true
+      },
+      {
+        "name": "level",
+        "type": "boolean",
+        "labelRu": "Проверять уровни (а не очки опыта)",
+        "labelEn": "Check levels (not exp points)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "has_item",
+    "type": "has item",
+    "allowInversion": true,
+    "descriptionRu": "Проверка наличия предмета в инвентаре",
+    "descriptionEn": "Check if player has item in inventory",
+    "fields": [
+      {
+        "name": "material",
+        "type": "string",
+        "labelRu": "Материал",
+        "labelEn": "Material",
+        "required": true
+      },
+      {
+        "name": "amount",
+        "type": "number",
+        "labelRu": "Количество",
+        "labelEn": "Amount",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "labelRu": "Имя предмета",
+        "labelEn": "Item name",
+        "required": false
+      },
+      {
+        "name": "lore",
+        "type": "list",
+        "labelRu": "Логика lore",
+        "labelEn": "Lore lines",
+        "required": false
+      },
+      {
+        "name": "strict",
+        "type": "boolean",
+        "labelRu": "Строгое соответствие",
+        "labelEn": "Strict match",
+        "required": false
+      },
+      {
+        "name": "model_data",
+        "type": "number",
+        "labelRu": "Custom Model Data",
+        "labelEn": "Custom Model Data",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "string_equals",
+    "type": "string equals",
+    "allowInversion": true,
+    "descriptionRu": "Строгое сравнение двух строк",
+    "descriptionEn": "Exact string equality comparison",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входная строка / плейсхолдер",
+        "labelEn": "Input string / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Ожидаемое значение",
+        "labelEn": "Expected value",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "string_equals_ignorecase",
+    "type": "string equals ignorecase",
+    "allowInversion": true,
+    "descriptionRu": "Сравнение строк без учёта регистра",
+    "descriptionEn": "Case-insensitive string equality comparison",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входная строка / плейсхолдер",
+        "labelEn": "Input string / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Ожидаемое значение",
+        "labelEn": "Expected value",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "string_contains",
+    "type": "string contains",
+    "allowInversion": true,
+    "descriptionRu": "Проверка вхождения подстроки",
+    "descriptionEn": "Check if string contains substring",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входная строка / плейсхолдер",
+        "labelEn": "Input string / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Искомая подстрока",
+        "labelEn": "Substring to search",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "regex_matches",
+    "type": "regex matches",
+    "allowInversion": true,
+    "descriptionRu": "Соответствие регулярному выражению",
+    "descriptionEn": "Matches regular expression",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входная строка / плейсхолдер",
+        "labelEn": "Input string / placeholder",
+        "required": true
+      },
+      {
+        "name": "regex",
+        "type": "string",
+        "labelRu": "Регулярное выражение",
+        "labelEn": "Regular expression",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "compare_equal",
+    "type": "==",
+    "allowInversion": false,
+    "descriptionRu": "Числовое равенство",
+    "descriptionEn": "Numeric equality",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входное значение / плейсхолдер",
+        "labelEn": "Input value / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Число для сравнения",
+        "labelEn": "Number to compare",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "compare_greater_or_equal",
+    "type": ">=",
+    "allowInversion": false,
+    "descriptionRu": "Числовое больше или равно",
+    "descriptionEn": "Numeric greater than or equal",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входное значение / плейсхолдер",
+        "labelEn": "Input value / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Число для сравнения",
+        "labelEn": "Number to compare",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "compare_less_or_equal",
+    "type": "<=",
+    "allowInversion": false,
+    "descriptionRu": "Числовое меньше или равно",
+    "descriptionEn": "Numeric less than or equal",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входное значение / плейсхолдер",
+        "labelEn": "Input value / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Число для сравнения",
+        "labelEn": "Number to compare",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "compare_greater",
+    "type": ">",
+    "allowInversion": false,
+    "descriptionRu": "Числовое строго больше",
+    "descriptionEn": "Numeric strictly greater than",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входное значение / плейсхолдер",
+        "labelEn": "Input value / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Число для сравнения",
+        "labelEn": "Number to compare",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "compare_less",
+    "type": "<",
+    "allowInversion": false,
+    "descriptionRu": "Числовое строго меньше",
+    "descriptionEn": "Numeric strictly less than",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входное значение / плейсхолдер",
+        "labelEn": "Input value / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Число для сравнения",
+        "labelEn": "Number to compare",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "compare_not_equal",
+    "type": "!=",
+    "allowInversion": false,
+    "descriptionRu": "Числовое неравенство",
+    "descriptionEn": "Numeric inequality",
+    "fields": [
+      {
+        "name": "input",
+        "type": "string",
+        "labelRu": "Входное значение / плейсхолдер",
+        "labelEn": "Input value / placeholder",
+        "required": true
+      },
+      {
+        "name": "output",
+        "type": "string",
+        "labelRu": "Число для сравнения",
+        "labelEn": "Number to compare",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "javascript",
+    "type": "javascript",
+    "allowInversion": true,
+    "descriptionRu": "Вычисление JavaScript выражения",
+    "descriptionEn": "Evaluate JavaScript expression",
+    "fields": [
+      {
+        "name": "expression",
+        "type": "string",
+        "labelRu": "JS выражение (true/false)",
+        "labelEn": "JS expression (true/false)",
+        "required": true
+      }
+    ]
+  }
+]

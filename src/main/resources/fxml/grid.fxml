@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.controller.GridController"
+      spacing="10.0" alignment="TOP_CENTER">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+    </padding>
+
+    <!-- Preset Toolbar -->
+    <HBox spacing="8.0" alignment="CENTER_LEFT">
+        <Label text="%grid.title" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #3498db;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnBorder" text="%grid.preset.border" styleClass="button"/>
+        <Button fx:id="btnChecker" text="%grid.preset.checker" styleClass="button"/>
+        <Button fx:id="btnClearAll" text="%grid.preset.clear" styleClass="button"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Inventory Grid Box -->
+    <VBox alignment="CENTER" style="-fx-background-color: #121216; -fx-padding: 16; -fx-background-radius: 6; -fx-border-color: #2a2a35; -fx-border-radius: 6;" VBox.hgrow="ALWAYS">
+        <GridPane fx:id="inventoryGrid" hgap="4.0" vgap="4.0" alignment="CENTER"/>
+    </VBox>
+
+</VBox>

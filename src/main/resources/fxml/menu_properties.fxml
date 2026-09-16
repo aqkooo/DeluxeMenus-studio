@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.controller.MenuPropertiesController"
+      spacing="10.0">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+    </padding>
+
+    <Label text="%prop.title" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #3498db;"/>
+
+    <VBox spacing="4.0">
+        <Label text="%prop.menu_title"/>
+        <TextField fx:id="titleField" promptText="&amp;8Server Menu"/>
+    </VBox>
+
+    <VBox spacing="4.0">
+        <Label text="%prop.menu_title.preview" style="-fx-font-size: 11px; -fx-text-fill: #888899;"/>
+        <StackPane alignment="CENTER_LEFT" style="-fx-background-color: #121216; -fx-border-color: #2a2a35; -fx-padding: 6; -fx-background-radius: 4; -fx-border-radius: 4;">
+            <TextFlow fx:id="titlePreviewFlow"/>
+        </StackPane>
+    </VBox>
+
+    <Separator/>
+
+    <HBox spacing="8.0">
+        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+            <Label text="%prop.menu_type"/>
+            <ComboBox fx:id="typeCombo" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+            <Label text="%prop.size"/>
+            <ComboBox fx:id="sizeCombo" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="4.0">
+        <Label text="%prop.open_command"/>
+        <TextField fx:id="openCommandField" promptText="menu, shop"/>
+    </VBox>
+
+    <CheckBox fx:id="registerCommandCheck" text="%prop.register_command"/>
+
+    <VBox spacing="4.0">
+        <Label text="%prop.update_interval"/>
+        <Spinner fx:id="updateIntervalSpinner" maxWidth="Infinity"/>
+    </VBox>
+
+</VBox>

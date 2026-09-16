@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ejyqyl.dmstudio.controller.MainController"
+            prefWidth="1366" prefHeight="768">
+
+    <!-- Top: MenuBar -->
+    <top>
+        <MenuBar fx:id="menuBar">
+            <Menu text="%menu.file">
+                <MenuItem fx:id="menuNew" text="%menu.file.new" accelerator="Shortcut+N"/>
+                <MenuItem fx:id="menuOpen" text="%menu.file.open" accelerator="Shortcut+O"/>
+                <MenuItem fx:id="menuSave" text="%menu.file.save" accelerator="Shortcut+S"/>
+                <MenuItem fx:id="menuSaveAs" text="%menu.file.save_as" accelerator="Shortcut+Shift+S"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="menuExit" text="%menu.file.exit" accelerator="Shortcut+Q"/>
+            </Menu>
+            <Menu text="%menu.edit">
+                <MenuItem fx:id="menuUndo" text="%menu.edit.undo" accelerator="Shortcut+Z"/>
+                <MenuItem fx:id="menuRedo" text="%menu.edit.redo" accelerator="Shortcut+Y"/>
+            </Menu>
+            <Menu text="%menu.language">
+                <RadioMenuItem fx:id="menuLangRu" text="%menu.language.ru"/>
+                <RadioMenuItem fx:id="menuLangEn" text="%menu.language.en"/>
+            </Menu>
+            <Menu text="%menu.help">
+                <MenuItem fx:id="menuAbout" text="%menu.help.about"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Center: Vertical SplitPane (Upper workarea + Lower preview/problems) -->
+    <center>
+        <SplitPane orientation="VERTICAL" dividerPositions="0.65">
+            <!-- Upper Horizontal SplitPane: 3-column layout -->
+            <SplitPane orientation="HORIZONTAL" dividerPositions="0.22, 0.62">
+                <!-- Left: Menu Properties -->
+                <fx:include fx:id="menuProperties" source="menu_properties.fxml"/>
+
+                <!-- Center: Inventory Grid -->
+                <fx:include fx:id="grid" source="grid.fxml"/>
+
+                <!-- Right: Item Inspector -->
+                <fx:include fx:id="itemInspector" source="item_inspector.fxml"/>
+            </SplitPane>
+
+            <!-- Lower TabPane: Live YAML Preview & Problems -->
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+                <Tab text="%preview.title">
+                    <fx:include fx:id="preview" source="preview.fxml"/>
+                </Tab>
+                <Tab text="%problems.title">
+                    <fx:include fx:id="problems" source="problems.fxml"/>
+                </Tab>
+            </TabPane>
+        </SplitPane>
+    </center>
+
+    <!-- Bottom: Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" spacing="16.0" alignment="CENTER_LEFT">
+            <Label fx:id="statusFileLabel" text="Untitled.yml"/>
+            <Separator orientation="VERTICAL"/>
+            <Label fx:id="statusSlotLabel" text="No slot selected"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.0.0" style="-fx-text-fill: #777788;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

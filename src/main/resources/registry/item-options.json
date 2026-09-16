@@ -1,0 +1,184 @@
+[
+  {
+    "key": "material",
+    "type": "string",
+    "required": true,
+    "group": "identification",
+    "descriptionRu": "Тип предмета или кастомный префикс"
+  },
+  {
+    "key": "slot",
+    "type": "integer",
+    "group": "identification",
+    "descriptionRu": "Индекс слота (0-53)"
+  },
+  {
+    "key": "slots",
+    "type": "list",
+    "group": "identification",
+    "descriptionRu": "Список слотов или диапазонов (например, 0-8)"
+  },
+  {
+    "key": "priority",
+    "type": "integer",
+    "defaultValue": 0,
+    "group": "identification",
+    "descriptionRu": "Приоритет предмета на слоте (0 — наивысший)"
+  },
+  {
+    "key": "amount",
+    "type": "integer",
+    "defaultValue": 1,
+    "group": "identification",
+    "descriptionRu": "Количество предметов в стопке (1-64)"
+  },
+  {
+    "key": "dynamic_amount",
+    "type": "string",
+    "group": "identification",
+    "descriptionRu": "Динамическое количество через плейсхолдер"
+  },
+  {
+    "key": "damage",
+    "type": "integer",
+    "group": "identification",
+    "descriptionRu": "Повреждение / прочность предмета"
+  },
+  {
+    "key": "display_name",
+    "type": "string",
+    "group": "appearance",
+    "descriptionRu": "Отображаемое имя предмета (поддерживает цветовые коды)"
+  },
+  {
+    "key": "lore",
+    "type": "list",
+    "group": "appearance",
+    "descriptionRu": "Описание предмета построчно"
+  },
+  {
+    "key": "lore_append_mode",
+    "type": "enum",
+    "values": ["OVERRIDE", "IGNORE", "TOP", "BOTTOM"],
+    "group": "appearance",
+    "descriptionRu": "Режим добавления lore (для предметов из сторонних плагинов)"
+  },
+  {
+    "key": "item_flags",
+    "type": "list",
+    "group": "appearance",
+    "descriptionRu": "Флаги Bukkit ItemFlag (HIDE_ENCHANTS, HIDE_ATTRIBUTES и др.)"
+  },
+  {
+    "key": "enchantments",
+    "type": "list",
+    "group": "appearance",
+    "descriptionRu": "Список зачарований в формате ENCHANT_NAME;LEVEL"
+  },
+  {
+    "key": "unbreakable",
+    "type": "boolean",
+    "group": "appearance",
+    "descriptionRu": "Неразрушимый предмет"
+  },
+  {
+    "key": "enchantment_glint_override",
+    "type": "boolean",
+    "sinceVersion": "1.20.5",
+    "group": "appearance",
+    "descriptionRu": "Принудительное свечение зачарования без зачарований"
+  },
+  {
+    "key": "hide_tooltip",
+    "type": "boolean",
+    "sinceVersion": "1.20.5",
+    "group": "appearance",
+    "descriptionRu": "Скрыть игровой тултип предмета"
+  },
+  {
+    "key": "rarity",
+    "type": "enum",
+    "values": ["COMMON", "UNCOMMON", "RARE", "EPIC"],
+    "sinceVersion": "1.20.5",
+    "group": "appearance",
+    "descriptionRu": "Редкость предмета"
+  },
+  {
+    "key": "model_data",
+    "type": "integer",
+    "deprecatedSince": "1.21.4",
+    "group": "models",
+    "descriptionRu": "Custom Model Data (устарело в 1.21.4)"
+  },
+  {
+    "key": "model_data_component",
+    "type": "string",
+    "sinceVersion": "1.21.4",
+    "group": "models",
+    "descriptionRu": "Компонент данных модели (с 1.21.4)"
+  },
+  {
+    "key": "item_model",
+    "type": "string",
+    "sinceVersion": "1.21.2",
+    "group": "models",
+    "descriptionRu": "Идентификатор модели предмета (с 1.21.2)"
+  },
+  {
+    "key": "tooltip_style",
+    "type": "string",
+    "sinceVersion": "1.21.2",
+    "group": "appearance",
+    "descriptionRu": "Стиль тултипа предмета (с 1.21.2)"
+  },
+  {
+    "key": "rgb",
+    "type": "string",
+    "group": "meta",
+    "descriptionRu": "RGB цвет для кожаной брони, зелий, фейерверков (R,G,B или #HEX)"
+  },
+  {
+    "key": "potion_effects",
+    "type": "list",
+    "group": "meta",
+    "descriptionRu": "Эффекты зелий (EFFECT;DURATION;AMPLIFIER)"
+  },
+  {
+    "key": "banner_meta",
+    "type": "list",
+    "group": "meta",
+    "descriptionRu": "Узоры баннера (COLOR;PATTERN)"
+  },
+  {
+    "key": "base_color",
+    "type": "string",
+    "group": "meta",
+    "descriptionRu": "Базовый цвет щита/баннера"
+  },
+  {
+    "key": "trim_material",
+    "type": "string",
+    "sinceVersion": "1.20",
+    "group": "meta",
+    "descriptionRu": "Материал отделки брони (требует trim_pattern)"
+  },
+  {
+    "key": "trim_pattern",
+    "type": "string",
+    "sinceVersion": "1.20",
+    "group": "meta",
+    "descriptionRu": "Узор отделки брони (требует trim_material)"
+  },
+  {
+    "key": "light_level",
+    "type": "integer",
+    "group": "meta",
+    "descriptionRu": "Уровень излучаемого света для Light блока"
+  },
+  {
+    "key": "update",
+    "type": "boolean",
+    "group": "behavior",
+    "descriptionRu": "Периодически обновлять предмет по update_interval меню"
+  }
+]

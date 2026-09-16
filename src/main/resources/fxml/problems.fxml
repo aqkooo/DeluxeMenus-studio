@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.controller.ProblemsController"
+      spacing="8.0">
+    <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+    </padding>
+
+    <HBox spacing="8.0" alignment="CENTER_LEFT">
+        <Label text="%problems.title" style="-fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="issuesSummaryLabel" style="-fx-font-weight: bold;"/>
+    </HBox>
+
+    <TableView fx:id="problemsTable" VBox.hgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colLevel" text="%problems.col_level" prefWidth="80.0"/>
+            <TableColumn fx:id="colCode" text="%problems.col_code" prefWidth="70.0"/>
+            <TableColumn fx:id="colMessage" text="%problems.col_message" prefWidth="500.0"/>
+            <TableColumn fx:id="colSlot" text="%problems.col_slot" prefWidth="60.0"/>
+        </columns>
+    </TableView>
+
+</VBox>

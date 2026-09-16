@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.controller.PreviewController"
+      spacing="8.0">
+    <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+    </padding>
+
+    <HBox spacing="8.0" alignment="CENTER_LEFT">
+        <Label text="%preview.title" style="-fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="copyStatusLabel" style="-fx-text-fill: #2ecc71; -fx-font-weight: bold;"/>
+        <Button fx:id="btnCopy" text="%preview.copy" styleClass="button"/>
+    </HBox>
+
+    <StackPane fx:id="codeAreaContainer" VBox.hgrow="ALWAYS" style="-fx-border-color: #2a2a35; -fx-border-radius: 4;"/>
+
+</VBox>

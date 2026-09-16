@@ -1,0 +1,189 @@
+/* DeluxeMenus Studio - Modern Flat Dark Theme */
+
+.root {
+    -fx-base: #1e1e24;
+    -fx-background: #18181c;
+    -fx-control-inner-background: #25252b;
+    -fx-text-fill: #e0e0e0;
+    -fx-accent: #3498db;
+    -fx-focus-color: #3498db;
+    -fx-faint-focus-color: transparent;
+    -fx-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -fx-font-size: 12px;
+}
+
+/* MenuBar & Menus */
+.menu-bar {
+    -fx-background-color: #121215;
+    -fx-border-color: #2a2a32;
+    -fx-border-width: 0 0 1 0;
+}
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background-color: #2a2a32;
+}
+.context-menu {
+    -fx-background-color: #1e1e24;
+    -fx-border-color: #353540;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.menu-item:hover, .menu-item:focused {
+    -fx-background-color: #3498db;
+}
+
+/* ToolBar & Buttons */
+.tool-bar {
+    -fx-background-color: #18181c;
+    -fx-border-color: #2a2a32;
+    -fx-border-width: 0 0 1 0;
+}
+.button {
+    -fx-background-color: #2a2a35;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: #3d3d4d;
+    -fx-padding: 5 10 5 10;
+}
+.button:hover {
+    -fx-background-color: #3d3d4d;
+    -fx-border-color: #55556a;
+}
+.button:pressed {
+    -fx-background-color: #1f1f27;
+}
+.button-primary {
+    -fx-background-color: #2980b9;
+    -fx-border-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.button-primary:hover {
+    -fx-background-color: #3498db;
+}
+
+/* TextFields & TextAreas */
+.text-field, .text-area, .combo-box-base {
+    -fx-background-color: #25252d;
+    -fx-text-fill: #f0f0f0;
+    -fx-border-color: #3a3a48;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.text-field:focused, .text-area:focused, .combo-box-base:focused {
+    -fx-border-color: #3498db;
+    -fx-background-color: #2c2c36;
+}
+
+/* SplitPane */
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.split-pane-divider {
+    -fx-background-color: #2a2a35;
+    -fx-padding: 2;
+}
+
+/* Accordion & TitledPane */
+.titled-pane > .title {
+    -fx-background-color: #23232b;
+    -fx-border-color: #2d2d38;
+    -fx-border-width: 1 0 1 0;
+    -fx-text-fill: #cfd8dc;
+    -fx-font-weight: bold;
+}
+.titled-pane > .title:hover {
+    -fx-background-color: #2b2b35;
+}
+.titled-pane > .content {
+    -fx-background-color: #1b1b22;
+    -fx-border-color: transparent;
+}
+
+/* TabPane */
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: #141418;
+}
+.tab {
+    -fx-background-color: #1e1e26;
+    -fx-background-radius: 4 4 0 0;
+    -fx-border-color: #2c2c36;
+    -fx-border-width: 1 1 0 1;
+    -fx-border-radius: 4 4 0 0;
+}
+.tab:selected {
+    -fx-background-color: #272732;
+    -fx-border-color: #3498db;
+}
+.tab .tab-label {
+    -fx-text-fill: #aaaaaa;
+}
+.tab:selected .tab-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #1b1b22;
+    -fx-border-color: #2c2c36;
+}
+.table-view .column-header-background {
+    -fx-background-color: #23232b;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: #2d2d38;
+    -fx-border-width: 0 1 1 0;
+}
+.table-row-cell {
+    -fx-background-color: #1e1e26;
+    -fx-border-color: transparent;
+}
+.table-row-cell:odd {
+    -fx-background-color: #23232c;
+}
+.table-row-cell:selected {
+    -fx-background-color: #2d4560;
+}
+
+/* Minecraft Tooltip Container */
+.minecraft-tooltip-box {
+    -fx-background-color: #100010;
+    -fx-border-color: #280070;
+    -fx-border-width: 2;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 3);
+}
+
+/* Inventory Slot Cell */
+.inventory-slot {
+    -fx-background-color: #8b8b8b;
+    -fx-border-color: #373737 #ffffff #ffffff #373737;
+    -fx-border-width: 2;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+.inventory-slot:hover {
+    -fx-background-color: #9c9c9c;
+}
+.inventory-slot-selected {
+    -fx-border-color: #00ffff !important;
+    -fx-border-width: 2 !important;
+}
+.inventory-slot-collision {
+    -fx-border-color: #ff3333 !important;
+    -fx-border-width: 2 !important;
+}
+
+/* Status Bar */
+.status-bar {
+    -fx-background-color: #121216;
+    -fx-border-color: #26262e;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 4 10 4 10;
+    -fx-font-size: 11px;
+}
