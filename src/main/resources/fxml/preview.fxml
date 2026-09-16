@@ -18,6 +18,6 @@
         <Button fx:id="btnCopy" text="%preview.copy" styleClass="button"/>
     </HBox>
 
-    <StackPane fx:id="codeAreaContainer" VBox.hgrow="ALWAYS" style="-fx-border-color: #2a2a35; -fx-border-radius: 4;"/>
+    <StackPane fx:id="codeAreaContainer" VBox.vgrow="ALWAYS" style="-fx-border-color: #2a2a35; -fx-border-radius: 4;"/>
 
 </VBox>

@@ -23,7 +23,7 @@
     <Separator/>
 
     <!-- Inventory Grid Box -->
-    <VBox alignment="CENTER" style="-fx-background-color: #121216; -fx-padding: 16; -fx-background-radius: 6; -fx-border-color: #2a2a35; -fx-border-radius: 6;" VBox.hgrow="ALWAYS">
+    <VBox alignment="CENTER" style="-fx-background-color: #121216; -fx-padding: 16; -fx-background-radius: 6; -fx-border-color: #2a2a35; -fx-border-radius: 6;" VBox.vgrow="ALWAYS">
         <GridPane fx:id="inventoryGrid" hgap="4.0" vgap="4.0" alignment="CENTER"/>
     </VBox>
 

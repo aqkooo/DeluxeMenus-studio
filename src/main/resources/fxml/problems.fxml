@@ -17,7 +17,7 @@
         <Label fx:id="issuesSummaryLabel" style="-fx-font-weight: bold;"/>
     </HBox>
 
-    <TableView fx:id="problemsTable" VBox.hgrow="ALWAYS">
+    <TableView fx:id="problemsTable" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="colLevel" text="%problems.col_level" prefWidth="80.0"/>
             <TableColumn fx:id="colCode" text="%problems.col_code" prefWidth="70.0"/>
