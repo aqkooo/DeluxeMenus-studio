@@ -1,0 +1,226 @@
+[
+  {
+    "category": "Player",
+    "placeholder": "%player_name%",
+    "description_ru": "Имя игрока (никнейм)",
+    "description_en": "Player username",
+    "example": "Steve"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_displayname%",
+    "description_ru": "Отображаемое имя игрока (с префиксом/цветом)",
+    "description_en": "Player display name with prefix/colors",
+    "example": "§a[VIP] Steve"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_ping%",
+    "description_ru": "Текущий пинг игрока в миллисекундах",
+    "description_en": "Player network latency in milliseconds",
+    "example": "45"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_health%",
+    "description_ru": "Текущее здоровье игрока (число сердец * 2)",
+    "description_en": "Current player health points",
+    "example": "20.0"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_max_health%",
+    "description_ru": "Максимальное здоровье игрока",
+    "description_en": "Maximum player health points",
+    "example": "20.0"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_food_level%",
+    "description_ru": "Уровень сытости игрока (0-20)",
+    "description_en": "Player hunger level (0-20)",
+    "example": "20"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_level%",
+    "description_ru": "Уровень опыта игрока",
+    "description_en": "Player experience level",
+    "example": "30"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_exp%",
+    "description_ru": "Текущий опыт на уровне",
+    "description_en": "Current level progress experience",
+    "example": "120"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_gamemode%",
+    "description_ru": "Игровой режим игрока (SURVIVAL, CREATIVE и т.д.)",
+    "description_en": "Player game mode",
+    "example": "SURVIVAL"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_world%",
+    "description_ru": "Название текущего мира игрока",
+    "description_en": "Name of the player's current world",
+    "example": "world"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_x%",
+    "description_ru": "Координата X позиции игрока",
+    "description_en": "Player X coordinate",
+    "example": "128"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_y%",
+    "description_ru": "Координата Y позиции игрока",
+    "description_en": "Player Y coordinate",
+    "example": "64"
+  },
+  {
+    "category": "Player",
+    "placeholder": "%player_z%",
+    "description_ru": "Координата Z позиции игрока",
+    "description_en": "Player Z coordinate",
+    "example": "-256"
+  },
+  {
+    "category": "Vault",
+    "placeholder": "%vault_eco_balance%",
+    "description_ru": "Баланс игрока в экономике сервера",
+    "description_en": "Player economy currency balance",
+    "example": "1500.50"
+  },
+  {
+    "category": "Vault",
+    "placeholder": "%vault_eco_balance_formatted%",
+    "description_ru": "Форматированный баланс с сокращениями (1.5k, 2M)",
+    "description_en": "Formatted balance with abbreviations (1.5k, 2M)",
+    "example": "1.5K"
+  },
+  {
+    "category": "Vault",
+    "placeholder": "%vault_prefix%",
+    "description_ru": "Префикс чата игрока из Vault / Permissions",
+    "description_en": "Chat prefix from Vault / Permissions",
+    "example": "&8[&aVIP&8]"
+  },
+  {
+    "category": "Vault",
+    "placeholder": "%vault_suffix%",
+    "description_ru": "Суффикс чата игрока",
+    "description_en": "Chat suffix",
+    "example": "&7"
+  },
+  {
+    "category": "Vault",
+    "placeholder": "%vault_group%",
+    "description_ru": "Основная группа прав игрока",
+    "description_en": "Primary permission group",
+    "example": "vip"
+  },
+  {
+    "category": "LuckPerms",
+    "placeholder": "%luckperms_primary_group_name%",
+    "description_ru": "Название основной группы LuckPerms",
+    "description_en": "LuckPerms primary group name",
+    "example": "vip"
+  },
+  {
+    "category": "LuckPerms",
+    "placeholder": "%luckperms_prefix%",
+    "description_ru": "Наивысший префикс LuckPerms",
+    "description_en": "Highest weight LuckPerms prefix",
+    "example": "&a[VIP]&r "
+  },
+  {
+    "category": "LuckPerms",
+    "placeholder": "%luckperms_has_permission_<permission>%",
+    "description_ru": "Проверка наличия конкретного права (true/false)",
+    "description_en": "Permission check (true/false)",
+    "example": "true"
+  },
+  {
+    "category": "Server",
+    "placeholder": "%server_online%",
+    "description_ru": "Количество игроков онлайн на сервере",
+    "description_en": "Number of players currently online",
+    "example": "142"
+  },
+  {
+    "category": "Server",
+    "placeholder": "%server_max_players%",
+    "description_ru": "Максимальный лимит игроков на сервере",
+    "description_en": "Max player capacity of the server",
+    "example": "500"
+  },
+  {
+    "category": "Server",
+    "placeholder": "%server_ram_used%",
+    "description_ru": "Использовано оперативной памяти сервером (МБ)",
+    "description_en": "RAM currently used by server (MB)",
+    "example": "4096"
+  },
+  {
+    "category": "Server",
+    "placeholder": "%server_tps%",
+    "description_ru": "Текущий TPS сервера (такты в секунду, до 20.0)",
+    "description_en": "Current server ticks per second",
+    "example": "20.0"
+  },
+  {
+    "category": "Server",
+    "placeholder": "%server_time_<format>%",
+    "description_ru": "Текущее системное время сервера по формату (напр. HH:mm:ss)",
+    "description_en": "Current server time formatted (e.g. HH:mm:ss)",
+    "example": "19:30:00"
+  },
+  {
+    "category": "Statistic",
+    "placeholder": "%statistic_player_kills%",
+    "description_ru": "Количество убитых других игроков",
+    "description_en": "Total player kills",
+    "example": "24"
+  },
+  {
+    "category": "Statistic",
+    "placeholder": "%statistic_deaths%",
+    "description_ru": "Количество смертей игрока",
+    "description_en": "Total player deaths",
+    "example": "5"
+  },
+  {
+    "category": "Statistic",
+    "placeholder": "%statistic_time_played%",
+    "description_ru": "Суммарное время, проведенное в игре",
+    "description_en": "Total gameplay playtime",
+    "example": "12d 4h 15m"
+  },
+  {
+    "category": "Statistic",
+    "placeholder": "%statistic_mob_kills%",
+    "description_ru": "Количество убитых монстров/мобов",
+    "description_en": "Total monster and mob kills",
+    "example": "450"
+  },
+  {
+    "category": "PlaceholderAPI",
+    "placeholder": "%javascript_<script>%",
+    "description_ru": "Результат вычисления пользовательского JS-скрипта",
+    "description_en": "Result of custom JavaScript evaluation",
+    "example": "yes"
+  },
+  {
+    "category": "PlaceholderAPI",
+    "placeholder": "%math_<expression>%",
+    "description_ru": "Результат математического выражения (PAPI Math)",
+    "description_en": "Mathematical expression result",
+    "example": "100"
+  }
+]

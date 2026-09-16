@@ -14,8 +14,11 @@
             <Menu text="%menu.file">
                 <MenuItem fx:id="menuNew" text="%menu.file.new" accelerator="Shortcut+N"/>
                 <MenuItem fx:id="menuOpen" text="%menu.file.open" accelerator="Shortcut+O"/>
+                <MenuItem fx:id="menuOpenWorkspace" text="%menu.file.open_workspace" accelerator="Shortcut+Shift+O"/>
                 <MenuItem fx:id="menuSave" text="%menu.file.save" accelerator="Shortcut+S"/>
                 <MenuItem fx:id="menuSaveAs" text="%menu.file.save_as" accelerator="Shortcut+Shift+S"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="menuExportPoster" text="%menu.file.export_poster"/>
                 <SeparatorMenuItem/>
                 <MenuItem fx:id="menuExit" text="%menu.file.exit" accelerator="Shortcut+Q"/>
             </Menu>
@@ -24,6 +27,14 @@
                 <MenuItem fx:id="menuRedo" text="%menu.edit.redo" accelerator="Shortcut+Y"/>
             </Menu>
             <Menu text="%menu.tools">
+                <MenuItem fx:id="menuSimulator" text="%menu.tools.simulator" accelerator="F5"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="menuGradient" text="%menu.tools.gradient"/>
+                <MenuItem fx:id="menuComponents" text="%menu.tools.components"/>
+                <MenuItem fx:id="menuPapi" text="%menu.tools.papi"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="menuOptimize" text="%menu.tools.optimize"/>
+                <SeparatorMenuItem/>
                 <MenuItem fx:id="menuExtractTextures" text="%menu.tools.extract_textures"/>
             </Menu>
             <Menu text="%menu.language">

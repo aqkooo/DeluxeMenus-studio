@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.ui.dialog.GradientGeneratorDialog"
+      spacing="10.0" prefWidth="540.0" prefHeight="460.0">
+    <padding>
+        <Insets bottom="14.0" left="14.0" right="14.0" top="14.0"/>
+    </padding>
+
+    <Label text="%tools.gradient.title" styleClass="section-header"/>
+
+    <!-- Text input -->
+    <VBox spacing="4.0">
+        <Label text="%tools.gradient.input_label" styleClass="field-label"/>
+        <TextField fx:id="txtInput" promptText="Текст для градиента..."/>
+    </VBox>
+
+    <!-- Colors row -->
+    <GridPane hgap="10.0" vgap="6.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="33.3"/>
+            <ColumnConstraints percentWidth="33.3"/>
+            <ColumnConstraints percentWidth="33.3"/>
+        </columnConstraints>
+        <VBox spacing="2.0" GridPane.columnIndex="0">
+            <Label text="%tools.gradient.start_color" styleClass="field-label"/>
+            <ColorPicker fx:id="startColorPicker" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="2.0" GridPane.columnIndex="1">
+            <HBox spacing="4.0" alignment="CENTER_LEFT">
+                <CheckBox fx:id="chkMiddleColor" text="%tools.gradient.middle_color" styleClass="field-label"/>
+            </HBox>
+            <ColorPicker fx:id="middleColorPicker" maxWidth="Infinity" disable="true"/>
+        </VBox>
+        <VBox spacing="2.0" GridPane.columnIndex="2">
+            <Label text="%tools.gradient.end_color" styleClass="field-label"/>
+            <ColorPicker fx:id="endColorPicker" maxWidth="Infinity"/>
+        </VBox>
+    </GridPane>
+
+    <!-- Format & Styles -->
+    <HBox spacing="12.0" alignment="CENTER_LEFT">
+        <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+            <Label text="%tools.gradient.format" styleClass="field-label"/>
+            <ComboBox fx:id="formatCombo" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="4.0">
+            <Label text="%tools.gradient.styles" styleClass="field-label"/>
+            <HBox spacing="8.0" alignment="CENTER_LEFT">
+                <CheckBox fx:id="chkBold" text="B" style="-fx-font-weight: bold;"/>
+                <CheckBox fx:id="chkItalic" text="I" style="-fx-font-style: italic;"/>
+                <CheckBox fx:id="chkUnderline" text="U" style="-fx-underline: true;"/>
+                <CheckBox fx:id="chkStrikethrough" text="S"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <!-- Live Preview -->
+    <VBox spacing="4.0">
+        <Label text="%tools.gradient.preview" styleClass="field-label"/>
+        <StackPane alignment="CENTER_LEFT" styleClass="title-preview-box" minHeight="40.0">
+            <TextFlow fx:id="previewFlow"/>
+        </StackPane>
+    </VBox>
+
+    <!-- Raw Output -->
+    <VBox spacing="4.0">
+        <Label text="%tools.gradient.output" styleClass="field-label"/>
+        <TextField fx:id="txtOutput" editable="false"/>
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS"/>
+
+    <!-- Action Buttons -->
+    <HBox spacing="8.0" alignment="CENTER_RIGHT">
+        <Button fx:id="btnApplyName" text="%tools.gradient.apply_name" styleClass="button-primary"/>
+        <Button fx:id="btnApplyLore" text="%tools.gradient.apply_lore" styleClass="button"/>
+        <Button fx:id="btnCopy" text="%preview.copy" styleClass="button"/>
+        <Button fx:id="btnClose" text="%menu.file.exit" styleClass="button"/>
+    </HBox>
+</VBox>

@@ -231,6 +231,21 @@ public class GridViewModel {
         selectSlot(-1);
     }
 
+    public void setItemAt(int slot, MenuItem itemTemplate) {
+        if (itemTemplate == null) return;
+        String key = "item_" + slot;
+        int counter = 1;
+        while (config.getItems().containsKey(key)) {
+            key = "item_" + slot + "_" + counter++;
+        }
+        MenuItem newItem = itemTemplate.copy();
+        newItem.setKey(key);
+        newItem.setSlot(slot);
+        newItem.getSlots().clear();
+        commandStack.execute(new SetItemCommand(config, newItem));
+        selectSlot(slot);
+    }
+
     public IntegerProperty selectedSlotProperty() { return selectedSlot; }
     public int getSelectedSlot() { return selectedSlot.get(); }
 

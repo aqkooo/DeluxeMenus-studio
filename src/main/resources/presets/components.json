@@ -1,0 +1,212 @@
+[
+  {
+    "id": "nav_back",
+    "category": "Navigation",
+    "name_ru": "Кнопка «Назад»",
+    "name_en": "Back Button",
+    "description_ru": "Стрелка возврата в предыдущее меню (слот 45)",
+    "description_en": "Arrow button to return to previous menu (slot 45)",
+    "item": {
+      "key": "btn_back",
+      "material": "ARROW",
+      "slot": 45,
+      "priority": 0,
+      "appearance": {
+        "displayName": "&e&l<< Назад",
+        "lore": [
+          "&7Нажмите для возврата",
+          "&7в главное меню."
+        ]
+      },
+      "clickHandlers": {
+        "leftClickCommands": [
+          "[sound] UI_BUTTON_CLICK",
+          "[openguimenu] main"
+        ],
+        "rightClickCommands": [
+          "[sound] UI_BUTTON_CLICK",
+          "[openguimenu] main"
+        ]
+      }
+    }
+  },
+  {
+    "id": "nav_close",
+    "category": "Navigation",
+    "name_ru": "Кнопка «Закрыть»",
+    "name_en": "Close Button",
+    "description_ru": "Барьер закрытия инвентаря (слот 49)",
+    "description_en": "Barrier button to close menu (slot 49)",
+    "item": {
+      "key": "btn_close",
+      "material": "BARRIER",
+      "slot": 49,
+      "priority": 0,
+      "appearance": {
+        "displayName": "&c&lЗакрыть меню",
+        "lore": [
+          "&7Нажмите, чтобы закрыть",
+          "&7текущее окно."
+        ]
+      },
+      "clickHandlers": {
+        "leftClickCommands": [
+          "[sound] BLOCK_CHEST_CLOSE",
+          "[close]"
+        ]
+      }
+    }
+  },
+  {
+    "id": "nav_next",
+    "category": "Navigation",
+    "name_ru": "Кнопка «Вперёд»",
+    "name_en": "Next Button",
+    "description_ru": "Стрелка перехода на следующую страницу (слот 53)",
+    "description_en": "Arrow button to navigate to next page (slot 53)",
+    "item": {
+      "key": "btn_next",
+      "material": "ARROW",
+      "slot": 53,
+      "priority": 0,
+      "appearance": {
+        "displayName": "&e&lВперёд >>",
+        "lore": [
+          "&7Перейти на следующую",
+          "&7страницу списка."
+        ]
+      },
+      "clickHandlers": {
+        "leftClickCommands": [
+          "[sound] UI_BUTTON_CLICK",
+          "[openguimenu] page_2"
+        ]
+      }
+    }
+  },
+  {
+    "id": "balance_card",
+    "category": "Economy",
+    "name_ru": "Баланс игрока",
+    "name_en": "Economy Balance Card",
+    "description_ru": "Золотой слиток с отображением баланса через Vault",
+    "description_en": "Gold ingot displaying Vault player economy balance",
+    "item": {
+      "key": "player_balance",
+      "material": "GOLD_INGOT",
+      "slot": 4,
+      "priority": 0,
+      "update": true,
+      "appearance": {
+        "displayName": "&#ffaa00&lВаш кошелёк",
+        "lore": [
+          "&7Текущий баланс:",
+          "&a$%vault_eco_balance%",
+          "",
+          "&8Кликните для пополнения"
+        ]
+      },
+      "clickHandlers": {
+        "leftClickCommands": [
+          "[message] &eПосетите магазин на сайте для пополнения счёта."
+        ]
+      }
+    }
+  },
+  {
+    "id": "player_profile",
+    "category": "User",
+    "name_ru": "Профиль игрока",
+    "name_en": "Player Profile Header",
+    "description_ru": "Голова игрока с ником, рангом и пингом",
+    "description_en": "Player head with username, rank and ping",
+    "item": {
+      "key": "profile_header",
+      "material": "head-%player_name%",
+      "slot": 0,
+      "priority": 0,
+      "appearance": {
+        "displayName": "&a&lПрофиль: &f%player_name%",
+        "lore": [
+          "&7Ранг: &e%luckperms_primary_group_name%",
+          "&7Пинг: &b%player_ping% ms",
+          "&7Мир: &f%player_world%",
+          "",
+          "&7Статистика побед: &6%statistic_player_kills%"
+        ]
+      }
+    }
+  },
+  {
+    "id": "confirm_dialog",
+    "category": "Action",
+    "name_ru": "Кнопка «Подтвердить»",
+    "name_en": "Confirm Action",
+    "description_ru": "Зеленый изумруд подтверждения операции",
+    "description_en": "Green emerald confirm button",
+    "item": {
+      "key": "btn_confirm",
+      "material": "EMERALD",
+      "slot": 11,
+      "priority": 0,
+      "appearance": {
+        "displayName": "&a&lПодтвердить покупку",
+        "lore": [
+          "&7Нажмите левой кнопкой мыши,",
+          "&7чтобы подтвердить выбор."
+        ]
+      },
+      "clickHandlers": {
+        "leftClickCommands": [
+          "[sound] ENTITY_PLAYER_LEVELUP",
+          "[message] &aОперация успешно подтверждена!",
+          "[close]"
+        ]
+      }
+    }
+  },
+  {
+    "id": "cancel_dialog",
+    "category": "Action",
+    "name_ru": "Кнопка «Отмена»",
+    "name_en": "Cancel Action",
+    "description_ru": "Красный камень отмены операции",
+    "description_en": "Redstone cancel button",
+    "item": {
+      "key": "btn_cancel",
+      "material": "REDSTONE",
+      "slot": 15,
+      "priority": 0,
+      "appearance": {
+        "displayName": "&c&lОтменить",
+        "lore": [
+          "&7Нажмите для отмены и",
+          "&7возврата назад."
+        ]
+      },
+      "clickHandlers": {
+        "leftClickCommands": [
+          "[sound] BLOCK_CHEST_CLOSE",
+          "[close]"
+        ]
+      }
+    }
+  },
+  {
+    "id": "filler_black_glass",
+    "category": "Decoration",
+    "name_ru": "Чёрная стеклянная панель (Заглушка)",
+    "name_en": "Black Stained Glass Pane Filler",
+    "description_ru": "Пустая декоративная панель для рамок меню",
+    "description_en": "Empty decorative pane for menu frames",
+    "item": {
+      "key": "filler_glass",
+      "material": "BLACK_STAINED_GLASS_PANE",
+      "slot": 0,
+      "priority": 0,
+      "appearance": {
+        "displayName": " "
+      }
+    }
+  }
+]

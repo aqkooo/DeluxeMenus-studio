@@ -114,8 +114,26 @@ public class MenuItem {
     public ItemAppearance getAppearance() { return appearance; }
     public void setAppearance(ItemAppearance appearance) { this.appearance = appearance; }
 
+    public MenuItem deepCopy() { return copy(); }
+
+    public void setSlots(List<String> newSlots) {
+        this.slots.clear();
+        if (newSlots != null) this.slots.addAll(newSlots);
+    }
+
     public ClickHandler getClickHandler() { return clickHandler; }
     public void setClickHandler(ClickHandler clickHandler) { this.clickHandler = clickHandler; }
+
+    public ClickHandler getClickHandlers() { return clickHandler; }
+    public void setClickHandlers(ClickHandler clickHandler) { this.clickHandler = clickHandler; }
+
+    public RequirementList getLeftClickRequirement() {
+        return clickHandler != null ? clickHandler.getLeftClickRequirement() : null;
+    }
+
+    public RequirementList getRightClickRequirement() {
+        return clickHandler != null ? clickHandler.getRightClickRequirement() : null;
+    }
 
     public RequirementList getViewRequirement() { return viewRequirement; }
     public void setViewRequirement(RequirementList viewRequirement) { this.viewRequirement = viewRequirement; }

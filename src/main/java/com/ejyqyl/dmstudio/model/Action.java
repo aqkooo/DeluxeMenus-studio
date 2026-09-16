@@ -100,6 +100,10 @@ public class Action {
         return sb.toString();
     }
 
+    public String getRawCommand() {
+        return toSerializedString();
+    }
+
     public String getType() {
         return type;
     }

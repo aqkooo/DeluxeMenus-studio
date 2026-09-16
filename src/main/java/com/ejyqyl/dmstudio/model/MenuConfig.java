@@ -78,6 +78,12 @@ public class MenuConfig {
     public List<Action> getOpenActions() { return openActions; }
 
     public Map<String, MenuItem> getItems() { return items; }
+    public void setItems(Map<String, MenuItem> newItems) {
+        this.items.clear();
+        if (newItems != null) {
+            this.items.putAll(newItems);
+        }
+    }
 
     public Map<String, Object> getUnknownFields() { return unknownFields; }
 }

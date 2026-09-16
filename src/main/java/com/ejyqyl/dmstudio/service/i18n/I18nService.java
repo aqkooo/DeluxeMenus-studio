@@ -52,6 +52,14 @@ public final class I18nService {
         return currentLocale.get();
     }
 
+    public ResourceBundle getBundle() {
+        return bundle;
+    }
+
+    public String getCurrentLanguage() {
+        return currentLocale.get().getLanguage();
+    }
+
     public void setLocale(Locale locale) {
         currentLocale.set(locale);
     }

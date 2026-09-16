@@ -105,6 +105,51 @@ public class Requirement {
         return fields.get(key);
     }
 
+    public String getPermission() {
+        return (String) fields.get("permission");
+    }
+
+    public void setPermission(String permission) {
+        setField("permission", permission);
+    }
+
+    public Double getAmount() {
+        Object a = fields.get("amount");
+        if (a instanceof Number n) return n.doubleValue();
+        if (a instanceof String s) {
+            try { return Double.parseDouble(s); } catch (Exception e) { return null; }
+        }
+        return null;
+    }
+
+    public void setAmount(Double amount) {
+        setField("amount", amount);
+    }
+
+    public String getInput() {
+        return Objects.toString(fields.get("input"), null);
+    }
+
+    public void setInput(String input) {
+        setField("input", input);
+    }
+
+    public String getOutput() {
+        return Objects.toString(fields.get("output"), null);
+    }
+
+    public void setOutput(String output) {
+        setField("output", output);
+    }
+
+    public String getRegex() {
+        return (String) fields.get("regex");
+    }
+
+    public void setRegex(String regex) {
+        setField("regex", regex);
+    }
+
     public List<Action> getDenyCommands() {
         return denyCommands;
     }

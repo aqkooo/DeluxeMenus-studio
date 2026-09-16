@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.ui.dialog.ComponentsDialog"
+      spacing="10.0" prefWidth="680.0" prefHeight="480.0">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+    </padding>
+
+    <HBox spacing="8.0" alignment="CENTER_LEFT">
+        <Label text="%tools.components.title" styleClass="section-header"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="categoryCombo" prefWidth="160.0"/>
+    </HBox>
+
+    <!-- Main Content Split -->
+    <SplitPane dividerPositions="0.45" VBox.vgrow="ALWAYS">
+        <!-- Left: Components List -->
+        <ListView fx:id="componentsList"/>
+
+        <!-- Right: Component Details & Preview -->
+        <VBox spacing="8.0" style="-fx-padding: 8;">
+            <Label fx:id="componentTitleLabel" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: -text-1;"/>
+            <Label fx:id="componentDescLabel" wrapText="true" styleClass="field-label"/>
+
+            <Separator/>
+
+            <Label text="%inspector.tooltip_preview" styleClass="field-label"/>
+            <VBox fx:id="tooltipPreviewBox" styleClass="minecraft-tooltip-box" minHeight="54.0"/>
+
+            <Label text="%inspector.section.commands" styleClass="field-label"/>
+            <ListView fx:id="commandsList" prefHeight="90.0"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <HBox spacing="8.0" alignment="CENTER_LEFT">
+                <Label text="%item.slot" styleClass="field-label"/>
+                <Spinner fx:id="targetSlotSpinner" prefWidth="80.0"/>
+            </HBox>
+        </VBox>
+    </SplitPane>
+
+    <!-- Bottom Actions -->
+    <HBox spacing="8.0" alignment="CENTER_RIGHT">
+        <Button fx:id="btnInsert" text="%tools.components.insert" styleClass="button-primary"/>
+        <Button fx:id="btnClose" text="%menu.file.exit" styleClass="button"/>
+    </HBox>
+</VBox>

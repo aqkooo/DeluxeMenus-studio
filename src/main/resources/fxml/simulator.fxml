@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.ui.dialog.SimulatorDialog"
+      spacing="10.0" prefWidth="960.0" prefHeight="650.0">
+    <padding>
+        <Insets bottom="12.0" left="14.0" right="14.0" top="12.0"/>
+    </padding>
+
+    <!-- Top Header & State Bar -->
+    <HBox spacing="14.0" alignment="CENTER_LEFT" styleClass="chest-frame">
+        <Label text="%tools.simulator.title" styleClass="section-header" style="-fx-font-size: 13px;"/>
+        <Separator orientation="VERTICAL"/>
+
+        <Label text="%tools.simulator.player" styleClass="field-label"/>
+        <TextField fx:id="playerField" prefWidth="100.0" text="Steve"/>
+
+        <Label text="%tools.simulator.balance" styleClass="field-label"/>
+        <Spinner fx:id="balanceSpinner" prefWidth="120.0" editable="true"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnResetState" text="%tools.simulator.reset" styleClass="button"/>
+    </HBox>
+
+    <!-- Center Content: Grid on Left, Simulator Inspector & Console on Right -->
+    <SplitPane dividerPositions="0.62" VBox.vgrow="ALWAYS">
+        <!-- Left: Real-time Chest GUI -->
+        <VBox alignment="CENTER" spacing="8.0" styleClass="chest-workbench">
+            <Label fx:id="menuTitleLabel" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: -text-1;"/>
+            <VBox alignment="CENTER" styleClass="chest-frame">
+                <GridPane fx:id="simGrid" hgap="3.0" vgap="3.0" alignment="CENTER"/>
+            </VBox>
+            <Label text="%tools.simulator.hint" styleClass="field-label" style="-fx-font-style: italic;"/>
+        </VBox>
+
+        <!-- Right: Player Permissions & Live Chat / Event Console -->
+        <VBox spacing="8.0" style="-fx-padding: 8;">
+            <Label text="%tools.simulator.permissions" styleClass="section-header"/>
+            <HBox spacing="6.0">
+                <TextField fx:id="newPermField" promptText="group.vip..." HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnAddPerm" text="+" styleClass="button"/>
+            </HBox>
+            <ListView fx:id="permissionsList" prefHeight="130.0"/>
+
+            <Separator/>
+
+            <Label text="%tools.simulator.chat_log" styleClass="section-header"/>
+            <ListView fx:id="eventLogList" VBox.vgrow="ALWAYS"/>
+            <Button fx:id="btnClearLog" text="%tools.simulator.clear_log" styleClass="button" maxWidth="Infinity"/>
+        </VBox>
+    </SplitPane>
+
+    <!-- Bottom Actions -->
+    <HBox spacing="8.0" alignment="CENTER_RIGHT">
+        <Label fx:id="statusFeedbackLabel" styleClass="status-info" HBox.hgrow="ALWAYS"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnClose" text="%menu.file.exit" styleClass="button"/>
+    </HBox>
+</VBox>

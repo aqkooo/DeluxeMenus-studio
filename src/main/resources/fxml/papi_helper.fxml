@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.ui.dialog.PapiHelperDialog"
+      spacing="8.0" prefWidth="620.0" prefHeight="480.0">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+    </padding>
+
+    <Label text="%tools.papi.title" styleClass="section-header"/>
+
+    <!-- Search bar & Category filter -->
+    <HBox spacing="8.0" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="%tools.papi.search_prompt" HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="categoryCombo" prefWidth="150.0"/>
+    </HBox>
+
+    <!-- Table of Placeholders -->
+    <TableView fx:id="papiTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCategory" text="%tools.papi.col_category" prefWidth="100.0"/>
+            <TableColumn fx:id="colPlaceholder" text="%tools.papi.col_placeholder" prefWidth="210.0"/>
+            <TableColumn fx:id="colDescription" text="%tools.papi.col_description" prefWidth="270.0"/>
+        </columns>
+    </TableView>
+
+    <!-- Bottom Actions -->
+    <HBox spacing="8.0" alignment="CENTER_RIGHT">
+        <Button fx:id="btnInsert" text="%tools.papi.insert" styleClass="button-primary"/>
+        <Button fx:id="btnCopy" text="%preview.copy" styleClass="button"/>
+        <Button fx:id="btnClose" text="%menu.file.exit" styleClass="button"/>
+    </HBox>
+</VBox>

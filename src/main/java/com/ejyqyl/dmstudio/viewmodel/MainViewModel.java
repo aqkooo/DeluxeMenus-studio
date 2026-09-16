@@ -11,6 +11,8 @@ import com.ejyqyl.dmstudio.service.yaml.YamlExportService;
 import com.ejyqyl.dmstudio.service.yaml.YamlImportService;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -24,6 +26,7 @@ public class MainViewModel {
 
     private final ObjectProperty<MenuConfig> config = new SimpleObjectProperty<>();
     private final ObjectProperty<Path> currentFilePath = new SimpleObjectProperty<>(null);
+    private final StringProperty statusMessage = new SimpleStringProperty("");
 
     private final CommandStack commandStack = new CommandStack();
     private final ValidationEngine validationEngine = new ValidationEngine();
@@ -105,4 +108,8 @@ public class MainViewModel {
     public ValidationContext getValidationContext() { return validationContext; }
     public ObjectProperty<Path> currentFilePathProperty() { return currentFilePath; }
     public AutosaveService getAutosaveService() { return autosaveService; }
+
+    public String getStatusMessage() { return statusMessage.get(); }
+    public void setStatusMessage(String message) { this.statusMessage.set(message); }
+    public StringProperty statusMessageProperty() { return statusMessage; }
 }

@@ -93,6 +93,7 @@ public class CommandStack {
     public boolean canUndo() { return canUndo.get(); }
     public boolean canRedo() { return canRedo.get(); }
     public boolean isDirty() { return dirty.get(); }
+    public void setDirty(boolean isDirty) { dirty.set(isDirty); }
 
     public void addChangeListener(Runnable listener) {
         changeListeners.add(listener);

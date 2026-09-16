@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 
@@ -25,6 +26,7 @@ public class GridController {
     private static final DataFormat SLOT_FORMAT = new DataFormat("application/x-deluxemenus-slot");
 
     @FXML private GridPane inventoryGrid;
+    @FXML private ToggleButton btnBrush;
     @FXML private Button btnBorder;
     @FXML private Button btnChecker;
     @FXML private Button btnClearAll;
@@ -35,6 +37,13 @@ public class GridController {
 
     @FXML
     public void initialize() {
+        if (btnBrush != null) {
+            btnBrush.selectedProperty().addListener((obs, oldV, newV) -> {
+                if (newV && mainViewModel != null) {
+                    mainViewModel.setStatusMessage(I18nService.getInstance().get("grid.brush.active"));
+                }
+            });
+        }
         btnBorder.setOnAction(e -> {
             if (gridViewModel != null) gridViewModel.applyPresetBorder("GRAY_STAINED_GLASS_PANE");
         });
@@ -92,6 +101,18 @@ public class GridController {
     private void setupInteractivity(SlotCell slotCell, int slotIndex) {
         // Mouse click
         slotCell.setOnMouseClicked(e -> {
+            if (btnBrush != null && btnBrush.isSelected()) {
+                if (e.getButton() == MouseButton.SECONDARY) {
+                    gridViewModel.clearSlot(slotIndex);
+                } else if (e.getButton() == MouseButton.PRIMARY) {
+                    MenuItem sel = gridViewModel.getActiveItem();
+                    if (sel != null) {
+                        gridViewModel.setItemAt(slotIndex, sel);
+                    }
+                }
+                return;
+            }
+
             if (e.getButton() == MouseButton.PRIMARY) {
                 List<MenuItem> items = mainViewModel.getConfig().getItemsAtSlot(slotIndex);
                 if (e.getClickCount() == 2 && items.isEmpty()) {
@@ -123,13 +144,17 @@ public class GridController {
         itmLowerPrio.setOnAction(e -> gridViewModel.createLowerPriorityVariant(slotIndex));
 
         menu.getItems().addAll(itmClear, itmDup, itmCopy, itmPaste, new SeparatorMenuItem(), itmLowerPrio);
-        slotCell.setOnContextMenuRequested(e -> menu.show(slotCell, e.getScreenX(), e.getScreenY()));
+        slotCell.setOnContextMenuRequested(e -> {
+            if (btnBrush != null && btnBrush.isSelected()) return;
+            menu.show(slotCell, e.getScreenX(), e.getScreenY());
+        });
 
         // Drag and Drop
         slotCell.setOnDragDetected(e -> {
             List<MenuItem> items = mainViewModel.getConfig().getItemsAtSlot(slotIndex);
             if (!items.isEmpty()) {
-                Dragboard db = slotCell.startDragAndDrop(e.isControlDown() ? TransferMode.COPY : TransferMode.MOVE);
+                boolean copyMode = e.isControlDown() || e.isAltDown();
+                Dragboard db = slotCell.startDragAndDrop(copyMode ? TransferMode.COPY : TransferMode.MOVE);
                 ClipboardContent content = new ClipboardContent();
                 content.putString(String.valueOf(slotIndex));
                 db.setContent(content);

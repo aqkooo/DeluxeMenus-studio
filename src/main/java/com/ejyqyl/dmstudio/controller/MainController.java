@@ -17,6 +17,15 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import com.ejyqyl.dmstudio.service.export.MenuPosterExportService;
+import com.ejyqyl.dmstudio.service.optimizer.ConfigOptimizerService;
+import com.ejyqyl.dmstudio.service.optimizer.ConfigOptimizerService.OptimizationResult;
+import com.ejyqyl.dmstudio.service.project.WorkspaceManager;
+import com.ejyqyl.dmstudio.ui.dialog.ComponentsDialog;
+import com.ejyqyl.dmstudio.ui.dialog.GradientGeneratorDialog;
+import com.ejyqyl.dmstudio.ui.dialog.PapiHelperDialog;
+import com.ejyqyl.dmstudio.ui.dialog.SimulatorDialog;
+import javafx.stage.DirectoryChooser;
 
 /**
  * Root application controller orchestrating layout, menu commands, and sub-controllers.
@@ -28,9 +37,16 @@ public class MainController {
     @FXML private MenuItem menuOpen;
     @FXML private MenuItem menuSave;
     @FXML private MenuItem menuSaveAs;
+    @FXML private MenuItem menuOpenWorkspace;
+    @FXML private MenuItem menuExportPoster;
     @FXML private MenuItem menuExit;
     @FXML private MenuItem menuUndo;
     @FXML private MenuItem menuRedo;
+    @FXML private MenuItem menuSimulator;
+    @FXML private MenuItem menuGradient;
+    @FXML private MenuItem menuComponents;
+    @FXML private MenuItem menuPapi;
+    @FXML private MenuItem menuOptimize;
     @FXML private MenuItem menuExtractTextures;
     @FXML private MenuItem menuAbout;
     @FXML private RadioMenuItem menuLangRu;
@@ -70,8 +86,10 @@ public class MainController {
     private void initMenuActions() {
         menuNew.setOnAction(e -> handleNew());
         menuOpen.setOnAction(e -> handleOpen());
+        menuOpenWorkspace.setOnAction(e -> handleOpenWorkspace());
         menuSave.setOnAction(e -> handleSave());
         menuSaveAs.setOnAction(e -> handleSaveAs());
+        menuExportPoster.setOnAction(e -> handleExportPoster());
         menuExit.setOnAction(e -> handleExit());
 
         menuUndo.setOnAction(e -> {
@@ -81,6 +99,11 @@ public class MainController {
             if (mainViewModel != null) mainViewModel.getCommandStack().redo();
         });
 
+        menuSimulator.setOnAction(e -> handleSimulator());
+        menuGradient.setOnAction(e -> handleGradient());
+        menuComponents.setOnAction(e -> handleComponents());
+        menuPapi.setOnAction(e -> handlePapi());
+        menuOptimize.setOnAction(e -> handleOptimize());
         menuExtractTextures.setOnAction(e -> showExtractTexturesDialog());
 
         menuLangRu.setOnAction(e -> I18nService.getInstance().setLocale(Locale.of("ru", "RU")));
@@ -246,6 +269,97 @@ public class MainController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void handleOpenWorkspace() {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle(I18nService.getInstance().get("menu.file.open_workspace"));
+        File dir = chooser.showDialog(stage);
+        if (dir != null) {
+            WorkspaceManager.getInstance().openWorkspace(dir);
+            int count = WorkspaceManager.getInstance().getMenuFiles().size();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(I18nService.getInstance().get("dialog.info_title"));
+            alert.setHeaderText(null);
+            alert.setContentText("Рабочая область успешно открыта: обнаружено " + count + " меню.");
+            alert.showAndWait();
+        }
+    }
+
+    private void handleExportPoster() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle(I18nService.getInstance().get("menu.file.export_poster"));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Image (*.png)", "*.png"));
+        chooser.setInitialFileName("menu_poster.png");
+        File file = chooser.showSaveDialog(stage);
+        if (file != null) {
+            try {
+                MenuPosterExportService.exportPoster(mainViewModel.getConfig(), file);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(I18nService.getInstance().get("dialog.info_title"));
+                alert.setHeaderText(null);
+                alert.setContentText("Постер меню успешно сохранён: " + file.getName());
+                alert.showAndWait();
+            } catch (Exception ex) {
+                showError(I18nService.getInstance().get("dialog.error_title"), "Не удалось экспортировать постер: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void handleSimulator() {
+        if (mainViewModel != null && mainViewModel.getConfig() != null) {
+            SimulatorDialog.show(stage, mainViewModel.getConfig());
+        }
+    }
+
+    private void handleGradient() {
+        GradientGeneratorDialog.show(stage,
+                appliedName -> {
+                    if (mainViewModel != null && mainViewModel.getItemEditorViewModel() != null) {
+                        mainViewModel.getItemEditorViewModel().displayNameProperty().set(appliedName);
+                    }
+                },
+                appliedLore -> {
+                    if (mainViewModel != null && mainViewModel.getItemEditorViewModel() != null) {
+                        String cur = mainViewModel.getItemEditorViewModel().loreTextProperty().get();
+                        String updated = (cur == null || cur.isBlank()) ? appliedLore : cur + "\n" + appliedLore;
+                        mainViewModel.getItemEditorViewModel().loreTextProperty().set(updated);
+                    }
+                }
+        );
+    }
+
+    private void handleComponents() {
+        ComponentsDialog.show(stage, (componentItem, slot) -> {
+            if (mainViewModel != null) {
+                mainViewModel.getGridViewModel().setItemAt(slot, componentItem);
+            }
+        });
+    }
+
+    private void handlePapi() {
+        PapiHelperDialog.show(stage, placeholder -> {
+            javafx.scene.input.ClipboardContent content = new javafx.scene.input.ClipboardContent();
+            content.putString(placeholder);
+            javafx.scene.input.Clipboard.getSystemClipboard().setContent(content);
+            if (mainViewModel != null) {
+                mainViewModel.setStatusMessage("Плейсхолдер скопирован: " + placeholder);
+            }
+        });
+    }
+
+    private void handleOptimize() {
+        if (mainViewModel == null || mainViewModel.getConfig() == null) return;
+        OptimizationResult res = new ConfigOptimizerService().optimize(mainViewModel.getConfig());
+        gridController.renderGrid();
+        mainViewModel.getCommandStack().setDirty(true);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(I18nService.getInstance().get("tools.optimizer.success_title"));
+        alert.setHeaderText(I18nService.getInstance().get("tools.optimizer.success_header"));
+        alert.setContentText(I18nService.getInstance().get("tools.optimizer.report",
+                res.compressedRangesCount(), res.strippedFieldsCount(), res.mergedItemsCount()));
         alert.showAndWait();
     }
 }
