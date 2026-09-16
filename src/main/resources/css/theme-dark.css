@@ -1,40 +1,44 @@
-/* DeluxeMenus Studio - Eye-Friendly Design System & Dark Theme */
+/* DeluxeMenus Studio - Modern White & Light-Gray Gradient Theme */
+/* Gradient specification: Light-gray at the bottom transitioning smoothly to white at the top */
 
 .root {
-    /* Base Surfaces - Calm, cohesive slate hierarchy */
-    -bg-window:      #151619;  /* Deep matte charcoal base window */
-    -bg-panel:       #1c1d22;  /* Elevated panel and sidebar surface */
-    -bg-card:        #22242b;  /* Group cards, dialog surfaces, workbench frame */
-    -bg-input:       #262830;  /* Inputs, dropdowns, table cells */
-    -bg-input-hover: #2d303a;  /* Subtle input hover state */
-    -bg-slot:        #111215;  /* Sunken Minecraft slot background */
+    /* Base Gradient & Surfaces: Light Gray at the bottom (#d6dbe2), transitioning to White (#ffffff) at the top */
+    -bg-gradient:    linear-gradient(to top, #d4dae2 0%, #edf1f6 48%, #ffffff 100%);
+    -bg-window:      linear-gradient(to top, #d6dbe3 0%, #edf1f6 48%, #ffffff 100%);
+    -bg-panel:       linear-gradient(to top, rgba(230, 235, 242, 0.78) 0%, rgba(252, 253, 255, 0.88) 100%);
+    -bg-card:        #ffffff;                                /* Elevated clean white cards */
+    -bg-card-hover:  #f8fafc;
+    -bg-input:       #ffffff;                                /* Input controls */
+    -bg-input-hover: #f4f6f9;
+    -bg-slot:        #d2d7e0;                                /* Authentic sunken Minecraft slot */
 
-    /* Borders - Fine-lined, gentle edge definition (no stark wireframe clutter) */
-    -border-subtle:  #272a31;  /* Dividers, headers, quiet separators */
-    -border:         #30343e;  /* Standard input and button borders */
-    -border-hover:   #404654;  /* Hovered borders */
-    -border-focus:   #528fdc;  /* Focused control outline */
+    /* Borders - Subtle, crisp edge definition without heavy visual noise */
+    -border-subtle:  #d0d6df;                                /* Fine dividers */
+    -border:         #c2c8d2;                                /* Standard control and card borders */
+    -border-hover:   #9ca4b1;                                /* Hovered border */
+    -border-focus:   #0969da;                                /* Focused sapphire outline */
 
-    /* Typography & Contrast - High legibility without blinding glare */
-    -text-1:         #e2e5ec;  /* Soft off-white primary text */
-    -text-2:         #969ca8;  /* Neutral slate secondary text */
-    -text-muted:     #656a77;  /* Subdued hints, shortcuts, watermarks */
+    /* Typography & Contrast - High legibility, zero glare */
+    -text-1:         #1a1f26;                                /* Deep charcoal primary text */
+    -text-2:         #57606a;                                /* Neutral slate secondary text */
+    -text-muted:     #8c959f;                                /* Soft hint/placeholder text */
 
-    /* Semantic States & Accents - Calibrated pastel/Tokyo-Night tones */
-    -accent:         #528fdc;  /* Calm sapphire blue */
-    -accent-hover:   #649ff0;
-    -accent-faint:   rgba(82, 143, 220, 0.16);
-    -error:          #db6363;  /* Soft coral crimson */
-    -error-bg:       rgba(219, 99, 99, 0.14);
-    -warn:           #d4983b;  /* Warm amber ochre */
-    -warn-bg:        rgba(212, 152, 59, 0.14);
-    -success:        #52b37c;  /* Forest sage green */
-    -success-bg:     rgba(82, 179, 124, 0.14);
-    -info:           #5a9cf8;  /* Soft cornflower blue */
-    -info-bg:        rgba(90, 156, 248, 0.14);
+    /* Semantic States & Accents */
+    -accent:         #0969da;                                /* Refined sapphire blue */
+    -accent-hover:   #1b7cf0;
+    -accent-faint:   rgba(9, 105, 218, 0.14);
+    -error:          #cf222e;                                /* Clear ruby red */
+    -error-bg:       rgba(207, 34, 46, 0.08);
+    -warn:           #9a6700;                                /* Warm amber */
+    -warn-bg:        rgba(154, 103, 0, 0.08);
+    -success:        #1a7f37;                                /* Fresh forest green */
+    -success-bg:     rgba(26, 127, 55, 0.08);
+    -info:           #0969da;
+    -info-bg:        rgba(9, 105, 218, 0.08);
 
-    -fx-base: -bg-panel;
-    -fx-background: -bg-window;
+    -fx-base: #f0f3f6;
+    -fx-background: -bg-gradient;
+    -fx-background-color: -bg-gradient;
     -fx-control-inner-background: -bg-input;
     -fx-text-fill: -text-1;
     -fx-accent: -accent;
@@ -59,10 +63,10 @@
 
 /* MenuBar & Context Menus */
 .menu-bar {
-    -fx-background-color: -bg-window;
+    -fx-background-color: rgba(255, 255, 255, 0.95);
     -fx-border-color: -border-subtle;
     -fx-border-width: 0 0 1 0;
-    -fx-padding: 1 4 1 4;
+    -fx-padding: 2 6 2 6;
 }
 .menu-bar .menu-button {
     -fx-background-color: transparent;
@@ -73,22 +77,22 @@
 .menu-bar .menu-button:hover,
 .menu-bar .menu-button:focused,
 .menu-bar .menu-button:showing {
-    -fx-background-color: -bg-card;
+    -fx-background-color: #eaedf1;
 }
 .menu-bar .menu-button .label {
     -fx-text-fill: -text-1;
 }
 .context-menu {
-    -fx-background-color: -bg-card;
+    -fx-background-color: #ffffff;
     -fx-border-color: -border;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
     -fx-padding: 4;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 10, 0, 0, 3);
 }
 .menu-item {
     -fx-padding: 5 12 5 12;
-    -fx-background-radius: 3;
+    -fx-background-radius: 4;
 }
 .menu-item .label {
     -fx-text-fill: -text-1;
@@ -106,51 +110,77 @@
 
 /* ToolBar & Buttons */
 .tool-bar {
-    -fx-background-color: -bg-window;
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f7f9fb);
     -fx-border-color: -border-subtle;
     -fx-border-width: 0 0 1 0;
     -fx-padding: 4 8 4 8;
 }
 .button {
-    -fx-background-color: -bg-input;
+    -fx-background-color: linear-gradient(to bottom, #ffffff 0%, #f4f6f8 100%);
     -fx-text-fill: -text-1;
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-color: -border;
     -fx-padding: 5 12 5 12;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 2, 0, 0, 1);
 }
 .button:hover {
-    -fx-background-color: -bg-input-hover;
+    -fx-background-color: linear-gradient(to bottom, #f9fafb 0%, #e9edf2 100%);
     -fx-border-color: -border-hover;
 }
 .button:pressed {
-    -fx-background-color: -bg-card;
+    -fx-background-color: #e2e6eb;
+    -fx-effect: none;
 }
 .button:focused {
     -fx-border-color: -accent;
 }
 .button-primary {
-    -fx-background-color: #2b578e;
-    -fx-border-color: #3b6ea8;
+    -fx-background-color: linear-gradient(to bottom, #1d82e8 0%, #0969da 100%);
+    -fx-border-color: #0654b0;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(9, 105, 218, 0.25), 3, 0, 0, 1);
 }
 .button-primary:hover {
-    -fx-background-color: #3468a8;
-    -fx-border-color: #4982c6;
+    -fx-background-color: linear-gradient(to bottom, #2b8ff0 0%, #0a73ef 100%);
+    -fx-border-color: #0962ce;
 }
 .button-primary:pressed {
-    -fx-background-color: #224570;
+    -fx-background-color: #0654b0;
 }
 .button-danger {
-    -fx-background-color: #4a2024;
-    -fx-border-color: #6a2f34;
-    -fx-text-fill: #f0a0a0;
+    -fx-background-color: linear-gradient(to bottom, #ffebe9 0%, #fcdcd9 100%);
+    -fx-border-color: #fd8c73;
+    -fx-text-fill: #cf222e;
+    -fx-font-weight: bold;
 }
 .button-danger:hover {
-    -fx-background-color: #5c282d;
-    -fx-border-color: #82383f;
+    -fx-background-color: linear-gradient(to bottom, #ffdcd8 0%, #f8c9c4 100%);
+    -fx-border-color: #cf222e;
+}
+
+/* ToggleButton (Brush mode, etc.) */
+.toggle-button {
+    -fx-background-color: linear-gradient(to bottom, #ffffff 0%, #f4f6f8 100%);
+    -fx-text-fill: -text-1;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: -border;
+    -fx-padding: 5 12 5 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 2, 0, 0, 1);
+}
+.toggle-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #f9fafb 0%, #e9edf2 100%);
+    -fx-border-color: -border-hover;
+}
+.toggle-button:selected {
+    -fx-background-color: #dbeafe;
+    -fx-border-color: -accent;
+    -fx-text-fill: #1e40af;
+    -fx-font-weight: bold;
 }
 
 /* Form Controls: TextFields, TextAreas, ComboBoxes, Spinners */
@@ -182,11 +212,11 @@
     -fx-text-fill: -text-1;
 }
 .combo-box-popup .list-view {
-    -fx-background-color: -bg-card;
+    -fx-background-color: #ffffff;
     -fx-border-color: -border;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 8, 0, 0, 2);
 }
 .combo-box-popup .list-cell {
     -fx-padding: 5 10 5 10;
@@ -201,7 +231,7 @@
     -fx-text-fill: -text-1;
 }
 .check-box > .box {
-    -fx-background-color: -bg-input;
+    -fx-background-color: #ffffff;
     -fx-border-color: -border;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
@@ -215,6 +245,14 @@
 }
 .check-box:selected > .box > .mark {
     -fx-background-color: #ffffff;
+}
+
+/* ColorPicker */
+.color-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: -border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
 }
 
 /* ScrollBars */
@@ -238,11 +276,11 @@
     -fx-background-radius: 4px;
 }
 .scroll-bar .thumb {
-    -fx-background-color: -border;
+    -fx-background-color: #c4cad3;
     -fx-background-radius: 4px;
 }
 .scroll-bar .thumb:hover {
-    -fx-background-color: -border-hover;
+    -fx-background-color: #9ea7b3;
 }
 .scroll-bar .thumb:pressed {
     -fx-background-color: -accent;
@@ -268,30 +306,30 @@
 
 /* Accordion & TitledPane */
 .titled-pane > .title {
-    -fx-background-color: -bg-panel;
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f4f6f8);
     -fx-border-color: -border-subtle;
     -fx-border-width: 1 0 1 0;
-    -fx-text-fill: -text-2;
+    -fx-text-fill: -text-1;
     -fx-font-weight: bold;
     -fx-font-size: 11px;
     -fx-padding: 6 8 6 8;
 }
 .titled-pane > .title:hover {
-    -fx-background-color: -bg-card;
-    -fx-text-fill: -text-1;
+    -fx-background-color: #edf1f5;
+    -fx-text-fill: -accent;
 }
 .titled-pane > .content {
-    -fx-background-color: -bg-window;
+    -fx-background-color: rgba(255, 255, 255, 0.65);
     -fx-border-color: transparent;
     -fx-padding: 8;
 }
 
 /* TabPane */
 .tab-pane > .tab-header-area > .tab-header-background {
-    -fx-background-color: -bg-window;
+    -fx-background-color: transparent;
 }
 .tab {
-    -fx-background-color: -bg-panel;
+    -fx-background-color: #eaedf1;
     -fx-background-radius: 4 4 0 0;
     -fx-border-color: -border-subtle;
     -fx-border-width: 1 1 0 1;
@@ -299,10 +337,10 @@
     -fx-padding: 4 12 4 12;
 }
 .tab:hover {
-    -fx-background-color: -bg-card;
+    -fx-background-color: #f3f5f8;
 }
 .tab:selected {
-    -fx-background-color: -bg-window;
+    -fx-background-color: #ffffff;
     -fx-border-color: -accent -border-subtle transparent -border-subtle;
     -fx-border-width: 2 1 0 1;
 }
@@ -316,12 +354,12 @@
 
 /* TableView */
 .table-view {
-    -fx-background-color: -bg-window;
+    -fx-background-color: #ffffff;
     -fx-border-color: -border-subtle;
     -fx-border-radius: 4;
 }
 .table-view .column-header-background {
-    -fx-background-color: -bg-panel;
+    -fx-background-color: #f6f8fa;
 }
 .table-view .column-header {
     -fx-background-color: transparent;
@@ -335,18 +373,21 @@
     -fx-font-size: 11px;
 }
 .table-row-cell {
-    -fx-background-color: -bg-window;
+    -fx-background-color: #ffffff;
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 0;
 }
 .table-row-cell:odd {
-    -fx-background-color: -bg-panel;
+    -fx-background-color: #f9fafb;
 }
 .table-row-cell:hover {
-    -fx-background-color: -bg-card;
+    -fx-background-color: #f0f4f9;
 }
 .table-row-cell:selected {
-    -fx-background-color: #213247;
+    -fx-background-color: #dbeafe;
+}
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #1e40af;
 }
 .table-cell {
     -fx-text-fill: -text-1;
@@ -354,9 +395,49 @@
     -fx-padding: 4 8 4 8;
 }
 
+/* ListView */
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: -border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-1;
+    -fx-padding: 5 8 5 8;
+}
+.list-cell:filled:hover {
+    -fx-background-color: #f0f4f9;
+}
+.list-cell:filled:selected {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e40af;
+    -fx-font-weight: bold;
+}
+
+/* Dialog Panes */
+.dialog-pane {
+    -fx-background-color: -bg-gradient;
+    -fx-border-color: -border;
+}
+.dialog-pane > .content {
+    -fx-background-color: transparent;
+}
+.dialog-pane > .header-panel {
+    -fx-background-color: rgba(255, 255, 255, 0.92);
+    -fx-border-color: -border-subtle;
+    -fx-border-width: 0 0 1 0;
+}
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: rgba(214, 220, 228, 0.92);
+    -fx-border-color: -border-subtle;
+    -fx-border-width: 1 0 0 0;
+}
+
 /* Minecraft Inventory Chest Workbench */
 .chest-workbench {
-    -fx-background-color: -bg-window;
+    -fx-background-color: transparent;
     -fx-border-color: -border-subtle;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
@@ -364,46 +445,47 @@
 }
 
 .chest-frame {
-    -fx-background-color: -bg-card;
-    -fx-border-color: -border;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-background-color: linear-gradient(to bottom, #e4e8ee, #d6dbe3);
+    -fx-border-color: #ffffff #a4acb8 #a4acb8 #ffffff;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
     -fx-padding: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 10, 0, 0, 3);
 }
 
 /* Minecraft Sunken Inventory Slot */
 .inventory-slot {
     -fx-background-color: -bg-slot;
-    -fx-border-color: #0c0d0f #26292f #26292f #0c0d0f;
+    -fx-border-color: #888f9a #ffffff #ffffff #888f9a;
     -fx-border-width: 1.5;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
+    -fx-border-radius: 1;
+    -fx-background-radius: 1;
     -fx-alignment: center;
     -fx-cursor: hand;
 }
 .inventory-slot:hover {
-    -fx-background-color: #191b20;
-    -fx-border-color: #121418 #343842 #343842 #121418;
+    -fx-background-color: #c4c9d2;
+    -fx-border-color: #727a86 #ffffff #ffffff #727a86;
 }
 .inventory-slot-selected {
-    -fx-background-color: #141822 !important;
+    -fx-background-color: #cbdcf4 !important;
     -fx-border-color: -accent !important;
     -fx-border-width: 2 !important;
-    -fx-border-radius: 2 !important;
-    -fx-effect: dropshadow(gaussian, rgba(82, 143, 220, 0.4), 4, 0, 0, 0);
+    -fx-border-radius: 1 !important;
+    -fx-effect: dropshadow(gaussian, rgba(9, 105, 218, 0.45), 4, 0, 0, 0);
 }
 .inventory-slot-collision {
-    -fx-background-color: #211517 !important;
+    -fx-background-color: #fce1e4 !important;
     -fx-border-color: -error !important;
     -fx-border-width: 2 !important;
-    -fx-border-radius: 2 !important;
-    -fx-effect: dropshadow(gaussian, rgba(219, 99, 99, 0.4), 4, 0, 0, 0);
+    -fx-border-radius: 1 !important;
+    -fx-effect: dropshadow(gaussian, rgba(207, 34, 46, 0.45), 4, 0, 0, 0);
 }
 
 .slot-index-label {
     -fx-font-size: 10px;
-    -fx-text-fill: rgba(220, 225, 235, 0.25);
+    -fx-text-fill: rgba(30, 35, 45, 0.38);
     -fx-padding: 3 0 0 4;
 }
 
@@ -411,20 +493,20 @@
     -fx-font-size: 10px;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
-    -fx-effect: dropshadow(one-pass-box, black, 2, 0, 1, 1);
+    -fx-effect: dropshadow(one-pass-box, #111111, 2, 0, 1, 1);
     -fx-padding: 0 3 2 0;
 }
 
 .slot-priority-badge {
     -fx-font-size: 8px;
     -fx-font-weight: bold;
-    -fx-text-fill: #e5c07b;
-    -fx-background-color: rgba(18, 19, 23, 0.88);
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(36, 41, 47, 0.85);
     -fx-padding: 1 3 1 3;
     -fx-background-radius: 2;
 }
 
-/* Minecraft Live Tooltip Preview Card (Deep midnight purple, zero neon glare) */
+/* Minecraft Live Tooltip Preview Card (Iconic midnight purple, authentic Minecraft style) */
 .minecraft-tooltip-box {
     -fx-background-color: #100c18;
     -fx-border-color: linear-gradient(to bottom, #2d1656, #180933);
@@ -432,12 +514,12 @@
     -fx-border-radius: 4;
     -fx-background-radius: 4;
     -fx-padding: 8 10 8 10;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 8, 0, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 8, 0, 0, 3);
 }
 
 .title-preview-box {
-    -fx-background-color: -bg-slot;
-    -fx-border-color: -border;
+    -fx-background-color: #1a1b1e;
+    -fx-border-color: #c2c8d2;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
     -fx-padding: 6 8 6 8;
@@ -445,7 +527,7 @@
 
 /* Status Bar */
 .status-bar {
-    -fx-background-color: -bg-window;
+    -fx-background-color: rgba(212, 218, 226, 0.95);
     -fx-border-color: -border-subtle;
     -fx-border-width: 1 0 0 0;
     -fx-padding: 4 10 4 10;
@@ -479,36 +561,36 @@
     -fx-alignment: center;
 }
 .badge-error {
-    -fx-text-fill: #eb7a7a;
+    -fx-text-fill: #cf222e;
     -fx-background-color: -error-bg;
-    -fx-border-color: rgba(219, 99, 99, 0.32);
+    -fx-border-color: rgba(207, 34, 46, 0.3);
     -fx-border-radius: 3;
 }
 .badge-warning {
-    -fx-text-fill: #e5b358;
+    -fx-text-fill: #9a6700;
     -fx-background-color: -warn-bg;
-    -fx-border-color: rgba(212, 152, 59, 0.32);
+    -fx-border-color: rgba(154, 103, 0, 0.3);
     -fx-border-radius: 3;
 }
 .badge-info {
-    -fx-text-fill: #6cb0f6;
+    -fx-text-fill: #0969da;
     -fx-background-color: -info-bg;
-    -fx-border-color: rgba(90, 156, 248, 0.32);
+    -fx-border-color: rgba(9, 105, 218, 0.3);
     -fx-border-radius: 3;
 }
 
-/* RichTextFX CodeArea & YAML Highlighting (Tokyo Night / GitHub Dimmed style) */
+/* RichTextFX CodeArea & YAML Highlighting (Clean Light Theme) */
 .styled-text-area {
-    -fx-background-color: -bg-slot;
+    -fx-background-color: #ffffff;
 }
 .code-area {
-    -fx-background-color: -bg-slot;
+    -fx-background-color: #ffffff;
     -fx-font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
     -fx-font-size: 12px;
 }
 .code-area .lineno {
-    -fx-background-color: -bg-panel;
-    -fx-text-fill: #545b6b;
+    -fx-background-color: #f6f8fa;
+    -fx-text-fill: #8c959f;
     -fx-border-color: transparent -border-subtle transparent transparent;
     -fx-border-width: 0 1 0 0;
     -fx-padding: 0 10 0 10;
@@ -518,29 +600,29 @@
     -fx-background-color: transparent;
 }
 
-/* YAML Syntax Highlight Classes */
+/* YAML Syntax Highlight Classes - Crisp contrast on light background */
 .yaml-key {
-    -fx-fill: #6eb5ff;
+    -fx-fill: #0550ae;
     -fx-font-weight: bold;
 }
 .yaml-string {
-    -fx-fill: #92cd74;
+    -fx-fill: #0a7d3b;
 }
 .yaml-number {
-    -fx-fill: #f59c60;
+    -fx-fill: #cf222e;
 }
 .yaml-boolean {
-    -fx-fill: #e0af68;
+    -fx-fill: #953800;
     -fx-font-weight: bold;
 }
 .yaml-comment {
-    -fx-fill: #626978;
+    -fx-fill: #6e7781;
     -fx-font-style: italic;
 }
 .yaml-placeholder {
-    -fx-fill: #b392f0;
+    -fx-fill: #8250df;
 }
 .yaml-action {
-    -fx-fill: #f26d78;
+    -fx-fill: #b31d28;
     -fx-font-weight: bold;
 }

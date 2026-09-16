@@ -20,6 +20,6 @@
     </HBox>
 
     <StackPane fx:id="codeAreaContainer" VBox.vgrow="ALWAYS"
-               style="-fx-border-color: -border; -fx-border-radius: 4; -fx-background-color: -bg-slot;"/>
+               style="-fx-border-color: -border; -fx-border-radius: 4; -fx-background-color: -bg-card;"/>
 
 </VBox>
