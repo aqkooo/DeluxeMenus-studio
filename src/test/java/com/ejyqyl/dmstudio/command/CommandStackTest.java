@@ -75,4 +75,43 @@ class CommandStackTest {
         stack.undo();
         assertThat(stack.isDirty()).isFalse(); // Back at saved checkpoint!
     }
+
+    @Test
+    void testUpdateMenuPropertyCommand() {
+        MenuConfig config = new MenuConfig();
+        config.setMenuTitle("Original Title");
+        CommandStack stack = new CommandStack();
+
+        Command cmd = new com.ejyqyl.dmstudio.command.impl.UpdateMenuPropertyCommand(
+                config, "Change title",
+                c -> c.setMenuTitle("New Title"),
+                c -> c.setMenuTitle("Original Title")
+        );
+
+        stack.execute(cmd);
+        assertThat(config.getMenuTitle()).isEqualTo("New Title");
+        assertThat(cmd.getDescription()).isEqualTo("Change title");
+
+        stack.undo();
+        assertThat(config.getMenuTitle()).isEqualTo("Original Title");
+
+        stack.redo();
+        assertThat(config.getMenuTitle()).isEqualTo("New Title");
+    }
+
+    @Test
+    void testRemoveItemCommand() {
+        MenuConfig config = new MenuConfig();
+        MenuItem item = new MenuItem("item1", "STONE");
+        config.getItems().put("item1", item);
+        CommandStack stack = new CommandStack();
+
+        Command removeCmd = new RemoveItemCommand(config, "item1");
+        stack.execute(removeCmd);
+        assertThat(config.getItems()).doesNotContainKey("item1");
+
+        stack.undo();
+        assertThat(config.getItems()).containsKey("item1");
+        assertThat(config.getItems().get("item1").getMaterial()).isEqualTo("STONE");
+    }
 }

@@ -25,35 +25,17 @@ import java.util.*;
  */
 public class YamlImportService {
 
-    public static class ImportResult {
-        private final MenuConfig config;
-        private final List<String> replacementsApplied = new ArrayList<>();
-        private final List<String> warnings = new ArrayList<>();
-        private String errorMessage;
-        private int errorLine = -1;
-        private int errorColumn = -1;
-
+    /**
+     * Alias for {@link com.ejyqyl.dmstudio.service.yaml.ImportResult} for backwards compatibility.
+     */
+    public static class ImportResult extends com.ejyqyl.dmstudio.service.yaml.ImportResult {
         public ImportResult(MenuConfig config) {
-            this.config = config;
+            super(config);
         }
 
         public ImportResult(String errorMessage, int errorLine, int errorColumn) {
-            this.config = null;
-            this.errorMessage = errorMessage;
-            this.errorLine = errorLine;
-            this.errorColumn = errorColumn;
+            super(errorMessage, errorLine, errorColumn);
         }
-
-        public boolean isSuccess() {
-            return config != null && errorMessage == null;
-        }
-
-        public MenuConfig getConfig() { return config; }
-        public List<String> getReplacementsApplied() { return replacementsApplied; }
-        public List<String> getWarnings() { return warnings; }
-        public String getErrorMessage() { return errorMessage; }
-        public int getErrorLine() { return errorLine; }
-        public int getErrorColumn() { return errorColumn; }
     }
 
     public ImportResult importFromFile(Path path) {
@@ -160,7 +142,7 @@ public class YamlImportService {
         }
 
         if (map.containsKey("open_requirement") && map.get("open_requirement") instanceof Map<?, ?> reqMap) {
-            config.setOpenRequirement(parseRequirementList((Map<String, Object>) reqMap));
+            config.setOpenRequirement(YamlRequirementParser.parseRequirementList((Map<String, Object>) reqMap));
         }
 
         if (map.containsKey("open_commands") && map.get("open_commands") instanceof List<?> list) {
@@ -324,7 +306,7 @@ public class YamlImportService {
 
         // View requirement
         if (map.containsKey("view_requirement") && map.get("view_requirement") instanceof Map<?, ?> vMap) {
-            item.setViewRequirement(parseRequirementList((Map<String, Object>) vMap));
+            item.setViewRequirement(YamlRequirementParser.parseRequirementList((Map<String, Object>) vMap));
         }
 
         // Click commands & requirements
@@ -351,80 +333,12 @@ public class YamlImportService {
                                    java.util.function.Consumer<RequirementList> reqConsumer,
                                    List<Action> actionList) {
         if (map.containsKey(prefix + "_requirement") && map.get(prefix + "_requirement") instanceof Map<?, ?> reqMap) {
-            reqConsumer.accept(parseRequirementList((Map<String, Object>) reqMap));
+            reqConsumer.accept(YamlRequirementParser.parseRequirementList((Map<String, Object>) reqMap));
         }
         if (map.containsKey(prefix + "_commands") && map.get(prefix + "_commands") instanceof List<?> list) {
             for (Object o : list) {
                 actionList.add(Action.parse(String.valueOf(o)));
             }
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    private RequirementList parseRequirementList(Map<String, Object> map) {
-        RequirementList list = new RequirementList();
-        Set<String> known = Set.of("requirements", "minimum_requirements", "stop_at_success", "deny_commands", "success_commands");
-
-        if (map.containsKey("requirements") && map.get("requirements") instanceof Map<?, ?> reqsMap) {
-            for (Map.Entry<?, ?> entry : reqsMap.entrySet()) {
-                String reqName = String.valueOf(entry.getKey());
-                if (entry.getValue() instanceof Map<?, ?> singleMap) {
-                    list.addRequirement(reqName, parseSingleRequirement((Map<String, Object>) singleMap));
-                }
-            }
-        }
-
-        if (map.containsKey("minimum_requirements")) {
-            try {
-                list.setMinimumRequirements(Integer.parseInt(String.valueOf(map.get("minimum_requirements"))));
-            } catch (NumberFormatException ignored) {}
-        }
-
-        if (map.containsKey("stop_at_success")) {
-            list.setStopAtSuccess(Boolean.parseBoolean(String.valueOf(map.get("stop_at_success"))));
-        }
-
-        if (map.containsKey("deny_commands") && map.get("deny_commands") instanceof List<?> denies) {
-            for (Object o : denies) list.getDenyCommands().add(Action.parse(String.valueOf(o)));
-        }
-
-        if (map.containsKey("success_commands") && map.get("success_commands") instanceof List<?> succs) {
-            for (Object o : succs) list.getSuccessCommands().add(Action.parse(String.valueOf(o)));
-        }
-
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (!known.contains(entry.getKey())) {
-                list.getUnknownFields().put(entry.getKey(), entry.getValue());
-            }
-        }
-
-        return list;
-    }
-
-    @SuppressWarnings("unchecked")
-    private Requirement parseSingleRequirement(Map<String, Object> map) {
-        String type = map.containsKey("type") ? String.valueOf(map.get("type")) : "";
-        Requirement req = new Requirement(type);
-        Set<String> known = Set.of("type", "optional", "deny_commands", "success_commands");
-
-        if (map.containsKey("optional")) {
-            req.setOptional(Boolean.parseBoolean(String.valueOf(map.get("optional"))));
-        }
-
-        if (map.containsKey("deny_commands") && map.get("deny_commands") instanceof List<?> denies) {
-            for (Object o : denies) req.getDenyCommands().add(Action.parse(String.valueOf(o)));
-        }
-
-        if (map.containsKey("success_commands") && map.get("success_commands") instanceof List<?> succs) {
-            for (Object o : succs) req.getSuccessCommands().add(Action.parse(String.valueOf(o)));
-        }
-
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (!known.contains(entry.getKey())) {
-                req.setField(entry.getKey(), entry.getValue());
-            }
-        }
-
-        return req;
     }
 }

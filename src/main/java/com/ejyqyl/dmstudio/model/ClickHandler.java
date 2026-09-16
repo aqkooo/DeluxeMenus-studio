@@ -75,6 +75,28 @@ public class ClickHandler {
     public RequirementList getMiddleClickRequirement() { return middleClickRequirement; }
     public void setMiddleClickRequirement(RequirementList req) { this.middleClickRequirement = req; }
 
+    public List<Action> getAllActions() {
+        List<Action> all = new ArrayList<>();
+        all.addAll(clickCommands);
+        all.addAll(leftClickCommands);
+        all.addAll(rightClickCommands);
+        all.addAll(shiftLeftClickCommands);
+        all.addAll(shiftRightClickCommands);
+        all.addAll(middleClickCommands);
+        return all;
+    }
+
+    public List<RequirementList> getAllRequirements() {
+        List<RequirementList> all = new ArrayList<>();
+        if (clickRequirement != null) all.add(clickRequirement);
+        if (leftClickRequirement != null) all.add(leftClickRequirement);
+        if (rightClickRequirement != null) all.add(rightClickRequirement);
+        if (shiftLeftClickRequirement != null) all.add(shiftLeftClickRequirement);
+        if (shiftRightClickRequirement != null) all.add(shiftRightClickRequirement);
+        if (middleClickRequirement != null) all.add(middleClickRequirement);
+        return all;
+    }
+
     public boolean isEmpty() {
         return clickCommands.isEmpty() && leftClickCommands.isEmpty() && rightClickCommands.isEmpty()
                 && shiftLeftClickCommands.isEmpty() && shiftRightClickCommands.isEmpty() && middleClickCommands.isEmpty()

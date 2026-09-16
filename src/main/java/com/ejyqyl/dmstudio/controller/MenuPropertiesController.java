@@ -5,13 +5,17 @@ import com.ejyqyl.dmstudio.model.MenuConfig;
 import com.ejyqyl.dmstudio.model.inventory.InventoryType;
 import com.ejyqyl.dmstudio.service.render.ColorCodeParser;
 import com.ejyqyl.dmstudio.viewmodel.MainViewModel;
+import javafx.animation.Animation;
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.TextFlow;
+import javafx.util.Duration;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Controller for menu-wide properties panel (§6.1).
@@ -28,6 +32,8 @@ public class MenuPropertiesController {
 
     private MainViewModel mainViewModel;
     private boolean updating = false;
+    private final PauseTransition titleDebounce = new PauseTransition(Duration.millis(350));
+    private final PauseTransition openCommandDebounce = new PauseTransition(Duration.millis(350));
 
     @FXML
     public void initialize() {
@@ -37,9 +43,28 @@ public class MenuPropertiesController {
         updateIntervalSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 3600, 0));
         updateIntervalSpinner.setEditable(true);
 
+        titleDebounce.setOnFinished(e -> {
+            if (!updating && mainViewModel != null && mainViewModel.getConfig() != null) {
+                commitTitle(titleField.getText());
+            }
+        });
+
+        openCommandDebounce.setOnFinished(e -> {
+            if (!updating && mainViewModel != null && mainViewModel.getConfig() != null) {
+                commitOpenCommands(openCommandField.getText());
+            }
+        });
+
         titleField.textProperty().addListener((obs, oldV, newV) -> {
             ColorCodeParser.populateTextFlow(titlePreviewFlow, newV, javafx.scene.paint.Color.WHITE);
-            if (!updating) commitTitle(newV);
+            if (!updating) titleDebounce.playFromStart();
+        });
+
+        titleField.focusedProperty().addListener((obs, oldF, newF) -> {
+            if (!newF && titleDebounce.getStatus() == Animation.Status.RUNNING) {
+                titleDebounce.stop();
+                commitTitle(titleField.getText());
+            }
         });
 
         typeCombo.valueProperty().addListener((obs, oldV, newV) -> {
@@ -58,7 +83,14 @@ public class MenuPropertiesController {
         });
 
         openCommandField.textProperty().addListener((obs, oldV, newV) -> {
-            if (!updating) commitOpenCommands(newV);
+            if (!updating) openCommandDebounce.playFromStart();
+        });
+
+        openCommandField.focusedProperty().addListener((obs, oldF, newF) -> {
+            if (!newF && openCommandDebounce.getStatus() == Animation.Status.RUNNING) {
+                openCommandDebounce.stop();
+                commitOpenCommands(openCommandField.getText());
+            }
         });
 
         registerCommandCheck.selectedProperty().addListener((obs, oldV, newV) -> {
@@ -66,7 +98,7 @@ public class MenuPropertiesController {
         });
 
         updateIntervalSpinner.valueProperty().addListener((obs, oldV, newV) -> {
-            if (!updating) commitUpdateInterval(newV);
+            if (!updating) commitUpdateInterval(newV != null ? newV : 0);
         });
     }
 
@@ -78,6 +110,8 @@ public class MenuPropertiesController {
 
     public void loadFromConfig() {
         if (mainViewModel == null || mainViewModel.getConfig() == null) return;
+        if (titleDebounce.getStatus() == Animation.Status.RUNNING) titleDebounce.stop();
+        if (openCommandDebounce.getStatus() == Animation.Status.RUNNING) openCommandDebounce.stop();
         MenuConfig cfg = mainViewModel.getConfig();
         updating = true;
         try {
@@ -96,6 +130,7 @@ public class MenuPropertiesController {
     private void commitTitle(String newTitle) {
         MenuConfig cfg = mainViewModel.getConfig();
         String oldTitle = cfg.getMenuTitle();
+        if (Objects.equals(oldTitle, newTitle)) return;
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change menu title",
                 c -> c.setMenuTitle(newTitle),
@@ -106,6 +141,7 @@ public class MenuPropertiesController {
     private void commitType(InventoryType newType) {
         MenuConfig cfg = mainViewModel.getConfig();
         InventoryType oldType = cfg.getMenuType();
+        if (Objects.equals(oldType, newType)) return;
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change menu type",
                 c -> c.setMenuType(newType),
@@ -116,6 +152,7 @@ public class MenuPropertiesController {
     private void commitSize(int newSize) {
         MenuConfig cfg = mainViewModel.getConfig();
         int oldSize = cfg.getSize();
+        if (oldSize == newSize) return;
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change menu size",
                 c -> c.setSize(newSize),
@@ -126,10 +163,11 @@ public class MenuPropertiesController {
     private void commitOpenCommands(String raw) {
         MenuConfig cfg = mainViewModel.getConfig();
         List<String> oldCommands = List.copyOf(cfg.getOpenCommands());
-        List<String> newCommands = Arrays.stream(raw.split("[,;\\s]+"))
+        List<String> newCommands = raw != null ? Arrays.stream(raw.split("[,;\\s]+"))
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
-                .toList();
+                .toList() : List.of();
+        if (oldCommands.equals(newCommands)) return;
 
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change open commands",
@@ -141,6 +179,7 @@ public class MenuPropertiesController {
     private void commitRegisterCommand(boolean reg) {
         MenuConfig cfg = mainViewModel.getConfig();
         boolean old = cfg.isRegisterCommand();
+        if (old == reg) return;
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change register command",
                 c -> c.setRegisterCommand(reg),
@@ -151,9 +190,11 @@ public class MenuPropertiesController {
     private void commitUpdateInterval(int interval) {
         MenuConfig cfg = mainViewModel.getConfig();
         Integer old = cfg.getUpdateInterval();
+        Integer newVal = interval > 0 ? interval : null;
+        if (Objects.equals(old, newVal)) return;
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change update interval",
-                c -> c.setUpdateInterval(interval > 0 ? interval : null),
+                c -> c.setUpdateInterval(newVal),
                 c -> c.setUpdateInterval(old)
         ));
     }

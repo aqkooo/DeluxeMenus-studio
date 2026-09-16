@@ -55,6 +55,7 @@ public class SlotCell extends StackPane {
     }
 
     private Tooltip currentTooltip;
+    private String currentMaterial;
 
     public int getSlotIndex() {
         return slotIndex;
@@ -93,6 +94,7 @@ public class SlotCell extends StackPane {
             // Empty slot state
             slotIndexLabel.setVisible(true);
             iconContainer.getChildren().clear();
+            currentMaterial = null;
             amountLabel.setVisible(false);
             priorityBadge.setVisible(false);
             if (currentTooltip != null) {
@@ -104,8 +106,12 @@ public class SlotCell extends StackPane {
             slotIndexLabel.setVisible(false);
 
             MenuItem primary = items.get(0);
-            Node iconNode = TextureManager.getInstance().createIconNode(primary.getMaterial(), 34);
-            iconContainer.getChildren().setAll(iconNode);
+            String mat = primary.getMaterial();
+            if (currentMaterial == null || !currentMaterial.equalsIgnoreCase(mat) || iconContainer.getChildren().isEmpty()) {
+                Node iconNode = TextureManager.getInstance().createIconNode(mat, 34);
+                iconContainer.getChildren().setAll(iconNode);
+                currentMaterial = mat;
+            }
 
             // Amount
             if (primary.getAmount() > 1) {
@@ -124,13 +130,15 @@ public class SlotCell extends StackPane {
             }
 
             // Tooltip
-            if (currentTooltip != null) {
-                Tooltip.uninstall(this, currentTooltip);
-            }
             String title = primary.getAppearance().getDisplayName() != null
                     ? primary.getAppearance().getDisplayName() : primary.getKey();
-            currentTooltip = new Tooltip(I18nService.getInstance().get("grid.slot_tooltip", slotIndex, title, primary.getPriority()));
-            Tooltip.install(this, currentTooltip);
+            String tooltipText = I18nService.getInstance().get("grid.slot_tooltip", slotIndex, title, primary.getPriority());
+            if (currentTooltip == null) {
+                currentTooltip = new Tooltip(tooltipText);
+                Tooltip.install(this, currentTooltip);
+            } else {
+                currentTooltip.setText(tooltipText);
+            }
         }
     }
 }

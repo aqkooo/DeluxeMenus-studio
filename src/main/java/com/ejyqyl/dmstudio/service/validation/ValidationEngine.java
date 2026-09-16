@@ -27,11 +27,13 @@ public class ValidationEngine {
         rules.add(new UnknownMaterialRule());
         rules.add(new SlotAndSlotsRule());
         rules.add(new VersionOptionRule());
+        rules.add(new UnknownSoundRule());
         rules.add(new ClickRequirementWithoutCommandsRule());
         rules.add(new ArmorTrimIncompleteRule());
         rules.add(new UpdateIntervalMissingRule());
         rules.add(new UnbalancedPlaceholderRule());
         rules.add(new MixedColorCodesRule());
+        rules.add(new InvalidRegexRule());
         rules.add(new MinimumRequirementsRule());
         rules.add(new SizeForNonChestRule());
         rules.add(new MiddleClickVersionRule());

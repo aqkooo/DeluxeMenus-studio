@@ -236,4 +236,36 @@ class ValidationEngineTest {
         assertThat(issues).anyMatch(i -> i.code().equals("V-18") && i.fieldName().equals("enchantments"));
         assertThat(issues).anyMatch(i -> i.code().equals("V-18") && i.fieldName().equals("potion_effects"));
     }
+
+    @Test
+    void testUnknownSound_V8() {
+        MenuConfig config = new MenuConfig();
+        MenuItem item = new MenuItem("item1", "STONE");
+        item.setSlot(0);
+        item.getClickHandler().getClickCommands().add(new Action("[sound]", "NON_EXISTENT_SOUND_XYZ 1.0 1.0"));
+        config.getItems().put("item1", item);
+
+        List<ValidationIssue> issues = engine.validate(config, context);
+        assertThat(issues).anyMatch(i -> i.code().equals("V-8") && i.level() == ValidationLevel.WARNING);
+    }
+
+    @Test
+    void testInvalidRegex_V14() {
+        MenuConfig config = new MenuConfig();
+        MenuItem item = new MenuItem("item1", "STONE");
+        item.setSlot(0);
+
+        Requirement req = new Requirement("regex matches");
+        req.setField("input", "%player_name%");
+        req.setField("regex", "[invalid(regex"); // unclosed bracket and paren
+
+        RequirementList reqList = new RequirementList();
+        reqList.addRequirement("reg_test", req);
+        item.setViewRequirement(reqList);
+
+        config.getItems().put("item1", item);
+
+        List<ValidationIssue> issues = engine.validate(config, context);
+        assertThat(issues).anyMatch(i -> i.code().equals("V-14") && i.level() == ValidationLevel.ERROR);
+    }
 }

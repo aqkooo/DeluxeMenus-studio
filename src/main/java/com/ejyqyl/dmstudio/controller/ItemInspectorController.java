@@ -12,6 +12,8 @@ import com.ejyqyl.dmstudio.service.registry.RequirementDescriptor;
 import com.ejyqyl.dmstudio.service.render.ColorCodeParser;
 import com.ejyqyl.dmstudio.viewmodel.ItemEditorViewModel;
 import com.ejyqyl.dmstudio.viewmodel.MainViewModel;
+import javafx.animation.Animation;
+import javafx.animation.PauseTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
+import javafx.util.Duration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,67 +31,38 @@ import java.util.List;
  */
 public class ItemInspectorController {
 
-    // Identity
-    @FXML private TextField itemKeyField;
-    @FXML private ComboBox<String> materialCombo;
-    @FXML private Spinner<Integer> slotSpinner;
-    @FXML private TextField slotsField;
-    @FXML private Spinner<Integer> prioritySpinner;
-    @FXML private Spinner<Integer> amountSpinner;
-    @FXML private TextField dynamicAmountField;
-    @FXML private Spinner<Integer> damageSpinner;
-    @FXML private CheckBox updateCheck;
-
-    // Appearance
-    @FXML private TextField displayNameField;
+    // Identity & Appearance Controls
+    @FXML private TextField itemKeyField, slotsField, dynamicAmountField, displayNameField, modelDataField, itemModelField, rgbField, enchantmentsField;
     @FXML private TextArea loreArea;
-    @FXML private ComboBox<String> loreAppendModeCombo;
-    @FXML private CheckBox unbreakableCheck;
-    @FXML private CheckBox glintOverrideCheck;
-    @FXML private CheckBox hideTooltipCheck;
-    @FXML private TextField modelDataField;
-    @FXML private TextField itemModelField;
-    @FXML private TextField rgbField;
-    @FXML private TextField enchantmentsField;
+    @FXML private ComboBox<String> materialCombo, loreAppendModeCombo;
+    @FXML private Spinner<Integer> slotSpinner, prioritySpinner, amountSpinner, damageSpinner;
+    @FXML private CheckBox updateCheck, unbreakableCheck, glintOverrideCheck, hideTooltipCheck;
 
     // Item Flags
-    @FXML private CheckBox flagEnchants;
-    @FXML private CheckBox flagAttributes;
-    @FXML private CheckBox flagUnbreakable;
-    @FXML private CheckBox flagDestroys;
-    @FXML private CheckBox flagPlacedOn;
-    @FXML private CheckBox flagPotionEffects;
-    @FXML private CheckBox flagDye;
+    @FXML private CheckBox flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye;
 
     // Minecraft Tooltip Preview
     @FXML private VBox tooltipPreviewBox;
 
     // Click Actions
-    @FXML private ComboBox<String> clickTypeCombo;
+    @FXML private ComboBox<String> clickTypeCombo, newActionTypeCombo;
     @FXML private TableView<Action> actionsTable;
-    @FXML private TableColumn<Action, String> colActionType;
-    @FXML private TableColumn<Action, String> colActionArg;
-    @FXML private TableColumn<Action, String> colActionDelay;
-    @FXML private TableColumn<Action, String> colActionChance;
-    @FXML private ComboBox<String> newActionTypeCombo;
+    @FXML private TableColumn<Action, String> colActionType, colActionArg, colActionDelay, colActionChance;
     @FXML private TextField newActionArgField;
-    @FXML private Spinner<Integer> newActionDelaySpinner;
-    @FXML private Spinner<Integer> newActionChanceSpinner;
-    @FXML private Button btnAddAction;
-    @FXML private Button btnDeleteAction;
+    @FXML private Spinner<Integer> newActionDelaySpinner, newActionChanceSpinner;
+    @FXML private Button btnAddAction, btnDeleteAction;
 
     // Requirements
     @FXML private ComboBox<String> reqTypeCombo;
-    @FXML private CheckBox reqInvertedCheck;
-    @FXML private TextField reqField1;
-    @FXML private TextField reqField2;
+    @FXML private CheckBox reqInvertedCheck, stopAtSuccessCheck;
+    @FXML private TextField reqField1, reqField2;
     @FXML private Spinner<Integer> minReqSpinner;
-    @FXML private CheckBox stopAtSuccessCheck;
     @FXML private Button btnSaveRequirement;
 
     private MainViewModel mainViewModel;
     private ItemEditorViewModel editorViewModel;
     private boolean updating = false;
+    private final PauseTransition debounceTimer = new PauseTransition(Duration.millis(350));
 
     @FXML
     public void initialize() {
@@ -96,7 +70,18 @@ public class ItemInspectorController {
         initSpinners();
         initClickActions();
         initRequirements();
+        debounceTimer.setOnFinished(e -> commitIfChanged());
         setupListeners();
+    }
+
+    private void requestDebouncedCommit() {
+        if (updating) return;
+        debounceTimer.playFromStart();
+    }
+
+    private int getSpinnerValue(Spinner<Integer> spinner, int defaultValue) {
+        if (spinner == null || spinner.getValue() == null) return defaultValue;
+        return spinner.getValue();
     }
 
     private void initMaterials() {
@@ -141,8 +126,8 @@ public class ItemInspectorController {
         btnAddAction.setOnAction(e -> {
             String type = newActionTypeCombo.getValue();
             String arg = newActionArgField.getText();
-            int delay = newActionDelaySpinner.getValue();
-            int chance = newActionChanceSpinner.getValue();
+            int delay = getSpinnerValue(newActionDelaySpinner, 0);
+            int chance = getSpinnerValue(newActionChanceSpinner, 100);
             Action action = new Action(type, arg, delay > 0 ? delay : null, chance < 100 ? (double) chance : null);
             editorViewModel.addAction(action);
             newActionArgField.clear();
@@ -168,15 +153,26 @@ public class ItemInspectorController {
     private void setupListeners() {
         displayNameField.textProperty().addListener((obs, oldV, newV) -> {
             updateTooltipPreview();
-            commitIfChanged();
+            requestDebouncedCommit();
         });
         loreArea.textProperty().addListener((obs, oldV, newV) -> {
             updateTooltipPreview();
-            commitIfChanged();
+            requestDebouncedCommit();
         });
 
-        List.of(itemKeyField, slotsField, dynamicAmountField, modelDataField, itemModelField, rgbField, enchantmentsField)
-                .forEach(f -> f.textProperty().addListener((o, ov, nv) -> commitIfChanged()));
+        List<TextInputControl> textControls = List.of(displayNameField, loreArea, itemKeyField, slotsField,
+                dynamicAmountField, modelDataField, itemModelField, rgbField, enchantmentsField);
+        for (TextInputControl f : textControls) {
+            if (f != displayNameField && f != loreArea) {
+                f.textProperty().addListener((o, ov, nv) -> requestDebouncedCommit());
+            }
+            f.focusedProperty().addListener((obs, oldF, newF) -> {
+                if (!newF && debounceTimer.getStatus() == Animation.Status.RUNNING) {
+                    debounceTimer.stop();
+                    commitIfChanged();
+                }
+            });
+        }
 
         materialCombo.valueProperty().addListener((o, ov, nv) -> commitIfChanged());
         loreAppendModeCombo.valueProperty().addListener((o, ov, nv) -> commitIfChanged());
@@ -205,7 +201,20 @@ public class ItemInspectorController {
         loadItem(mainViewModel.getGridViewModel().getActiveItem());
     }
 
+    private static final List<String> ALL_FLAGS = List.of(
+            "HIDE_ENCHANTS", "HIDE_ATTRIBUTES", "HIDE_UNBREAKABLE", "HIDE_DESTROYS",
+            "HIDE_PLACED_ON", "HIDE_POTION_EFFECTS", "HIDE_DYE"
+    );
+
+    private List<CheckBox> getFlagBoxes() {
+        return List.of(flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye);
+    }
+
     private void loadItem(MenuItem item) {
+        if (debounceTimer.getStatus() == Animation.Status.RUNNING) {
+            debounceTimer.stop();
+            commitIfChanged();
+        }
         updating = true;
         try {
             if (item == null) {
@@ -234,13 +243,10 @@ public class ItemInspectorController {
             enchantmentsField.setText(String.join(", ", item.getAppearance().getEnchantments()));
 
             List<String> flags = item.getAppearance().getItemFlags();
-            flagEnchants.setSelected(flags.contains("HIDE_ENCHANTS"));
-            flagAttributes.setSelected(flags.contains("HIDE_ATTRIBUTES"));
-            flagUnbreakable.setSelected(flags.contains("HIDE_UNBREAKABLE"));
-            flagDestroys.setSelected(flags.contains("HIDE_DESTROYS"));
-            flagPlacedOn.setSelected(flags.contains("HIDE_PLACED_ON"));
-            flagPotionEffects.setSelected(flags.contains("HIDE_POTION_EFFECTS"));
-            flagDye.setSelected(flags.contains("HIDE_DYE"));
+            List<CheckBox> boxes = getFlagBoxes();
+            for (int i = 0; i < ALL_FLAGS.size(); i++) {
+                boxes.get(i).setSelected(flags.contains(ALL_FLAGS.get(i)));
+            }
 
             loadRequirementData(item);
             updateTooltipPreview();
@@ -264,45 +270,40 @@ public class ItemInspectorController {
     }
 
     private void syncToViewModel() {
-        editorViewModel.keyProperty().set(itemKeyField.getText());
+        editorViewModel.keyProperty().set(itemKeyField.getText() != null ? itemKeyField.getText() : "");
         editorViewModel.materialProperty().set(materialCombo.getValue() != null ? materialCombo.getValue() : "STONE");
-        editorViewModel.slotProperty().set(slotSpinner.getValue());
-        editorViewModel.slotsStringProperty().set(slotsField.getText());
-        editorViewModel.priorityProperty().set(prioritySpinner.getValue());
-        editorViewModel.amountProperty().set(amountSpinner.getValue());
-        editorViewModel.dynamicAmountProperty().set(dynamicAmountField.getText());
-        editorViewModel.damageProperty().set(damageSpinner.getValue());
+        editorViewModel.slotProperty().set(getSpinnerValue(slotSpinner, 0));
+        editorViewModel.slotsStringProperty().set(slotsField.getText() != null ? slotsField.getText() : "");
+        editorViewModel.priorityProperty().set(getSpinnerValue(prioritySpinner, 0));
+        editorViewModel.amountProperty().set(getSpinnerValue(amountSpinner, 1));
+        editorViewModel.dynamicAmountProperty().set(dynamicAmountField.getText() != null ? dynamicAmountField.getText() : "");
+        editorViewModel.damageProperty().set(getSpinnerValue(damageSpinner, 0));
         editorViewModel.updateProperty().set(updateCheck.isSelected());
 
-        editorViewModel.displayNameProperty().set(displayNameField.getText());
-        editorViewModel.loreTextProperty().set(loreArea.getText());
-        editorViewModel.loreAppendModeProperty().set(loreAppendModeCombo.getValue());
+        editorViewModel.displayNameProperty().set(displayNameField.getText() != null ? displayNameField.getText() : "");
+        editorViewModel.loreTextProperty().set(loreArea.getText() != null ? loreArea.getText() : "");
+        editorViewModel.loreAppendModeProperty().set(loreAppendModeCombo.getValue() != null ? loreAppendModeCombo.getValue() : "OVERRIDE");
         editorViewModel.unbreakableProperty().set(unbreakableCheck.isSelected());
         editorViewModel.glintOverrideProperty().set(glintOverrideCheck.isSelected());
         editorViewModel.hideTooltipProperty().set(hideTooltipCheck.isSelected());
-        editorViewModel.itemModelProperty().set(itemModelField.getText());
-        editorViewModel.rgbProperty().set(rgbField.getText());
+        editorViewModel.itemModelProperty().set(itemModelField.getText() != null ? itemModelField.getText() : "");
+        editorViewModel.rgbProperty().set(rgbField.getText() != null ? rgbField.getText() : "");
 
         try {
             int md = Integer.parseInt(modelDataField.getText().trim());
             editorViewModel.modelDataProperty().set(md);
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             editorViewModel.modelDataProperty().set(0);
         }
 
-        // Flags
         editorViewModel.getSelectedFlags().clear();
-        if (flagEnchants.isSelected()) editorViewModel.getSelectedFlags().add("HIDE_ENCHANTS");
-        if (flagAttributes.isSelected()) editorViewModel.getSelectedFlags().add("HIDE_ATTRIBUTES");
-        if (flagUnbreakable.isSelected()) editorViewModel.getSelectedFlags().add("HIDE_UNBREAKABLE");
-        if (flagDestroys.isSelected()) editorViewModel.getSelectedFlags().add("HIDE_DESTROYS");
-        if (flagPlacedOn.isSelected()) editorViewModel.getSelectedFlags().add("HIDE_PLACED_ON");
-        if (flagPotionEffects.isSelected()) editorViewModel.getSelectedFlags().add("HIDE_POTION_EFFECTS");
-        if (flagDye.isSelected()) editorViewModel.getSelectedFlags().add("HIDE_DYE");
+        List<CheckBox> boxes = getFlagBoxes();
+        for (int i = 0; i < ALL_FLAGS.size(); i++) {
+            if (boxes.get(i).isSelected()) editorViewModel.getSelectedFlags().add(ALL_FLAGS.get(i));
+        }
 
-        // Enchantments
         editorViewModel.getEnchantments().clear();
-        String enchRaw = enchantmentsField.getText().trim();
+        String enchRaw = enchantmentsField.getText() != null ? enchantmentsField.getText().trim() : "";
         if (!enchRaw.isEmpty()) {
             for (String e : enchRaw.split("[,\\s]+")) {
                 if (!e.isBlank()) editorViewModel.getEnchantments().add(e.trim());
@@ -365,7 +366,7 @@ public class ItemInspectorController {
 
         String type = reqTypeCombo.getValue();
         boolean inverted = reqInvertedCheck.isSelected();
-        int minReq = minReqSpinner.getValue();
+        int minReq = getSpinnerValue(minReqSpinner, 0);
         boolean stopAtSuccess = stopAtSuccessCheck.isSelected();
 
         Requirement req = new Requirement(type);

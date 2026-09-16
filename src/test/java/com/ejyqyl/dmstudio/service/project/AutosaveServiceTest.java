@@ -43,4 +43,20 @@ class AutosaveServiceTest {
         autosaveService.clearDraft();
         assertThat(autosaveService.hasDraft()).isFalse();
     }
+
+    @Test
+    void testMissingDraftReturnsNull() {
+        autosaveService.clearDraft();
+        assertThat(autosaveService.loadDraft()).isNull();
+        assertThat(autosaveService.getAutosaveFile()).isNotNull();
+    }
+
+    @Test
+    void testStartAndStopLifecycle() {
+        MenuConfig config = new MenuConfig();
+        autosaveService.start(() -> config, () -> false);
+        autosaveService.start(() -> config, () -> false); // idempotent
+        autosaveService.stop();
+        autosaveService.stop(); // idempotent
+    }
 }
