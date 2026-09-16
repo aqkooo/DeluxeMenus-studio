@@ -21,8 +21,7 @@
 
     <VBox spacing="2.0">
         <Label text="%prop.menu_title.preview" styleClass="field-label"/>
-        <StackPane alignment="CENTER_LEFT"
-                   style="-fx-background-color: -bg-slot; -fx-border-color: -border; -fx-padding: 6; -fx-background-radius: 4; -fx-border-radius: 4;">
+        <StackPane alignment="CENTER_LEFT" styleClass="title-preview-box">
             <TextFlow fx:id="titlePreviewFlow"/>
         </StackPane>
     </VBox>

@@ -1,17 +1,37 @@
-/* DeluxeMenus Studio - Design System & Dark Theme */
+/* DeluxeMenus Studio - Eye-Friendly Design System & Dark Theme */
 
 .root {
-    /* Color Tokens (§User Specifications) */
-    -bg-window:   #1a1b1e;
-    -bg-panel:    #232428;
-    -bg-input:    #2b2d31;
-    -bg-slot:     #17181a;
-    -border:      #3a3d42;
-    -text-1:      #e3e5e8;
-    -text-2:      #9aa0a6;
-    -accent:      #4aa3df;
-    -error:       #e05c5c;
-    -warn:        #d9a441;
+    /* Base Surfaces - Calm, cohesive slate hierarchy */
+    -bg-window:      #151619;  /* Deep matte charcoal base window */
+    -bg-panel:       #1c1d22;  /* Elevated panel and sidebar surface */
+    -bg-card:        #22242b;  /* Group cards, dialog surfaces, workbench frame */
+    -bg-input:       #262830;  /* Inputs, dropdowns, table cells */
+    -bg-input-hover: #2d303a;  /* Subtle input hover state */
+    -bg-slot:        #111215;  /* Sunken Minecraft slot background */
+
+    /* Borders - Fine-lined, gentle edge definition (no stark wireframe clutter) */
+    -border-subtle:  #272a31;  /* Dividers, headers, quiet separators */
+    -border:         #30343e;  /* Standard input and button borders */
+    -border-hover:   #404654;  /* Hovered borders */
+    -border-focus:   #528fdc;  /* Focused control outline */
+
+    /* Typography & Contrast - High legibility without blinding glare */
+    -text-1:         #e2e5ec;  /* Soft off-white primary text */
+    -text-2:         #969ca8;  /* Neutral slate secondary text */
+    -text-muted:     #656a77;  /* Subdued hints, shortcuts, watermarks */
+
+    /* Semantic States & Accents - Calibrated pastel/Tokyo-Night tones */
+    -accent:         #528fdc;  /* Calm sapphire blue */
+    -accent-hover:   #649ff0;
+    -accent-faint:   rgba(82, 143, 220, 0.16);
+    -error:          #db6363;  /* Soft coral crimson */
+    -error-bg:       rgba(219, 99, 99, 0.14);
+    -warn:           #d4983b;  /* Warm amber ochre */
+    -warn-bg:        rgba(212, 152, 59, 0.14);
+    -success:        #52b37c;  /* Forest sage green */
+    -success-bg:     rgba(82, 179, 124, 0.14);
+    -info:           #5a9cf8;  /* Soft cornflower blue */
+    -info-bg:        rgba(90, 156, 248, 0.14);
 
     -fx-base: -bg-panel;
     -fx-background: -bg-window;
@@ -19,8 +39,8 @@
     -fx-text-fill: -text-1;
     -fx-accent: -accent;
     -fx-focus-color: -accent;
-    -fx-faint-focus-color: transparent;
-    -fx-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -fx-faint-focus-color: -accent-faint;
+    -fx-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -fx-font-size: 12px;
 }
 
@@ -33,34 +53,63 @@
 .section-header {
     -fx-font-size: 11px;
     -fx-font-weight: bold;
-    -fx-text-fill: -text-2;
+    -fx-text-fill: -text-1;
     -fx-padding: 2 0 4 0;
 }
 
-/* MenuBar & Menus */
+/* MenuBar & Context Menus */
 .menu-bar {
     -fx-background-color: -bg-window;
-    -fx-border-color: -border;
+    -fx-border-color: -border-subtle;
     -fx-border-width: 0 0 1 0;
+    -fx-padding: 1 4 1 4;
 }
-.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
-    -fx-background-color: -bg-panel;
+.menu-bar .menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-1;
+    -fx-background-radius: 4;
+    -fx-padding: 4 8 4 8;
+}
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:focused,
+.menu-bar .menu-button:showing {
+    -fx-background-color: -bg-card;
+}
+.menu-bar .menu-button .label {
+    -fx-text-fill: -text-1;
 }
 .context-menu {
-    -fx-background-color: -bg-panel;
+    -fx-background-color: -bg-card;
     -fx-border-color: -border;
-    -fx-border-radius: 4;
-    -fx-background-radius: 4;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 4;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
+}
+.menu-item {
+    -fx-padding: 5 12 5 12;
+    -fx-background-radius: 3;
+}
+.menu-item .label {
+    -fx-text-fill: -text-1;
 }
 .menu-item:hover, .menu-item:focused {
     -fx-background-color: -accent;
+}
+.menu-item:hover .label, .menu-item:focused .label {
+    -fx-text-fill: #ffffff;
+}
+.separator-menu-item .line {
+    -fx-border-color: -border-subtle;
+    -fx-border-width: 1 0 0 0;
 }
 
 /* ToolBar & Buttons */
 .tool-bar {
     -fx-background-color: -bg-window;
-    -fx-border-color: -border;
+    -fx-border-color: -border-subtle;
     -fx-border-width: 0 0 1 0;
+    -fx-padding: 4 8 4 8;
 }
 .button {
     -fx-background-color: -bg-input;
@@ -68,40 +117,104 @@
     -fx-background-radius: 4;
     -fx-border-radius: 4;
     -fx-border-color: -border;
-    -fx-padding: 5 10 5 10;
+    -fx-padding: 5 12 5 12;
+    -fx-cursor: hand;
 }
 .button:hover {
-    -fx-background-color: #373a40;
-    -fx-border-color: #4a4e54;
+    -fx-background-color: -bg-input-hover;
+    -fx-border-color: -border-hover;
 }
 .button:pressed {
-    -fx-background-color: -bg-slot;
+    -fx-background-color: -bg-card;
+}
+.button:focused {
+    -fx-border-color: -accent;
 }
 .button-primary {
-    -fx-background-color: #2a6f97;
-    -fx-border-color: -accent;
+    -fx-background-color: #2b578e;
+    -fx-border-color: #3b6ea8;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
 }
 .button-primary:hover {
-    -fx-background-color: -accent;
+    -fx-background-color: #3468a8;
+    -fx-border-color: #4982c6;
+}
+.button-primary:pressed {
+    -fx-background-color: #224570;
+}
+.button-danger {
+    -fx-background-color: #4a2024;
+    -fx-border-color: #6a2f34;
+    -fx-text-fill: #f0a0a0;
+}
+.button-danger:hover {
+    -fx-background-color: #5c282d;
+    -fx-border-color: #82383f;
 }
 
-/* TextFields, TextAreas, Spinners, ComboBoxes */
+/* Form Controls: TextFields, TextAreas, ComboBoxes, Spinners */
 .text-field, .text-area, .combo-box-base, .spinner {
     -fx-background-color: -bg-input;
     -fx-text-fill: -text-1;
+    -fx-prompt-text-fill: -text-muted;
     -fx-border-color: -border;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
+    -fx-padding: 5 8 5 8;
+}
+.text-field:hover, .text-area:hover, .combo-box-base:hover, .spinner:hover {
+    -fx-border-color: -border-hover;
+    -fx-background-color: -bg-input-hover;
 }
 .text-field:focused, .text-area:focused, .combo-box-base:focused, .spinner:focused {
     -fx-border-color: -accent;
-    -fx-background-color: #32353a;
+    -fx-background-color: -bg-input;
+    -fx-effect: dropshadow(gaussian, -accent-faint, 4, 0, 0, 0);
 }
 .spinner .text-field {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-1;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: -bg-card;
+    -fx-border-color: -border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
+.combo-box-popup .list-cell {
+    -fx-padding: 5 10 5 10;
+    -fx-text-fill: -text-1;
+}
+.combo-box-popup .list-cell:hover, .combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: -accent;
+    -fx-text-fill: #ffffff;
+}
+
+.check-box {
+    -fx-text-fill: -text-1;
+}
+.check-box > .box {
+    -fx-background-color: -bg-input;
+    -fx-border-color: -border;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+.check-box:hover > .box {
+    -fx-border-color: -border-hover;
+}
+.check-box:selected > .box {
+    -fx-background-color: -accent;
+    -fx-border-color: -accent;
+}
+.check-box:selected > .box > .mark {
+    -fx-background-color: #ffffff;
 }
 
 /* ScrollBars */
@@ -121,7 +234,7 @@
     -fx-pref-height: 8px;
 }
 .scroll-bar .track {
-    -fx-background-color: -bg-window;
+    -fx-background-color: transparent;
     -fx-background-radius: 4px;
 }
 .scroll-bar .thumb {
@@ -129,7 +242,10 @@
     -fx-background-radius: 4px;
 }
 .scroll-bar .thumb:hover {
-    -fx-background-color: #4e525a;
+    -fx-background-color: -border-hover;
+}
+.scroll-bar .thumb:pressed {
+    -fx-background-color: -accent;
 }
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
     -fx-pref-width: 0;
@@ -143,8 +259,8 @@
     -fx-padding: 0;
 }
 .split-pane-divider {
-    -fx-background-color: -border;
-    -fx-padding: 2px;
+    -fx-background-color: -border-subtle;
+    -fx-padding: 1.5px;
 }
 .split-pane-divider:hover {
     -fx-background-color: -accent;
@@ -153,18 +269,21 @@
 /* Accordion & TitledPane */
 .titled-pane > .title {
     -fx-background-color: -bg-panel;
-    -fx-border-color: -border;
+    -fx-border-color: -border-subtle;
     -fx-border-width: 1 0 1 0;
     -fx-text-fill: -text-2;
     -fx-font-weight: bold;
     -fx-font-size: 11px;
+    -fx-padding: 6 8 6 8;
 }
 .titled-pane > .title:hover {
-    -fx-background-color: #2b2c32;
+    -fx-background-color: -bg-card;
+    -fx-text-fill: -text-1;
 }
 .titled-pane > .content {
     -fx-background-color: -bg-window;
     -fx-border-color: transparent;
+    -fx-padding: 8;
 }
 
 /* TabPane */
@@ -174,13 +293,18 @@
 .tab {
     -fx-background-color: -bg-panel;
     -fx-background-radius: 4 4 0 0;
-    -fx-border-color: -border;
+    -fx-border-color: -border-subtle;
     -fx-border-width: 1 1 0 1;
     -fx-border-radius: 4 4 0 0;
+    -fx-padding: 4 12 4 12;
+}
+.tab:hover {
+    -fx-background-color: -bg-card;
 }
 .tab:selected {
-    -fx-background-color: #2b2d33;
-    -fx-border-color: -accent;
+    -fx-background-color: -bg-window;
+    -fx-border-color: -accent -border-subtle transparent -border-subtle;
+    -fx-border-width: 2 1 0 1;
 }
 .tab .tab-label {
     -fx-text-fill: -text-2;
@@ -193,82 +317,201 @@
 /* TableView */
 .table-view {
     -fx-background-color: -bg-window;
-    -fx-border-color: -border;
+    -fx-border-color: -border-subtle;
+    -fx-border-radius: 4;
 }
 .table-view .column-header-background {
     -fx-background-color: -bg-panel;
 }
 .table-view .column-header {
     -fx-background-color: transparent;
-    -fx-border-color: -border;
+    -fx-border-color: -border-subtle;
     -fx-border-width: 0 1 1 0;
+    -fx-padding: 4 6 4 6;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -text-2;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
 }
 .table-row-cell {
-    -fx-background-color: -bg-panel;
+    -fx-background-color: -bg-window;
     -fx-border-color: transparent;
+    -fx-padding: 2 0 2 0;
 }
 .table-row-cell:odd {
-    -fx-background-color: #202125;
+    -fx-background-color: -bg-panel;
+}
+.table-row-cell:hover {
+    -fx-background-color: -bg-card;
 }
 .table-row-cell:selected {
-    -fx-background-color: #2d4560;
+    -fx-background-color: #213247;
+}
+.table-cell {
+    -fx-text-fill: -text-1;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 4 8 4 8;
+}
+
+/* Minecraft Inventory Chest Workbench */
+.chest-workbench {
+    -fx-background-color: -bg-window;
+    -fx-border-color: -border-subtle;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 16;
+}
+
+.chest-frame {
+    -fx-background-color: -bg-card;
+    -fx-border-color: -border;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 8, 0, 0, 2);
 }
 
 /* Minecraft Sunken Inventory Slot */
 .inventory-slot {
     -fx-background-color: -bg-slot;
-    -fx-border-color: #2c2e33 #101012 #101012 #2c2e33;
-    -fx-border-width: 1;
+    -fx-border-color: #0c0d0f #26292f #26292f #0c0d0f;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
     -fx-alignment: center;
     -fx-cursor: hand;
 }
 .inventory-slot:hover {
-    -fx-background-color: #222429;
+    -fx-background-color: #191b20;
+    -fx-border-color: #121418 #343842 #343842 #121418;
 }
 .inventory-slot-selected {
+    -fx-background-color: #141822 !important;
     -fx-border-color: -accent !important;
     -fx-border-width: 2 !important;
+    -fx-border-radius: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(82, 143, 220, 0.4), 4, 0, 0, 0);
 }
 .inventory-slot-collision {
+    -fx-background-color: #211517 !important;
     -fx-border-color: -error !important;
     -fx-border-width: 2 !important;
+    -fx-border-radius: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(219, 99, 99, 0.4), 4, 0, 0, 0);
 }
 
-/* Minecraft Tooltip Card */
+.slot-index-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: rgba(220, 225, 235, 0.25);
+    -fx-padding: 3 0 0 4;
+}
+
+.slot-amount-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(one-pass-box, black, 2, 0, 1, 1);
+    -fx-padding: 0 3 2 0;
+}
+
+.slot-priority-badge {
+    -fx-font-size: 8px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e5c07b;
+    -fx-background-color: rgba(18, 19, 23, 0.88);
+    -fx-padding: 1 3 1 3;
+    -fx-background-radius: 2;
+}
+
+/* Minecraft Live Tooltip Preview Card (Deep midnight purple, zero neon glare) */
 .minecraft-tooltip-box {
-    -fx-background-color: #100c1c;
-    -fx-border-color: linear-gradient(to bottom, #5000ff, #280070);
+    -fx-background-color: #100c18;
+    -fx-border-color: linear-gradient(to bottom, #2d1656, #180933);
     -fx-border-width: 2;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
-    -fx-padding: 8;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.85), 10, 0, 0, 4);
+    -fx-padding: 8 10 8 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 8, 0, 0, 3);
+}
+
+.title-preview-box {
+    -fx-background-color: -bg-slot;
+    -fx-border-color: -border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 8 6 8;
 }
 
 /* Status Bar */
 .status-bar {
     -fx-background-color: -bg-window;
-    -fx-border-color: -border;
+    -fx-border-color: -border-subtle;
     -fx-border-width: 1 0 0 0;
     -fx-padding: 4 10 4 10;
     -fx-font-size: 11px;
 }
 
-/* RichTextFX CodeArea & YAML Highlighting */
+/* Semantic Status Labels */
+.status-success {
+    -fx-text-fill: -success;
+    -fx-font-weight: bold;
+}
+.status-error {
+    -fx-text-fill: -error;
+    -fx-font-weight: bold;
+}
+.status-warning {
+    -fx-text-fill: -warn;
+    -fx-font-weight: bold;
+}
+.status-info {
+    -fx-text-fill: -info;
+    -fx-font-weight: bold;
+}
+
+/* Badges / Chips */
+.badge {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 6 2 6;
+    -fx-background-radius: 3;
+    -fx-alignment: center;
+}
+.badge-error {
+    -fx-text-fill: #eb7a7a;
+    -fx-background-color: -error-bg;
+    -fx-border-color: rgba(219, 99, 99, 0.32);
+    -fx-border-radius: 3;
+}
+.badge-warning {
+    -fx-text-fill: #e5b358;
+    -fx-background-color: -warn-bg;
+    -fx-border-color: rgba(212, 152, 59, 0.32);
+    -fx-border-radius: 3;
+}
+.badge-info {
+    -fx-text-fill: #6cb0f6;
+    -fx-background-color: -info-bg;
+    -fx-border-color: rgba(90, 156, 248, 0.32);
+    -fx-border-radius: 3;
+}
+
+/* RichTextFX CodeArea & YAML Highlighting (Tokyo Night / GitHub Dimmed style) */
 .styled-text-area {
     -fx-background-color: -bg-slot;
 }
 .code-area {
     -fx-background-color: -bg-slot;
-    -fx-font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+    -fx-font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
     -fx-font-size: 12px;
 }
 .code-area .lineno {
     -fx-background-color: -bg-panel;
-    -fx-text-fill: #5c6370;
-    -fx-border-color: transparent -border transparent transparent;
+    -fx-text-fill: #545b6b;
+    -fx-border-color: transparent -border-subtle transparent transparent;
     -fx-border-width: 0 1 0 0;
-    -fx-padding: 0 8 0 8;
+    -fx-padding: 0 10 0 10;
     -fx-alignment: center-right;
 }
 .code-area .paragraph-box {
@@ -277,27 +520,27 @@
 
 /* YAML Syntax Highlight Classes */
 .yaml-key {
-    -fx-fill: #4aa3df;
+    -fx-fill: #6eb5ff;
     -fx-font-weight: bold;
 }
 .yaml-string {
-    -fx-fill: #98c379;
+    -fx-fill: #92cd74;
 }
 .yaml-number {
-    -fx-fill: #d19a66;
+    -fx-fill: #f59c60;
 }
 .yaml-boolean {
-    -fx-fill: #e5c07b;
+    -fx-fill: #e0af68;
     -fx-font-weight: bold;
 }
 .yaml-comment {
-    -fx-fill: #5c6370;
+    -fx-fill: #626978;
     -fx-font-style: italic;
 }
 .yaml-placeholder {
-    -fx-fill: #c678dd;
+    -fx-fill: #b392f0;
 }
 .yaml-action {
-    -fx-fill: #e06c75;
+    -fx-fill: #f26d78;
     -fx-font-weight: bold;
 }

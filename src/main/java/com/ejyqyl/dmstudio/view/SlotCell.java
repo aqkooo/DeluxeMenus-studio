@@ -30,9 +30,9 @@ public class SlotCell extends StackPane {
         setMaxSize(48, 48);
         getStyleClass().add("inventory-slot");
 
-        // 1. Slot Index Label (Top-Left, ~40% opacity, shown only when empty)
+        // 1. Slot Index Label (Top-Left, subtle watermark, shown only when empty)
         slotIndexLabel = new Label(String.valueOf(slotIndex));
-        slotIndexLabel.setStyle("-fx-font-size: 10px; -fx-text-fill: rgba(227, 229, 232, 0.4); -fx-padding: 3 0 0 4;");
+        slotIndexLabel.getStyleClass().add("slot-index-label");
         StackPane.setAlignment(slotIndexLabel, Pos.TOP_LEFT);
 
         // 2. Icon Container
@@ -41,13 +41,13 @@ public class SlotCell extends StackPane {
 
         // 3. Amount Label (Bottom-Right, dropshadow)
         amountLabel = new Label();
-        amountLabel.setStyle("-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-effect: dropshadow(one-pass-box, black, 2, 0, 1, 1); -fx-padding: 0 3 2 0;");
+        amountLabel.getStyleClass().add("slot-amount-label");
         amountLabel.setMouseTransparent(true);
         StackPane.setAlignment(amountLabel, Pos.BOTTOM_RIGHT);
 
-        // 4. Priority Badge (Bottom-Left or Bottom-Right)
+        // 4. Priority Badge (Bottom-Left)
         priorityBadge = new Label();
-        priorityBadge.setStyle("-fx-font-size: 8px; -fx-font-weight: bold; -fx-text-fill: #ffd166; -fx-background-color: rgba(0,0,0,0.75); -fx-padding: 1 3 1 3; -fx-background-radius: 2;");
+        priorityBadge.getStyleClass().add("slot-priority-badge");
         priorityBadge.setMouseTransparent(true);
         StackPane.setAlignment(priorityBadge, Pos.BOTTOM_LEFT);
 

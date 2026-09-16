@@ -21,10 +21,8 @@
     </HBox>
 
     <!-- Center Container for Chest GUI -->
-    <StackPane VBox.vgrow="ALWAYS" alignment="CENTER"
-               style="-fx-background-color: -bg-window; -fx-border-color: -border; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 12;">
-        <VBox alignment="CENTER" spacing="8.0" maxWidth="-Infinity" maxHeight="-Infinity"
-              style="-fx-background-color: -bg-panel; -fx-border-color: -border; -fx-border-radius: 4; -fx-background-radius: 4; -fx-padding: 8;">
+    <StackPane VBox.vgrow="ALWAYS" alignment="CENTER" styleClass="chest-workbench">
+        <VBox alignment="CENTER" spacing="8.0" maxWidth="-Infinity" maxHeight="-Infinity" styleClass="chest-frame">
             <GridPane fx:id="inventoryGrid" hgap="3.0" vgap="3.0" alignment="CENTER"/>
         </VBox>
     </StackPane>

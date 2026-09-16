@@ -15,7 +15,7 @@
     <HBox spacing="8.0" alignment="CENTER_LEFT">
         <Label fx:id="formatHintLabel" text="YAML 1.2 • UTF-8" styleClass="field-label"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Label fx:id="copyStatusLabel" style="-fx-text-fill: #2ecc71; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+        <Label fx:id="copyStatusLabel" styleClass="status-success" style="-fx-font-size: 11px;"/>
         <Button fx:id="btnCopy" text="%preview.copy" styleClass="button"/>
     </HBox>
 

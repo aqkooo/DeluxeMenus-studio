@@ -36,22 +36,22 @@ public final class ItemIconProvider {
 
         if (trimmed.startsWith("%") && trimmed.endsWith("%")) {
             abbr = "%";
-            hexColor = "#3498db";
+            hexColor = "#4a78a6";
         } else if (lower.startsWith("head-") || lower.startsWith("basehead-")) {
             abbr = "Hed";
-            hexColor = "#d2b48c";
+            hexColor = "#9a8264";
         } else if (lower.startsWith("hdb-")) {
             abbr = "Hdb";
-            hexColor = "#e67e22";
+            hexColor = "#a86c3d";
         } else if (lower.startsWith("itemsadder-")) {
             abbr = "IA";
-            hexColor = "#9b59b6";
+            hexColor = "#7c5691";
         } else if (lower.startsWith("oraxen-")) {
             abbr = "Orx";
-            hexColor = "#1abc9c";
+            hexColor = "#2d8575";
         } else if (lower.startsWith("nexo-")) {
             abbr = "Nex";
-            hexColor = "#e74c3c";
+            hexColor = "#a84a40";
         } else {
             MaterialDescriptor desc = REGISTRY.getMaterial(trimmed);
             if (desc != null) {

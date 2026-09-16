@@ -12,7 +12,7 @@
     </padding>
 
     <HBox spacing="8.0" alignment="CENTER_LEFT">
-        <Label text="%problems.title" style="-fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        <Label text="%problems.title" styleClass="section-header"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Label fx:id="issuesSummaryLabel" style="-fx-font-weight: bold;"/>
     </HBox>

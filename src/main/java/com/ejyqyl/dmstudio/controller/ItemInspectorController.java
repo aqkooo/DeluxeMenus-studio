@@ -320,7 +320,7 @@ public class ItemInspectorController {
 
         if (!hasName && !hasLore) {
             Label placeholder = new Label(I18nService.getInstance().get("inspector.tooltip_empty"));
-            placeholder.setStyle("-fx-font-style: italic; -fx-text-fill: #555566; -fx-font-size: 11px;");
+            placeholder.setStyle("-fx-font-style: italic; -fx-text-fill: #787f8f; -fx-font-size: 11px;");
             tooltipPreviewBox.getChildren().add(placeholder);
             return;
         }

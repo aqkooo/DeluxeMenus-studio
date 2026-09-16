@@ -31,33 +31,45 @@ public class ProblemsController {
         colMessage.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().message()));
         colSlot.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().slot() != null ? String.valueOf(d.getValue().slot()) : "—"));
 
-        // Row factory for colors and double-click navigation
-        problemsTable.setRowFactory(tv -> {
-            TableRow<ValidationIssue> row = new TableRow<>() {
-                @Override
-                protected void updateItem(ValidationIssue item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setStyle("");
-                    } else if (item.level() == ValidationLevel.ERROR) {
-                        setStyle("-fx-text-fill: #ff6b6b;");
-                    } else if (item.level() == ValidationLevel.WARNING) {
-                        setStyle("-fx-text-fill: #feca57;");
+        // Eye-friendly badge chips for validation level
+        colLevel.setCellFactory(col -> new TableCell<>() {
+            private final Label badge = new Label();
+            {
+                badge.getStyleClass().add("badge");
+            }
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    badge.setText(item);
+                    badge.getStyleClass().removeAll("badge-error", "badge-warning", "badge-info");
+                    if ("ERROR".equalsIgnoreCase(item)) {
+                        badge.getStyleClass().add("badge-error");
+                    } else if ("WARNING".equalsIgnoreCase(item)) {
+                        badge.getStyleClass().add("badge-warning");
                     } else {
-                        setStyle("-fx-text-fill: #48dbfb;");
+                        badge.getStyleClass().add("badge-info");
                     }
+                    setGraphic(badge);
+                    setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
                 }
-            };
+            }
+        });
 
+        // Row factory for double-click navigation
+        problemsTable.setRowFactory(tv -> {
+            TableRow<ValidationIssue> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && !row.isEmpty()) {
                     ValidationIssue issue = row.getItem();
-                    if (issue.slot() != null && mainViewModel != null) {
+                    if (issue != null && issue.slot() != null && mainViewModel != null) {
                         mainViewModel.getGridViewModel().selectSlot(issue.slot());
                     }
                 }
             });
-
             return row;
         });
     }
@@ -77,12 +89,13 @@ public class ProblemsController {
         int errors = problemsViewModel.errorCountProperty().get();
         int warnings = problemsViewModel.warningCountProperty().get();
         I18nService i18n = I18nService.getInstance();
+        issuesSummaryLabel.getStyleClass().removeAll("status-success", "status-error", "status-warning");
         if (errors == 0 && warnings == 0) {
             issuesSummaryLabel.setText(i18n.get("problems.no_issues"));
-            issuesSummaryLabel.setStyle("-fx-text-fill: #2ecc71;");
+            issuesSummaryLabel.getStyleClass().add("status-success");
         } else {
             issuesSummaryLabel.setText(i18n.get("problems.errors", errors) + ", " + i18n.get("problems.warnings", warnings));
-            issuesSummaryLabel.setStyle(errors > 0 ? "-fx-text-fill: #ff6b6b;" : "-fx-text-fill: #feca57;");
+            issuesSummaryLabel.getStyleClass().add(errors > 0 ? "status-error" : "status-warning");
         }
     }
 }
