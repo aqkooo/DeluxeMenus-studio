@@ -67,13 +67,42 @@ public class TextureAtlas {
     }
 
     public boolean hasMaterial(String material) {
-        if (material == null) return false;
-        return viewports.containsKey(material.toUpperCase(Locale.ROOT));
+        return getViewport(material) != null;
     }
 
     public Rectangle2D getViewport(String material) {
         if (material == null) return null;
-        return viewports.get(material.toUpperCase(Locale.ROOT));
+        String upper = material.toUpperCase(Locale.ROOT);
+
+        // 1. Direct exact match
+        Rectangle2D vp = viewports.get(upper);
+        if (vp != null) return vp;
+
+        // 2. Animated / Multi-state suffixes (_00, _standby, _0, _top, _side, _front)
+        vp = viewports.get(upper + "_00");
+        if (vp != null) return vp;
+
+        vp = viewports.get(upper + "_STANDBY");
+        if (vp != null) return vp;
+
+        vp = viewports.get(upper + "_0");
+        if (vp != null) return vp;
+
+        vp = viewports.get(upper + "_TOP");
+        if (vp != null) return vp;
+
+        vp = viewports.get(upper + "_SIDE");
+        if (vp != null) return vp;
+
+        vp = viewports.get(upper + "_FRONT");
+        if (vp != null) return vp;
+
+        // 3. Common material plural/singular aliases
+        if (upper.equals("CARROTS") && viewports.containsKey("CARROT")) return viewports.get("CARROT");
+        if (upper.equals("POTATOES") && viewports.containsKey("POTATO")) return viewports.get("POTATO");
+        if (upper.equals("BEETROOTS") && viewports.containsKey("BEETROOT")) return viewports.get("BEETROOT");
+
+        return null;
     }
 
     public Image getAtlasImage() {

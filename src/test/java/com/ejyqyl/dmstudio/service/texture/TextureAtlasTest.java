@@ -33,6 +33,17 @@ class TextureAtlasTest {
         assertTrue(atlas.hasMaterial("DIAMOND_SWORD"));
         assertFalse(atlas.hasMaterial("NETHER_STAR"));
 
+        // Fallback suffix test
+        Map<String, TextureAtlas.SpriteCoord> animCoords = Map.of(
+                "CLOCK_00", new TextureAtlas.SpriteCoord(0, 0, 16, 16),
+                "CROSSBOW_STANDBY", new TextureAtlas.SpriteCoord(16, 0, 16, 16)
+        );
+        TextureAtlas animAtlas = new TextureAtlas(mockImg, animCoords);
+        assertTrue(animAtlas.hasMaterial("CLOCK"), "CLOCK should resolve via CLOCK_00");
+        assertTrue(animAtlas.hasMaterial("CROSSBOW"), "CROSSBOW should resolve via CROSSBOW_STANDBY");
+        assertNotNull(animAtlas.getViewport("CLOCK"));
+        assertNotNull(animAtlas.getViewport("CROSSBOW"));
+
         Rectangle2D vp = atlas.getViewport("stone");
         assertNotNull(vp);
         assertEquals(0, vp.getMinX());

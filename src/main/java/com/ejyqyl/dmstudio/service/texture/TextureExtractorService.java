@@ -1,6 +1,7 @@
 package com.ejyqyl.dmstudio.service.texture;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -61,7 +62,6 @@ public class TextureExtractorService {
             } catch (IOException ignored) {}
         }
 
-        // Sort descending so newer versions appear first
         results.sort((a, b) -> b.getFileName().toString().compareToIgnoreCase(a.getFileName().toString()));
         return results;
     }
@@ -86,6 +86,22 @@ public class TextureExtractorService {
 
             if (resolvedImages.isEmpty()) return false;
 
+            // Register aliases for base animated materials
+            Map<String, BufferedImage> aliases = new HashMap<>();
+            for (Map.Entry<String, BufferedImage> entry : resolvedImages.entrySet()) {
+                String key = entry.getKey();
+                if (key.endsWith("_00")) {
+                    String base = key.substring(0, key.length() - 3);
+                    if (!resolvedImages.containsKey(base)) aliases.putIfAbsent(base, entry.getValue());
+                } else if (key.endsWith("_STANDBY")) {
+                    String base = key.substring(0, key.length() - 8);
+                    if (!resolvedImages.containsKey(base)) aliases.putIfAbsent(base, entry.getValue());
+                } else if (key.endsWith("_0")) {
+                    String base = key.substring(0, key.length() - 2);
+                    if (!resolvedImages.containsKey(base)) aliases.putIfAbsent(base, entry.getValue());
+                }
+            }
+
             int cols = 64;
             int total = resolvedImages.size();
             int rows = (total + cols - 1) / cols;
@@ -109,6 +125,18 @@ public class TextureExtractorService {
             }
             g2.dispose();
 
+            // Link aliases to the same sprite coordinates without extra space
+            for (Map.Entry<String, BufferedImage> al : aliases.entrySet()) {
+                String base = al.getKey();
+                if (indexMap.containsKey(base + "_00")) {
+                    indexMap.put(base, indexMap.get(base + "_00"));
+                } else if (indexMap.containsKey(base + "_STANDBY")) {
+                    indexMap.put(base, indexMap.get(base + "_STANDBY"));
+                } else if (indexMap.containsKey(base + "_0")) {
+                    indexMap.put(base, indexMap.get(base + "_0"));
+                }
+            }
+
             Files.createDirectories(targetDir);
             Path outAtlas = targetDir.resolve("atlas.png");
             Path outIndex = targetDir.resolve("atlas-index.json");
@@ -116,7 +144,7 @@ public class TextureExtractorService {
             ImageIO.write(atlas, "PNG", outAtlas.toFile());
             Files.writeString(outIndex, new Gson().toJson(indexMap), StandardCharsets.UTF_8);
 
-            statusLogger.accept("Directory atlas built: " + resolvedImages.size() + " sprites saved to " + outAtlas);
+            statusLogger.accept("Directory atlas built: " + indexMap.size() + " materials indexed in " + outAtlas);
             return true;
         } catch (Exception e) {
             statusLogger.accept("Directory atlas build failed: " + e.getMessage());
@@ -128,7 +156,8 @@ public class TextureExtractorService {
         if (!Files.isRegularFile(archivePath)) return false;
 
         Map<String, byte[]> rawPngs = new HashMap<>();
-        Map<String, String> itemModels = new HashMap<>();
+        Map<String, String> allModels = new HashMap<>();
+        List<String> itemModelNames = new ArrayList<>();
 
         try {
             statusLogger.accept("Reading archive: " + archivePath.getFileName());
@@ -149,39 +178,43 @@ public class TextureExtractorService {
                             baos.write(buffer, 0, read);
                         }
                         rawPngs.put(rel, baos.toByteArray());
-                    } else if (name.startsWith("assets/minecraft/models/item/") && name.endsWith(".json")) {
-                        String itemName = name.substring("assets/minecraft/models/item/".length(), name.length() - 5);
+                    } else if (name.startsWith("assets/minecraft/models/") && name.endsWith(".json")) {
+                        String modelPath = name.substring("assets/minecraft/models/".length(), name.length() - 5);
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         int read;
                         while ((read = zis.read(buffer)) != -1) {
                             baos.write(buffer, 0, read);
                         }
-                        itemModels.put(itemName, baos.toString(StandardCharsets.UTF_8));
+                        String jsonStr = baos.toString(StandardCharsets.UTF_8);
+                        allModels.put(modelPath, jsonStr);
+                        allModels.put("minecraft:" + modelPath, jsonStr);
+                        if (modelPath.startsWith("item/")) {
+                            itemModelNames.add(modelPath.substring("item/".length()));
+                        }
                     }
                 }
             }
 
-            statusLogger.accept("Found " + rawPngs.size() + " textures and " + itemModels.size() + " item models");
+            statusLogger.accept("Found " + rawPngs.size() + " textures and " + allModels.size() + " models");
             if (rawPngs.isEmpty()) return false;
 
-            // Map materials to image bytes
             Map<String, BufferedImage> resolvedImages = new LinkedHashMap<>();
 
-            // 1. Process via item models (textures.layer0)
-            for (Map.Entry<String, String> me : itemModels.entrySet()) {
-                String modelName = me.getKey();
-                String targetTexture = extractLayer0(me.getValue());
+            // 1. Process via item models with recursive parent resolution
+            for (String itemName : itemModelNames) {
+                String targetTexture = resolveTextureFromModel("item/" + itemName, allModels, 0, new HashSet<>());
                 if (targetTexture != null) {
                     byte[] data = findTextureBytes(rawPngs, targetTexture);
                     if (data != null) {
                         try (ByteArrayInputStream bais = new ByteArrayInputStream(data)) {
                             BufferedImage img = ImageIO.read(bais);
                             if (img != null) {
-                                String cleanTexName = targetTexture.contains("/") ? targetTexture.substring(targetTexture.lastIndexOf('/') + 1) : targetTexture;
+                                String cleanTexName = targetTexture.contains("/")
+                                        ? targetTexture.substring(targetTexture.lastIndexOf('/') + 1) : targetTexture;
                                 if (TINT_MAP.containsKey(cleanTexName)) {
                                     applyTint(img, TINT_MAP.get(cleanTexName));
                                 }
-                                resolvedImages.put(modelName.toUpperCase(Locale.ROOT), ensure16x16(img));
+                                resolvedImages.put(itemName.toUpperCase(Locale.ROOT), ensure16x16(img));
                             }
                         } catch (Exception ignored) {}
                     }
@@ -212,7 +245,6 @@ public class TextureExtractorService {
             statusLogger.accept("Building atlas from " + resolvedImages.size() + " sprites...");
             if (resolvedImages.isEmpty()) return false;
 
-            // Compute grid layout (64 tiles wide = 1024px)
             int cols = 64;
             int total = resolvedImages.size();
             int rows = (total + cols - 1) / cols;
@@ -236,7 +268,6 @@ public class TextureExtractorService {
             }
             g2.dispose();
 
-            // Save to target directory
             Files.createDirectories(targetDir);
             Path outAtlas = targetDir.resolve("atlas.png");
             Path outIndex = targetDir.resolve("atlas-index.json");
@@ -252,16 +283,81 @@ public class TextureExtractorService {
         }
     }
 
-    private String extractLayer0(String jsonStr) {
+    public String resolveTextureFromModel(String modelPath, Map<String, String> allModels, int depth, Set<String> visited) {
+        if (depth > 12 || modelPath == null || visited.contains(modelPath)) return null;
+        visited.add(modelPath);
+
+        String clean = modelPath.startsWith("minecraft:") ? modelPath.substring("minecraft:".length()) : modelPath;
+        String jsonStr = allModels.get(clean);
+        if (jsonStr == null) jsonStr = allModels.get("item/" + clean);
+        if (jsonStr == null) jsonStr = allModels.get("block/" + clean);
+        if (jsonStr == null) return null;
+
         try {
             JsonObject root = JsonParser.parseString(jsonStr).getAsJsonObject();
+            Map<String, String> localTextures = new HashMap<>();
+
             if (root.has("textures")) {
-                JsonObject tex = root.getAsJsonObject("textures");
-                if (tex.has("layer0")) {
-                    return tex.get("layer0").getAsString();
+                JsonObject texObj = root.getAsJsonObject("textures");
+                for (String key : texObj.keySet()) {
+                    if (texObj.get(key).isJsonPrimitive()) {
+                        localTextures.put(key, texObj.get(key).getAsString());
+                    }
+                }
+            }
+
+            // Check priority keys in textures
+            String candidate = null;
+            for (String key : List.of("layer0", "all", "side", "top", "front", "end", "texture")) {
+                if (localTextures.containsKey(key)) {
+                    candidate = localTextures.get(key);
+                    break;
+                }
+            }
+            if (candidate == null && !localTextures.isEmpty()) {
+                candidate = localTextures.values().iterator().next();
+            }
+
+            // Resolve local variable references like #texture or #all
+            if (candidate != null && candidate.startsWith("#")) {
+                String varName = candidate.substring(1);
+                candidate = localTextures.get(varName);
+            }
+
+            if (candidate != null && !candidate.startsWith("#")) {
+                return candidate;
+            }
+
+            // If not found, check overrides (e.g. clock, compass)
+            if (root.has("overrides")) {
+                JsonArray overrides = root.getAsJsonArray("overrides");
+                if (overrides.size() > 0 && overrides.get(0).isJsonObject()) {
+                    JsonObject firstOv = overrides.get(0).getAsJsonObject();
+                    if (firstOv.has("model")) {
+                        String ovModel = firstOv.get("model").getAsString();
+                        String ovTex = resolveTextureFromModel(ovModel, allModels, depth + 1, visited);
+                        if (ovTex != null) return ovTex;
+                    }
+                }
+            }
+
+            // Climb up the parent hierarchy with cycle detection
+            if (root.has("parent")) {
+                String parent = root.get("parent").getAsString();
+                String parentTex = resolveTextureFromModel(parent, allModels, depth + 1, visited);
+                if (parentTex != null) {
+                    if (parentTex.startsWith("#")) {
+                        String varName = parentTex.substring(1);
+                        if (localTextures.containsKey(varName)) {
+                            return localTextures.get(varName);
+                        }
+                    } else {
+                        return parentTex;
+                    }
                 }
             }
         } catch (Exception ignored) {}
+
         return null;
     }
 
@@ -270,10 +366,18 @@ public class TextureExtractorService {
         String fullPath = clean + ".png";
         if (rawPngs.containsKey(fullPath)) return rawPngs.get(fullPath);
 
-        // Fallbacks
         String fn = clean.contains("/") ? clean.substring(clean.lastIndexOf('/') + 1) : clean;
         if (rawPngs.containsKey("item/" + fn + ".png")) return rawPngs.get("item/" + fn + ".png");
         if (rawPngs.containsKey("block/" + fn + ".png")) return rawPngs.get("block/" + fn + ".png");
+
+        // Try state suffixes e.g. clock_00, compass_00, crossbow_standby
+        if (rawPngs.containsKey("item/" + fn + "_00.png")) return rawPngs.get("item/" + fn + "_00.png");
+        if (rawPngs.containsKey("item/" + fn + "_standby.png")) return rawPngs.get("item/" + fn + "_standby.png");
+        if (rawPngs.containsKey("item/" + fn + "_0.png")) return rawPngs.get("item/" + fn + "_0.png");
+        if (rawPngs.containsKey("block/" + fn + "_all.png")) return rawPngs.get("block/" + fn + "_all.png");
+        if (rawPngs.containsKey("block/" + fn + "_top.png")) return rawPngs.get("block/" + fn + "_top.png");
+        if (rawPngs.containsKey("block/" + fn + "_side.png")) return rawPngs.get("block/" + fn + "_side.png");
+
         return null;
     }
 
@@ -281,7 +385,7 @@ public class TextureExtractorService {
         if (src.getWidth() == 16 && src.getHeight() == 16) return src;
         BufferedImage res = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = res.createGraphics();
-        g.drawImage(src, 0, 0, 16, 16, 0, 0, 16, 16, null); // Take first 16x16 frame for animated textures
+        g.drawImage(src, 0, 0, 16, 16, 0, 0, 16, 16, null);
         g.dispose();
         return res;
     }
