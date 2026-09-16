@@ -7,59 +7,66 @@
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.ejyqyl.dmstudio.controller.ItemInspectorController"
             fitToWidth="true" hbarPolicy="NEVER">
-    <VBox spacing="10.0">
+    <VBox spacing="8.0">
         <padding>
-            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </padding>
 
-        <Label text="%inspector.title" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #3498db;"/>
+        <Label text="%inspector.title" styleClass="section-header"/>
 
         <!-- Section 1: Identity & Position -->
         <TitledPane text="%inspector.section.identity" expanded="true">
-            <VBox spacing="8.0">
-                <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.name"/>
+            <VBox spacing="6.0">
+                <GridPane hgap="10.0" vgap="6.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0"/>
+                        <ColumnConstraints percentWidth="50.0"/>
+                    </columnConstraints>
+
+                    <!-- Row 0: Key & Material -->
+                    <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="%item.name" styleClass="field-label"/>
                         <TextField fx:id="itemKeyField"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.material"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="%item.material" styleClass="field-label"/>
                         <ComboBox fx:id="materialCombo" maxWidth="Infinity"/>
                     </VBox>
-                </HBox>
 
-                <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.slot"/>
+                    <!-- Row 1: Slot & Additional Slots -->
+                    <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="%item.slot" styleClass="field-label"/>
                         <Spinner fx:id="slotSpinner" maxWidth="Infinity"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.slots"/>
-                        <TextField fx:id="slotsField" promptText="0-8, 18-26"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="%item.slots" styleClass="field-label"/>
+                        <TextField fx:id="slotsField" promptText="0-8, 18-26">
+                            <tooltip>
+                                <Tooltip text="%item.slots_tooltip"/>
+                            </tooltip>
+                        </TextField>
                     </VBox>
-                </HBox>
 
-                <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.priority"/>
+                    <!-- Row 2: Priority & Amount -->
+                    <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Label text="%item.priority" styleClass="field-label"/>
                         <Spinner fx:id="prioritySpinner" maxWidth="Infinity"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.amount"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="%item.amount" styleClass="field-label"/>
                         <Spinner fx:id="amountSpinner" maxWidth="Infinity"/>
                     </VBox>
-                </HBox>
 
-                <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.damage"/>
+                    <!-- Row 3: Damage & Dynamic Amount -->
+                    <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <Label text="%item.damage" styleClass="field-label"/>
                         <Spinner fx:id="damageSpinner" maxWidth="Infinity"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.dynamic_amount"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label text="%item.dynamic_amount" styleClass="field-label"/>
                         <TextField fx:id="dynamicAmountField"/>
                     </VBox>
-                </HBox>
+                </GridPane>
 
                 <CheckBox fx:id="updateCheck" text="%item.update"/>
             </VBox>
@@ -67,35 +74,39 @@
 
         <!-- Section 2: Appearance & Minecraft Tooltip Preview -->
         <TitledPane text="%inspector.section.appearance" expanded="true">
-            <VBox spacing="8.0">
-                <VBox spacing="4.0">
-                    <Label text="%item.display_name"/>
-                    <TextField fx:id="displayNameField" promptText="&amp;aItem Name"/>
+            <VBox spacing="6.0">
+                <VBox spacing="2.0">
+                    <Label text="%item.display_name" styleClass="field-label"/>
+                    <TextField fx:id="displayNameField" promptText="%item.display_name_prompt"/>
                 </VBox>
 
-                <!-- Live Minecraft Tooltip Preview -->
-                <VBox spacing="4.0">
-                    <Label text="Minecraft Tooltip Preview" style="-fx-font-size: 11px; -fx-text-fill: #888899;"/>
-                    <VBox fx:id="tooltipPreviewBox" styleClass="minecraft-tooltip-box" minHeight="50.0"/>
+                <!-- Live Minecraft Tooltip Preview Card -->
+                <VBox spacing="2.0">
+                    <Label text="%inspector.tooltip_preview" styleClass="field-label"/>
+                    <VBox fx:id="tooltipPreviewBox" styleClass="minecraft-tooltip-box" minHeight="54.0"/>
                 </VBox>
 
-                <VBox spacing="4.0">
-                    <Label text="%item.lore"/>
+                <VBox spacing="2.0">
+                    <Label text="%item.lore" styleClass="field-label"/>
                     <TextArea fx:id="loreArea" prefRowCount="4" promptText="%item.lore_placeholder"/>
                 </VBox>
 
-                <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.lore_append_mode"/>
+                <GridPane hgap="10.0" vgap="6.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0"/>
+                        <ColumnConstraints percentWidth="50.0"/>
+                    </columnConstraints>
+                    <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="%item.lore_append_mode" styleClass="field-label"/>
                         <ComboBox fx:id="loreAppendModeCombo" maxWidth="Infinity"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.enchantments"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="%item.enchantments" styleClass="field-label"/>
                         <TextField fx:id="enchantmentsField" promptText="SHARPNESS;5"/>
                     </VBox>
-                </HBox>
+                </GridPane>
 
-                <Label text="%item.item_flags" style="-fx-font-weight: bold; -fx-padding: 4 0 0 0;"/>
+                <Label text="%item.item_flags" styleClass="field-label" style="-fx-font-weight: bold; -fx-padding: 4 0 0 0;"/>
                 <FlowPane hgap="8.0" vgap="4.0">
                     <CheckBox fx:id="flagEnchants" text="HIDE_ENCHANTS"/>
                     <CheckBox fx:id="flagAttributes" text="HIDE_ATTRIBUTES"/>
@@ -112,32 +123,37 @@
                     <CheckBox fx:id="hideTooltipCheck" text="%item.hide_tooltip"/>
                 </HBox>
 
-                <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.model_data"/>
+                <GridPane hgap="8.0" vgap="4.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="33.3"/>
+                        <ColumnConstraints percentWidth="33.3"/>
+                        <ColumnConstraints percentWidth="33.4"/>
+                    </columnConstraints>
+                    <VBox spacing="2.0" GridPane.columnIndex="0">
+                        <Label text="%item.model_data" styleClass="field-label"/>
                         <TextField fx:id="modelDataField" promptText="1001"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.item_model"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="1">
+                        <Label text="%item.item_model" styleClass="field-label"/>
                         <TextField fx:id="itemModelField" promptText="custom:ruby_sword"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%item.rgb"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="2">
+                        <Label text="%item.rgb" styleClass="field-label"/>
                         <TextField fx:id="rgbField" promptText="#FF0000"/>
                     </VBox>
-                </HBox>
+                </GridPane>
             </VBox>
         </TitledPane>
 
         <!-- Section 3: Click Actions -->
         <TitledPane text="%inspector.section.actions" expanded="false">
-            <VBox spacing="8.0">
+            <VBox spacing="6.0">
                 <HBox spacing="8.0" alignment="CENTER_LEFT">
-                    <Label text="%action.click_type"/>
+                    <Label text="%action.click_type" styleClass="field-label"/>
                     <ComboBox fx:id="clickTypeCombo" HBox.hgrow="ALWAYS"/>
                 </HBox>
 
-                <TableView fx:id="actionsTable" prefHeight="140.0">
+                <TableView fx:id="actionsTable" prefHeight="130.0">
                     <columns>
                         <TableColumn fx:id="colActionType" text="%action.type" prefWidth="110.0"/>
                         <TableColumn fx:id="colActionArg" text="%action.argument" prefWidth="180.0"/>
@@ -161,35 +177,39 @@
 
         <!-- Section 4: Requirements -->
         <TitledPane text="%inspector.section.requirements" expanded="false">
-            <VBox spacing="8.0">
+            <VBox spacing="6.0">
                 <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="%req.type"/>
+                    <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                        <Label text="%req.type" styleClass="field-label"/>
                         <ComboBox fx:id="reqTypeCombo" maxWidth="Infinity"/>
                     </VBox>
-                    <VBox spacing="4.0" alignment="BOTTOM_LEFT">
+                    <VBox spacing="2.0" alignment="BOTTOM_LEFT">
                         <CheckBox fx:id="reqInvertedCheck" text="%req.inverted"/>
                     </VBox>
                 </HBox>
 
-                <HBox spacing="8.0">
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="Input / Permission:"/>
+                <GridPane hgap="10.0" vgap="6.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0"/>
+                        <ColumnConstraints percentWidth="50.0"/>
+                    </columnConstraints>
+                    <VBox spacing="2.0" GridPane.columnIndex="0">
+                        <Label text="%req.input_permission" styleClass="field-label"/>
                         <TextField fx:id="reqField1"/>
                     </VBox>
-                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-                        <Label text="Output / Amount:"/>
+                    <VBox spacing="2.0" GridPane.columnIndex="1">
+                        <Label text="%req.output_amount" styleClass="field-label"/>
                         <TextField fx:id="reqField2"/>
                     </VBox>
-                </HBox>
+                </GridPane>
 
                 <HBox spacing="8.0" alignment="CENTER_LEFT">
-                    <Label text="%req.min_req"/>
+                    <Label text="%req.min_req" styleClass="field-label"/>
                     <Spinner fx:id="minReqSpinner" prefWidth="80.0"/>
                     <CheckBox fx:id="stopAtSuccessCheck" text="%req.stop_at_success"/>
                 </HBox>
 
-                <Button fx:id="btnSaveRequirement" text="Save Requirement" styleClass="button-primary"/>
+                <Button fx:id="btnSaveRequirement" text="%req.save_btn" styleClass="button-primary"/>
             </VBox>
         </TitledPane>
     </VBox>

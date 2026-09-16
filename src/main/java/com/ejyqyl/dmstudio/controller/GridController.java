@@ -4,18 +4,17 @@ import com.ejyqyl.dmstudio.model.MenuConfig;
 import com.ejyqyl.dmstudio.model.MenuItem;
 import com.ejyqyl.dmstudio.model.inventory.InventoryType;
 import com.ejyqyl.dmstudio.service.i18n.I18nService;
-import com.ejyqyl.dmstudio.service.render.ItemIconProvider;
+import com.ejyqyl.dmstudio.view.SlotCell;
 import com.ejyqyl.dmstudio.viewmodel.GridViewModel;
 import com.ejyqyl.dmstudio.viewmodel.MainViewModel;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.GridPane;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +31,7 @@ public class GridController {
 
     private MainViewModel mainViewModel;
     private GridViewModel gridViewModel;
+    private final List<SlotCell> slotCells = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -60,89 +60,40 @@ public class GridController {
 
     public void renderGrid() {
         if (mainViewModel == null || mainViewModel.getConfig() == null) return;
-        inventoryGrid.getChildren().clear();
 
         MenuConfig config = mainViewModel.getConfig();
         int size = config.getSize();
         int cols = config.getMenuType() == InventoryType.CHEST ? 9 : config.getMenuType().getColumns();
         int rows = Math.max(1, (size + cols - 1) / cols);
 
+        // Recreate slot cell pool only when size or columns change
+        if (slotCells.size() != size) {
+            inventoryGrid.getChildren().clear();
+            slotCells.clear();
+
+            for (int i = 0; i < size; i++) {
+                int row = i / cols;
+                int col = i % cols;
+                SlotCell cell = new SlotCell(i);
+                setupInteractivity(cell, i);
+                slotCells.add(cell);
+                inventoryGrid.add(cell, col, row);
+            }
+        }
+
+        // Fast differential in-place update without allocating new nodes
         for (int i = 0; i < size; i++) {
-            int row = i / cols;
-            int col = i % cols;
-            Node slotNode = createSlotNode(i, config);
-            inventoryGrid.add(slotNode, col, row);
+            List<MenuItem> items = config.getItemsAtSlot(i);
+            boolean isSelected = gridViewModel.getMultiSelectedSlots().contains(i);
+            slotCells.get(i).update(items, isSelected);
         }
     }
 
-    private Node createSlotNode(int slotIndex, MenuConfig config) {
-        StackPane slotPane = new StackPane();
-        slotPane.setPrefSize(48, 48);
-        slotPane.setMinSize(48, 48);
-        slotPane.setMaxSize(48, 48);
-        slotPane.getStyleClass().add("inventory-slot");
-
-        boolean isSelected = gridViewModel.getMultiSelectedSlots().contains(slotIndex);
-        if (isSelected) {
-            slotPane.getStyleClass().add("inventory-slot-selected");
-        }
-
-        List<MenuItem> items = config.getItemsAtSlot(slotIndex);
-        if (items.size() > 1) {
-            // Check collision (same priority)
-            int p0 = items.get(0).getPriority();
-            boolean collision = false;
-            for (int i = 1; i < items.size(); i++) {
-                if (items.get(i).getPriority() == p0) {
-                    collision = true;
-                    break;
-                }
-            }
-            if (collision) {
-                slotPane.getStyleClass().add("inventory-slot-collision");
-            }
-        }
-
-        // Slot number label (top-left)
-        Label slotLabel = new Label(String.valueOf(slotIndex));
-        slotLabel.setStyle("-fx-font-size: 9px; -fx-text-fill: #b0b0b0; -fx-padding: 2 0 0 2;");
-        StackPane.setAlignment(slotLabel, Pos.TOP_LEFT);
-        slotPane.getChildren().add(slotLabel);
-
-        if (!items.isEmpty()) {
-            MenuItem primaryItem = items.get(0);
-            Node icon = ItemIconProvider.createIcon(primaryItem.getMaterial(), 36);
-            slotPane.getChildren().add(icon);
-
-            // Amount badge (bottom-right)
-            if (primaryItem.getAmount() > 1) {
-                Label amountLabel = new Label(String.valueOf(primaryItem.getAmount()));
-                amountLabel.setStyle("-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow(one-pass-box, black, 2, 0, 1, 1);");
-                StackPane.setAlignment(amountLabel, Pos.BOTTOM_RIGHT);
-                slotPane.getChildren().add(amountLabel);
-            }
-
-            // Priority badge if multiple items on slot: [P:0]
-            if (items.size() > 1) {
-                Label prioBadge = new Label("P:" + primaryItem.getPriority());
-                prioBadge.setStyle("-fx-font-size: 8px; -fx-font-weight: bold; -fx-text-fill: #ffff55; -fx-background-color: rgba(0,0,0,0.7); -fx-padding: 1 2 1 2; -fx-background-radius: 2;");
-                StackPane.setAlignment(prioBadge, Pos.BOTTOM_LEFT);
-                slotPane.getChildren().add(prioBadge);
-            }
-
-            // Tooltip
-            String title = primaryItem.getAppearance().getDisplayName() != null ? primaryItem.getAppearance().getDisplayName() : primaryItem.getKey();
-            Tooltip.install(slotPane, new Tooltip(I18nService.getInstance().get("grid.slot_tooltip", slotIndex, title, primaryItem.getPriority())));
-        }
-
-        setupInteractivity(slotPane, slotIndex, items);
-        return slotPane;
-    }
-
-    private void setupInteractivity(StackPane slotPane, int slotIndex, List<MenuItem> items) {
+    private void setupInteractivity(SlotCell slotCell, int slotIndex) {
         // Mouse click
-        slotPane.setOnMouseClicked(e -> {
+        slotCell.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY) {
+                List<MenuItem> items = mainViewModel.getConfig().getItemsAtSlot(slotIndex);
                 if (e.getClickCount() == 2 && items.isEmpty()) {
                     gridViewModel.createDefaultItemAt(slotIndex, "STONE");
                 } else if (e.isShiftDown()) {
@@ -155,12 +106,6 @@ public class GridController {
 
         // Context menu (RMB)
         ContextMenu menu = new ContextMenu();
-        MenuItem editMi = new MenuItem("grid.context.edit", "Edit");
-        MenuItem clearMi = new MenuItem("grid.context.clear", "Clear Slot");
-        MenuItem dupMi = new MenuItem("grid.context.duplicate", "Duplicate");
-        MenuItem copyMi = new MenuItem("grid.context.copy", "Copy");
-        MenuItem pasteMi = new MenuItem("grid.context.paste", "Paste");
-        MenuItem lowerPrioMi = new MenuItem("grid.context.lower_priority", "Add Lower Priority Variant");
 
         javafx.scene.control.MenuItem itmClear = new javafx.scene.control.MenuItem(I18nService.getInstance().get("grid.context.clear"));
         itmClear.setOnAction(e -> gridViewModel.clearSlot(slotIndex));
@@ -178,12 +123,13 @@ public class GridController {
         itmLowerPrio.setOnAction(e -> gridViewModel.createLowerPriorityVariant(slotIndex));
 
         menu.getItems().addAll(itmClear, itmDup, itmCopy, itmPaste, new SeparatorMenuItem(), itmLowerPrio);
-        slotPane.setOnContextMenuRequested(e -> menu.show(slotPane, e.getScreenX(), e.getScreenY()));
+        slotCell.setOnContextMenuRequested(e -> menu.show(slotCell, e.getScreenX(), e.getScreenY()));
 
         // Drag and Drop
-        slotPane.setOnDragDetected(e -> {
+        slotCell.setOnDragDetected(e -> {
+            List<MenuItem> items = mainViewModel.getConfig().getItemsAtSlot(slotIndex);
             if (!items.isEmpty()) {
-                Dragboard db = slotPane.startDragAndDrop(e.isControlDown() ? TransferMode.COPY : TransferMode.MOVE);
+                Dragboard db = slotCell.startDragAndDrop(e.isControlDown() ? TransferMode.COPY : TransferMode.MOVE);
                 ClipboardContent content = new ClipboardContent();
                 content.putString(String.valueOf(slotIndex));
                 db.setContent(content);
@@ -191,14 +137,14 @@ public class GridController {
             }
         });
 
-        slotPane.setOnDragOver(e -> {
+        slotCell.setOnDragOver(e -> {
             if (e.getDragboard().hasString()) {
                 e.acceptTransferModes(TransferMode.COPY_OR_MOVE);
             }
             e.consume();
         });
 
-        slotPane.setOnDragDropped(e -> {
+        slotCell.setOnDragDropped(e -> {
             Dragboard db = e.getDragboard();
             boolean success = false;
             if (db.hasString()) {

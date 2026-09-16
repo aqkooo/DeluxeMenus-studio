@@ -6,25 +6,27 @@
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.ejyqyl.dmstudio.controller.GridController"
-      spacing="10.0" alignment="TOP_CENTER">
+      spacing="8.0">
     <padding>
-        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
 
     <!-- Preset Toolbar -->
     <HBox spacing="8.0" alignment="CENTER_LEFT">
-        <Label text="%grid.title" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #3498db;"/>
+        <Label text="%grid.title" styleClass="section-header"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Button fx:id="btnBorder" text="%grid.preset.border" styleClass="button"/>
         <Button fx:id="btnChecker" text="%grid.preset.checker" styleClass="button"/>
         <Button fx:id="btnClearAll" text="%grid.preset.clear" styleClass="button"/>
     </HBox>
 
-    <Separator/>
-
-    <!-- Inventory Grid Box -->
-    <VBox alignment="CENTER" style="-fx-background-color: #121216; -fx-padding: 16; -fx-background-radius: 6; -fx-border-color: #2a2a35; -fx-border-radius: 6;" VBox.vgrow="ALWAYS">
-        <GridPane fx:id="inventoryGrid" hgap="4.0" vgap="4.0" alignment="CENTER"/>
-    </VBox>
+    <!-- Center Container for Chest GUI -->
+    <StackPane VBox.vgrow="ALWAYS" alignment="CENTER"
+               style="-fx-background-color: -bg-window; -fx-border-color: -border; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 12;">
+        <VBox alignment="CENTER" spacing="8.0" maxWidth="-Infinity" maxHeight="-Infinity"
+              style="-fx-background-color: -bg-panel; -fx-border-color: -border; -fx-border-radius: 4; -fx-background-radius: 4; -fx-padding: 8;">
+            <GridPane fx:id="inventoryGrid" hgap="3.0" vgap="3.0" alignment="CENTER"/>
+        </VBox>
+    </StackPane>
 
 </VBox>

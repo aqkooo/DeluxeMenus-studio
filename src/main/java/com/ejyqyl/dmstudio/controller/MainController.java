@@ -1,6 +1,8 @@
 package com.ejyqyl.dmstudio.controller;
 
 import com.ejyqyl.dmstudio.service.i18n.I18nService;
+import com.ejyqyl.dmstudio.service.texture.TextureExtractorService;
+import com.ejyqyl.dmstudio.service.texture.TextureManager;
 import com.ejyqyl.dmstudio.service.yaml.YamlImportService;
 import com.ejyqyl.dmstudio.viewmodel.MainViewModel;
 import javafx.application.Platform;
@@ -12,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -28,6 +31,7 @@ public class MainController {
     @FXML private MenuItem menuExit;
     @FXML private MenuItem menuUndo;
     @FXML private MenuItem menuRedo;
+    @FXML private MenuItem menuExtractTextures;
     @FXML private MenuItem menuAbout;
     @FXML private RadioMenuItem menuLangRu;
     @FXML private RadioMenuItem menuLangEn;
@@ -77,6 +81,8 @@ public class MainController {
             if (mainViewModel != null) mainViewModel.getCommandStack().redo();
         });
 
+        menuExtractTextures.setOnAction(e -> showExtractTexturesDialog());
+
         menuLangRu.setOnAction(e -> I18nService.getInstance().setLocale(Locale.of("ru", "RU")));
         menuLangEn.setOnAction(e -> I18nService.getInstance().setLocale(Locale.ENGLISH));
 
@@ -96,21 +102,22 @@ public class MainController {
         // Status bar slot label
         mainViewModel.getGridViewModel().selectedSlotProperty().addListener((obs, oldV, slot) -> {
             if (slot.intValue() >= 0) {
-                statusSlotLabel.setText("Selected Slot: " + slot);
+                statusSlotLabel.setText(I18nService.getInstance().get("status.slot_selected", slot));
             } else {
-                statusSlotLabel.setText("No slot selected");
+                statusSlotLabel.setText(I18nService.getInstance().get("status.no_slot"));
             }
         });
+        statusSlotLabel.setText(I18nService.getInstance().get("status.no_slot"));
     }
 
     private void updateTitle(boolean isDirty) {
         Path path = mainViewModel.currentFilePathProperty().get();
-        String filename = path != null ? path.getFileName().toString() : "Untitled.yml";
+        String filename = path != null ? path.getFileName().toString() : I18nService.getInstance().get("status.untitled");
         String title = "DeluxeMenus Studio - " + filename + (isDirty ? " *" : "");
         if (stage != null) {
             stage.setTitle(title);
         }
-        statusFileLabel.setText(filename + (isDirty ? " (Modified)" : ""));
+        statusFileLabel.setText(filename + (isDirty ? " " + I18nService.getInstance().get("status.modified") : ""));
     }
 
     private void handleNew() {
@@ -129,11 +136,11 @@ public class MainController {
         if (file != null) {
             YamlImportService.ImportResult result = mainViewModel.openFile(file.toPath());
             if (!result.isSuccess()) {
-                showError("Import Error", result.getErrorMessage());
+                showError(I18nService.getInstance().get("dialog.error_title"), result.getErrorMessage());
             } else if (!result.getReplacementsApplied().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Deprecated Options Migrated");
-                alert.setHeaderText("The following deprecated options were automatically modernized:");
+                alert.setTitle(I18nService.getInstance().get("dialog.info_title"));
+                alert.setHeaderText(null);
                 alert.setContentText(String.join("\n", result.getReplacementsApplied()));
                 alert.showAndWait();
             }
@@ -148,7 +155,7 @@ public class MainController {
             try {
                 mainViewModel.saveFile(current);
             } catch (IOException e) {
-                showError("Save Error", e.getMessage());
+                showError(I18nService.getInstance().get("dialog.error_title"), e.getMessage());
             }
         }
     }
@@ -162,7 +169,49 @@ public class MainController {
             try {
                 mainViewModel.saveFile(file.toPath());
             } catch (IOException e) {
-                showError("Save Error", e.getMessage());
+                showError(I18nService.getInstance().get("dialog.error_title"), e.getMessage());
+            }
+        }
+    }
+
+    private void showExtractTexturesDialog() {
+        TextureExtractorService extractor = new TextureExtractorService();
+        List<Path> installed = extractor.findInstalledMinecraftJars();
+
+        FileChooser fc = new FileChooser();
+        fc.setTitle(I18nService.getInstance().get("dialog.extract_textures_prompt"));
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Minecraft JAR / Resource Pack (*.jar, *.zip)", "*.jar", "*.zip"));
+
+        Path selectedPath = null;
+        if (!installed.isEmpty()) {
+            ChoiceDialog<Path> dialog = new ChoiceDialog<>(installed.get(0), installed);
+            dialog.setTitle(I18nService.getInstance().get("dialog.extract_textures_title"));
+            dialog.setHeaderText(I18nService.getInstance().get("dialog.extract_textures_header"));
+            dialog.setContentText(I18nService.getInstance().get("dialog.extract_textures_auto"));
+            Optional<Path> res = dialog.showAndWait();
+            if (res.isPresent()) {
+                selectedPath = res.get();
+            }
+        }
+
+        if (selectedPath == null && installed.isEmpty()) {
+            File f = fc.showOpenDialog(stage);
+            if (f != null) selectedPath = f.toPath();
+        }
+
+        if (selectedPath != null) {
+            Path targetDir = TextureManager.getInstance().getDefaultTexturesDir();
+            boolean ok = extractor.extractAndBuildAtlas(selectedPath, targetDir, msg -> System.out.println("[TextureExtractor] " + msg));
+            if (ok) {
+                TextureManager.getInstance().reloadAtlas();
+                gridController.renderGrid();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(I18nService.getInstance().get("dialog.extract_textures_title"));
+                alert.setHeaderText(null);
+                alert.setContentText(I18nService.getInstance().get("dialog.extract_textures_success"));
+                alert.showAndWait();
+            } else {
+                showError(I18nService.getInstance().get("dialog.error_title"), "Failed to extract textures from " + selectedPath.getFileName());
             }
         }
     }

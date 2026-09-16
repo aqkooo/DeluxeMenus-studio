@@ -254,7 +254,7 @@ public class ItemInspectorController {
         materialCombo.setValue("STONE");
         displayNameField.setText("");
         loreArea.setText("");
-        tooltipPreviewBox.getChildren().clear();
+        updateTooltipPreview();
     }
 
     private void commitIfChanged() {
@@ -313,14 +313,24 @@ public class ItemInspectorController {
     private void updateTooltipPreview() {
         tooltipPreviewBox.getChildren().clear();
         String name = displayNameField.getText();
-        if (name != null && !name.isBlank()) {
+        String lore = loreArea.getText();
+        boolean hasName = name != null && !name.isBlank();
+        boolean hasLore = lore != null && !lore.isBlank();
+
+        if (!hasName && !hasLore) {
+            Label placeholder = new Label(I18nService.getInstance().get("inspector.tooltip_empty"));
+            placeholder.setStyle("-fx-font-style: italic; -fx-text-fill: #555566; -fx-font-size: 11px;");
+            tooltipPreviewBox.getChildren().add(placeholder);
+            return;
+        }
+
+        if (hasName) {
             TextFlow nameFlow = new TextFlow();
             ColorCodeParser.populateTextFlow(nameFlow, name, Color.WHITE);
             tooltipPreviewBox.getChildren().add(nameFlow);
         }
 
-        String lore = loreArea.getText();
-        if (lore != null && !lore.isBlank()) {
+        if (hasLore) {
             String[] lines = lore.split("\n", -1);
             for (String line : lines) {
                 TextFlow lineFlow = new TextFlow();

@@ -23,6 +23,9 @@
                 <MenuItem fx:id="menuUndo" text="%menu.edit.undo" accelerator="Shortcut+Z"/>
                 <MenuItem fx:id="menuRedo" text="%menu.edit.redo" accelerator="Shortcut+Y"/>
             </Menu>
+            <Menu text="%menu.tools">
+                <MenuItem fx:id="menuExtractTextures" text="%menu.tools.extract_textures"/>
+            </Menu>
             <Menu text="%menu.language">
                 <RadioMenuItem fx:id="menuLangRu" text="%menu.language.ru"/>
                 <RadioMenuItem fx:id="menuLangEn" text="%menu.language.en"/>
@@ -35,9 +38,9 @@
 
     <!-- Center: Vertical SplitPane (Upper workarea + Lower preview/problems) -->
     <center>
-        <SplitPane orientation="VERTICAL" dividerPositions="0.65">
+        <SplitPane fx:id="verticalSplitPane" orientation="VERTICAL" dividerPositions="0.65">
             <!-- Upper Horizontal SplitPane: 3-column layout -->
-            <SplitPane orientation="HORIZONTAL" dividerPositions="0.22, 0.62">
+            <SplitPane fx:id="horizontalSplitPane" orientation="HORIZONTAL" dividerPositions="0.22, 0.62">
                 <!-- Left: Menu Properties -->
                 <fx:include fx:id="menuProperties" source="menu_properties.fxml"/>
 
@@ -63,11 +66,11 @@
     <!-- Bottom: Status Bar -->
     <bottom>
         <HBox styleClass="status-bar" spacing="16.0" alignment="CENTER_LEFT">
-            <Label fx:id="statusFileLabel" text="Untitled.yml"/>
+            <Label fx:id="statusFileLabel"/>
             <Separator orientation="VERTICAL"/>
-            <Label fx:id="statusSlotLabel" text="No slot selected"/>
+            <Label fx:id="statusSlotLabel"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.0.0" style="-fx-text-fill: #777788;"/>
+            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.0.0" styleClass="field-label"/>
         </HBox>
     </bottom>
 

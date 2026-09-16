@@ -32,6 +32,8 @@ out/
 ### macOS ###
 .DS_Store
 
-### Temporary autosaves ###
+### Temporary autosaves & textures ###
 .deluxemenus-studio/
 dependency-reduced-pom.xml
+item/
+

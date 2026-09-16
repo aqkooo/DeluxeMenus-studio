@@ -7,47 +7,52 @@
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.ejyqyl.dmstudio.controller.MenuPropertiesController"
-      spacing="10.0">
+      spacing="8.0">
     <padding>
-        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
 
-    <Label text="%prop.title" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #3498db;"/>
+    <Label text="%prop.title" styleClass="section-header"/>
 
-    <VBox spacing="4.0">
-        <Label text="%prop.menu_title"/>
-        <TextField fx:id="titleField" promptText="&amp;8Server Menu"/>
+    <VBox spacing="2.0">
+        <Label text="%prop.menu_title" styleClass="field-label"/>
+        <TextField fx:id="titleField" promptText="%prop.menu_title_prompt"/>
     </VBox>
 
-    <VBox spacing="4.0">
-        <Label text="%prop.menu_title.preview" style="-fx-font-size: 11px; -fx-text-fill: #888899;"/>
-        <StackPane alignment="CENTER_LEFT" style="-fx-background-color: #121216; -fx-border-color: #2a2a35; -fx-padding: 6; -fx-background-radius: 4; -fx-border-radius: 4;">
+    <VBox spacing="2.0">
+        <Label text="%prop.menu_title.preview" styleClass="field-label"/>
+        <StackPane alignment="CENTER_LEFT"
+                   style="-fx-background-color: -bg-slot; -fx-border-color: -border; -fx-padding: 6; -fx-background-radius: 4; -fx-border-radius: 4;">
             <TextFlow fx:id="titlePreviewFlow"/>
         </StackPane>
     </VBox>
 
     <Separator/>
 
-    <HBox spacing="8.0">
-        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-            <Label text="%prop.menu_type"/>
+    <GridPane hgap="10.0" vgap="6.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50.0"/>
+            <ColumnConstraints percentWidth="50.0"/>
+        </columnConstraints>
+        <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="%prop.menu_type" styleClass="field-label"/>
             <ComboBox fx:id="typeCombo" maxWidth="Infinity"/>
         </VBox>
-        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
-            <Label text="%prop.size"/>
+        <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="%prop.size" styleClass="field-label"/>
             <ComboBox fx:id="sizeCombo" maxWidth="Infinity"/>
         </VBox>
-    </HBox>
+    </GridPane>
 
-    <VBox spacing="4.0">
-        <Label text="%prop.open_command"/>
-        <TextField fx:id="openCommandField" promptText="menu, shop"/>
+    <VBox spacing="2.0">
+        <Label text="%prop.open_command" styleClass="field-label"/>
+        <TextField fx:id="openCommandField" promptText="%prop.open_command_prompt"/>
     </VBox>
 
     <CheckBox fx:id="registerCommandCheck" text="%prop.register_command"/>
 
-    <VBox spacing="4.0">
-        <Label text="%prop.update_interval"/>
+    <VBox spacing="2.0">
+        <Label text="%prop.update_interval" styleClass="field-label"/>
         <Spinner fx:id="updateIntervalSpinner" maxWidth="Infinity"/>
     </VBox>
 
