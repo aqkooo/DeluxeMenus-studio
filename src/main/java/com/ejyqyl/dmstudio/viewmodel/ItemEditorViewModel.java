@@ -123,7 +123,27 @@ public class ItemEditorViewModel {
     }
 
     public void commitChanges() {
-        if (updating || currentItem == null) return;
+        if (updating) return;
+
+        String oldKey = currentItem != null ? currentItem.getKey() : null;
+
+        if (currentItem == null) {
+            String k = key.get() == null ? "" : key.get().trim();
+            String mat = material.get() == null ? "" : material.get().trim();
+            if (k.isBlank() && mat.isBlank()) {
+                return;
+            }
+            if (k.isBlank()) {
+                k = "item_" + slot.get();
+                key.set(k);
+            }
+            if (mat.isBlank()) {
+                mat = "STONE";
+                material.set(mat);
+            }
+            currentItem = new MenuItem(k, mat);
+            currentItem.setSlot(slot.get());
+        }
 
         MenuItem item = currentItem.copy();
         item.setKey(key.get().trim());
@@ -164,7 +184,7 @@ public class ItemEditorViewModel {
 
         saveCurrentClickActions(item);
 
-        commandStack.execute(new SetItemCommand(config, item));
+        commandStack.execute(new SetItemCommand(config, oldKey, item));
         this.currentItem = item;
         previewViewModel.requestUpdate();
     }

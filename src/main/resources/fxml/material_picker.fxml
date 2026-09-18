@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.ui.dialog.MaterialPickerDialog"
+      spacing="10.0" prefWidth="740.0" prefHeight="560.0">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+    </padding>
+
+    <!-- Header & Filters -->
+    <HBox spacing="10.0" alignment="CENTER_LEFT">
+        <Label text="%dialog.material_picker.title" styleClass="section-header"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="searchField" promptText="%dialog.material_picker.search_placeholder" prefWidth="260.0"/>
+        <ComboBox fx:id="categoryCombo" prefWidth="150.0"/>
+    </HBox>
+
+    <!-- Main Grid of Materials -->
+    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" fitToHeight="true"
+                hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: -border; -fx-border-radius: 4;">
+        <TilePane fx:id="materialsTilePane" hgap="6.0" vgap="6.0" prefColumns="9"
+                  style="-fx-padding: 8; -fx-background-color: -bg-card;"/>
+    </ScrollPane>
+
+    <!-- Pagination & Stats -->
+    <HBox spacing="12.0" alignment="CENTER_RIGHT">
+        <Label fx:id="statsLabel" styleClass="field-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnPrevPage" text="◀" styleClass="button"/>
+        <Label fx:id="pageLabel" text="1 / 1" style="-fx-font-weight: bold;"/>
+        <Button fx:id="btnNextPage" text="▶" styleClass="button"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Bottom Selected / Custom Input Bar -->
+    <HBox spacing="12.0" alignment="CENTER_LEFT">
+        <StackPane fx:id="previewIconBox" minWidth="44.0" minHeight="44.0" maxWidth="44.0" maxHeight="44.0"
+                   styleClass="inventory-slot"/>
+        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+            <Label text="%dialog.material_picker.custom_input" styleClass="field-label"/>
+            <TextField fx:id="customInputField" promptText="STONE, hdb-12345, itemsadder-ruby_sword, %papi%"/>
+        </VBox>
+        <Button fx:id="btnConfigureHead" text="%grid.palette.head" styleClass="button" prefHeight="32.0"/>
+        <Button fx:id="btnSelect" text="%dialog.material_picker.select" styleClass="button-primary" prefHeight="32.0" prefWidth="90.0"/>
+        <Button fx:id="btnCancel" text="%dialog.material_picker.cancel" styleClass="button" prefHeight="32.0" prefWidth="80.0"/>
+    </HBox>
+</VBox>

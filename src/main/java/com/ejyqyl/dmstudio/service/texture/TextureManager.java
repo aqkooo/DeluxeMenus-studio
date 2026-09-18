@@ -1,5 +1,6 @@
 package com.ejyqyl.dmstudio.service.texture;
 
+import com.ejyqyl.dmstudio.service.head.HeadDatabaseService;
 import com.ejyqyl.dmstudio.service.render.ItemIconProvider;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -33,6 +34,12 @@ public class TextureManager {
 
     public void reloadAtlas() {
         this.currentAtlas = TextureAtlas.loadFromDirectory(defaultTexturesDir);
+        if (currentAtlas == null || currentAtlas.getMaterialCount() < 1000) {
+            TextureAtlas bundled = TextureAtlas.loadFromClasspath();
+            if (bundled != null && (currentAtlas == null || bundled.getMaterialCount() > currentAtlas.getMaterialCount())) {
+                this.currentAtlas = bundled;
+            }
+        }
         if (currentAtlas == null) {
             java.nio.file.Path localItemDir = java.nio.file.Path.of("item");
             if (java.nio.file.Files.isDirectory(localItemDir)) {
@@ -62,10 +69,16 @@ public class TextureManager {
         String trimmed = rawMaterial.trim();
         String lower = trimmed.toLowerCase(Locale.ROOT);
 
+        // Player heads and HeadDatabase support
+        if (lower.startsWith("head-") || lower.startsWith("basehead-") || lower.startsWith("hdb-")
+                || lower.equals("player_head") || lower.equals("skull")) {
+            Node headNode = HeadDatabaseService.getInstance().createHeadIcon(trimmed, size);
+            if (headNode != null) return headNode;
+        }
+
         // Custom plugin prefixes offline
         if (lower.startsWith("itemsadder-") || lower.startsWith("oraxen-")
-                || lower.startsWith("nexo-") || lower.startsWith("head-")
-                || lower.startsWith("basehead-") || lower.startsWith("hdb-")
+                || lower.startsWith("nexo-")
                 || (trimmed.startsWith("%") && trimmed.endsWith("%"))) {
             return ItemIconProvider.createIcon(rawMaterial, size);
         }
@@ -82,6 +95,18 @@ public class TextureManager {
     public boolean applyToImageView(ImageView iv, String rawMaterial) {
         if (iv == null || rawMaterial == null || rawMaterial.isBlank()) return false;
         String trimmed = rawMaterial.trim();
+        String lower = trimmed.toLowerCase(Locale.ROOT);
+
+        if (lower.startsWith("head-") || lower.startsWith("basehead-") || lower.startsWith("hdb-")
+                || lower.equals("player_head") || lower.equals("skull")) {
+            Node headNode = HeadDatabaseService.getInstance().createHeadIcon(trimmed, iv.getFitWidth());
+            if (headNode instanceof ImageView headIv && headIv.getImage() != null) {
+                iv.setViewport(null);
+                iv.setImage(headIv.getImage());
+                iv.setSmooth(false);
+                return true;
+            }
+        }
 
         if (currentAtlas != null && currentAtlas.hasMaterial(trimmed)) {
             return currentAtlas.updateImageView(iv, trimmed);

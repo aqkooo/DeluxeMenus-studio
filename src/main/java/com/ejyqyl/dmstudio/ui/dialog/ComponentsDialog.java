@@ -148,6 +148,10 @@ public class ComponentsDialog {
     }
 
     public static void show(Window owner, BiConsumer<MenuItem, Integer> onInsert) {
+        show(owner, -1, onInsert);
+    }
+
+    public static void show(Window owner, int defaultSlot, BiConsumer<MenuItem, Integer> onInsert) {
         try {
             FXMLLoader loader = new FXMLLoader(
                     ComponentsDialog.class.getResource("/fxml/components_dialog.fxml"),
@@ -156,7 +160,7 @@ public class ComponentsDialog {
             Stage stage = new Stage();
             stage.setTitle(I18nService.getInstance().get("tools.components.title"));
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(owner);
+            if (owner != null) stage.initOwner(owner);
 
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add(
@@ -166,6 +170,9 @@ public class ComponentsDialog {
             ComponentsDialog controller = loader.getController();
             controller.stage = stage;
             controller.onInsert = onInsert;
+            if (defaultSlot >= 0 && defaultSlot < 54) {
+                controller.targetSlotSpinner.getValueFactory().setValue(defaultSlot);
+            }
 
             stage.setScene(scene);
             stage.show();

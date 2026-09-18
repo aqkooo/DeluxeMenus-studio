@@ -21,6 +21,19 @@
         <Button fx:id="btnClearAll" text="%grid.preset.clear" styleClass="button"/>
     </HBox>
 
+    <!-- Quick Material Palette -->
+    <HBox fx:id="paletteBar" spacing="6.0" alignment="CENTER_LEFT"
+          style="-fx-padding: 4 8 4 8; -fx-background-color: -bg-card; -fx-border-color: -border; -fx-border-radius: 4; -fx-background-radius: 4;">
+        <Label text="%grid.palette.title" styleClass="field-label" style="-fx-font-weight: bold;"/>
+        <HBox fx:id="paletteItemsBox" spacing="4.0" alignment="CENTER_LEFT"/>
+        <Button fx:id="btnChoosePaletteMaterial" text="%grid.palette.more" styleClass="button" style="-fx-font-size: 11px;"/>
+        <Button fx:id="btnHeadPalette" text="%grid.palette.head" styleClass="button" style="-fx-font-size: 11px;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="%grid.palette.current" styleClass="field-label"/>
+        <StackPane fx:id="activeMaterialPreview" minWidth="28.0" minHeight="28.0" maxWidth="28.0" maxHeight="28.0" styleClass="inventory-slot"/>
+        <Label fx:id="activeMaterialNameLabel" text="GRAY_STAINED_GLASS_PANE" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: -text-1;"/>
+    </HBox>
+
     <!-- Center Container for Chest GUI -->
     <StackPane VBox.vgrow="ALWAYS" alignment="CENTER" styleClass="chest-workbench">
         <VBox alignment="CENTER" spacing="8.0" maxWidth="-Infinity" maxHeight="-Infinity" styleClass="chest-frame">

@@ -1,0 +1,290 @@
+[
+  {
+    "id": "7129",
+    "name_ru": "Зелёная стрелка (Вперёд)",
+    "name_en": "Green Arrow Right",
+    "category": "NAVIGATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI5M2Y5Yzc0YzA1MzA0NzgyMGUxNzg0Zjg3ZWRjMWVhYTcxYWRkOWQ0ZjhiMTliN2VjZTFmZjAxYjFmMjI4In19fQ==",
+    "textureHash": "eb93f9c74c053047820e1784f87edc1eaa71add9d4f8b19b7ece1ff01b1f228",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAY0lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVlcxSJ0vx4yn04m4mBQsCETfBi01nKDIAZQoxBTIQUEDKEiaAVBFzDQowB+nXG5LtAH49mvC7QJ6ARrwv0idQMAhQn5YEHAJ87G13ewg66AAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "7130",
+    "name_ru": "Красная стрелка (Назад)",
+    "name_en": "Red Arrow Left",
+    "category": "NAVIGATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZDQ4MGZlYzEyZTNmIn19fQ==",
+    "textureHash": "bd69e06e5dadfd84e5f3d1c21063f2553b2fa945ee1d4d7152fd480fec12e3f",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAYklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAW3iosTpdn75Us4m4mBQsBErELL69exirOQq5EoF1gS0IzTBZZEaMTrguOammBMtgEwQIwhTIQUEHINE0ErCLiG4qQ88AAAoRYZTwKqFAEAAAAASUVORK5CYII="
+  },
+  {
+    "id": "7131",
+    "name_ru": "Стрелка (Вверх)",
+    "name_en": "Arrow Up",
+    "category": "NAVIGATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDQ4Yjc2ZTI3MzAzYzc0OTlkMzc1MzdiOThiZjY4OTUzMGRlNjhiZTQxM2I4NmNiNDlmM2U0NDQzZmFlNTQifX19",
+    "textureHash": "d48b76e27303c7499d37537b98bf689530de68be413b86cb49f3e4443fae54",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVZQtYTpfnPmkA4m4mBQsBESMGrWfbkG/AKqhmfIUwMFAImQrbj4tPWBa9w2IZNnAWbQrG0g5S5gIEEQHFSHngAAMygGK3OFqaeAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "7132",
+    "name_ru": "Стрелка (Вниз)",
+    "name_en": "Arrow Down",
+    "category": "NAVIGATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmRhZGQ2ODE3NDU0OTExZTY0OTA2NWFiNWExNDI4NjFjODUwMjJlZWM3YjRmMmMwNjliMWRmMDAzOWY2MGY2In19fQ==",
+    "textureHash": "2dadd6817454911e649065ab5a142861c85022eec7b4f2c069b1df0039f60f6",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAY0lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVZQtYTpfnPmkA4m4mBQsBEqQEs2ARfzbLHqUEs7SBhF4ihKcInzsRAIWDCJYFuGy5XMdHMBci24rKdKBeI4dEMAhQn5YEHABcqFsagh5c2AAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "21822",
+    "name_ru": "Зелёная галочка (Успех)",
+    "name_en": "Green Checkmark",
+    "category": "SYMBOLS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTE5ZmFlNzc3NGUxNGY4YTM3OWU0OTZhNzVmZjcyZDAyYzY1ZmUzNjIzYmU4MGM0ZWZiMWU4NDMyMzY3ZDNlIn19fQ==",
+    "textureHash": "a19fae7774e14f8a379e496a75ff72d02c65fe3623be80c4efb1e8432367d3e",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcElEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAW5fPmJ0vxt80c4m4mBQsBEiuInC++Tb8ATqGZ0Q5hItVkmXpGwAU+wOBWbZqwGPEFzKozGphmrATJICnG5BK8B2GzDZTveQJSBasKnGQQoTsoDDwDmBCV9QvMRywAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "21824",
+    "name_ru": "Красный крестик (Отмена)",
+    "name_en": "Red Cross",
+    "category": "SYMBOLS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmViNTg4YjM1OTU2NmZiYTE3MzA1NTIwYjQzM2Q4MWY4NWJlMTM5NzIyM2Y2NmMyYThmODk1ZmI4YTA0N2QifX19",
+    "textureHash": "beb588b359566fba17305520b433d81f85be1397223f66c2a8f895fb8a047d",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAZklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAWXcXMTpTnq61c4m4mBQsCES8Lj8WO8fLwGeEAV46IJGrBDVharzcjieA3AphibZtqHAT7v4DTAA4tmfIYwoRuATRM+cYqT8sADAD95MDVrqhk1AAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "10738",
+    "name_ru": "Знак вопроса (Помощь)",
+    "name_en": "Question Mark",
+    "category": "SYMBOLS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBiNjE1NDYyY2Y0ZDkwOTU2YjljOTdiODMwN2Q4OWNmMjQ1NGE4ODk0MTAxZTU2YTQyZWMzNDk0NzkifX19",
+    "textureHash": "60b615462cf4d90956b9c97b8307d89cf2454a8894101e56a42ec349479",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAApklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAWvOrwnSrP2AUE4m4mBQsCES4JN04ZBpOMEg0jPWQZ2Ex+cBrDgkuBLmcTwoTeC4d/3zwzCLQcZXp/ZQpoBX7dOYvjz7BYDIwsbAxMnL+le+L5vAcQGeT2GX7dPk24ADHCY+TN82zmdgWwDmKVUGX6e30G+AZ/mFjAw/P9PvgEC+YvwylOclAceAACwQy14sVrylwAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "18429",
+    "name_ru": "Восклицательный знак",
+    "name_en": "Exclamation Mark",
+    "category": "SYMBOLS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjE2N2Q0MDJhYTNmNGUyNGVmNTRlYTFhN2NmNzNiYmE5YmM2MDQwYWIyZTdiNTFiM2FiMGJhOTk1Y2E3NDQyIn19fQ==",
+    "textureHash": "2167d402aa3f4e24ef54ea1a7cf73bba9bc6040ab2e7b51b3ab0ba995ca7442",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAATUlEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAWf5LERpVlm0i84m4mBQsCET5Kz4hZlBhADmIhSNYIN+N5nQJkB7GFzCRpAcVIeeAAAEZMPI2wjRu0AAAAASUVORK5CYII="
+  },
+  {
+    "id": "2580",
+    "name_ru": "Золотая монета (Баланс)",
+    "name_en": "Gold Coin",
+    "category": "ECONOMY",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmE2NmU0MDg4ODk0NzZiN2UzZTdmNGZhMTFkYmQzMDA0M2M5N2RiMGUyNzE2NGIwNzQzZWJkZjUzZGI1Yzk2In19fQ==",
+    "textureHash": "2a66e408889476b7e3e7f4fa11dbd30043c97db0e27164b0743ebdf53db5c96",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA90lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVfrZchSrNY4BM4mwWXol/7X6Hw2RzFsKpjwqWZK9+RgTPTloHVUpGBgYkRYuC//4QN+AXVDGZvv8bAyM7KwMjCzMBqpcTw6+Br4lwAA/9efGJg0ZIABzWrIfbwYcIqCpOUFWD4ufsGw/+//xn+//5HugHs7loMzNL8DAz//jH8WHKKOAPYHMUYvk3cD+EwMzGw6MswMLIyM/z/9ouBkYMZwwAWbKaiGAITsxVl+H3mHfFeYHMUY2DR4WdgFGAFB+LvSx8YmNV5MdQRlZSvZ7AxaM74hSIGS8oDDwAExkOj/cHLagAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "2581",
+    "name_ru": "Мешок с деньгами",
+    "name_en": "Money Bag",
+    "category": "ECONOMY",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDYyNGE5MWE5ZWE4OTlkOTg0Y2ZiN2Q4ZDIxYzM3YjZjM2UzODdjOWY4MDNjMDgwMGIyMDExYjk4OGYxMTdjNCJ9fX0=",
+    "textureHash": "d624a91a9ea899d984cfb7d8d21c37b6c3e387c9f803c0800b2011b988f117c4",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABEUlEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVrYoOI0tyyeB2czcRAIWDBJigiJYPC11F5yXDljjjDm2dPiDMABlhZ/jJoKr5h0FN7wcDIyMBw6OV/hr9/4cFG2At2xg8Zfv5mZvj7D6LMzuIbhhomfAaICHxjuPtEiOH/fwaG6/dEGd59YCbNgBdveRis9R8xMDH9Z2Bm/sdw8SoHaQYcPifP8PIdNwMz038Gf4cbDGpKP0kz4N8/RoYb90UZfv9hYth1XIXB3vIrcQa8efYEjJ1MrjK8f/GE4f//fwyP77/GiAEQwJuUfe1FGNJDpRlMdfgYzl77xNA57xHDwTPvwXKwpEwU+H/V/wPRikkFANSIXKFocl3WAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "10565",
+    "name_ru": "Кристалл / Алмаз",
+    "name_en": "Diamond Gem",
+    "category": "ECONOMY",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjk0NmMxOWYyYTk2N2Y2YmI2ZWZiZDc2MjI5NGUzMzkxOTRlYzgxZDFlNDNlNzQwMWE0ZTFkNzFjMTRkOWI0YiJ9fX0=",
+    "textureHash": "2946c19f2a967f6bb6efbd762294e339194ec81d1e43e7401a4e1d71c14d9b4b",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAiUlEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZUASvvCNKs6COEJzNRFD19at4pZnwarx+leGBtRpeQ1hwaQZrhAIQW+Eo1BBNbQIGXEfVjGwICMANwukFTW0GhaO3sDoMLI7mAiasKrEYgk0zbgNIAEw4ZZBcgct2/AYwIBmCQzMIoMQCcgobOgAAleAqXSfVM98AAAAASUVORK5CYII="
+  },
+  {
+    "id": "2552",
+    "name_ru": "Красный подарок",
+    "name_en": "Red Present",
+    "category": "ECONOMY",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNlNGE0NDEzMWRmMzkxZDRlMmE2ZDcxYjRhNTMwZWI3Y2IwZWM2MWZkNThlOTlmZDlmNzI3ODI5N2I4MGExIn19fQ==",
+    "textureHash": "6ce4a44131df391d4e2a6d71b4a530eb7cb0ec61fd58e99fd9f7278297b80a1",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAdUlEQVR4nGNgGGjACGMICgr+R5d8d8QOTAvZHMLQ+P79e7BeFmTBQ3JyWG1BF7d79AjOZmKgEDANuAGMMMb/q/7/SdKovZGRui4QFBT8jx7aOssUwPSVqAcYsQCLRiZKXcA04AawIHOQUxgIvGOAhAG6+OACAO40HiqB2Fg7AAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "2553",
+    "name_ru": "Синий подарок",
+    "name_en": "Blue Present",
+    "category": "ECONOMY",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjUxMTkwYmMxYjkxOTFkODQ4NzlkZTc2YWMyOGMyMWE0ZmE4N2JhMGUzZWVmZjE2MmQxNmM0ZTBiMDIxM2QyIn19fQ==",
+    "textureHash": "f51190bc1b9191d84879de76ac28c21a4fa87ba0e3eeff162d16c4e0b0213d2",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAY0lEQVR4nGNgGGjACGMICgr+R5d89+4dmBYSEsLQ+P79e7BeFmRBjtSDWG1BF/8x2x7OZmKgEDANuAGMMMb/////k6SRkZGRKi5ggTFAUYUe2s86dcG0VPnlERELgmQm5YEHALH1HH4nQbcgAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "12384",
+    "name_ru": "Золотой кубок (Топ)",
+    "name_en": "Gold Trophy",
+    "category": "ECONOMY",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2U5NmNiNGNhODIwNTRmZjQ2YjZlYTE3ZWJjYjBhNGMwZWIzNjM4YzRiNzdiZDUxN2I2YTFiMjRiZjRjIn19fQ==",
+    "textureHash": "ce96cb4ca82054ff46b6ea17ebcb0a4c0eb3638c4b77bd517b6a1b24bf4c",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAYElEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXfLXpPlGahOEE4m4mBQsCCU8btCKbYLhsMISacBqArxqIZvwFEAia8sjBbcdhO2AACmvEH4h0sYip0DwMiAMVJeeABAGEXEuvcabgtAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "4349",
+    "name_ru": "Корона (VIP)",
+    "name_en": "Crown",
+    "category": "ECONOMY",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2UzYjMwNzlhZDc2ZDA1ZjNiNzlmNjQ4MzU2OTRjOTI1YmE2YzdhYTYxYTNlYzk1ZWIxZGZiYTY0YjE4ZWIzIn19fQ==",
+    "textureHash": "3e3b3079ad76d05f3b79f64835694c925ba6c7aa61a3ec95eb1dfba64b18eb3",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAeklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXfHbEjSrOQzSE4m4mBQsBESMG3VSeIN+AbmmIQn6soHkP8SR4bbhd8gyqGaQYBZEPQDWNCNwCmGKaZkDgTNn+hK8InzsRAIWBBF/jWt5B8A7jCLIjShJyQKE7KAw8AtgUwBeTYrP8AAAAASUVORK5CYII="
+  },
+  {
+    "id": "3244",
+    "name_ru": "Деревянный сундук",
+    "name_en": "Wooden Chest",
+    "category": "CHESTS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmY5YzQ1MDFhMzUzZDllMDNkNDZjYjVlZTBhZTI3NjMyNjFjZmRkYjI5MzUyN2I5YzlmMGZiNWRlNTdkYmQ3In19fQ==",
+    "textureHash": "6f9c4501a353d9e03d46cb5ee0ae2763261cfddb293527b9c9f0fb5de57dbd7",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVrYoOI0tyyeB12FwgICBBlwIcPH7C7AAR8tBUY8IEtVx+g8JkYKARM+CQnbd4HxmQbQAxgYqAQsOCTzPN1It2ALWihTJIBOUTYCAI4ExIpNsMS0sADAOhqH1wX7XfjAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "2471",
+    "name_ru": "Сейф / Хранилище",
+    "name_en": "Safe Vault",
+    "category": "CHESTS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzg2ZTY4ZWMzODdkODUzYmJmZDliMWEyY2UwOGI4YjBlNDVjNGFhOGI2OTNmYTkxYmI0ZTAxYjFlNjBmNSJ9fX0=",
+    "textureHash": "786e68ec387d853bbfd9b1a2ce08b8b0e45c4aa8b693fa91bb4e01b1e60f5",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAYUlEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVNPIOJ0nxm+1o4m4mBQsBEUwMe3rgCxmQZ8PDGFYaunl4wxmcIEwOFgAWXhLyGDkNZSTGcTbIBhDQOnmhkhDHITcoDDwBV2BtNSSMB0wAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "1819",
+    "name_ru": "Бургер",
+    "name_en": "Burger",
+    "category": "FOOD",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTcyNTE2NDhkYTVlN2E5YjBjMmE3NmYyOTkxNjZmMjg0YWI5ZmI3MGY0NGVjYWQ5Yzg1NWEwYjc3N2E5NDQ2ZCJ9fX0=",
+    "textureHash": "a7251648da5e7a9b0c2a76f299166f284ab9fb70f44ecad9c855a0b777a9446d",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAYUlEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXfLbMhSrNQ1BE4mwVDVtMUv+7rp1G4TAwUAiZKDWBBF0i//QKvhpmEDPjeeha/leViNPbCogXe9I0FFkI2EAIUJ+WBBwD+qReN1v88cwAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "1820",
+    "name_ru": "Пицца",
+    "name_en": "Pizza",
+    "category": "FOOD",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2YyNjAxOTVhZDc4OTBmNmM3NzBjNTM4ZWVjNWM4YmYzZTczYWQxZjgzYzEzZGMxNDQ0ZTkyYThjZjJlYjk4YiJ9fX0=",
+    "textureHash": "3f260195ad7890f6c770c538eec5c8bf3e73ad1f83c13dc1444e92a8cf2eb98b",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcElEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXfLXpPlGahOEE4m4mQ4ufz8MszEWMjPkOYCGmUTPOl3AWSab44XcGEz/a39/QZrlQ8otwF+FzBgs/vkgyEARMDCQCbK1iw2Q6mZ20mylCKk/LAAwDIHyM7NrcJggAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "1821",
+    "name_ru": "Чашка кофе",
+    "name_en": "Coffee Cup",
+    "category": "FOOD",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTkyN2UxZjQxNDJkN2M1ZWUxNWQyZmIzOTY1ZDk1MzkyZWY5NGY5Yjg4ZWYxMWI3MWUxOGQ2MTdjZTcxYTRmIn19fQ==",
+    "textureHash": "1927e1f4142d7c5ee15d2fb3965d95392ef94f9b88ef11b71e18d617ce71a4f",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVjrA2I0rzk6AU4m4mBQsBEqQEs2AQv3n6EU4O+qhxhA0BAgJebAR18+PyVTl4AgY2nLzKgA3sNFTq6wB6LbUQboI8W0vgAxUl54AEA/pcU+EC+h+cAAAAASUVORK5CYII="
+  },
+  {
+    "id": "1822",
+    "name_ru": "Праздничный торт",
+    "name_en": "Birthday Cake",
+    "category": "FOOD",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2Y0MDc3NmJkZjJjYjliYjg4ODk4YWEyYjlkMjljOGU4NzQ5ODMwNWM3NTRkOTI0ZjNiYjk5MTBkNmU2YWQ5In19fQ==",
+    "textureHash": "7f40776bdf2cb9bb88898aa2b9d29c8e87498305c754d924f3bb9910d6e6ad9",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAdklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAWfr9qPoojdIBtM/7wwFUVcMswRzmZioBAwUWoAC7rAg4QJcLb6BUwxhQUF+A0AAfUn8xmQgfoTCH1TJpEBHTAxUAiYBtwAFmyC2PxKtAEKaKFMCFCclAceAACgBhp57Wb1DAAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "4207",
+    "name_ru": "Земной шар (Серверы)",
+    "name_en": "Globe Earth",
+    "category": "DECORATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzBmM2M1YjU1MDVlNmI0YmIwM2U1YzliN2U3YTlhMTljNjIzZDNhMDQyOWY0NWNmN2ViOWMyNDA5NzRlZjZmIn19fQ==",
+    "textureHash": "c0f3c5b5505e6b4bb03e5c9b7e7a9a19c623d3a0429f45cf7eb9c240974ef6f",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAiklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAU/lh9AUvEGVYegCJzJ3+kAZ7NgN/4NA6OROYrQ/3MnUQyBASZcmj3ZYsAYBsAGorsKw4D3CM0wQMgQJgYKARNNDNj+awlWNjbAgsITFAGHNsiv2DRiiwkmDFVQQ4jRjOkCBjyGYNEMAhQn5YEHANT2MxSnOxZkAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "9235",
+    "name_ru": "Компьютер / ПК",
+    "name_en": "Computer Monitor",
+    "category": "DECORATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDMzMTU3NTg1MjViNmMzMWJmY2U2MjE4ZTJiZjEyYmE4ZDJiOTYzN2I1OGZiODE2NjVjYjZmNGZmMCJ9fX0=",
+    "textureHash": "43315758525b6c31bfce6218e2bf12ba8d2b9637b58fb81665cb6f4ff0",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAX0lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXVzOyI0nzr1CE4mwVd8tWtS3g1i6npofBZsCm6P3szVs2Kqb4YYkwMFAKmoW8AC7GBRbQBYmjRRHMvMMIY5CblgQcAJ+8SXqvVOA4AAAAASUVORK5CYII="
+  },
+  {
+    "id": "11257",
+    "name_ru": "Discord",
+    "name_en": "Discord",
+    "category": "DECORATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzViMWRjMDdmZWY3YjUzOWMzMmI1MDkzN2E0ZTY5YjIyYTYxMTc1NjU5YWJmZGYwZDlkZDdkZDY1OTYxMWY4ZSJ9fX0=",
+    "textureHash": "75b1dc07fef7b539c32b50937a4e69b22a61175659abfdf0d9dd7dd659611f8e",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAv0lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXdQx4SpXnnGnk4m4mBQsCCTXDhVF6Gu/f/Mvz/z8DAwsLAsO/wb4aDx34Tb8CfP/8Zmnq+gdns7IwMpdmcDD9//mc4cfYPhlomQk4EaVy69ieDhzMbVnkmBiLAoyd/GSTEmMg3gJmJgeHvXwbyDVBWZGZ49PQveQZwczEyRAWzM2ze+Yv4WGBhYWSoK+ECRyMzMwPDph2/GK7dxO4CipPywAMAiZw6p0BQbjgAAAAASUVORK5CYII="
+  },
+  {
+    "id": "11258",
+    "name_ru": "YouTube",
+    "name_en": "YouTube",
+    "category": "DECORATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODkxY2Q2OGIyMDllNTFkZDI2NzRlMmQyNzRhYTFkMTFjYjZjZDZlNjlkZGIzZjA3YTdlOGIzOWE0ODk3ZjFmIn19fQ==",
+    "textureHash": "891cd68b209e51dd2674e2d274aa1d11cb6cd6e69ddb3f07a7e8b39a4897f1f",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAX0lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXfvX9PlGYhQUE4m4mBQsBEOwP+/6eCC/7/J2gQC1HWIBvCyEiGAYyomog3gBG3RsJhwEhYM34DGIgDKF5ATmFDBwAA6UEPVoF1f4kAAAAASUVORK5CYII="
+  },
+  {
+    "id": "11259",
+    "name_ru": "Telegram",
+    "name_en": "Telegram",
+    "category": "DECORATION",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGU1ODgzZWY0YmJmYTRkN2E4ZTdhMGUzN2E5Y2Y0MWQ3Y2ViZTJjZjJjZmNlMWZmYjE1N2ZlMmI5NDdjOTJiIn19fQ==",
+    "textureHash": "4e5883ef4bbfa4d7a8e7a0e37a9cf41d7cebe2cf2cfce1ffb157fe2b947c92b",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAZ0lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAUllj4lSvOLaGk4m4mBQsBEiuJrnpwYYizkaiTKgGtoGrW2fyfOgGt4bCQqDLSw2ESSATBDkA3CZSgTAwFAyDVMhAwgZAjFSXngAQCm1hynJSNCCAAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "1",
+    "name_ru": "Стив (Steve)",
+    "name_en": "Steve",
+    "category": "MOBS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzA2Zjg5MDY0YzhhOTg2NjE5NDAzYjgyYmI1ZjFhNjZhZDI4MmYxYmFkM2IwMTNkMGQ2MjcxNGM0MDNmNzMzMyJ9fX0=",
+    "textureHash": "c06f89064c8a986619403b82bb5f1a66ad282f1bad3b013d0d62714c403f7333",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcUlEQVR4nGNgGGjACGNYK0n+J0Xj0XvPwXqZKHUB04AbwAJjXHv/g2FrtRNRmrxb92EaAANJKx3g7HnhB3CKUd8LuGzAJYbTABjoWHGbARlURKgyYANMDBQCFlwSuGxEB/CkLCgoSFJSfv/+PVzvwAIA8fMbPegUtT4AAAAASUVORK5CYII="
+  },
+  {
+    "id": "2",
+    "name_ru": "Алекс (Alex)",
+    "name_en": "Alex",
+    "category": "MOBS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNhNDA5NTRiMDM1ZGQ3YTJlMmY2ZmE3MmQ2MjdiMjgyOWI3ZmZjMmNiMzc4ODdlMjI0ZTc1ZDRiZTYwZmZiOSJ9fX0=",
+    "textureHash": "63a40954b035dd7a2e2f6fa72d627b2829b7ffc2cb37887e224e75d4be60ffb9",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAVUlEQVR4nGNgGGjACGPccBb9T4pGjb2vwXqZKHUB09A3gBHGEBQU/H9+RgyD35WjcMlNOtZgGl3MMGMJw/v376kTiCzoAjBbCYkN11hgIAHAYmHgAQDalRdKWxuMkQAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "3",
+    "name_ru": "Крипер (Creeper)",
+    "name_en": "Creeper",
+    "category": "MOBS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjQyNjM1OWViNmMzNWQ2ZTk5OTk1NTdiNDI1Y2YzM2I2NjFkOWEyYTc1NWQ5ZDdlMzViNzE5NGFiMGQ0MzZjZiJ9fX0=",
+    "textureHash": "f426359eb6c35d6e9999557b425cf33b661d9a2a755d9d7e35b7194ab0d436cf",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaklEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAWt59kTpflo0kE4m4mBQsCCLrAlcAOc7bM+AKcY7VyADJBtJtoAHyQnwgxAdzZRXtiCZDs+lzAR0kzIECYGCgETPkmQ3/H5HwQoTsoDDwBC1iCJOvuWnwAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "4",
+    "name_ru": "Скелет (Skeleton)",
+    "name_en": "Skeleton",
+    "category": "MOBS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzAxNDI5Njc2NzVmMjgwZTcyMjUxMzQ3MDc2ZjdmMjU5ZmU3ODBjODVjNGUxNmQ0ODI5ZmE3NTY0ZDYwMmNiNCJ9fX0=",
+    "textureHash": "30142967675f280e72251347076f7f259fe780c85c4e16d4829fa7564d602cb4",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAYElEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAXPnz9PlGZDQ0M4m4mBQsBEqQEs6AKOjo5w9v79+3GKDWIv7EdzIi4xnAbAQFJSEgMymDdvHgN9vAADuGxEBxQn5YEHAIEoGnUMaUgsAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "5",
+    "name_ru": "Зомби (Zombie)",
+    "name_en": "Zombie",
+    "category": "MOBS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZmYzk1MjliY2UwNTUwMGU1MmRkNGI2ZjdlOGVjMmMxNjEzZWI0ZDgwYTEzYzlmYjYwMTgzMTg3YTU1MmZkNiJ9fX0=",
+    "textureHash": "56fc9529bce05500e52dd4b6f7e8ec2c1613eb4d80a13c9fb60183187a552fd6",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXUlEQVR4nGNgGGjACGNIxyn8J0Xj00UPwHqZKHUB04AbwAJjfNv8kUG9VpsoTTebr2IaAAMnio7A2RZ9NjjFqO8FXDbgEhs8scBEqQHwpCwoKEhSUn7//j1c78ACACkiFbuFLDExAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "6",
+    "name_ru": "Житель (Villager)",
+    "name_en": "Villager",
+    "category": "MOBS",
+    "value": "eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDE4ZTI0Njk0NGU4M2Y3YTRlNjE2YzY4MDc0ZGNmN2Q3Yjg4OTUwZDg4YWEyMDgxZDZhYTI0NzE2NzY4MzkzOCJ9fX0=",
+    "textureHash": "418e246944e83f7a4e616c68074dcf7d7b88950d88aa2081d6aa247167683938",
+    "iconPngBase64": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAc0lEQVR4nGNgGGjACGMICgr+J0Xj+/fvwXpZkAVXz5xMlObQ9Fw4m4mBQsBEqQEs6AJNtfV4NdQ1N+I34NBCAzC951Egw8Uj+8FsfRtHBhe59RAFj2jthT2PArEqxCXORKkLmKjuBQYkAAo8QoDipDzwAABJvhsgfvTsEgAAAABJRU5ErkJggg=="
+  }
+]

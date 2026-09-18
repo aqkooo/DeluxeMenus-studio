@@ -30,7 +30,19 @@
                     </VBox>
                     <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <Label text="%item.material" styleClass="field-label"/>
-                        <ComboBox fx:id="materialCombo" maxWidth="Infinity"/>
+                        <HBox spacing="4.0">
+                            <ComboBox fx:id="materialCombo" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnBrowseMaterial" text="🧱" styleClass="button">
+                                <tooltip>
+                                    <Tooltip text="%dialog.material_picker.title"/>
+                                </tooltip>
+                            </Button>
+                            <Button fx:id="btnBrowseHead" text="👤" styleClass="button">
+                                <tooltip>
+                                    <Tooltip text="%dialog.head.title"/>
+                                </tooltip>
+                            </Button>
+                        </HBox>
                     </VBox>
 
                     <!-- Row 1: Slot & Additional Slots -->

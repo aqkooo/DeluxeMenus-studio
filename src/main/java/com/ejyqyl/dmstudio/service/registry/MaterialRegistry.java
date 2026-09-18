@@ -58,7 +58,11 @@ public final class MaterialRegistry {
         }
 
         // Check vanilla materials
-        return capabilityRegistry.isKnownMaterial(trimmed);
+        if (capabilityRegistry.isKnownMaterial(trimmed)) {
+            return true;
+        }
+        return com.ejyqyl.dmstudio.service.texture.TextureManager.getInstance().hasAtlas()
+                && com.ejyqyl.dmstudio.service.texture.TextureManager.getInstance().getCurrentAtlas().hasMaterial(trimmed);
     }
 
     public List<MaterialDescriptor> getMaterials() {

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog"
+      spacing="10.0" prefWidth="760.0" prefHeight="600.0">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox spacing="10.0" alignment="CENTER_LEFT">
+        <Label text="%dialog.head.title" styleClass="section-header"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- Tabs for Selection Modes -->
+    <TabPane fx:id="headTabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+        <!-- Tab 1: HeadDatabase Catalog -->
+        <Tab fx:id="tabCatalog" text="%dialog.head.tab_catalog">
+            <VBox spacing="8.0">
+                <padding>
+                    <Insets top="8.0"/>
+                </padding>
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <TextField fx:id="catalogSearchField" promptText="%dialog.head.search_prompt" prefWidth="280.0"/>
+                    <ComboBox fx:id="categoryCombo" prefWidth="170.0"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="headsCountLabel" styleClass="field-label"/>
+                </HBox>
+
+                <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" fitToHeight="true"
+                            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                            style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: -border; -fx-border-radius: 4;">
+                    <TilePane fx:id="headsTilePane" hgap="6.0" vgap="6.0" prefColumns="10"
+                              style="-fx-padding: 8; -fx-background-color: -bg-card;"/>
+                </ScrollPane>
+
+                <!-- Catalog Selected Item Options -->
+                <HBox spacing="16.0" alignment="CENTER_LEFT"
+                      style="-fx-padding: 6 10 6 10; -fx-background-color: -bg-card; -fx-border-color: -border; -fx-border-radius: 4;">
+                    <Label text="%dialog.head.format_label" styleClass="field-label" style="-fx-font-weight: bold;"/>
+                    <RadioButton fx:id="rbCatalogBasehead" text="%dialog.head.format_basehead" selected="true">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="catalogFormatGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="rbCatalogHdb" text="%dialog.head.format_hdb" toggleGroup="$catalogFormatGroup"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="catalogSelectedInfoLabel" text="" styleClass="field-label"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- Tab 2: Custom Value / Base64 / URL -->
+        <Tab fx:id="tabCustom" text="%dialog.head.tab_custom">
+            <VBox spacing="10.0">
+                <padding>
+                    <Insets top="10.0" left="4.0" right="4.0"/>
+                </padding>
+                <Label text="%dialog.head.custom_desc" styleClass="field-label" wrapText="true"/>
+
+                <VBox spacing="4.0">
+                    <Label text="%dialog.head.input_label" styleClass="field-label"/>
+                    <TextArea fx:id="customValueArea" prefRowCount="4" promptText="eyJ0ZXh0dXJlcyI6IHsiU0tJTiI6IHsidXJsIjogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvLi4uIn19fQ=="
+                              wrapText="true"/>
+                </VBox>
+
+                <HBox spacing="16.0" alignment="CENTER_LEFT">
+                    <Label text="%dialog.head.format_label" styleClass="field-label" style="-fx-font-weight: bold;"/>
+                    <RadioButton fx:id="rbCustomBasehead" text="%dialog.head.format_basehead" selected="true">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="customFormatGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="rbCustomHdb" text="%dialog.head.format_hdb" toggleGroup="$customFormatGroup"/>
+                </HBox>
+
+                <HBox spacing="10.0" alignment="CENTER_LEFT"
+                      style="-fx-padding: 8; -fx-background-color: -bg-card; -fx-border-color: -border; -fx-border-radius: 4;">
+                    <StackPane fx:id="customPreviewBox" minWidth="36.0" minHeight="36.0" maxWidth="36.0" maxHeight="36.0" styleClass="inventory-slot"/>
+                    <VBox spacing="2.0">
+                        <Label fx:id="customStatusLabel" text="%dialog.head.status_ready" styleClass="field-label" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="customHintLabel" text="" styleClass="field-label" style="-fx-font-size: 11px;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- Tab 3: Player Skin Skull -->
+        <Tab fx:id="tabPlayer" text="%dialog.head.tab_player">
+            <VBox spacing="10.0">
+                <padding>
+                    <Insets top="10.0" left="4.0" right="4.0"/>
+                </padding>
+                <Label text="%dialog.head.player_desc" styleClass="field-label"/>
+
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <Label text="%dialog.head.player_name" styleClass="field-label"/>
+                    <TextField fx:id="playerNameField" promptText="Steve, Notch, %player_name%" prefWidth="260.0"/>
+                </HBox>
+
+                <HBox spacing="10.0" alignment="CENTER_LEFT"
+                      style="-fx-padding: 8; -fx-background-color: -bg-card; -fx-border-color: -border; -fx-border-radius: 4;">
+                    <StackPane fx:id="playerPreviewBox" minWidth="36.0" minHeight="36.0" maxWidth="36.0" maxHeight="36.0" styleClass="inventory-slot"/>
+                    <VBox spacing="2.0">
+                        <Label text="material: head-&lt;name&gt;" styleClass="field-label" style="-fx-font-weight: bold;"/>
+                        <Label text="%dialog.head.player_hint" styleClass="field-label" style="-fx-font-size: 11px;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+    <Separator/>
+
+    <!-- Bottom Result & Action Bar -->
+    <HBox spacing="10.0" alignment="CENTER_LEFT">
+        <StackPane fx:id="bottomPreviewBox" minWidth="44.0" minHeight="44.0" maxWidth="44.0" maxHeight="44.0"
+                   styleClass="inventory-slot"/>
+        <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+            <Label text="%dialog.head.result_label" styleClass="field-label"/>
+            <TextField fx:id="resultMaterialField" promptText="basehead-..." editable="false"/>
+        </VBox>
+        <Button fx:id="btnApply" text="%dialog.head.apply" styleClass="button-primary" prefHeight="32.0" prefWidth="100.0"/>
+        <Button fx:id="btnCancel" text="%dialog.head.cancel" styleClass="button" prefHeight="32.0" prefWidth="80.0"/>
+    </HBox>
+</VBox>

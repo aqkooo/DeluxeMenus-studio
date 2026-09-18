@@ -81,6 +81,49 @@ public class GridViewModel {
         return item;
     }
 
+    public void changeMaterialAt(int slot, String material) {
+        if (material == null || material.isBlank()) return;
+        List<MenuItem> items = config.getItemsAtSlot(slot);
+        if (items.isEmpty()) {
+            createDefaultItemAt(slot, material.trim());
+        } else {
+            MenuItem base = items.get(0);
+            MenuItem updated = base.copy();
+            updated.setMaterial(material.trim());
+            commandStack.execute(new SetItemCommand(config, updated));
+            selectSlot(slot);
+        }
+    }
+
+    public void setMaterialForSelectedSlots(String material) {
+        if (material == null || material.isBlank() || multiSelectedSlots.isEmpty()) return;
+        List<Command> commands = new ArrayList<>();
+        for (int slot : multiSelectedSlots) {
+            List<MenuItem> items = config.getItemsAtSlot(slot);
+            if (items.isEmpty()) {
+                String key = "item_" + slot;
+                int counter = 1;
+                while (config.getItems().containsKey(key)) {
+                    key = "item_" + slot + "_" + counter++;
+                }
+                MenuItem itm = new MenuItem(key, material.trim());
+                itm.setSlot(slot);
+                itm.setPriority(0);
+                commands.add(new SetItemCommand(config, itm));
+            } else {
+                MenuItem base = items.get(0);
+                MenuItem updated = base.copy();
+                updated.setMaterial(material.trim());
+                commands.add(new SetItemCommand(config, updated));
+            }
+        }
+        commandStack.execute(new BatchCommand("Change material to " + material, commands));
+    }
+
+    public boolean hasClipboardItem() {
+        return clipboardItem != null;
+    }
+
     public void clearSlot(int slot) {
         List<MenuItem> items = config.getItemsAtSlot(slot);
         if (items.isEmpty()) return;

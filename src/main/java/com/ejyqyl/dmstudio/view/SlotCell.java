@@ -108,7 +108,7 @@ public class SlotCell extends StackPane {
             MenuItem primary = items.get(0);
             String mat = primary.getMaterial();
             if (currentMaterial == null || !currentMaterial.equalsIgnoreCase(mat) || iconContainer.getChildren().isEmpty()) {
-                Node iconNode = TextureManager.getInstance().createIconNode(mat, 34);
+                Node iconNode = TextureManager.getInstance().createIconNode(mat, 32);
                 iconContainer.getChildren().setAll(iconNode);
                 currentMaterial = mat;
             }

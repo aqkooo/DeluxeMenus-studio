@@ -35,11 +35,9 @@ public class ItemInspectorController {
     @FXML private TextField itemKeyField, slotsField, dynamicAmountField, displayNameField, modelDataField, itemModelField, rgbField, enchantmentsField;
     @FXML private TextArea loreArea;
     @FXML private ComboBox<String> materialCombo, loreAppendModeCombo;
+    @FXML private Button btnBrowseMaterial, btnBrowseHead;
     @FXML private Spinner<Integer> slotSpinner, prioritySpinner, amountSpinner, damageSpinner;
-    @FXML private CheckBox updateCheck, unbreakableCheck, glintOverrideCheck, hideTooltipCheck;
-
-    // Item Flags
-    @FXML private CheckBox flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye;
+    @FXML private CheckBox updateCheck, unbreakableCheck, glintOverrideCheck, hideTooltipCheck, flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye;
 
     // Minecraft Tooltip Preview
     @FXML private VBox tooltipPreviewBox;
@@ -92,19 +90,32 @@ public class ItemInspectorController {
 
         loreAppendModeCombo.setItems(FXCollections.observableArrayList("OVERRIDE", "IGNORE", "TOP", "BOTTOM"));
         loreAppendModeCombo.setValue("OVERRIDE");
+
+        if (btnBrowseMaterial != null) {
+            btnBrowseMaterial.setOnAction(e -> com.ejyqyl.dmstudio.ui.dialog.MaterialPickerDialog.show(
+                    materialCombo.getScene().getWindow(), materialCombo.getValue(), materialCombo::setValue
+            ));
+        }
+        if (btnBrowseHead != null) {
+            btnBrowseHead.setOnAction(e -> com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog.show(
+                    materialCombo.getScene().getWindow(), materialCombo.getValue(), materialCombo::setValue
+            ));
+        }
+    }
+
+    private void setSpinner(Spinner<Integer> s, int min, int max, int val) {
+        s.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, val));
+        s.setEditable(true);
     }
 
     private void initSpinners() {
-        slotSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 53, 0));
-        prioritySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 999, 0));
-        amountSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 64, 1));
-        damageSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 32767, 0));
-        newActionDelaySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1200, 0));
-        newActionChanceSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 100));
-        minReqSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0));
-
-        List.of(slotSpinner, prioritySpinner, amountSpinner, damageSpinner, newActionDelaySpinner, newActionChanceSpinner, minReqSpinner)
-                .forEach(s -> s.setEditable(true));
+        setSpinner(slotSpinner, 0, 53, 0);
+        setSpinner(prioritySpinner, 0, 999, 0);
+        setSpinner(amountSpinner, 1, 64, 1);
+        setSpinner(damageSpinner, 0, 32767, 0);
+        setSpinner(newActionDelaySpinner, 0, 1200, 0);
+        setSpinner(newActionChanceSpinner, 0, 100, 100);
+        setSpinner(minReqSpinner, 0, 10, 0);
     }
 
     private void initClickActions() {
@@ -151,14 +162,8 @@ public class ItemInspectorController {
     }
 
     private void setupListeners() {
-        displayNameField.textProperty().addListener((obs, oldV, newV) -> {
-            updateTooltipPreview();
-            requestDebouncedCommit();
-        });
-        loreArea.textProperty().addListener((obs, oldV, newV) -> {
-            updateTooltipPreview();
-            requestDebouncedCommit();
-        });
+        displayNameField.textProperty().addListener((obs, oldV, newV) -> { updateTooltipPreview(); requestDebouncedCommit(); });
+        loreArea.textProperty().addListener((obs, oldV, newV) -> { updateTooltipPreview(); requestDebouncedCommit(); });
 
         List<TextInputControl> textControls = List.of(displayNameField, loreArea, itemKeyField, slotsField,
                 dynamicAmountField, modelDataField, itemModelField, rgbField, enchantmentsField);
@@ -244,9 +249,7 @@ public class ItemInspectorController {
 
             List<String> flags = item.getAppearance().getItemFlags();
             List<CheckBox> boxes = getFlagBoxes();
-            for (int i = 0; i < ALL_FLAGS.size(); i++) {
-                boxes.get(i).setSelected(flags.contains(ALL_FLAGS.get(i)));
-            }
+            for (int i = 0; i < ALL_FLAGS.size(); i++) boxes.get(i).setSelected(flags.contains(ALL_FLAGS.get(i)));
 
             loadRequirementData(item);
             updateTooltipPreview();
@@ -256,7 +259,12 @@ public class ItemInspectorController {
     }
 
     private void clearAllFields() {
+        int selSlot = mainViewModel != null && mainViewModel.getGridViewModel().getSelectedSlot() >= 0
+                ? mainViewModel.getGridViewModel().getSelectedSlot() : 0;
+        slotSpinner.getValueFactory().setValue(selSlot);
         itemKeyField.setText("");
+        itemKeyField.setPromptText("item_" + selSlot);
+        slotsField.setText("");
         materialCombo.setValue("STONE");
         displayNameField.setText("");
         loreArea.setText("");
@@ -264,7 +272,7 @@ public class ItemInspectorController {
     }
 
     private void commitIfChanged() {
-        if (updating || editorViewModel == null || editorViewModel.getCurrentItem() == null) return;
+        if (updating || editorViewModel == null) return;
         syncToViewModel();
         editorViewModel.commitChanges();
     }
@@ -332,8 +340,7 @@ public class ItemInspectorController {
         }
 
         if (hasLore) {
-            String[] lines = lore.split("\n", -1);
-            for (String line : lines) {
+            for (String line : lore.split("\n", -1)) {
                 TextFlow lineFlow = new TextFlow();
                 ColorCodeParser.populateTextFlow(lineFlow, line, Color.web("#AAAAAA"));
                 tooltipPreviewBox.getChildren().add(lineFlow);
@@ -371,12 +378,8 @@ public class ItemInspectorController {
 
         Requirement req = new Requirement(type);
         req.setInverted(inverted);
-        if (!reqField1.getText().isBlank()) {
-            req.setField(type.contains("permission") ? "permission" : "input", reqField1.getText().trim());
-        }
-        if (!reqField2.getText().isBlank()) {
-            req.setField(type.contains("money") ? "amount" : "output", reqField2.getText().trim());
-        }
+        if (!reqField1.getText().isBlank()) req.setField(type.contains("permission") ? "permission" : "input", reqField1.getText().trim());
+        if (!reqField2.getText().isBlank()) req.setField(type.contains("money") ? "amount" : "output", reqField2.getText().trim());
 
         RequirementList list = new RequirementList();
         list.addRequirement("req_1", req);

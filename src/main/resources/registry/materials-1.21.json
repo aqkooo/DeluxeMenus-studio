@@ -1,150 +1,7520 @@
 [
-  {"id": "STONE", "category": "STONE", "abbr": "Stn", "color": "#808080"},
-  {"id": "GRANITE", "category": "STONE", "abbr": "Grn", "color": "#9b6b55"},
-  {"id": "POLISHED_GRANITE", "category": "STONE", "abbr": "PGr", "color": "#9b6b55"},
-  {"id": "DIORITE", "category": "STONE", "abbr": "Dio", "color": "#cccccc"},
-  {"id": "POLISHED_DIORITE", "category": "STONE", "abbr": "PDi", "color": "#cccccc"},
-  {"id": "ANDESITE", "category": "STONE", "abbr": "And", "color": "#888888"},
-  {"id": "POLISHED_ANDESITE", "category": "STONE", "abbr": "PAn", "color": "#888888"},
-  {"id": "DEEPSLATE", "category": "STONE", "abbr": "Dsl", "color": "#505050"},
-  {"id": "COBBLESTONE", "category": "STONE", "abbr": "Cob", "color": "#707070"},
-  {"id": "BEDROCK", "category": "STONE", "abbr": "Bed", "color": "#333333"},
-  {"id": "OAK_PLANKS", "category": "WOOD", "abbr": "Oak", "color": "#a88752"},
-  {"id": "SPRUCE_PLANKS", "category": "WOOD", "abbr": "Spr", "color": "#6d5032"},
-  {"id": "BIRCH_PLANKS", "category": "WOOD", "abbr": "Brc", "color": "#c4b581"},
-  {"id": "JUNGLE_PLANKS", "category": "WOOD", "abbr": "Jng", "color": "#9e6f50"},
-  {"id": "ACACIA_PLANKS", "category": "WOOD", "abbr": "Aca", "color": "#a3532c"},
-  {"id": "DARK_OAK_PLANKS", "category": "WOOD", "abbr": "DOk", "color": "#432811"},
-  {"id": "MANGROVE_PLANKS", "category": "WOOD", "abbr": "Mng", "color": "#753331"},
-  {"id": "CHERRY_PLANKS", "category": "WOOD", "abbr": "Chr", "color": "#e09f9f"},
-  {"id": "BAMBOO_PLANKS", "category": "WOOD", "abbr": "Bmb", "color": "#c0a753"},
-  {"id": "CRIMSON_PLANKS", "category": "WOOD", "abbr": "Crm", "color": "#7e334a"},
-  {"id": "WARPED_PLANKS", "category": "WOOD", "abbr": "Wrp", "color": "#2b6b66"},
-  {"id": "GLASS", "category": "GLASS", "abbr": "Gls", "color": "#cceeff"},
-  {"id": "GLASS_PANE", "category": "GLASS", "abbr": "GPn", "color": "#cceeff"},
-  {"id": "WHITE_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "WGP", "color": "#ffffff"},
-  {"id": "ORANGE_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "OGP", "color": "#f9801d"},
-  {"id": "MAGENTA_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "MGP", "color": "#c74ebd"},
-  {"id": "LIGHT_BLUE_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "LGP", "color": "#3ab3da"},
-  {"id": "YELLOW_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "YGP", "color": "#fed83d"},
-  {"id": "LIME_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "LiP", "color": "#80c71f"},
-  {"id": "PINK_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "PkP", "color": "#f38baa"},
-  {"id": "GRAY_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "GyP", "color": "#474f52"},
-  {"id": "LIGHT_GRAY_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "Lgy", "color": "#9d9d97"},
-  {"id": "CYAN_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "CyP", "color": "#169c9c"},
-  {"id": "PURPLE_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "PuP", "color": "#8932b8"},
-  {"id": "BLUE_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "BlP", "color": "#3c44aa"},
-  {"id": "BROWN_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "BrP", "color": "#835432"},
-  {"id": "GREEN_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "GrP", "color": "#5e7c16"},
-  {"id": "RED_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "RdP", "color": "#b02e26"},
-  {"id": "BLACK_STAINED_GLASS_PANE", "category": "GLASS", "abbr": "BkP", "color": "#1d1d21"},
-  {"id": "WHITE_WOOL", "category": "WOOL", "abbr": "WWl", "color": "#e9ecec"},
-  {"id": "RED_WOOL", "category": "WOOL", "abbr": "RWl", "color": "#ba3028"},
-  {"id": "GREEN_WOOL", "category": "WOOL", "abbr": "GWl", "color": "#5c7916"},
-  {"id": "BLUE_WOOL", "category": "WOOL", "abbr": "BWl", "color": "#3b41a7"},
-  {"id": "YELLOW_WOOL", "category": "WOOL", "abbr": "YWl", "color": "#fed83d"},
-  {"id": "BLACK_WOOL", "category": "WOOL", "abbr": "KWl", "color": "#15151a"},
-  {"id": "LIME_WOOL", "category": "WOOL", "abbr": "LWl", "color": "#7fbb18"},
-  {"id": "COAL", "category": "ORE", "abbr": "Col", "color": "#282828"},
-  {"id": "CHARCOAL", "category": "ORE", "abbr": "Chc", "color": "#332c25"},
-  {"id": "RAW_IRON", "category": "ORE", "abbr": "RIr", "color": "#d8af93"},
-  {"id": "IRON_INGOT", "category": "ORE", "abbr": "Irn", "color": "#d8d8d8"},
-  {"id": "RAW_COPPER", "category": "ORE", "abbr": "RCp", "color": "#c46c50"},
-  {"id": "COPPER_INGOT", "category": "ORE", "abbr": "Cop", "color": "#e0734d"},
-  {"id": "RAW_GOLD", "category": "ORE", "abbr": "RGl", "color": "#f8d23b"},
-  {"id": "GOLD_INGOT", "category": "ORE", "abbr": "Gld", "color": "#fcee4b"},
-  {"id": "REDSTONE", "category": "REDSTONE", "abbr": "Red", "color": "#ff2200"},
-  {"id": "EMERALD", "category": "ORE", "abbr": "Emr", "color": "#17dd62"},
-  {"id": "LAPIS_LAZULI", "category": "ORE", "abbr": "Lap", "color": "#2445b2"},
-  {"id": "DIAMOND", "category": "ORE", "abbr": "Dia", "color": "#4dedf0"},
-  {"id": "NETHERITE_INGOT", "category": "ORE", "abbr": "Nth", "color": "#4a4447"},
-  {"id": "NETHERITE_SCRAP", "category": "ORE", "abbr": "NSc", "color": "#63473f"},
-  {"id": "WOODEN_SWORD", "category": "COMBAT", "abbr": "WSw", "color": "#8c6747"},
-  {"id": "STONE_SWORD", "category": "COMBAT", "abbr": "SSw", "color": "#8f8f8f"},
-  {"id": "IRON_SWORD", "category": "COMBAT", "abbr": "ISw", "color": "#d8d8d8"},
-  {"id": "GOLDEN_SWORD", "category": "COMBAT", "abbr": "GSw", "color": "#fcee4b"},
-  {"id": "DIAMOND_SWORD", "category": "COMBAT", "abbr": "DSw", "color": "#4dedf0"},
-  {"id": "NETHERITE_SWORD", "category": "COMBAT", "abbr": "NSw", "color": "#4a4447"},
-  {"id": "MACE", "category": "COMBAT", "abbr": "Mac", "color": "#8f7055"},
-  {"id": "BOW", "category": "COMBAT", "abbr": "Bow", "color": "#875f3a"},
-  {"id": "CROSSBOW", "category": "COMBAT", "abbr": "Crb", "color": "#875f3a"},
-  {"id": "ARROW", "category": "COMBAT", "abbr": "Arr", "color": "#b5b5b5"},
-  {"id": "SPECTRAL_ARROW", "category": "COMBAT", "abbr": "SAr", "color": "#f0c828"},
-  {"id": "SHIELD", "category": "COMBAT", "abbr": "Shd", "color": "#a88752"},
-  {"id": "TRIDENT", "category": "COMBAT", "abbr": "Trd", "color": "#289895"},
-  {"id": "LEATHER_HELMET", "category": "COMBAT", "abbr": "LHl", "color": "#a0522d"},
-  {"id": "LEATHER_CHESTPLATE", "category": "COMBAT", "abbr": "LCh", "color": "#a0522d"},
-  {"id": "LEATHER_LEGGINGS", "category": "COMBAT", "abbr": "LLg", "color": "#a0522d"},
-  {"id": "LEATHER_BOOTS", "category": "COMBAT", "abbr": "LBt", "color": "#a0522d"},
-  {"id": "IRON_HELMET", "category": "COMBAT", "abbr": "IHl", "color": "#d8d8d8"},
-  {"id": "IRON_CHESTPLATE", "category": "COMBAT", "abbr": "ICh", "color": "#d8d8d8"},
-  {"id": "IRON_LEGGINGS", "category": "COMBAT", "abbr": "ILg", "color": "#d8d8d8"},
-  {"id": "IRON_BOOTS", "category": "COMBAT", "abbr": "IBt", "color": "#d8d8d8"},
-  {"id": "DIAMOND_HELMET", "category": "COMBAT", "abbr": "DHl", "color": "#4dedf0"},
-  {"id": "DIAMOND_CHESTPLATE", "category": "COMBAT", "abbr": "DCh", "color": "#4dedf0"},
-  {"id": "DIAMOND_LEGGINGS", "category": "COMBAT", "abbr": "DLg", "color": "#4dedf0"},
-  {"id": "DIAMOND_BOOTS", "category": "COMBAT", "abbr": "DBt", "color": "#4dedf0"},
-  {"id": "NETHERITE_HELMET", "category": "COMBAT", "abbr": "NHl", "color": "#4a4447"},
-  {"id": "NETHERITE_CHESTPLATE", "category": "COMBAT", "abbr": "NCh", "color": "#4a4447"},
-  {"id": "NETHERITE_LEGGINGS", "category": "COMBAT", "abbr": "NLg", "color": "#4a4447"},
-  {"id": "NETHERITE_BOOTS", "category": "COMBAT", "abbr": "NBt", "color": "#4a4447"},
-  {"id": "ELYTRA", "category": "COMBAT", "abbr": "Ely", "color": "#6e606c"},
-  {"id": "TOTEM_OF_UNDYING", "category": "COMBAT", "abbr": "Tot", "color": "#ffd700"},
-  {"id": "WOODEN_PICKAXE", "category": "TOOLS", "abbr": "WPk", "color": "#8c6747"},
-  {"id": "STONE_PICKAXE", "category": "TOOLS", "abbr": "SPk", "color": "#8f8f8f"},
-  {"id": "IRON_PICKAXE", "category": "TOOLS", "abbr": "IPk", "color": "#d8d8d8"},
-  {"id": "GOLDEN_PICKAXE", "category": "TOOLS", "abbr": "GPk", "color": "#fcee4b"},
-  {"id": "DIAMOND_PICKAXE", "category": "TOOLS", "abbr": "DPk", "color": "#4dedf0"},
-  {"id": "NETHERITE_PICKAXE", "category": "TOOLS", "abbr": "NPk", "color": "#4a4447"},
-  {"id": "WOODEN_AXE", "category": "TOOLS", "abbr": "WAx", "color": "#8c6747"},
-  {"id": "STONE_AXE", "category": "TOOLS", "abbr": "SAx", "color": "#8f8f8f"},
-  {"id": "IRON_AXE", "category": "TOOLS", "abbr": "IAx", "color": "#d8d8d8"},
-  {"id": "DIAMOND_AXE", "category": "TOOLS", "abbr": "DAx", "color": "#4dedf0"},
-  {"id": "NETHERITE_AXE", "category": "TOOLS", "abbr": "NAx", "color": "#4a4447"},
-  {"id": "WOODEN_SHOVEL", "category": "TOOLS", "abbr": "WSh", "color": "#8c6747"},
-  {"id": "IRON_SHOVEL", "category": "TOOLS", "abbr": "ISh", "color": "#d8d8d8"},
-  {"id": "DIAMOND_SHOVEL", "category": "TOOLS", "abbr": "DSh", "color": "#4dedf0"},
-  {"id": "NETHERITE_SHOVEL", "category": "TOOLS", "abbr": "NSh", "color": "#4a4447"},
-  {"id": "FISHING_ROD", "category": "TOOLS", "abbr": "Rod", "color": "#875f3a"},
-  {"id": "FLINT_AND_STEEL", "category": "TOOLS", "abbr": "FnS", "color": "#707070"},
-  {"id": "SHEARS", "category": "TOOLS", "abbr": "Shr", "color": "#d8d8d8"},
-  {"id": "COMPASS", "category": "TOOLS", "abbr": "Cmp", "color": "#ba3028"},
-  {"id": "CLOCK", "category": "TOOLS", "abbr": "Clk", "color": "#fed83d"},
-  {"id": "SPYGLASS", "category": "TOOLS", "abbr": "Spy", "color": "#c46c50"},
-  {"id": "NAME_TAG", "category": "TOOLS", "abbr": "Tag", "color": "#dfd4ba"},
-  {"id": "LEAD", "category": "TOOLS", "abbr": "Led", "color": "#80593c"},
-  {"id": "APPLE", "category": "FOOD", "abbr": "Apl", "color": "#e02020"},
-  {"id": "GOLDEN_APPLE", "category": "FOOD", "abbr": "GAp", "color": "#ffd700"},
-  {"id": "ENCHANTED_GOLDEN_APPLE", "category": "FOOD", "abbr": "EGA", "color": "#ff55ff"},
-  {"id": "BREAD", "category": "FOOD", "abbr": "Brd", "color": "#9b6826"},
-  {"id": "COOKED_BEEF", "category": "FOOD", "abbr": "Bef", "color": "#7c371d"},
-  {"id": "COOKED_PORKCHOP", "category": "FOOD", "abbr": "Prk", "color": "#aa5644"},
-  {"id": "COOKED_MUTTON", "category": "FOOD", "abbr": "Mut", "color": "#8a4836"},
-  {"id": "COOKED_CHICKEN", "category": "FOOD", "abbr": "Chk", "color": "#a86c47"},
-  {"id": "GOLDEN_CARROT", "category": "FOOD", "abbr": "GCr", "color": "#f99718"},
-  {"id": "POTION", "category": "BREWING", "abbr": "Pot", "color": "#385dc6"},
-  {"id": "SPLASH_POTION", "category": "BREWING", "abbr": "SPt", "color": "#385dc6"},
-  {"id": "LINGERING_POTION", "category": "BREWING", "abbr": "LPt", "color": "#385dc6"},
-  {"id": "EXPERIENCE_BOTTLE", "category": "BREWING", "abbr": "Exp", "color": "#b8e64c"},
-  {"id": "ENCHANTED_BOOK", "category": "MISC", "abbr": "EBk", "color": "#aa00aa"},
-  {"id": "BOOK", "category": "MISC", "abbr": "Bok", "color": "#7a482b"},
-  {"id": "WRITABLE_BOOK", "category": "MISC", "abbr": "WBk", "color": "#7a482b"},
-  {"id": "FEATHER", "category": "MISC", "abbr": "Fth", "color": "#ffffff"},
-  {"id": "ENDER_PEARL", "category": "MISC", "abbr": "EPr", "color": "#0d6860"},
-  {"id": "EYE_OF_ENDER", "category": "MISC", "abbr": "Eye", "color": "#4db37a"},
-  {"id": "BLAZE_ROD", "category": "MISC", "abbr": "Blz", "color": "#ffaa00"},
-  {"id": "NETHER_STAR", "category": "MISC", "abbr": "Str", "color": "#f0f8ff"},
-  {"id": "FIREWORK_ROCKET", "category": "MISC", "abbr": "Rkt", "color": "#d94b4b"},
-  {"id": "FIREWORK_STAR", "category": "MISC", "abbr": "FSt", "color": "#e0c068"},
-  {"id": "PLAYER_HEAD", "category": "DECORATION", "abbr": "Hed", "color": "#d2b48c"},
-  {"id": "CHEST", "category": "DECORATION", "abbr": "Cst", "color": "#9c6e3b"},
-  {"id": "ENDER_CHEST", "category": "DECORATION", "abbr": "ECt", "color": "#1f3b39"},
-  {"id": "BARREL", "category": "DECORATION", "abbr": "Brl", "color": "#8a6640"},
-  {"id": "SHULKER_BOX", "category": "DECORATION", "abbr": "Shk", "color": "#976797"},
-  {"id": "ANVIL", "category": "DECORATION", "abbr": "Anv", "color": "#4a4a4a"},
-  {"id": "BEACON", "category": "DECORATION", "abbr": "Bcn", "color": "#7ee6d8"},
-  {"id": "BELL", "category": "DECORATION", "abbr": "Bel", "color": "#f5c338"},
-  {"id": "BARRIER", "category": "MISC", "abbr": "Bar", "color": "#ff0000"},
-  {"id": "STRUCTURE_VOID", "category": "MISC", "abbr": "Voi", "color": "#ff55ff"},
-  {"id": "AIR", "category": "MISC", "abbr": "Air", "color": "#333333"}
+  {
+    "id": "STONE",
+    "category": "STONE",
+    "abbr": "Stn",
+    "color": "#808080"
+  },
+  {
+    "id": "GRANITE",
+    "category": "STONE",
+    "abbr": "Grn",
+    "color": "#9b6b55"
+  },
+  {
+    "id": "POLISHED_GRANITE",
+    "category": "STONE",
+    "abbr": "PGr",
+    "color": "#9b6b55"
+  },
+  {
+    "id": "DIORITE",
+    "category": "STONE",
+    "abbr": "Dio",
+    "color": "#cccccc"
+  },
+  {
+    "id": "POLISHED_DIORITE",
+    "category": "STONE",
+    "abbr": "PDi",
+    "color": "#cccccc"
+  },
+  {
+    "id": "ANDESITE",
+    "category": "STONE",
+    "abbr": "And",
+    "color": "#888888"
+  },
+  {
+    "id": "POLISHED_ANDESITE",
+    "category": "STONE",
+    "abbr": "PAn",
+    "color": "#888888"
+  },
+  {
+    "id": "DEEPSLATE",
+    "category": "STONE",
+    "abbr": "Dsl",
+    "color": "#505050"
+  },
+  {
+    "id": "COBBLESTONE",
+    "category": "STONE",
+    "abbr": "Cob",
+    "color": "#707070"
+  },
+  {
+    "id": "BEDROCK",
+    "category": "STONE",
+    "abbr": "Bed",
+    "color": "#333333"
+  },
+  {
+    "id": "OAK_PLANKS",
+    "category": "WOOD",
+    "abbr": "Oak",
+    "color": "#a88752"
+  },
+  {
+    "id": "SPRUCE_PLANKS",
+    "category": "WOOD",
+    "abbr": "Spr",
+    "color": "#6d5032"
+  },
+  {
+    "id": "BIRCH_PLANKS",
+    "category": "WOOD",
+    "abbr": "Brc",
+    "color": "#c4b581"
+  },
+  {
+    "id": "JUNGLE_PLANKS",
+    "category": "WOOD",
+    "abbr": "Jng",
+    "color": "#9e6f50"
+  },
+  {
+    "id": "ACACIA_PLANKS",
+    "category": "WOOD",
+    "abbr": "Aca",
+    "color": "#a3532c"
+  },
+  {
+    "id": "DARK_OAK_PLANKS",
+    "category": "WOOD",
+    "abbr": "DOk",
+    "color": "#432811"
+  },
+  {
+    "id": "MANGROVE_PLANKS",
+    "category": "WOOD",
+    "abbr": "Mng",
+    "color": "#753331"
+  },
+  {
+    "id": "CHERRY_PLANKS",
+    "category": "WOOD",
+    "abbr": "Chr",
+    "color": "#e09f9f"
+  },
+  {
+    "id": "BAMBOO_PLANKS",
+    "category": "WOOD",
+    "abbr": "Bmb",
+    "color": "#c0a753"
+  },
+  {
+    "id": "CRIMSON_PLANKS",
+    "category": "WOOD",
+    "abbr": "Crm",
+    "color": "#7e334a"
+  },
+  {
+    "id": "WARPED_PLANKS",
+    "category": "WOOD",
+    "abbr": "Wrp",
+    "color": "#2b6b66"
+  },
+  {
+    "id": "GLASS",
+    "category": "GLASS",
+    "abbr": "Gls",
+    "color": "#cceeff"
+  },
+  {
+    "id": "GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "GPn",
+    "color": "#cceeff"
+  },
+  {
+    "id": "WHITE_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "WGP",
+    "color": "#ffffff"
+  },
+  {
+    "id": "ORANGE_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "OGP",
+    "color": "#f9801d"
+  },
+  {
+    "id": "MAGENTA_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "MGP",
+    "color": "#c74ebd"
+  },
+  {
+    "id": "LIGHT_BLUE_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "LGP",
+    "color": "#3ab3da"
+  },
+  {
+    "id": "YELLOW_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "YGP",
+    "color": "#fed83d"
+  },
+  {
+    "id": "LIME_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "LiP",
+    "color": "#80c71f"
+  },
+  {
+    "id": "PINK_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "PkP",
+    "color": "#f38baa"
+  },
+  {
+    "id": "GRAY_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "GyP",
+    "color": "#474f52"
+  },
+  {
+    "id": "LIGHT_GRAY_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "Lgy",
+    "color": "#9d9d97"
+  },
+  {
+    "id": "CYAN_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "CyP",
+    "color": "#169c9c"
+  },
+  {
+    "id": "PURPLE_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "PuP",
+    "color": "#8932b8"
+  },
+  {
+    "id": "BLUE_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "BlP",
+    "color": "#3c44aa"
+  },
+  {
+    "id": "BROWN_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "BrP",
+    "color": "#835432"
+  },
+  {
+    "id": "GREEN_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "GrP",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "RED_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "RdP",
+    "color": "#b02e26"
+  },
+  {
+    "id": "BLACK_STAINED_GLASS_PANE",
+    "category": "GLASS",
+    "abbr": "BkP",
+    "color": "#1d1d21"
+  },
+  {
+    "id": "WHITE_WOOL",
+    "category": "WOOL",
+    "abbr": "WWl",
+    "color": "#e9ecec"
+  },
+  {
+    "id": "RED_WOOL",
+    "category": "WOOL",
+    "abbr": "RWl",
+    "color": "#ba3028"
+  },
+  {
+    "id": "GREEN_WOOL",
+    "category": "WOOL",
+    "abbr": "GWl",
+    "color": "#5c7916"
+  },
+  {
+    "id": "BLUE_WOOL",
+    "category": "WOOL",
+    "abbr": "BWl",
+    "color": "#3b41a7"
+  },
+  {
+    "id": "YELLOW_WOOL",
+    "category": "WOOL",
+    "abbr": "YWl",
+    "color": "#fed83d"
+  },
+  {
+    "id": "BLACK_WOOL",
+    "category": "WOOL",
+    "abbr": "KWl",
+    "color": "#15151a"
+  },
+  {
+    "id": "LIME_WOOL",
+    "category": "WOOL",
+    "abbr": "LWl",
+    "color": "#7fbb18"
+  },
+  {
+    "id": "COAL",
+    "category": "ORE",
+    "abbr": "Col",
+    "color": "#282828"
+  },
+  {
+    "id": "CHARCOAL",
+    "category": "ORE",
+    "abbr": "Chc",
+    "color": "#332c25"
+  },
+  {
+    "id": "RAW_IRON",
+    "category": "ORE",
+    "abbr": "RIr",
+    "color": "#d8af93"
+  },
+  {
+    "id": "IRON_INGOT",
+    "category": "ORE",
+    "abbr": "Irn",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "RAW_COPPER",
+    "category": "ORE",
+    "abbr": "RCp",
+    "color": "#c46c50"
+  },
+  {
+    "id": "COPPER_INGOT",
+    "category": "ORE",
+    "abbr": "Cop",
+    "color": "#e0734d"
+  },
+  {
+    "id": "RAW_GOLD",
+    "category": "ORE",
+    "abbr": "RGl",
+    "color": "#f8d23b"
+  },
+  {
+    "id": "GOLD_INGOT",
+    "category": "ORE",
+    "abbr": "Gld",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "REDSTONE",
+    "category": "REDSTONE",
+    "abbr": "Red",
+    "color": "#ff2200"
+  },
+  {
+    "id": "EMERALD",
+    "category": "ORE",
+    "abbr": "Emr",
+    "color": "#17dd62"
+  },
+  {
+    "id": "LAPIS_LAZULI",
+    "category": "ORE",
+    "abbr": "Lap",
+    "color": "#2445b2"
+  },
+  {
+    "id": "DIAMOND",
+    "category": "ORE",
+    "abbr": "Dia",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "NETHERITE_INGOT",
+    "category": "ORE",
+    "abbr": "Nth",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_SCRAP",
+    "category": "ORE",
+    "abbr": "NSc",
+    "color": "#63473f"
+  },
+  {
+    "id": "WOODEN_SWORD",
+    "category": "COMBAT",
+    "abbr": "WSw",
+    "color": "#8c6747"
+  },
+  {
+    "id": "STONE_SWORD",
+    "category": "COMBAT",
+    "abbr": "SSw",
+    "color": "#8f8f8f"
+  },
+  {
+    "id": "IRON_SWORD",
+    "category": "COMBAT",
+    "abbr": "ISw",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "GOLDEN_SWORD",
+    "category": "COMBAT",
+    "abbr": "GSw",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "DIAMOND_SWORD",
+    "category": "COMBAT",
+    "abbr": "DSw",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "NETHERITE_SWORD",
+    "category": "COMBAT",
+    "abbr": "NSw",
+    "color": "#4a4447"
+  },
+  {
+    "id": "MACE",
+    "category": "COMBAT",
+    "abbr": "Mac",
+    "color": "#8f7055"
+  },
+  {
+    "id": "BOW",
+    "category": "COMBAT",
+    "abbr": "Bow",
+    "color": "#875f3a"
+  },
+  {
+    "id": "CROSSBOW",
+    "category": "COMBAT",
+    "abbr": "Crb",
+    "color": "#875f3a"
+  },
+  {
+    "id": "ARROW",
+    "category": "COMBAT",
+    "abbr": "Arr",
+    "color": "#b5b5b5"
+  },
+  {
+    "id": "SPECTRAL_ARROW",
+    "category": "COMBAT",
+    "abbr": "SAr",
+    "color": "#f0c828"
+  },
+  {
+    "id": "SHIELD",
+    "category": "COMBAT",
+    "abbr": "Shd",
+    "color": "#a88752"
+  },
+  {
+    "id": "TRIDENT",
+    "category": "COMBAT",
+    "abbr": "Trd",
+    "color": "#289895"
+  },
+  {
+    "id": "LEATHER_HELMET",
+    "category": "COMBAT",
+    "abbr": "LHl",
+    "color": "#a0522d"
+  },
+  {
+    "id": "LEATHER_CHESTPLATE",
+    "category": "COMBAT",
+    "abbr": "LCh",
+    "color": "#a0522d"
+  },
+  {
+    "id": "LEATHER_LEGGINGS",
+    "category": "COMBAT",
+    "abbr": "LLg",
+    "color": "#a0522d"
+  },
+  {
+    "id": "LEATHER_BOOTS",
+    "category": "COMBAT",
+    "abbr": "LBt",
+    "color": "#a0522d"
+  },
+  {
+    "id": "IRON_HELMET",
+    "category": "COMBAT",
+    "abbr": "IHl",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_CHESTPLATE",
+    "category": "COMBAT",
+    "abbr": "ICh",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_LEGGINGS",
+    "category": "COMBAT",
+    "abbr": "ILg",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_BOOTS",
+    "category": "COMBAT",
+    "abbr": "IBt",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "DIAMOND_HELMET",
+    "category": "COMBAT",
+    "abbr": "DHl",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_CHESTPLATE",
+    "category": "COMBAT",
+    "abbr": "DCh",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_LEGGINGS",
+    "category": "COMBAT",
+    "abbr": "DLg",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_BOOTS",
+    "category": "COMBAT",
+    "abbr": "DBt",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "NETHERITE_HELMET",
+    "category": "COMBAT",
+    "abbr": "NHl",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_CHESTPLATE",
+    "category": "COMBAT",
+    "abbr": "NCh",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_LEGGINGS",
+    "category": "COMBAT",
+    "abbr": "NLg",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_BOOTS",
+    "category": "COMBAT",
+    "abbr": "NBt",
+    "color": "#4a4447"
+  },
+  {
+    "id": "ELYTRA",
+    "category": "COMBAT",
+    "abbr": "Ely",
+    "color": "#6e606c"
+  },
+  {
+    "id": "TOTEM_OF_UNDYING",
+    "category": "COMBAT",
+    "abbr": "Tot",
+    "color": "#ffd700"
+  },
+  {
+    "id": "WOODEN_PICKAXE",
+    "category": "TOOLS",
+    "abbr": "WPk",
+    "color": "#8c6747"
+  },
+  {
+    "id": "STONE_PICKAXE",
+    "category": "TOOLS",
+    "abbr": "SPk",
+    "color": "#8f8f8f"
+  },
+  {
+    "id": "IRON_PICKAXE",
+    "category": "TOOLS",
+    "abbr": "IPk",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "GOLDEN_PICKAXE",
+    "category": "TOOLS",
+    "abbr": "GPk",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "DIAMOND_PICKAXE",
+    "category": "TOOLS",
+    "abbr": "DPk",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "NETHERITE_PICKAXE",
+    "category": "TOOLS",
+    "abbr": "NPk",
+    "color": "#4a4447"
+  },
+  {
+    "id": "WOODEN_AXE",
+    "category": "TOOLS",
+    "abbr": "WAx",
+    "color": "#8c6747"
+  },
+  {
+    "id": "STONE_AXE",
+    "category": "TOOLS",
+    "abbr": "SAx",
+    "color": "#8f8f8f"
+  },
+  {
+    "id": "IRON_AXE",
+    "category": "TOOLS",
+    "abbr": "IAx",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "DIAMOND_AXE",
+    "category": "TOOLS",
+    "abbr": "DAx",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "NETHERITE_AXE",
+    "category": "TOOLS",
+    "abbr": "NAx",
+    "color": "#4a4447"
+  },
+  {
+    "id": "WOODEN_SHOVEL",
+    "category": "TOOLS",
+    "abbr": "WSh",
+    "color": "#8c6747"
+  },
+  {
+    "id": "IRON_SHOVEL",
+    "category": "TOOLS",
+    "abbr": "ISh",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "DIAMOND_SHOVEL",
+    "category": "TOOLS",
+    "abbr": "DSh",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "NETHERITE_SHOVEL",
+    "category": "TOOLS",
+    "abbr": "NSh",
+    "color": "#4a4447"
+  },
+  {
+    "id": "FISHING_ROD",
+    "category": "TOOLS",
+    "abbr": "Rod",
+    "color": "#875f3a"
+  },
+  {
+    "id": "FLINT_AND_STEEL",
+    "category": "TOOLS",
+    "abbr": "FnS",
+    "color": "#707070"
+  },
+  {
+    "id": "SHEARS",
+    "category": "TOOLS",
+    "abbr": "Shr",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "COMPASS",
+    "category": "TOOLS",
+    "abbr": "Cmp",
+    "color": "#ba3028"
+  },
+  {
+    "id": "CLOCK",
+    "category": "TOOLS",
+    "abbr": "Clk",
+    "color": "#fed83d"
+  },
+  {
+    "id": "SPYGLASS",
+    "category": "TOOLS",
+    "abbr": "Spy",
+    "color": "#c46c50"
+  },
+  {
+    "id": "NAME_TAG",
+    "category": "TOOLS",
+    "abbr": "Tag",
+    "color": "#dfd4ba"
+  },
+  {
+    "id": "LEAD",
+    "category": "TOOLS",
+    "abbr": "Led",
+    "color": "#80593c"
+  },
+  {
+    "id": "APPLE",
+    "category": "FOOD",
+    "abbr": "Apl",
+    "color": "#e02020"
+  },
+  {
+    "id": "GOLDEN_APPLE",
+    "category": "FOOD",
+    "abbr": "GAp",
+    "color": "#ffd700"
+  },
+  {
+    "id": "ENCHANTED_GOLDEN_APPLE",
+    "category": "FOOD",
+    "abbr": "EGA",
+    "color": "#ff55ff"
+  },
+  {
+    "id": "BREAD",
+    "category": "FOOD",
+    "abbr": "Brd",
+    "color": "#9b6826"
+  },
+  {
+    "id": "COOKED_BEEF",
+    "category": "FOOD",
+    "abbr": "Bef",
+    "color": "#7c371d"
+  },
+  {
+    "id": "COOKED_PORKCHOP",
+    "category": "FOOD",
+    "abbr": "Prk",
+    "color": "#aa5644"
+  },
+  {
+    "id": "COOKED_MUTTON",
+    "category": "FOOD",
+    "abbr": "Mut",
+    "color": "#8a4836"
+  },
+  {
+    "id": "COOKED_CHICKEN",
+    "category": "FOOD",
+    "abbr": "Chk",
+    "color": "#a86c47"
+  },
+  {
+    "id": "GOLDEN_CARROT",
+    "category": "FOOD",
+    "abbr": "GCr",
+    "color": "#f99718"
+  },
+  {
+    "id": "POTION",
+    "category": "BREWING",
+    "abbr": "Pot",
+    "color": "#385dc6"
+  },
+  {
+    "id": "SPLASH_POTION",
+    "category": "BREWING",
+    "abbr": "SPt",
+    "color": "#385dc6"
+  },
+  {
+    "id": "LINGERING_POTION",
+    "category": "BREWING",
+    "abbr": "LPt",
+    "color": "#385dc6"
+  },
+  {
+    "id": "EXPERIENCE_BOTTLE",
+    "category": "BREWING",
+    "abbr": "Exp",
+    "color": "#b8e64c"
+  },
+  {
+    "id": "ENCHANTED_BOOK",
+    "category": "MISC",
+    "abbr": "EBk",
+    "color": "#aa00aa"
+  },
+  {
+    "id": "BOOK",
+    "category": "MISC",
+    "abbr": "Bok",
+    "color": "#7a482b"
+  },
+  {
+    "id": "WRITABLE_BOOK",
+    "category": "MISC",
+    "abbr": "WBk",
+    "color": "#7a482b"
+  },
+  {
+    "id": "FEATHER",
+    "category": "MISC",
+    "abbr": "Fth",
+    "color": "#ffffff"
+  },
+  {
+    "id": "ENDER_PEARL",
+    "category": "MISC",
+    "abbr": "EPr",
+    "color": "#0d6860"
+  },
+  {
+    "id": "EYE_OF_ENDER",
+    "category": "MISC",
+    "abbr": "Eye",
+    "color": "#4db37a"
+  },
+  {
+    "id": "BLAZE_ROD",
+    "category": "MISC",
+    "abbr": "Blz",
+    "color": "#ffaa00"
+  },
+  {
+    "id": "NETHER_STAR",
+    "category": "MISC",
+    "abbr": "Str",
+    "color": "#f0f8ff"
+  },
+  {
+    "id": "FIREWORK_ROCKET",
+    "category": "MISC",
+    "abbr": "Rkt",
+    "color": "#d94b4b"
+  },
+  {
+    "id": "FIREWORK_STAR",
+    "category": "MISC",
+    "abbr": "FSt",
+    "color": "#e0c068"
+  },
+  {
+    "id": "PLAYER_HEAD",
+    "category": "DECORATION",
+    "abbr": "Hed",
+    "color": "#d2b48c"
+  },
+  {
+    "id": "CHEST",
+    "category": "DECORATION",
+    "abbr": "Cst",
+    "color": "#9c6e3b"
+  },
+  {
+    "id": "ENDER_CHEST",
+    "category": "DECORATION",
+    "abbr": "ECt",
+    "color": "#1f3b39"
+  },
+  {
+    "id": "BARREL",
+    "category": "DECORATION",
+    "abbr": "Brl",
+    "color": "#8a6640"
+  },
+  {
+    "id": "SHULKER_BOX",
+    "category": "DECORATION",
+    "abbr": "Shk",
+    "color": "#976797"
+  },
+  {
+    "id": "ANVIL",
+    "category": "DECORATION",
+    "abbr": "Anv",
+    "color": "#4a4a4a"
+  },
+  {
+    "id": "BEACON",
+    "category": "DECORATION",
+    "abbr": "Bcn",
+    "color": "#7ee6d8"
+  },
+  {
+    "id": "BELL",
+    "category": "DECORATION",
+    "abbr": "Bel",
+    "color": "#f5c338"
+  },
+  {
+    "id": "BARRIER",
+    "category": "MISC",
+    "abbr": "Bar",
+    "color": "#ff0000"
+  },
+  {
+    "id": "STRUCTURE_VOID",
+    "category": "MISC",
+    "abbr": "Voi",
+    "color": "#ff55ff"
+  },
+  {
+    "id": "AIR",
+    "category": "MISC",
+    "abbr": "Air",
+    "color": "#333333"
+  },
+  {
+    "id": "ACACIA_BOAT",
+    "category": "MISC",
+    "abbr": "AB",
+    "color": "#888888"
+  },
+  {
+    "id": "ACACIA_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "ACB",
+    "color": "#a88752"
+  },
+  {
+    "id": "ACACIA_DOOR",
+    "category": "MISC",
+    "abbr": "AD",
+    "color": "#888888"
+  },
+  {
+    "id": "ACACIA_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "AHS",
+    "color": "#888888"
+  },
+  {
+    "id": "ACACIA_LEAVES",
+    "category": "MISC",
+    "abbr": "AL",
+    "color": "#888888"
+  },
+  {
+    "id": "ACACIA_LOG",
+    "category": "BLOCKS",
+    "abbr": "AL",
+    "color": "#888888"
+  },
+  {
+    "id": "ACACIA_SAPLING",
+    "category": "MISC",
+    "abbr": "AS",
+    "color": "#888888"
+  },
+  {
+    "id": "ACACIA_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "AS",
+    "color": "#888888"
+  },
+  {
+    "id": "ACACIA_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "AT",
+    "color": "#888888"
+  },
+  {
+    "id": "ACTIVATOR_RAIL",
+    "category": "REDSTONE",
+    "abbr": "AR",
+    "color": "#888888"
+  },
+  {
+    "id": "ALLAY_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ASE",
+    "color": "#888888"
+  },
+  {
+    "id": "ALLIUM",
+    "category": "MISC",
+    "abbr": "All",
+    "color": "#888888"
+  },
+  {
+    "id": "AMETHYST_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "AB",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "AMETHYST_CLUSTER",
+    "category": "MISC",
+    "abbr": "AC",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "AMETHYST_SHARD",
+    "category": "MISC",
+    "abbr": "AS",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "ANGLER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "APS",
+    "color": "#888888"
+  },
+  {
+    "id": "ARCHER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "APS",
+    "color": "#888888"
+  },
+  {
+    "id": "ARMADILLO_SCUTE",
+    "category": "MISC",
+    "abbr": "AS",
+    "color": "#888888"
+  },
+  {
+    "id": "ARMADILLO_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ASE",
+    "color": "#888888"
+  },
+  {
+    "id": "ARMOR_STAND",
+    "category": "MISC",
+    "abbr": "AS",
+    "color": "#888888"
+  },
+  {
+    "id": "ARMS_UP_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "AUP",
+    "color": "#888888"
+  },
+  {
+    "id": "ATTACHED_MELON_STEM",
+    "category": "FOOD",
+    "abbr": "AMS",
+    "color": "#888888"
+  },
+  {
+    "id": "ATTACHED_PUMPKIN_STEM",
+    "category": "MISC",
+    "abbr": "APS",
+    "color": "#888888"
+  },
+  {
+    "id": "AXOLOTL_BUCKET",
+    "category": "MISC",
+    "abbr": "AB",
+    "color": "#888888"
+  },
+  {
+    "id": "AXOLOTL_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ASE",
+    "color": "#888888"
+  },
+  {
+    "id": "AZALEA_LEAVES",
+    "category": "MISC",
+    "abbr": "AL",
+    "color": "#888888"
+  },
+  {
+    "id": "AZALEA_PLANT",
+    "category": "MISC",
+    "abbr": "AP",
+    "color": "#888888"
+  },
+  {
+    "id": "AZURE_BLUET",
+    "category": "MISC",
+    "abbr": "AB",
+    "color": "#888888"
+  },
+  {
+    "id": "BAKED_POTATO",
+    "category": "FOOD",
+    "abbr": "BP",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO",
+    "category": "MISC",
+    "abbr": "Bam",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "BB",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_CHEST_RAFT",
+    "category": "DECORATIONS",
+    "abbr": "BCR",
+    "color": "#a88752"
+  },
+  {
+    "id": "BAMBOO_DOOR",
+    "category": "MISC",
+    "abbr": "BD",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_FENCE",
+    "category": "BLOCKS",
+    "abbr": "BF",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_FENCE_GATE",
+    "category": "BLOCKS",
+    "abbr": "BFG",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_FENCE_GATE_PARTICLE",
+    "category": "BLOCKS",
+    "abbr": "BFG",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_FENCE_PARTICLE",
+    "category": "BLOCKS",
+    "abbr": "BFP",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "BHS",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_LARGE_LEAVES",
+    "category": "MISC",
+    "abbr": "BLL",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_MOSAIC",
+    "category": "MISC",
+    "abbr": "BM",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_RAFT",
+    "category": "MISC",
+    "abbr": "BR",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_SINGLELEAF",
+    "category": "MISC",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_SMALL_LEAVES",
+    "category": "MISC",
+    "abbr": "BSL",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_STALK",
+    "category": "MISC",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BAMBOO_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "BT",
+    "color": "#888888"
+  },
+  {
+    "id": "BARREL_TOP_OPEN",
+    "category": "DECORATIONS",
+    "abbr": "BTO",
+    "color": "#888888"
+  },
+  {
+    "id": "BAT_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "BSE",
+    "color": "#888888"
+  },
+  {
+    "id": "BEEF",
+    "category": "FOOD",
+    "abbr": "Bee",
+    "color": "#888888"
+  },
+  {
+    "id": "BEEHIVE_END",
+    "category": "MISC",
+    "abbr": "BE",
+    "color": "#888888"
+  },
+  {
+    "id": "BEEHIVE_FRONT_HONEY",
+    "category": "MISC",
+    "abbr": "BFH",
+    "color": "#888888"
+  },
+  {
+    "id": "BEETROOT",
+    "category": "FOOD",
+    "abbr": "Bee",
+    "color": "#888888"
+  },
+  {
+    "id": "BEETROOT_SEEDS",
+    "category": "FOOD",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BEETROOT_SOUP",
+    "category": "FOOD",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BEE_NEST_FRONT_HONEY",
+    "category": "MISC",
+    "abbr": "BNF",
+    "color": "#888888"
+  },
+  {
+    "id": "BEE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "BSE",
+    "color": "#888888"
+  },
+  {
+    "id": "BIG_DRIPLEAF_STEM",
+    "category": "MISC",
+    "abbr": "BDS",
+    "color": "#888888"
+  },
+  {
+    "id": "BIG_DRIPLEAF_TIP",
+    "category": "MISC",
+    "abbr": "BDT",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_BOAT",
+    "category": "MISC",
+    "abbr": "BB",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "BCB",
+    "color": "#a88752"
+  },
+  {
+    "id": "BIRCH_DOOR",
+    "category": "MISC",
+    "abbr": "BD",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "BHS",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_LEAVES",
+    "category": "MISC",
+    "abbr": "BL",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_LOG",
+    "category": "BLOCKS",
+    "abbr": "BL",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_SAPLING",
+    "category": "MISC",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BIRCH_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "BT",
+    "color": "#888888"
+  },
+  {
+    "id": "BLACKSTONE",
+    "category": "BLOCKS",
+    "abbr": "Bla",
+    "color": "#808080"
+  },
+  {
+    "id": "BLACK_BUNDLE",
+    "category": "MISC",
+    "abbr": "BB",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "BBO",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "BC",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "BC",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "BCP",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_DYE",
+    "category": "MISC",
+    "abbr": "BD",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "BGT",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_HARNESS",
+    "category": "MISC",
+    "abbr": "BH",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "BSB",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "BSG",
+    "color": "#202020"
+  },
+  {
+    "id": "BLACK_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "BT",
+    "color": "#202020"
+  },
+  {
+    "id": "BLADE_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "BPS",
+    "color": "#888888"
+  },
+  {
+    "id": "BLAZE_POWDER",
+    "category": "MISC",
+    "abbr": "BP",
+    "color": "#888888"
+  },
+  {
+    "id": "BLAZE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "BSE",
+    "color": "#888888"
+  },
+  {
+    "id": "BLUE_BUNDLE",
+    "category": "MISC",
+    "abbr": "BB",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "BBO",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "BC",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "BC",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "BCP",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_DYE",
+    "category": "MISC",
+    "abbr": "BD",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_EGG",
+    "category": "MISC",
+    "abbr": "BE",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "BGT",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_HARNESS",
+    "category": "MISC",
+    "abbr": "BH",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_ICE",
+    "category": "BLOCKS",
+    "abbr": "BI",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_ORCHID",
+    "category": "DECORATIONS",
+    "abbr": "BO",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "BSB",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "BSG",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BLUE_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "BT",
+    "color": "#2445b2"
+  },
+  {
+    "id": "BOGGED_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "BSE",
+    "color": "#888888"
+  },
+  {
+    "id": "BOLT_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "BAT",
+    "color": "#888888"
+  },
+  {
+    "id": "BONE",
+    "category": "MISC",
+    "abbr": "Bon",
+    "color": "#888888"
+  },
+  {
+    "id": "BONE_MEAL",
+    "category": "MISC",
+    "abbr": "BM",
+    "color": "#888888"
+  },
+  {
+    "id": "BOOKSHELF",
+    "category": "MISC",
+    "abbr": "Boo",
+    "color": "#888888"
+  },
+  {
+    "id": "BORDURE_INDENTED_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "BIB",
+    "color": "#888888"
+  },
+  {
+    "id": "BOWL",
+    "category": "COMBAT",
+    "abbr": "Bow",
+    "color": "#888888"
+  },
+  {
+    "id": "BOW_PULLING_0",
+    "category": "COMBAT",
+    "abbr": "BP0",
+    "color": "#888888"
+  },
+  {
+    "id": "BOW_PULLING_1",
+    "category": "COMBAT",
+    "abbr": "BP1",
+    "color": "#888888"
+  },
+  {
+    "id": "BOW_PULLING_2",
+    "category": "COMBAT",
+    "abbr": "BP2",
+    "color": "#888888"
+  },
+  {
+    "id": "BRAIN_CORAL",
+    "category": "MISC",
+    "abbr": "BC",
+    "color": "#888888"
+  },
+  {
+    "id": "BRAIN_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "BCB",
+    "color": "#888888"
+  },
+  {
+    "id": "BRAIN_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "BCF",
+    "color": "#888888"
+  },
+  {
+    "id": "BREEZE_ROD",
+    "category": "MISC",
+    "abbr": "BR",
+    "color": "#888888"
+  },
+  {
+    "id": "BREEZE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "BSE",
+    "color": "#888888"
+  },
+  {
+    "id": "BREWER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "BPS",
+    "color": "#888888"
+  },
+  {
+    "id": "BREWING_STAND",
+    "category": "DECORATIONS",
+    "abbr": "BS",
+    "color": "#888888"
+  },
+  {
+    "id": "BREWING_STAND_BASE",
+    "category": "DECORATIONS",
+    "abbr": "BSB",
+    "color": "#888888"
+  },
+  {
+    "id": "BRICK",
+    "category": "BLOCKS",
+    "abbr": "Bri",
+    "color": "#888888"
+  },
+  {
+    "id": "BRICKS",
+    "category": "BLOCKS",
+    "abbr": "Bri",
+    "color": "#888888"
+  },
+  {
+    "id": "BROWN_BUNDLE",
+    "category": "MISC",
+    "abbr": "BB",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "BBO",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "BC",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "BC",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "BCP",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_DYE",
+    "category": "MISC",
+    "abbr": "BD",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_EGG",
+    "category": "MISC",
+    "abbr": "BE",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "BGT",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_HARNESS",
+    "category": "MISC",
+    "abbr": "BH",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_MUSHROOM",
+    "category": "MISC",
+    "abbr": "BM",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_MUSHROOM_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "BMB",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "BSB",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "BSG",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "BT",
+    "color": "#a88752"
+  },
+  {
+    "id": "BROWN_WOOL",
+    "category": "BLOCKS",
+    "abbr": "BW",
+    "color": "#a88752"
+  },
+  {
+    "id": "BRUSH",
+    "category": "TOOLS",
+    "abbr": "Bru",
+    "color": "#888888"
+  },
+  {
+    "id": "BUBBLE_CORAL",
+    "category": "MISC",
+    "abbr": "BC",
+    "color": "#888888"
+  },
+  {
+    "id": "BUBBLE_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "BCB",
+    "color": "#888888"
+  },
+  {
+    "id": "BUBBLE_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "BCF",
+    "color": "#888888"
+  },
+  {
+    "id": "BUCKET",
+    "category": "MISC",
+    "abbr": "Buc",
+    "color": "#888888"
+  },
+  {
+    "id": "BUDDING_AMETHYST",
+    "category": "MISC",
+    "abbr": "BA",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "BUNDLE",
+    "category": "MISC",
+    "abbr": "Bun",
+    "color": "#888888"
+  },
+  {
+    "id": "BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "BOB",
+    "color": "#888888"
+  },
+  {
+    "id": "BURN_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "BPS",
+    "color": "#888888"
+  },
+  {
+    "id": "CAKE",
+    "category": "FOOD",
+    "abbr": "Cak",
+    "color": "#888888"
+  },
+  {
+    "id": "CAKE_INNER",
+    "category": "FOOD",
+    "abbr": "CI",
+    "color": "#888888"
+  },
+  {
+    "id": "CALCITE",
+    "category": "MISC",
+    "abbr": "Cal",
+    "color": "#888888"
+  },
+  {
+    "id": "CALIBRATED_SCULK_SENSOR_AMETHYST",
+    "category": "MISC",
+    "abbr": "CSS",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "CAMEL_HUSK_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CHS",
+    "color": "#888888"
+  },
+  {
+    "id": "CAMEL_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CSE",
+    "color": "#888888"
+  },
+  {
+    "id": "CAMPFIRE",
+    "category": "DECORATIONS",
+    "abbr": "Cam",
+    "color": "#888888"
+  },
+  {
+    "id": "CAMPFIRE_FIRE",
+    "category": "DECORATIONS",
+    "abbr": "CF",
+    "color": "#888888"
+  },
+  {
+    "id": "CAMPFIRE_LOG",
+    "category": "DECORATIONS",
+    "abbr": "CL",
+    "color": "#888888"
+  },
+  {
+    "id": "CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "Can",
+    "color": "#888888"
+  },
+  {
+    "id": "CARROT",
+    "category": "FOOD",
+    "abbr": "Car",
+    "color": "#888888"
+  },
+  {
+    "id": "CARROT_ON_A_STICK",
+    "category": "FOOD",
+    "abbr": "COA",
+    "color": "#888888"
+  },
+  {
+    "id": "CARTOGRAPHY_TABLE_SIDE1",
+    "category": "MISC",
+    "abbr": "CTS",
+    "color": "#888888"
+  },
+  {
+    "id": "CARTOGRAPHY_TABLE_SIDE2",
+    "category": "MISC",
+    "abbr": "CTS",
+    "color": "#888888"
+  },
+  {
+    "id": "CARTOGRAPHY_TABLE_SIDE3",
+    "category": "MISC",
+    "abbr": "CTS",
+    "color": "#888888"
+  },
+  {
+    "id": "CARVED_PUMPKIN",
+    "category": "MISC",
+    "abbr": "CP",
+    "color": "#888888"
+  },
+  {
+    "id": "CAT_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CSE",
+    "color": "#888888"
+  },
+  {
+    "id": "CAULDRON",
+    "category": "MISC",
+    "abbr": "Cau",
+    "color": "#888888"
+  },
+  {
+    "id": "CAULDRON_INNER",
+    "category": "MISC",
+    "abbr": "CI",
+    "color": "#888888"
+  },
+  {
+    "id": "CAVE_SPIDER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CSS",
+    "color": "#888888"
+  },
+  {
+    "id": "CAVE_VINES",
+    "category": "MISC",
+    "abbr": "CV",
+    "color": "#888888"
+  },
+  {
+    "id": "CAVE_VINES_PLANT",
+    "category": "MISC",
+    "abbr": "CVP",
+    "color": "#888888"
+  },
+  {
+    "id": "CHAIN",
+    "category": "MISC",
+    "abbr": "Cha",
+    "color": "#888888"
+  },
+  {
+    "id": "CHAINMAIL_BOOTS",
+    "category": "COMBAT",
+    "abbr": "CB",
+    "color": "#888888"
+  },
+  {
+    "id": "CHAINMAIL_CHESTPLATE",
+    "category": "COMBAT",
+    "abbr": "CC",
+    "color": "#a88752"
+  },
+  {
+    "id": "CHAINMAIL_HELMET",
+    "category": "COMBAT",
+    "abbr": "CH",
+    "color": "#888888"
+  },
+  {
+    "id": "CHAINMAIL_LEGGINGS",
+    "category": "COMBAT",
+    "abbr": "CL",
+    "color": "#888888"
+  },
+  {
+    "id": "CHAIN_COMMAND_BLOCK_BACK",
+    "category": "REDSTONE",
+    "abbr": "CCB",
+    "color": "#888888"
+  },
+  {
+    "id": "CHAIN_COMMAND_BLOCK_CONDITIONAL",
+    "category": "REDSTONE",
+    "abbr": "CCB",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_BOAT",
+    "category": "MISC",
+    "abbr": "CB",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "CCB",
+    "color": "#a88752"
+  },
+  {
+    "id": "CHERRY_DOOR",
+    "category": "MISC",
+    "abbr": "CD",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "CHS",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_LEAVES",
+    "category": "MISC",
+    "abbr": "CL",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_LOG",
+    "category": "BLOCKS",
+    "abbr": "CL",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_SAPLING",
+    "category": "MISC",
+    "abbr": "CS",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "CS",
+    "color": "#888888"
+  },
+  {
+    "id": "CHERRY_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "CT",
+    "color": "#888888"
+  },
+  {
+    "id": "CHEST_MINECART",
+    "category": "DECORATIONS",
+    "abbr": "CM",
+    "color": "#a88752"
+  },
+  {
+    "id": "CHICKEN",
+    "category": "FOOD",
+    "abbr": "Chi",
+    "color": "#888888"
+  },
+  {
+    "id": "CHICKEN_SPAWN_EGG",
+    "category": "FOOD",
+    "abbr": "CSE",
+    "color": "#888888"
+  },
+  {
+    "id": "CHISELED_BOOKSHELF_EMPTY",
+    "category": "MISC",
+    "abbr": "CBE",
+    "color": "#888888"
+  },
+  {
+    "id": "CHISELED_BOOKSHELF_OCCUPIED",
+    "category": "FOOD",
+    "abbr": "CBO",
+    "color": "#888888"
+  },
+  {
+    "id": "CHISELED_COPPER",
+    "category": "MISC",
+    "abbr": "CC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "CHISELED_DEEPSLATE",
+    "category": "BLOCKS",
+    "abbr": "CD",
+    "color": "#888888"
+  },
+  {
+    "id": "CHISELED_NETHER_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "CNB",
+    "color": "#888888"
+  },
+  {
+    "id": "CHISELED_POLISHED_BLACKSTONE",
+    "category": "BLOCKS",
+    "abbr": "CPB",
+    "color": "#808080"
+  },
+  {
+    "id": "CHISELED_QUARTZ_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "CQB",
+    "color": "#888888"
+  },
+  {
+    "id": "CHISELED_RED_SANDSTONE",
+    "category": "BLOCKS",
+    "abbr": "CRS",
+    "color": "#ff2200"
+  },
+  {
+    "id": "CHISELED_SANDSTONE",
+    "category": "BLOCKS",
+    "abbr": "CS",
+    "color": "#808080"
+  },
+  {
+    "id": "CHISELED_STONE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "CSB",
+    "color": "#808080"
+  },
+  {
+    "id": "CHISELED_TUFF",
+    "category": "MISC",
+    "abbr": "CT",
+    "color": "#888888"
+  },
+  {
+    "id": "CHISELED_TUFF_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "CTB",
+    "color": "#888888"
+  },
+  {
+    "id": "CHORUS_FLOWER",
+    "category": "DECORATIONS",
+    "abbr": "CF",
+    "color": "#888888"
+  },
+  {
+    "id": "CHORUS_FLOWER_DEAD",
+    "category": "DECORATIONS",
+    "abbr": "CFD",
+    "color": "#888888"
+  },
+  {
+    "id": "CHORUS_FRUIT",
+    "category": "MISC",
+    "abbr": "CF",
+    "color": "#888888"
+  },
+  {
+    "id": "CHORUS_PLANT",
+    "category": "MISC",
+    "abbr": "CP",
+    "color": "#888888"
+  },
+  {
+    "id": "CLAY",
+    "category": "MISC",
+    "abbr": "Cla",
+    "color": "#888888"
+  },
+  {
+    "id": "CLAY_BALL",
+    "category": "MISC",
+    "abbr": "CB",
+    "color": "#888888"
+  },
+  {
+    "id": "COAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "CB",
+    "color": "#202020"
+  },
+  {
+    "id": "COAL_ORE",
+    "category": "BLOCKS",
+    "abbr": "CO",
+    "color": "#202020"
+  },
+  {
+    "id": "COARSE_DIRT",
+    "category": "BLOCKS",
+    "abbr": "CD",
+    "color": "#888888"
+  },
+  {
+    "id": "COAST_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "CAT",
+    "color": "#888888"
+  },
+  {
+    "id": "COBBLED_DEEPSLATE",
+    "category": "BLOCKS",
+    "abbr": "CD",
+    "color": "#808080"
+  },
+  {
+    "id": "COBWEB",
+    "category": "MISC",
+    "abbr": "Cob",
+    "color": "#888888"
+  },
+  {
+    "id": "COCOA_BEANS",
+    "category": "MISC",
+    "abbr": "CB",
+    "color": "#888888"
+  },
+  {
+    "id": "COD",
+    "category": "FOOD",
+    "abbr": "Cod",
+    "color": "#888888"
+  },
+  {
+    "id": "COD_BUCKET",
+    "category": "FOOD",
+    "abbr": "CB",
+    "color": "#888888"
+  },
+  {
+    "id": "COD_SPAWN_EGG",
+    "category": "FOOD",
+    "abbr": "CSE",
+    "color": "#888888"
+  },
+  {
+    "id": "COMMAND_BLOCK_BACK",
+    "category": "REDSTONE",
+    "abbr": "CBB",
+    "color": "#888888"
+  },
+  {
+    "id": "COMMAND_BLOCK_CONDITIONAL",
+    "category": "REDSTONE",
+    "abbr": "CBC",
+    "color": "#888888"
+  },
+  {
+    "id": "COMMAND_BLOCK_MINECART",
+    "category": "REDSTONE",
+    "abbr": "CBM",
+    "color": "#888888"
+  },
+  {
+    "id": "COMPARATOR",
+    "category": "REDSTONE",
+    "abbr": "Com",
+    "color": "#888888"
+  },
+  {
+    "id": "COMPOSTER_COMPOST",
+    "category": "MISC",
+    "abbr": "CC",
+    "color": "#888888"
+  },
+  {
+    "id": "COMPOSTER_READY",
+    "category": "MISC",
+    "abbr": "CR",
+    "color": "#888888"
+  },
+  {
+    "id": "CONDUIT",
+    "category": "MISC",
+    "abbr": "Con",
+    "color": "#888888"
+  },
+  {
+    "id": "COOKED_COD",
+    "category": "FOOD",
+    "abbr": "CC",
+    "color": "#888888"
+  },
+  {
+    "id": "COOKED_RABBIT",
+    "category": "FOOD",
+    "abbr": "CR",
+    "color": "#888888"
+  },
+  {
+    "id": "COOKED_SALMON",
+    "category": "FOOD",
+    "abbr": "CS",
+    "color": "#888888"
+  },
+  {
+    "id": "COOKIE",
+    "category": "FOOD",
+    "abbr": "Coo",
+    "color": "#888888"
+  },
+  {
+    "id": "COPPER_AXE",
+    "category": "TOOLS",
+    "abbr": "CA",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "CB",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_BOOTS",
+    "category": "COMBAT",
+    "abbr": "CB",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_BULB",
+    "category": "MISC",
+    "abbr": "CB",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_CHAIN",
+    "category": "MISC",
+    "abbr": "CC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_CHESTPLATE",
+    "category": "COMBAT",
+    "abbr": "CC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_DOOR",
+    "category": "MISC",
+    "abbr": "CD",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_GOLEM_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CGS",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_GRATE",
+    "category": "MISC",
+    "abbr": "CG",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_HELMET",
+    "category": "COMBAT",
+    "abbr": "CH",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_HOE",
+    "category": "TOOLS",
+    "abbr": "CH",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_HORSE_ARMOR",
+    "category": "COMBAT",
+    "abbr": "CHA",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "CL",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_LEGGINGS",
+    "category": "COMBAT",
+    "abbr": "CL",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_NAUTILUS_ARMOR",
+    "category": "MISC",
+    "abbr": "CNA",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_NUGGET",
+    "category": "MISC",
+    "abbr": "CN",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_ORE",
+    "category": "BLOCKS",
+    "abbr": "CO",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_PICKAXE",
+    "category": "TOOLS",
+    "abbr": "CP",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_SHOVEL",
+    "category": "TOOLS",
+    "abbr": "CS",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_SPEAR",
+    "category": "MISC",
+    "abbr": "CS",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_SPEAR_IN_HAND",
+    "category": "MISC",
+    "abbr": "CSI",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_SWORD",
+    "category": "COMBAT",
+    "abbr": "CS",
+    "color": "#e0734d"
+  },
+  {
+    "id": "COPPER_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "CT",
+    "color": "#e0734d"
+  },
+  {
+    "id": "CORNFLOWER",
+    "category": "DECORATIONS",
+    "abbr": "Cor",
+    "color": "#888888"
+  },
+  {
+    "id": "COW_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CSE",
+    "color": "#888888"
+  },
+  {
+    "id": "CRACKED_DEEPSLATE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "CDB",
+    "color": "#888888"
+  },
+  {
+    "id": "CRACKED_DEEPSLATE_TILES",
+    "category": "BLOCKS",
+    "abbr": "CDT",
+    "color": "#888888"
+  },
+  {
+    "id": "CRACKED_NETHER_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "CNB",
+    "color": "#888888"
+  },
+  {
+    "id": "CRACKED_POLISHED_BLACKSTONE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "CPB",
+    "color": "#808080"
+  },
+  {
+    "id": "CRACKED_STONE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "CSB",
+    "color": "#808080"
+  },
+  {
+    "id": "CRAFTER_EAST",
+    "category": "MISC",
+    "abbr": "CE",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_EAST_CRAFTING",
+    "category": "MISC",
+    "abbr": "CEC",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_EAST_TRIGGERED",
+    "category": "MISC",
+    "abbr": "CET",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_NORTH",
+    "category": "MISC",
+    "abbr": "CN",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_NORTH_CRAFTING",
+    "category": "MISC",
+    "abbr": "CNC",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_SOUTH",
+    "category": "MISC",
+    "abbr": "CS",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_SOUTH_TRIGGERED",
+    "category": "MISC",
+    "abbr": "CST",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_TOP_CRAFTING",
+    "category": "MISC",
+    "abbr": "CTC",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_TOP_TRIGGERED",
+    "category": "MISC",
+    "abbr": "CTT",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_WEST",
+    "category": "MISC",
+    "abbr": "CW",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_WEST_CRAFTING",
+    "category": "MISC",
+    "abbr": "CWC",
+    "color": "#888888"
+  },
+  {
+    "id": "CRAFTER_WEST_TRIGGERED",
+    "category": "MISC",
+    "abbr": "CWT",
+    "color": "#888888"
+  },
+  {
+    "id": "CREAKING_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CSE",
+    "color": "#888888"
+  },
+  {
+    "id": "CREEPER_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "CBP",
+    "color": "#888888"
+  },
+  {
+    "id": "CREEPER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "CSE",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_DOOR",
+    "category": "MISC",
+    "abbr": "CD",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_FUNGUS",
+    "category": "MISC",
+    "abbr": "CF",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "CHS",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_NYLIUM",
+    "category": "MISC",
+    "abbr": "CN",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_ROOTS",
+    "category": "MISC",
+    "abbr": "CR",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_ROOTS_POT",
+    "category": "MISC",
+    "abbr": "CRP",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "CS",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_STEM",
+    "category": "MISC",
+    "abbr": "CS",
+    "color": "#888888"
+  },
+  {
+    "id": "CRIMSON_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "CT",
+    "color": "#888888"
+  },
+  {
+    "id": "CROSSBOW_ARROW",
+    "category": "COMBAT",
+    "abbr": "CA",
+    "color": "#888888"
+  },
+  {
+    "id": "CROSSBOW_FIREWORK",
+    "category": "COMBAT",
+    "abbr": "CF",
+    "color": "#888888"
+  },
+  {
+    "id": "CROSSBOW_PULLING_0",
+    "category": "COMBAT",
+    "abbr": "CP0",
+    "color": "#888888"
+  },
+  {
+    "id": "CROSSBOW_PULLING_1",
+    "category": "COMBAT",
+    "abbr": "CP1",
+    "color": "#888888"
+  },
+  {
+    "id": "CROSSBOW_PULLING_2",
+    "category": "COMBAT",
+    "abbr": "CP2",
+    "color": "#888888"
+  },
+  {
+    "id": "CRYING_OBSIDIAN",
+    "category": "BLOCKS",
+    "abbr": "CO",
+    "color": "#888888"
+  },
+  {
+    "id": "CUT_COPPER",
+    "category": "MISC",
+    "abbr": "CC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "CUT_RED_SANDSTONE",
+    "category": "BLOCKS",
+    "abbr": "CRS",
+    "color": "#ff2200"
+  },
+  {
+    "id": "CUT_SANDSTONE",
+    "category": "BLOCKS",
+    "abbr": "CS",
+    "color": "#808080"
+  },
+  {
+    "id": "CYAN_BUNDLE",
+    "category": "MISC",
+    "abbr": "CB",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "CBO",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "CC",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "CC",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "CCP",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_DYE",
+    "category": "MISC",
+    "abbr": "CD",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "CGT",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_HARNESS",
+    "category": "MISC",
+    "abbr": "CH",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "CSB",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "CSG",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "CT",
+    "color": "#888888"
+  },
+  {
+    "id": "CYAN_WOOL",
+    "category": "BLOCKS",
+    "abbr": "CW",
+    "color": "#888888"
+  },
+  {
+    "id": "DANDELION",
+    "category": "MISC",
+    "abbr": "Dan",
+    "color": "#888888"
+  },
+  {
+    "id": "DANGER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "DPS",
+    "color": "#888888"
+  },
+  {
+    "id": "DARK_OAK_BOAT",
+    "category": "MISC",
+    "abbr": "DOB",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "DOC",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_DOOR",
+    "category": "MISC",
+    "abbr": "DOD",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "DOH",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_LEAVES",
+    "category": "MISC",
+    "abbr": "DOL",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_LOG",
+    "category": "BLOCKS",
+    "abbr": "DOL",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_SAPLING",
+    "category": "MISC",
+    "abbr": "DOS",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "DOS",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_OAK_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "DOT",
+    "color": "#a88752"
+  },
+  {
+    "id": "DARK_PRISMARINE",
+    "category": "BLOCKS",
+    "abbr": "DP",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_BRAIN_CORAL",
+    "category": "MISC",
+    "abbr": "DBC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_BRAIN_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "DBC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_BRAIN_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "DBC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_BUBBLE_CORAL",
+    "category": "MISC",
+    "abbr": "DBC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_BUBBLE_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "DBC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_BUBBLE_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "DBC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_BUSH",
+    "category": "MISC",
+    "abbr": "DB",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_FIRE_CORAL",
+    "category": "MISC",
+    "abbr": "DFC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_FIRE_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "DFC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_FIRE_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "DFC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_HORN_CORAL",
+    "category": "MISC",
+    "abbr": "DHC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_HORN_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "DHC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_HORN_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "DHC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_TUBE_CORAL",
+    "category": "MISC",
+    "abbr": "DTC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_TUBE_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "DTC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEAD_TUBE_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "DTC",
+    "color": "#888888"
+  },
+  {
+    "id": "DEBUG",
+    "category": "MISC",
+    "abbr": "Deb",
+    "color": "#888888"
+  },
+  {
+    "id": "DEBUG2",
+    "category": "MISC",
+    "abbr": "Deb",
+    "color": "#888888"
+  },
+  {
+    "id": "DEEPSLATE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "DB",
+    "color": "#888888"
+  },
+  {
+    "id": "DEEPSLATE_COAL_ORE",
+    "category": "BLOCKS",
+    "abbr": "DCO",
+    "color": "#202020"
+  },
+  {
+    "id": "DEEPSLATE_COPPER_ORE",
+    "category": "BLOCKS",
+    "abbr": "DCO",
+    "color": "#e0734d"
+  },
+  {
+    "id": "DEEPSLATE_DIAMOND_ORE",
+    "category": "BLOCKS",
+    "abbr": "DDO",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DEEPSLATE_EMERALD_ORE",
+    "category": "BLOCKS",
+    "abbr": "DEO",
+    "color": "#17dd62"
+  },
+  {
+    "id": "DEEPSLATE_GOLD_ORE",
+    "category": "BLOCKS",
+    "abbr": "DGO",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "DEEPSLATE_IRON_ORE",
+    "category": "BLOCKS",
+    "abbr": "DIO",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "DEEPSLATE_LAPIS_ORE",
+    "category": "BLOCKS",
+    "abbr": "DLO",
+    "color": "#2445b2"
+  },
+  {
+    "id": "DEEPSLATE_REDSTONE_ORE",
+    "category": "REDSTONE",
+    "abbr": "DRO",
+    "color": "#ff2200"
+  },
+  {
+    "id": "DEEPSLATE_TILES",
+    "category": "BLOCKS",
+    "abbr": "DT",
+    "color": "#888888"
+  },
+  {
+    "id": "DETECTOR_RAIL",
+    "category": "REDSTONE",
+    "abbr": "DR",
+    "color": "#888888"
+  },
+  {
+    "id": "DIAMOND_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "DB",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_HOE",
+    "category": "TOOLS",
+    "abbr": "DH",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_HORSE_ARMOR",
+    "category": "COMBAT",
+    "abbr": "DHA",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_NAUTILUS_ARMOR",
+    "category": "MISC",
+    "abbr": "DNA",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_ORE",
+    "category": "BLOCKS",
+    "abbr": "DO",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_SPEAR",
+    "category": "MISC",
+    "abbr": "DS",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIAMOND_SPEAR_IN_HAND",
+    "category": "MISC",
+    "abbr": "DSI",
+    "color": "#4dedf0"
+  },
+  {
+    "id": "DIRT",
+    "category": "BLOCKS",
+    "abbr": "Dir",
+    "color": "#888888"
+  },
+  {
+    "id": "DISC_FRAGMENT_5",
+    "category": "MISC",
+    "abbr": "DF5",
+    "color": "#888888"
+  },
+  {
+    "id": "DISPENSER_FRONT_VERTICAL",
+    "category": "REDSTONE",
+    "abbr": "DFV",
+    "color": "#888888"
+  },
+  {
+    "id": "DOLPHIN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "DSE",
+    "color": "#888888"
+  },
+  {
+    "id": "DONKEY_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "DSE",
+    "color": "#888888"
+  },
+  {
+    "id": "DRAGON_BREATH",
+    "category": "MISC",
+    "abbr": "DB",
+    "color": "#888888"
+  },
+  {
+    "id": "DRAGON_EGG",
+    "category": "MISC",
+    "abbr": "DE",
+    "color": "#888888"
+  },
+  {
+    "id": "DRIED_KELP",
+    "category": "MISC",
+    "abbr": "DK",
+    "color": "#888888"
+  },
+  {
+    "id": "DRIPSTONE_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "DB",
+    "color": "#808080"
+  },
+  {
+    "id": "DROPPER_FRONT_VERTICAL",
+    "category": "REDSTONE",
+    "abbr": "DFV",
+    "color": "#888888"
+  },
+  {
+    "id": "DROWNED_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "DSE",
+    "color": "#888888"
+  },
+  {
+    "id": "DUNE_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "DAT",
+    "color": "#888888"
+  },
+  {
+    "id": "ECHO_SHARD",
+    "category": "MISC",
+    "abbr": "ES",
+    "color": "#888888"
+  },
+  {
+    "id": "EGG",
+    "category": "MISC",
+    "abbr": "Egg",
+    "color": "#888888"
+  },
+  {
+    "id": "ELDER_GUARDIAN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "EGS",
+    "color": "#888888"
+  },
+  {
+    "id": "ELYTRA_BROKEN",
+    "category": "MISC",
+    "abbr": "EB",
+    "color": "#888888"
+  },
+  {
+    "id": "EMERALD_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "EB",
+    "color": "#17dd62"
+  },
+  {
+    "id": "EMERALD_ORE",
+    "category": "BLOCKS",
+    "abbr": "EO",
+    "color": "#17dd62"
+  },
+  {
+    "id": "ENDERMAN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ESE",
+    "color": "#888888"
+  },
+  {
+    "id": "ENDERMITE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ESE",
+    "color": "#888888"
+  },
+  {
+    "id": "ENDER_DRAGON_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "EDS",
+    "color": "#888888"
+  },
+  {
+    "id": "ENDER_EYE",
+    "category": "MISC",
+    "abbr": "EE",
+    "color": "#888888"
+  },
+  {
+    "id": "END_CRYSTAL",
+    "category": "MISC",
+    "abbr": "EC",
+    "color": "#888888"
+  },
+  {
+    "id": "END_PORTAL_FRAME_EYE",
+    "category": "MISC",
+    "abbr": "EPF",
+    "color": "#888888"
+  },
+  {
+    "id": "END_ROD",
+    "category": "MISC",
+    "abbr": "ER",
+    "color": "#888888"
+  },
+  {
+    "id": "END_STONE",
+    "category": "BLOCKS",
+    "abbr": "ES",
+    "color": "#808080"
+  },
+  {
+    "id": "END_STONE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "ESB",
+    "color": "#808080"
+  },
+  {
+    "id": "EVOKER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ESE",
+    "color": "#888888"
+  },
+  {
+    "id": "EXPLORER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "EPS",
+    "color": "#888888"
+  },
+  {
+    "id": "EXPOSED_CHISELED_COPPER",
+    "category": "MISC",
+    "abbr": "ECC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_COPPER",
+    "category": "MISC",
+    "abbr": "EC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_COPPER_BULB",
+    "category": "MISC",
+    "abbr": "ECB",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_COPPER_CHAIN",
+    "category": "MISC",
+    "abbr": "ECC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_COPPER_DOOR",
+    "category": "MISC",
+    "abbr": "ECD",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_COPPER_GRATE",
+    "category": "MISC",
+    "abbr": "ECG",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_COPPER_LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "ECL",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_COPPER_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "ECT",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EXPOSED_CUT_COPPER",
+    "category": "MISC",
+    "abbr": "ECC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "EYE_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "EAT",
+    "color": "#888888"
+  },
+  {
+    "id": "FARMLAND",
+    "category": "MISC",
+    "abbr": "Far",
+    "color": "#888888"
+  },
+  {
+    "id": "FARMLAND_MOIST",
+    "category": "MISC",
+    "abbr": "FM",
+    "color": "#888888"
+  },
+  {
+    "id": "FERMENTED_SPIDER_EYE",
+    "category": "MISC",
+    "abbr": "FSE",
+    "color": "#888888"
+  },
+  {
+    "id": "FERN",
+    "category": "MISC",
+    "abbr": "Fer",
+    "color": "#888888"
+  },
+  {
+    "id": "FIELD_MASONED_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "FMB",
+    "color": "#888888"
+  },
+  {
+    "id": "FILLED_MAP",
+    "category": "MISC",
+    "abbr": "FM",
+    "color": "#888888"
+  },
+  {
+    "id": "FILLED_MAP_MARKINGS",
+    "category": "MISC",
+    "abbr": "FMM",
+    "color": "#888888"
+  },
+  {
+    "id": "FIREFLY_BUSH",
+    "category": "MISC",
+    "abbr": "FB",
+    "color": "#888888"
+  },
+  {
+    "id": "FIREWORK_STAR_OVERLAY",
+    "category": "MISC",
+    "abbr": "FSO",
+    "color": "#888888"
+  },
+  {
+    "id": "FIRE_0",
+    "category": "MISC",
+    "abbr": "F0",
+    "color": "#888888"
+  },
+  {
+    "id": "FIRE_1",
+    "category": "MISC",
+    "abbr": "F1",
+    "color": "#888888"
+  },
+  {
+    "id": "FIRE_CHARGE",
+    "category": "MISC",
+    "abbr": "FC",
+    "color": "#888888"
+  },
+  {
+    "id": "FIRE_CORAL",
+    "category": "MISC",
+    "abbr": "FC",
+    "color": "#888888"
+  },
+  {
+    "id": "FIRE_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "FCB",
+    "color": "#888888"
+  },
+  {
+    "id": "FIRE_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "FCF",
+    "color": "#888888"
+  },
+  {
+    "id": "FISHING_ROD_CAST",
+    "category": "TOOLS",
+    "abbr": "FRC",
+    "color": "#888888"
+  },
+  {
+    "id": "FLINT",
+    "category": "MISC",
+    "abbr": "Fli",
+    "color": "#888888"
+  },
+  {
+    "id": "FLOWERING_AZALEA_LEAVES",
+    "category": "DECORATIONS",
+    "abbr": "FAL",
+    "color": "#888888"
+  },
+  {
+    "id": "FLOWER_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "FBP",
+    "color": "#888888"
+  },
+  {
+    "id": "FLOWER_POT",
+    "category": "DECORATIONS",
+    "abbr": "FP",
+    "color": "#888888"
+  },
+  {
+    "id": "FLOW_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "FAT",
+    "color": "#888888"
+  },
+  {
+    "id": "FLOW_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "FBP",
+    "color": "#888888"
+  },
+  {
+    "id": "FLOW_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "FPS",
+    "color": "#888888"
+  },
+  {
+    "id": "FOX_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "FSE",
+    "color": "#888888"
+  },
+  {
+    "id": "FRIEND_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "FPS",
+    "color": "#888888"
+  },
+  {
+    "id": "FROGSPAWN",
+    "category": "MISC",
+    "abbr": "Fro",
+    "color": "#888888"
+  },
+  {
+    "id": "FROG_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "FSE",
+    "color": "#888888"
+  },
+  {
+    "id": "FROSTED_ICE_0",
+    "category": "BLOCKS",
+    "abbr": "FI0",
+    "color": "#888888"
+  },
+  {
+    "id": "FROSTED_ICE_1",
+    "category": "BLOCKS",
+    "abbr": "FI1",
+    "color": "#888888"
+  },
+  {
+    "id": "FROSTED_ICE_2",
+    "category": "BLOCKS",
+    "abbr": "FI2",
+    "color": "#888888"
+  },
+  {
+    "id": "FROSTED_ICE_3",
+    "category": "BLOCKS",
+    "abbr": "FI3",
+    "color": "#888888"
+  },
+  {
+    "id": "FURNACE_MINECART",
+    "category": "DECORATIONS",
+    "abbr": "FM",
+    "color": "#888888"
+  },
+  {
+    "id": "GHAST_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "GSE",
+    "color": "#888888"
+  },
+  {
+    "id": "GHAST_TEAR",
+    "category": "MISC",
+    "abbr": "GT",
+    "color": "#888888"
+  },
+  {
+    "id": "GILDED_BLACKSTONE",
+    "category": "BLOCKS",
+    "abbr": "GB",
+    "color": "#808080"
+  },
+  {
+    "id": "GLASS_BOTTLE",
+    "category": "MISC",
+    "abbr": "GB",
+    "color": "#888888"
+  },
+  {
+    "id": "GLISTERING_MELON_SLICE",
+    "category": "FOOD",
+    "abbr": "GMS",
+    "color": "#888888"
+  },
+  {
+    "id": "GLOBE_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "GBP",
+    "color": "#888888"
+  },
+  {
+    "id": "GLOWSTONE",
+    "category": "BLOCKS",
+    "abbr": "Glo",
+    "color": "#808080"
+  },
+  {
+    "id": "GLOWSTONE_DUST",
+    "category": "BLOCKS",
+    "abbr": "GD",
+    "color": "#808080"
+  },
+  {
+    "id": "GLOW_BERRIES",
+    "category": "FOOD",
+    "abbr": "GB",
+    "color": "#888888"
+  },
+  {
+    "id": "GLOW_INK_SAC",
+    "category": "MISC",
+    "abbr": "GIS",
+    "color": "#888888"
+  },
+  {
+    "id": "GLOW_ITEM_FRAME",
+    "category": "MISC",
+    "abbr": "GIF",
+    "color": "#888888"
+  },
+  {
+    "id": "GLOW_LICHEN",
+    "category": "MISC",
+    "abbr": "GL",
+    "color": "#888888"
+  },
+  {
+    "id": "GLOW_SQUID_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "GSS",
+    "color": "#888888"
+  },
+  {
+    "id": "GOAT_HORN",
+    "category": "MISC",
+    "abbr": "GH",
+    "color": "#888888"
+  },
+  {
+    "id": "GOAT_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "GSE",
+    "color": "#888888"
+  },
+  {
+    "id": "GOLDEN_AXE",
+    "category": "TOOLS",
+    "abbr": "GA",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_BOOTS",
+    "category": "COMBAT",
+    "abbr": "GB",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_CHESTPLATE",
+    "category": "COMBAT",
+    "abbr": "GC",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_HELMET",
+    "category": "COMBAT",
+    "abbr": "GH",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_HOE",
+    "category": "TOOLS",
+    "abbr": "GH",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_HORSE_ARMOR",
+    "category": "COMBAT",
+    "abbr": "GHA",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_LEGGINGS",
+    "category": "COMBAT",
+    "abbr": "GL",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_NAUTILUS_ARMOR",
+    "category": "MISC",
+    "abbr": "GNA",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_SHOVEL",
+    "category": "TOOLS",
+    "abbr": "GS",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_SPEAR",
+    "category": "MISC",
+    "abbr": "GS",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLDEN_SPEAR_IN_HAND",
+    "category": "MISC",
+    "abbr": "GSI",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLD_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "GB",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLD_NUGGET",
+    "category": "MISC",
+    "abbr": "GN",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GOLD_ORE",
+    "category": "BLOCKS",
+    "abbr": "GO",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "GRASS_BLOCK_SIDE_OVERLAY",
+    "category": "BLOCKS",
+    "abbr": "GBS",
+    "color": "#888888"
+  },
+  {
+    "id": "GRASS_BLOCK_SNOW",
+    "category": "BLOCKS",
+    "abbr": "GBS",
+    "color": "#888888"
+  },
+  {
+    "id": "GRAVEL",
+    "category": "BLOCKS",
+    "abbr": "Gra",
+    "color": "#888888"
+  },
+  {
+    "id": "GRAY_BUNDLE",
+    "category": "MISC",
+    "abbr": "GB",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "GBO",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "GC",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "GC",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "GCP",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_DYE",
+    "category": "MISC",
+    "abbr": "GD",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "GGT",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_HARNESS",
+    "category": "MISC",
+    "abbr": "GH",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "GSB",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "GSG",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "GT",
+    "color": "#808080"
+  },
+  {
+    "id": "GRAY_WOOL",
+    "category": "BLOCKS",
+    "abbr": "GW",
+    "color": "#808080"
+  },
+  {
+    "id": "GREEN_BUNDLE",
+    "category": "MISC",
+    "abbr": "GB",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "GBO",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "GC",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "GC",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "GCP",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_DYE",
+    "category": "MISC",
+    "abbr": "GD",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "GGT",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_HARNESS",
+    "category": "MISC",
+    "abbr": "GH",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "GSB",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "GSG",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GREEN_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "GT",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "GRINDSTONE_PIVOT",
+    "category": "BLOCKS",
+    "abbr": "GP",
+    "color": "#808080"
+  },
+  {
+    "id": "GRINDSTONE_ROUND",
+    "category": "BLOCKS",
+    "abbr": "GR",
+    "color": "#808080"
+  },
+  {
+    "id": "GUARDIAN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "GSE",
+    "color": "#888888"
+  },
+  {
+    "id": "GUNPOWDER",
+    "category": "MISC",
+    "abbr": "Gun",
+    "color": "#888888"
+  },
+  {
+    "id": "GUSTER_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "GBP",
+    "color": "#888888"
+  },
+  {
+    "id": "GUSTER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "GPS",
+    "color": "#888888"
+  },
+  {
+    "id": "HANGING_ROOTS",
+    "category": "MISC",
+    "abbr": "HR",
+    "color": "#888888"
+  },
+  {
+    "id": "HAPPY_GHAST_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "HGS",
+    "color": "#888888"
+  },
+  {
+    "id": "HEARTBREAK_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "HPS",
+    "color": "#888888"
+  },
+  {
+    "id": "HEART_OF_THE_SEA",
+    "category": "MISC",
+    "abbr": "HOT",
+    "color": "#888888"
+  },
+  {
+    "id": "HEART_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "HPS",
+    "color": "#888888"
+  },
+  {
+    "id": "HEAVY_CORE",
+    "category": "MISC",
+    "abbr": "HC",
+    "color": "#888888"
+  },
+  {
+    "id": "HOGLIN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "HSE",
+    "color": "#888888"
+  },
+  {
+    "id": "HONEYCOMB",
+    "category": "MISC",
+    "abbr": "Hon",
+    "color": "#888888"
+  },
+  {
+    "id": "HONEYCOMB_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "HB",
+    "color": "#888888"
+  },
+  {
+    "id": "HONEY_BOTTLE",
+    "category": "FOOD",
+    "abbr": "HB",
+    "color": "#888888"
+  },
+  {
+    "id": "HOPPER",
+    "category": "REDSTONE",
+    "abbr": "Hop",
+    "color": "#888888"
+  },
+  {
+    "id": "HOPPER_INSIDE",
+    "category": "REDSTONE",
+    "abbr": "HI",
+    "color": "#888888"
+  },
+  {
+    "id": "HOPPER_MINECART",
+    "category": "REDSTONE",
+    "abbr": "HM",
+    "color": "#888888"
+  },
+  {
+    "id": "HOPPER_OUTSIDE",
+    "category": "REDSTONE",
+    "abbr": "HO",
+    "color": "#888888"
+  },
+  {
+    "id": "HORN_CORAL",
+    "category": "MISC",
+    "abbr": "HC",
+    "color": "#888888"
+  },
+  {
+    "id": "HORN_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "HCB",
+    "color": "#888888"
+  },
+  {
+    "id": "HORN_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "HCF",
+    "color": "#888888"
+  },
+  {
+    "id": "HORSE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "HSE",
+    "color": "#888888"
+  },
+  {
+    "id": "HOST_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "HAT",
+    "color": "#888888"
+  },
+  {
+    "id": "HOWL_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "HPS",
+    "color": "#888888"
+  },
+  {
+    "id": "HUSK_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "HSE",
+    "color": "#888888"
+  },
+  {
+    "id": "ICE",
+    "category": "BLOCKS",
+    "abbr": "Ice",
+    "color": "#888888"
+  },
+  {
+    "id": "INK_SAC",
+    "category": "MISC",
+    "abbr": "IS",
+    "color": "#888888"
+  },
+  {
+    "id": "IRON_BARS",
+    "category": "MISC",
+    "abbr": "IB",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "IB",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_CHAIN",
+    "category": "MISC",
+    "abbr": "IC",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_DOOR",
+    "category": "MISC",
+    "abbr": "ID",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_GOLEM_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "IGS",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_HOE",
+    "category": "TOOLS",
+    "abbr": "IH",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_HORSE_ARMOR",
+    "category": "COMBAT",
+    "abbr": "IHA",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_NAUTILUS_ARMOR",
+    "category": "MISC",
+    "abbr": "INA",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_NUGGET",
+    "category": "MISC",
+    "abbr": "IN",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_ORE",
+    "category": "BLOCKS",
+    "abbr": "IO",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_SPEAR",
+    "category": "MISC",
+    "abbr": "IS",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_SPEAR_IN_HAND",
+    "category": "MISC",
+    "abbr": "ISI",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "IRON_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "IT",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "ITEM_FRAME",
+    "category": "MISC",
+    "abbr": "IF",
+    "color": "#888888"
+  },
+  {
+    "id": "JACK_O_LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "JOL",
+    "color": "#888888"
+  },
+  {
+    "id": "JIGSAW_LOCK",
+    "category": "MISC",
+    "abbr": "JL",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_BOAT",
+    "category": "MISC",
+    "abbr": "JB",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "JCB",
+    "color": "#a88752"
+  },
+  {
+    "id": "JUNGLE_DOOR",
+    "category": "MISC",
+    "abbr": "JD",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "JHS",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_LEAVES",
+    "category": "MISC",
+    "abbr": "JL",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_LOG",
+    "category": "BLOCKS",
+    "abbr": "JL",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_SAPLING",
+    "category": "MISC",
+    "abbr": "JS",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "JS",
+    "color": "#888888"
+  },
+  {
+    "id": "JUNGLE_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "JT",
+    "color": "#888888"
+  },
+  {
+    "id": "KELP",
+    "category": "MISC",
+    "abbr": "Kel",
+    "color": "#888888"
+  },
+  {
+    "id": "KELP_PLANT",
+    "category": "MISC",
+    "abbr": "KP",
+    "color": "#888888"
+  },
+  {
+    "id": "KNOWLEDGE_BOOK",
+    "category": "MISC",
+    "abbr": "KB",
+    "color": "#888888"
+  },
+  {
+    "id": "LADDER",
+    "category": "MISC",
+    "abbr": "Lad",
+    "color": "#888888"
+  },
+  {
+    "id": "LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "Lan",
+    "color": "#888888"
+  },
+  {
+    "id": "LAPIS_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "LB",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LAPIS_ORE",
+    "category": "BLOCKS",
+    "abbr": "LO",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LARGE_AMETHYST_BUD",
+    "category": "MISC",
+    "abbr": "LAB",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "LAVA_BUCKET",
+    "category": "MISC",
+    "abbr": "LB",
+    "color": "#888888"
+  },
+  {
+    "id": "LAVA_FLOW",
+    "category": "MISC",
+    "abbr": "LF",
+    "color": "#888888"
+  },
+  {
+    "id": "LAVA_STILL",
+    "category": "MISC",
+    "abbr": "LS",
+    "color": "#888888"
+  },
+  {
+    "id": "LEAF_LITTER",
+    "category": "MISC",
+    "abbr": "LL",
+    "color": "#888888"
+  },
+  {
+    "id": "LEATHER",
+    "category": "MISC",
+    "abbr": "Lea",
+    "color": "#888888"
+  },
+  {
+    "id": "LEATHER_BOOTS_OVERLAY",
+    "category": "COMBAT",
+    "abbr": "LBO",
+    "color": "#888888"
+  },
+  {
+    "id": "LEATHER_CHESTPLATE_OVERLAY",
+    "category": "COMBAT",
+    "abbr": "LCO",
+    "color": "#a88752"
+  },
+  {
+    "id": "LEATHER_HELMET_OVERLAY",
+    "category": "COMBAT",
+    "abbr": "LHO",
+    "color": "#888888"
+  },
+  {
+    "id": "LEATHER_HORSE_ARMOR",
+    "category": "COMBAT",
+    "abbr": "LHA",
+    "color": "#888888"
+  },
+  {
+    "id": "LEATHER_HORSE_ARMOR_OVERLAY",
+    "category": "COMBAT",
+    "abbr": "LHA",
+    "color": "#888888"
+  },
+  {
+    "id": "LEATHER_LEGGINGS_OVERLAY",
+    "category": "COMBAT",
+    "abbr": "LLO",
+    "color": "#888888"
+  },
+  {
+    "id": "LECTERN_BASE",
+    "category": "MISC",
+    "abbr": "LB",
+    "color": "#888888"
+  },
+  {
+    "id": "LECTERN_SIDES",
+    "category": "MISC",
+    "abbr": "LS",
+    "color": "#888888"
+  },
+  {
+    "id": "LEVER",
+    "category": "REDSTONE",
+    "abbr": "Lev",
+    "color": "#888888"
+  },
+  {
+    "id": "LIGHT",
+    "category": "MISC",
+    "abbr": "Lig",
+    "color": "#888888"
+  },
+  {
+    "id": "LIGHTNING_ROD",
+    "category": "MISC",
+    "abbr": "LR",
+    "color": "#888888"
+  },
+  {
+    "id": "LIGHT_BLUE_BUNDLE",
+    "category": "MISC",
+    "abbr": "LBB",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "LBB",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "LBC",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "LBC",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "LBC",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_DYE",
+    "category": "MISC",
+    "abbr": "LBD",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "LBG",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_HARNESS",
+    "category": "MISC",
+    "abbr": "LBH",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "LBS",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "LBS",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "LBT",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_BLUE_WOOL",
+    "category": "BLOCKS",
+    "abbr": "LBW",
+    "color": "#2445b2"
+  },
+  {
+    "id": "LIGHT_GRAY_BUNDLE",
+    "category": "MISC",
+    "abbr": "LGB",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "LGB",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "LGC",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "LGC",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "LGC",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_DYE",
+    "category": "MISC",
+    "abbr": "LGD",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "LGG",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_HARNESS",
+    "category": "MISC",
+    "abbr": "LGH",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "LGS",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "LGS",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "LGT",
+    "color": "#808080"
+  },
+  {
+    "id": "LIGHT_GRAY_WOOL",
+    "category": "BLOCKS",
+    "abbr": "LGW",
+    "color": "#808080"
+  },
+  {
+    "id": "LILY_OF_THE_VALLEY",
+    "category": "DECORATIONS",
+    "abbr": "LOT",
+    "color": "#888888"
+  },
+  {
+    "id": "LILY_PAD",
+    "category": "DECORATIONS",
+    "abbr": "LP",
+    "color": "#888888"
+  },
+  {
+    "id": "LIME_BUNDLE",
+    "category": "MISC",
+    "abbr": "LB",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "LBO",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "LC",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "LC",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "LCP",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_DYE",
+    "category": "MISC",
+    "abbr": "LD",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "LGT",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_HARNESS",
+    "category": "MISC",
+    "abbr": "LH",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "LSB",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "LSG",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LIME_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "LT",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "LLAMA_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "LSE",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_BUNDLE",
+    "category": "MISC",
+    "abbr": "MB",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "MBO",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "MC",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "MC",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "MCP",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_DYE",
+    "category": "MISC",
+    "abbr": "MD",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "MGT",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_HARNESS",
+    "category": "MISC",
+    "abbr": "MH",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "MSB",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "MSG",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "MT",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGENTA_WOOL",
+    "category": "BLOCKS",
+    "abbr": "MW",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGMA",
+    "category": "MISC",
+    "abbr": "Mag",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGMA_CREAM",
+    "category": "MISC",
+    "abbr": "MC",
+    "color": "#888888"
+  },
+  {
+    "id": "MAGMA_CUBE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "MCS",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_BOAT",
+    "category": "MISC",
+    "abbr": "MB",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "MCB",
+    "color": "#a88752"
+  },
+  {
+    "id": "MANGROVE_DOOR",
+    "category": "MISC",
+    "abbr": "MD",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "MHS",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_LEAVES",
+    "category": "MISC",
+    "abbr": "ML",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_LOG",
+    "category": "BLOCKS",
+    "abbr": "ML",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_PROPAGULE",
+    "category": "MISC",
+    "abbr": "MP",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_PROPAGULE_HANGING",
+    "category": "MISC",
+    "abbr": "MPH",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "MS",
+    "color": "#888888"
+  },
+  {
+    "id": "MANGROVE_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "MT",
+    "color": "#888888"
+  },
+  {
+    "id": "MAP",
+    "category": "MISC",
+    "abbr": "Map",
+    "color": "#888888"
+  },
+  {
+    "id": "MEDIUM_AMETHYST_BUD",
+    "category": "MISC",
+    "abbr": "MAB",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "MELON_SEEDS",
+    "category": "FOOD",
+    "abbr": "MS",
+    "color": "#888888"
+  },
+  {
+    "id": "MELON_SLICE",
+    "category": "FOOD",
+    "abbr": "MS",
+    "color": "#888888"
+  },
+  {
+    "id": "MELON_STEM",
+    "category": "FOOD",
+    "abbr": "MS",
+    "color": "#888888"
+  },
+  {
+    "id": "MILK_BUCKET",
+    "category": "MISC",
+    "abbr": "MB",
+    "color": "#888888"
+  },
+  {
+    "id": "MINECART",
+    "category": "MISC",
+    "abbr": "Min",
+    "color": "#888888"
+  },
+  {
+    "id": "MINER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "MPS",
+    "color": "#888888"
+  },
+  {
+    "id": "MOJANG_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "MBP",
+    "color": "#888888"
+  },
+  {
+    "id": "MOOSHROOM_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "MSE",
+    "color": "#888888"
+  },
+  {
+    "id": "MOSSY_COBBLESTONE",
+    "category": "BLOCKS",
+    "abbr": "MC",
+    "color": "#808080"
+  },
+  {
+    "id": "MOSSY_STONE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "MSB",
+    "color": "#808080"
+  },
+  {
+    "id": "MOSS_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "MB",
+    "color": "#888888"
+  },
+  {
+    "id": "MOURNER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "MPS",
+    "color": "#888888"
+  },
+  {
+    "id": "MUD",
+    "category": "BLOCKS",
+    "abbr": "Mud",
+    "color": "#888888"
+  },
+  {
+    "id": "MUD_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "MB",
+    "color": "#888888"
+  },
+  {
+    "id": "MULE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "MSE",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSHROOM_BLOCK_INSIDE",
+    "category": "BLOCKS",
+    "abbr": "MBI",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSHROOM_STEM",
+    "category": "MISC",
+    "abbr": "MS",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSHROOM_STEW",
+    "category": "FOOD",
+    "abbr": "MS",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_5",
+    "category": "MISC",
+    "abbr": "MD5",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_BLOCKS",
+    "category": "BLOCKS",
+    "abbr": "MDB",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_CAT",
+    "category": "MISC",
+    "abbr": "MDC",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_CHIRP",
+    "category": "MISC",
+    "abbr": "MDC",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_CREATOR",
+    "category": "MISC",
+    "abbr": "MDC",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_CREATOR_MUSIC_BOX",
+    "category": "MISC",
+    "abbr": "MDC",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_FAR",
+    "category": "MISC",
+    "abbr": "MDF",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_LAVA_CHICKEN",
+    "category": "FOOD",
+    "abbr": "MDL",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_MALL",
+    "category": "MISC",
+    "abbr": "MDM",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_MELLOHI",
+    "category": "MISC",
+    "abbr": "MDM",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_OTHERSIDE",
+    "category": "MISC",
+    "abbr": "MDO",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_PIGSTEP",
+    "category": "MISC",
+    "abbr": "MDP",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_PRECIPICE",
+    "category": "BLOCKS",
+    "abbr": "MDP",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_RELIC",
+    "category": "MISC",
+    "abbr": "MDR",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_STAL",
+    "category": "MISC",
+    "abbr": "MDS",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_STRAD",
+    "category": "MISC",
+    "abbr": "MDS",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_TEARS",
+    "category": "MISC",
+    "abbr": "MDT",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_WAIT",
+    "category": "MISC",
+    "abbr": "MDW",
+    "color": "#888888"
+  },
+  {
+    "id": "MUSIC_DISC_WARD",
+    "category": "MISC",
+    "abbr": "MDW",
+    "color": "#888888"
+  },
+  {
+    "id": "MUTTON",
+    "category": "FOOD",
+    "abbr": "Mut",
+    "color": "#888888"
+  },
+  {
+    "id": "NAUTILUS_SHELL",
+    "category": "MISC",
+    "abbr": "NS",
+    "color": "#888888"
+  },
+  {
+    "id": "NAUTILUS_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "NSE",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHERITE_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "NB",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_HOE",
+    "category": "TOOLS",
+    "abbr": "NH",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_HORSE_ARMOR",
+    "category": "COMBAT",
+    "abbr": "NHA",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_NAUTILUS_ARMOR",
+    "category": "MISC",
+    "abbr": "NNA",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_SPEAR",
+    "category": "MISC",
+    "abbr": "NS",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_SPEAR_IN_HAND",
+    "category": "MISC",
+    "abbr": "NSI",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERITE_UPGRADE_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "NUS",
+    "color": "#4a4447"
+  },
+  {
+    "id": "NETHERRACK",
+    "category": "BLOCKS",
+    "abbr": "Net",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHER_BRICK",
+    "category": "BLOCKS",
+    "abbr": "NB",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHER_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "NB",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHER_GOLD_ORE",
+    "category": "BLOCKS",
+    "abbr": "NGO",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "NETHER_PORTAL",
+    "category": "MISC",
+    "abbr": "NP",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHER_QUARTZ_ORE",
+    "category": "BLOCKS",
+    "abbr": "NQO",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHER_SPROUTS",
+    "category": "MISC",
+    "abbr": "NS",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHER_WART",
+    "category": "MISC",
+    "abbr": "NW",
+    "color": "#888888"
+  },
+  {
+    "id": "NETHER_WART_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "NWB",
+    "color": "#888888"
+  },
+  {
+    "id": "NOTE_BLOCK",
+    "category": "REDSTONE",
+    "abbr": "NB",
+    "color": "#888888"
+  },
+  {
+    "id": "OAK_BOAT",
+    "category": "MISC",
+    "abbr": "OB",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "OCB",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_DOOR",
+    "category": "MISC",
+    "abbr": "OD",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "OHS",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_LEAVES",
+    "category": "MISC",
+    "abbr": "OL",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_LOG",
+    "category": "BLOCKS",
+    "abbr": "OL",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_SAPLING",
+    "category": "MISC",
+    "abbr": "OS",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "OS",
+    "color": "#a88752"
+  },
+  {
+    "id": "OAK_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "OT",
+    "color": "#a88752"
+  },
+  {
+    "id": "OBSERVER_BACK",
+    "category": "REDSTONE",
+    "abbr": "OB",
+    "color": "#888888"
+  },
+  {
+    "id": "OBSIDIAN",
+    "category": "BLOCKS",
+    "abbr": "Obs",
+    "color": "#888888"
+  },
+  {
+    "id": "OCELOT_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "OSE",
+    "color": "#888888"
+  },
+  {
+    "id": "OMINOUS_BOTTLE",
+    "category": "MISC",
+    "abbr": "OB",
+    "color": "#888888"
+  },
+  {
+    "id": "OMINOUS_TRIAL_KEY",
+    "category": "MISC",
+    "abbr": "OTK",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_BUNDLE",
+    "category": "MISC",
+    "abbr": "OB",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "OBO",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "OC",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "OC",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "OCP",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_DYE",
+    "category": "MISC",
+    "abbr": "OD",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "OGT",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_HARNESS",
+    "category": "MISC",
+    "abbr": "OH",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "OSB",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "OSG",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "OT",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_TULIP",
+    "category": "DECORATIONS",
+    "abbr": "OT",
+    "color": "#888888"
+  },
+  {
+    "id": "ORANGE_WOOL",
+    "category": "BLOCKS",
+    "abbr": "OW",
+    "color": "#888888"
+  },
+  {
+    "id": "OXEYE_DAISY",
+    "category": "MISC",
+    "abbr": "OD",
+    "color": "#888888"
+  },
+  {
+    "id": "OXIDIZED_CHISELED_COPPER",
+    "category": "MISC",
+    "abbr": "OCC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_COPPER",
+    "category": "MISC",
+    "abbr": "OC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_COPPER_BULB",
+    "category": "MISC",
+    "abbr": "OCB",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_COPPER_CHAIN",
+    "category": "MISC",
+    "abbr": "OCC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_COPPER_DOOR",
+    "category": "MISC",
+    "abbr": "OCD",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_COPPER_GRATE",
+    "category": "MISC",
+    "abbr": "OCG",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_COPPER_LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "OCL",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_COPPER_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "OCT",
+    "color": "#e0734d"
+  },
+  {
+    "id": "OXIDIZED_CUT_COPPER",
+    "category": "MISC",
+    "abbr": "OCC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "PACKED_ICE",
+    "category": "BLOCKS",
+    "abbr": "PI",
+    "color": "#888888"
+  },
+  {
+    "id": "PACKED_MUD",
+    "category": "BLOCKS",
+    "abbr": "PM",
+    "color": "#888888"
+  },
+  {
+    "id": "PAINTING",
+    "category": "MISC",
+    "abbr": "Pai",
+    "color": "#888888"
+  },
+  {
+    "id": "PALE_OAK_BOAT",
+    "category": "MISC",
+    "abbr": "POB",
+    "color": "#a88752"
+  },
+  {
+    "id": "PALE_OAK_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "POC",
+    "color": "#a88752"
+  },
+  {
+    "id": "PALE_OAK_DOOR",
+    "category": "MISC",
+    "abbr": "POD",
+    "color": "#a88752"
+  },
+  {
+    "id": "PALE_OAK_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "POH",
+    "color": "#a88752"
+  },
+  {
+    "id": "PALE_OAK_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "POS",
+    "color": "#a88752"
+  },
+  {
+    "id": "PANDA_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PAPER",
+    "category": "MISC",
+    "abbr": "Pap",
+    "color": "#888888"
+  },
+  {
+    "id": "PARCHED_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PARROT_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PHANTOM_MEMBRANE",
+    "category": "MISC",
+    "abbr": "PM",
+    "color": "#888888"
+  },
+  {
+    "id": "PHANTOM_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PIGLIN_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "PBP",
+    "color": "#888888"
+  },
+  {
+    "id": "PIGLIN_BRUTE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PBS",
+    "color": "#888888"
+  },
+  {
+    "id": "PIGLIN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PIG_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PILLAGER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_BUNDLE",
+    "category": "MISC",
+    "abbr": "PB",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "PBO",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "PC",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "PC",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "PCP",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_DYE",
+    "category": "MISC",
+    "abbr": "PD",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "PGT",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_HARNESS",
+    "category": "MISC",
+    "abbr": "PH",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_PETALS",
+    "category": "MISC",
+    "abbr": "PP",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_PETALS_STEM",
+    "category": "MISC",
+    "abbr": "PPS",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "PSB",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "PSG",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "PT",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_TULIP",
+    "category": "DECORATIONS",
+    "abbr": "PT",
+    "color": "#888888"
+  },
+  {
+    "id": "PINK_WOOL",
+    "category": "BLOCKS",
+    "abbr": "PW",
+    "color": "#888888"
+  },
+  {
+    "id": "PISTON_INNER",
+    "category": "REDSTONE",
+    "abbr": "PI",
+    "color": "#888888"
+  },
+  {
+    "id": "PISTON_TOP_STICKY",
+    "category": "REDSTONE",
+    "abbr": "PTS",
+    "color": "#888888"
+  },
+  {
+    "id": "PITCHER_PLANT",
+    "category": "MISC",
+    "abbr": "PP",
+    "color": "#888888"
+  },
+  {
+    "id": "PITCHER_POD",
+    "category": "MISC",
+    "abbr": "PP",
+    "color": "#888888"
+  },
+  {
+    "id": "PLENTY_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "PPS",
+    "color": "#888888"
+  },
+  {
+    "id": "POINTED_DRIPSTONE",
+    "category": "BLOCKS",
+    "abbr": "PD",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_DOWN_BASE",
+    "category": "BLOCKS",
+    "abbr": "PDD",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_DOWN_FRUSTUM",
+    "category": "BLOCKS",
+    "abbr": "PDD",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_DOWN_MIDDLE",
+    "category": "BLOCKS",
+    "abbr": "PDD",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_DOWN_TIP",
+    "category": "BLOCKS",
+    "abbr": "PDD",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_DOWN_TIP_MERGE",
+    "category": "BLOCKS",
+    "abbr": "PDD",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_UP_BASE",
+    "category": "BLOCKS",
+    "abbr": "PDU",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_UP_FRUSTUM",
+    "category": "BLOCKS",
+    "abbr": "PDU",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_UP_MIDDLE",
+    "category": "BLOCKS",
+    "abbr": "PDU",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_UP_TIP",
+    "category": "BLOCKS",
+    "abbr": "PDU",
+    "color": "#808080"
+  },
+  {
+    "id": "POINTED_DRIPSTONE_UP_TIP_MERGE",
+    "category": "BLOCKS",
+    "abbr": "PDU",
+    "color": "#808080"
+  },
+  {
+    "id": "POISONOUS_POTATO",
+    "category": "FOOD",
+    "abbr": "PP",
+    "color": "#888888"
+  },
+  {
+    "id": "POLAR_BEAR_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PBS",
+    "color": "#888888"
+  },
+  {
+    "id": "POLISHED_BLACKSTONE",
+    "category": "BLOCKS",
+    "abbr": "PB",
+    "color": "#808080"
+  },
+  {
+    "id": "POLISHED_BLACKSTONE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "PBB",
+    "color": "#808080"
+  },
+  {
+    "id": "POLISHED_DEEPSLATE",
+    "category": "BLOCKS",
+    "abbr": "PD",
+    "color": "#888888"
+  },
+  {
+    "id": "POLISHED_TUFF",
+    "category": "MISC",
+    "abbr": "PT",
+    "color": "#888888"
+  },
+  {
+    "id": "POPPED_CHORUS_FRUIT",
+    "category": "MISC",
+    "abbr": "PCF",
+    "color": "#888888"
+  },
+  {
+    "id": "POPPY",
+    "category": "MISC",
+    "abbr": "Pop",
+    "color": "#888888"
+  },
+  {
+    "id": "PORKCHOP",
+    "category": "FOOD",
+    "abbr": "Por",
+    "color": "#888888"
+  },
+  {
+    "id": "POTATO",
+    "category": "FOOD",
+    "abbr": "Pot",
+    "color": "#888888"
+  },
+  {
+    "id": "POTION_OVERLAY",
+    "category": "FOOD",
+    "abbr": "PO",
+    "color": "#888888"
+  },
+  {
+    "id": "POTTED_AZALEA_BUSH_PLANT",
+    "category": "MISC",
+    "abbr": "PAB",
+    "color": "#888888"
+  },
+  {
+    "id": "POTTED_FLOWERING_AZALEA_BUSH_PLANT",
+    "category": "DECORATIONS",
+    "abbr": "PFA",
+    "color": "#888888"
+  },
+  {
+    "id": "POWDER_SNOW",
+    "category": "BLOCKS",
+    "abbr": "PS",
+    "color": "#888888"
+  },
+  {
+    "id": "POWDER_SNOW_BUCKET",
+    "category": "BLOCKS",
+    "abbr": "PSB",
+    "color": "#888888"
+  },
+  {
+    "id": "POWERED_RAIL",
+    "category": "REDSTONE",
+    "abbr": "PR",
+    "color": "#ff2200"
+  },
+  {
+    "id": "PRISMARINE",
+    "category": "BLOCKS",
+    "abbr": "Pri",
+    "color": "#888888"
+  },
+  {
+    "id": "PRISMARINE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "PB",
+    "color": "#888888"
+  },
+  {
+    "id": "PRISMARINE_CRYSTALS",
+    "category": "BLOCKS",
+    "abbr": "PC",
+    "color": "#888888"
+  },
+  {
+    "id": "PRISMARINE_SHARD",
+    "category": "BLOCKS",
+    "abbr": "PS",
+    "color": "#888888"
+  },
+  {
+    "id": "PRIZE_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "PPS",
+    "color": "#888888"
+  },
+  {
+    "id": "PUFFERFISH",
+    "category": "MISC",
+    "abbr": "Puf",
+    "color": "#888888"
+  },
+  {
+    "id": "PUFFERFISH_BUCKET",
+    "category": "MISC",
+    "abbr": "PB",
+    "color": "#888888"
+  },
+  {
+    "id": "PUFFERFISH_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "PSE",
+    "color": "#888888"
+  },
+  {
+    "id": "PUMPKIN_PIE",
+    "category": "FOOD",
+    "abbr": "PP",
+    "color": "#888888"
+  },
+  {
+    "id": "PUMPKIN_SEEDS",
+    "category": "MISC",
+    "abbr": "PS",
+    "color": "#888888"
+  },
+  {
+    "id": "PUMPKIN_STEM",
+    "category": "MISC",
+    "abbr": "PS",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_BUNDLE",
+    "category": "MISC",
+    "abbr": "PB",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "PBO",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "PC",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "PC",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "PCP",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_DYE",
+    "category": "MISC",
+    "abbr": "PD",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "PGT",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_HARNESS",
+    "category": "MISC",
+    "abbr": "PH",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "PSB",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "PSG",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "PT",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPLE_WOOL",
+    "category": "BLOCKS",
+    "abbr": "PW",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPUR_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "PB",
+    "color": "#888888"
+  },
+  {
+    "id": "PURPUR_PILLAR",
+    "category": "BLOCKS",
+    "abbr": "PP",
+    "color": "#888888"
+  },
+  {
+    "id": "QUARTZ",
+    "category": "BLOCKS",
+    "abbr": "Qua",
+    "color": "#888888"
+  },
+  {
+    "id": "QUARTZ_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "QB",
+    "color": "#888888"
+  },
+  {
+    "id": "QUARTZ_PILLAR",
+    "category": "BLOCKS",
+    "abbr": "QP",
+    "color": "#888888"
+  },
+  {
+    "id": "RABBIT",
+    "category": "FOOD",
+    "abbr": "Rab",
+    "color": "#888888"
+  },
+  {
+    "id": "RABBIT_FOOT",
+    "category": "FOOD",
+    "abbr": "RF",
+    "color": "#888888"
+  },
+  {
+    "id": "RABBIT_HIDE",
+    "category": "FOOD",
+    "abbr": "RH",
+    "color": "#888888"
+  },
+  {
+    "id": "RABBIT_SPAWN_EGG",
+    "category": "FOOD",
+    "abbr": "RSE",
+    "color": "#888888"
+  },
+  {
+    "id": "RABBIT_STEW",
+    "category": "FOOD",
+    "abbr": "RS",
+    "color": "#888888"
+  },
+  {
+    "id": "RAIL",
+    "category": "REDSTONE",
+    "abbr": "Rai",
+    "color": "#888888"
+  },
+  {
+    "id": "RAIL_CORNER",
+    "category": "REDSTONE",
+    "abbr": "RC",
+    "color": "#888888"
+  },
+  {
+    "id": "RAISER_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "RAT",
+    "color": "#888888"
+  },
+  {
+    "id": "RAVAGER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "RSE",
+    "color": "#888888"
+  },
+  {
+    "id": "RAW_COPPER_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "RCB",
+    "color": "#e0734d"
+  },
+  {
+    "id": "RAW_GOLD_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "RGB",
+    "color": "#fcee4b"
+  },
+  {
+    "id": "RAW_IRON_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "RIB",
+    "color": "#d8d8d8"
+  },
+  {
+    "id": "RECOVERY_COMPASS",
+    "category": "TOOLS",
+    "abbr": "RC",
+    "color": "#888888"
+  },
+  {
+    "id": "REDSTONE_BLOCK",
+    "category": "REDSTONE",
+    "abbr": "RB",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REDSTONE_DUST_DOT",
+    "category": "REDSTONE",
+    "abbr": "RDD",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REDSTONE_DUST_LINE0",
+    "category": "REDSTONE",
+    "abbr": "RDL",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REDSTONE_DUST_LINE1",
+    "category": "REDSTONE",
+    "abbr": "RDL",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REDSTONE_DUST_OVERLAY",
+    "category": "REDSTONE",
+    "abbr": "RDO",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REDSTONE_LAMP",
+    "category": "REDSTONE",
+    "abbr": "RL",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REDSTONE_ORE",
+    "category": "REDSTONE",
+    "abbr": "RO",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REDSTONE_TORCH",
+    "category": "REDSTONE",
+    "abbr": "RT",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_BUNDLE",
+    "category": "MISC",
+    "abbr": "RB",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "RBO",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "RC",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "RC",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "RCP",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_DYE",
+    "category": "MISC",
+    "abbr": "RD",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "RGT",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_HARNESS",
+    "category": "MISC",
+    "abbr": "RH",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_MUSHROOM",
+    "category": "MISC",
+    "abbr": "RM",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_MUSHROOM_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "RMB",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_NETHER_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "RNB",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_SAND",
+    "category": "BLOCKS",
+    "abbr": "RS",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_SANDSTONE",
+    "category": "BLOCKS",
+    "abbr": "RS",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "RSB",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "RSG",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "RT",
+    "color": "#ff2200"
+  },
+  {
+    "id": "RED_TULIP",
+    "category": "DECORATIONS",
+    "abbr": "RT",
+    "color": "#ff2200"
+  },
+  {
+    "id": "REPEATER",
+    "category": "REDSTONE",
+    "abbr": "Rep",
+    "color": "#888888"
+  },
+  {
+    "id": "REPEATING_COMMAND_BLOCK_BACK",
+    "category": "REDSTONE",
+    "abbr": "RCB",
+    "color": "#888888"
+  },
+  {
+    "id": "REPEATING_COMMAND_BLOCK_CONDITIONAL",
+    "category": "REDSTONE",
+    "abbr": "RCB",
+    "color": "#888888"
+  },
+  {
+    "id": "RESIN_BRICK",
+    "category": "BLOCKS",
+    "abbr": "RB",
+    "color": "#888888"
+  },
+  {
+    "id": "RESIN_CLUMP",
+    "category": "MISC",
+    "abbr": "RC",
+    "color": "#888888"
+  },
+  {
+    "id": "RESPAWN_ANCHOR_SIDE0",
+    "category": "MISC",
+    "abbr": "RAS",
+    "color": "#888888"
+  },
+  {
+    "id": "RESPAWN_ANCHOR_SIDE1",
+    "category": "MISC",
+    "abbr": "RAS",
+    "color": "#888888"
+  },
+  {
+    "id": "RESPAWN_ANCHOR_SIDE2",
+    "category": "MISC",
+    "abbr": "RAS",
+    "color": "#888888"
+  },
+  {
+    "id": "RESPAWN_ANCHOR_SIDE3",
+    "category": "MISC",
+    "abbr": "RAS",
+    "color": "#888888"
+  },
+  {
+    "id": "RESPAWN_ANCHOR_SIDE4",
+    "category": "MISC",
+    "abbr": "RAS",
+    "color": "#888888"
+  },
+  {
+    "id": "RIB_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "RAT",
+    "color": "#888888"
+  },
+  {
+    "id": "ROOTED_DIRT",
+    "category": "BLOCKS",
+    "abbr": "RD",
+    "color": "#888888"
+  },
+  {
+    "id": "ROTTEN_FLESH",
+    "category": "MISC",
+    "abbr": "RF",
+    "color": "#888888"
+  },
+  {
+    "id": "SADDLE",
+    "category": "MISC",
+    "abbr": "Sad",
+    "color": "#888888"
+  },
+  {
+    "id": "SALMON",
+    "category": "FOOD",
+    "abbr": "Sal",
+    "color": "#888888"
+  },
+  {
+    "id": "SALMON_BUCKET",
+    "category": "FOOD",
+    "abbr": "SB",
+    "color": "#888888"
+  },
+  {
+    "id": "SALMON_SPAWN_EGG",
+    "category": "FOOD",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "SAND",
+    "category": "BLOCKS",
+    "abbr": "San",
+    "color": "#888888"
+  },
+  {
+    "id": "SANDSTONE",
+    "category": "BLOCKS",
+    "abbr": "San",
+    "color": "#808080"
+  },
+  {
+    "id": "SCRAPE_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "SPS",
+    "color": "#888888"
+  },
+  {
+    "id": "SCULK",
+    "category": "MISC",
+    "abbr": "Scu",
+    "color": "#888888"
+  },
+  {
+    "id": "SCULK_CATALYST_SIDE_BLOOM",
+    "category": "MISC",
+    "abbr": "SCS",
+    "color": "#888888"
+  },
+  {
+    "id": "SCULK_CATALYST_TOP_BLOOM",
+    "category": "MISC",
+    "abbr": "SCT",
+    "color": "#888888"
+  },
+  {
+    "id": "SCULK_SENSOR_TENDRIL_ACTIVE",
+    "category": "MISC",
+    "abbr": "SST",
+    "color": "#888888"
+  },
+  {
+    "id": "SCULK_SENSOR_TENDRIL_INACTIVE",
+    "category": "MISC",
+    "abbr": "SST",
+    "color": "#888888"
+  },
+  {
+    "id": "SCULK_VEIN",
+    "category": "MISC",
+    "abbr": "SV",
+    "color": "#888888"
+  },
+  {
+    "id": "SEAGRASS",
+    "category": "BLOCKS",
+    "abbr": "Sea",
+    "color": "#888888"
+  },
+  {
+    "id": "SEA_LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "SL",
+    "color": "#888888"
+  },
+  {
+    "id": "SEA_PICKLE",
+    "category": "MISC",
+    "abbr": "SP",
+    "color": "#888888"
+  },
+  {
+    "id": "SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "SAT",
+    "color": "#888888"
+  },
+  {
+    "id": "SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "SAT",
+    "color": "#888888"
+  },
+  {
+    "id": "SHEAF_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "SPS",
+    "color": "#888888"
+  },
+  {
+    "id": "SHEEP_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "SHELTER_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "SPS",
+    "color": "#888888"
+  },
+  {
+    "id": "SHORT_GRASS",
+    "category": "BLOCKS",
+    "abbr": "SG",
+    "color": "#888888"
+  },
+  {
+    "id": "SHROOMLIGHT",
+    "category": "MISC",
+    "abbr": "Shr",
+    "color": "#888888"
+  },
+  {
+    "id": "SHULKER_SHELL",
+    "category": "MISC",
+    "abbr": "SS",
+    "color": "#888888"
+  },
+  {
+    "id": "SHULKER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "SAT",
+    "color": "#888888"
+  },
+  {
+    "id": "SILVERFISH_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "SKELETON_HORSE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SHS",
+    "color": "#888888"
+  },
+  {
+    "id": "SKELETON_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "SKULL_BANNER_PATTERN",
+    "category": "DECORATIONS",
+    "abbr": "SBP",
+    "color": "#888888"
+  },
+  {
+    "id": "SKULL_POTTERY_SHERD",
+    "category": "DECORATIONS",
+    "abbr": "SPS",
+    "color": "#888888"
+  },
+  {
+    "id": "SLIME_BALL",
+    "category": "MISC",
+    "abbr": "SB",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "SLIME_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "SB",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "SLIME_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#5e7c16"
+  },
+  {
+    "id": "SMALL_AMETHYST_BUD",
+    "category": "MISC",
+    "abbr": "SAB",
+    "color": "#9a5cc6"
+  },
+  {
+    "id": "SMOOTH_BASALT",
+    "category": "BLOCKS",
+    "abbr": "SB",
+    "color": "#888888"
+  },
+  {
+    "id": "SMOOTH_STONE",
+    "category": "BLOCKS",
+    "abbr": "SS",
+    "color": "#808080"
+  },
+  {
+    "id": "SNIFFER_EGG",
+    "category": "MISC",
+    "abbr": "SE",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_NOT_CRACKED_EAST",
+    "category": "MISC",
+    "abbr": "SEN",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_NOT_CRACKED_NORTH",
+    "category": "MISC",
+    "abbr": "SEN",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_NOT_CRACKED_SOUTH",
+    "category": "MISC",
+    "abbr": "SEN",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_NOT_CRACKED_WEST",
+    "category": "MISC",
+    "abbr": "SEN",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_SLIGHTLY_CRACKED_EAST",
+    "category": "MISC",
+    "abbr": "SES",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_SLIGHTLY_CRACKED_NORTH",
+    "category": "MISC",
+    "abbr": "SES",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_SLIGHTLY_CRACKED_SOUTH",
+    "category": "MISC",
+    "abbr": "SES",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_SLIGHTLY_CRACKED_WEST",
+    "category": "MISC",
+    "abbr": "SES",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_VERY_CRACKED_EAST",
+    "category": "MISC",
+    "abbr": "SEV",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_VERY_CRACKED_NORTH",
+    "category": "MISC",
+    "abbr": "SEV",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_VERY_CRACKED_SOUTH",
+    "category": "MISC",
+    "abbr": "SEV",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_EGG_VERY_CRACKED_WEST",
+    "category": "MISC",
+    "abbr": "SEV",
+    "color": "#888888"
+  },
+  {
+    "id": "SNIFFER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "SNORT_POTTERY_SHERD",
+    "category": "MISC",
+    "abbr": "SPS",
+    "color": "#888888"
+  },
+  {
+    "id": "SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "SAT",
+    "color": "#888888"
+  },
+  {
+    "id": "SNOW",
+    "category": "BLOCKS",
+    "abbr": "Sno",
+    "color": "#888888"
+  },
+  {
+    "id": "SNOWBALL",
+    "category": "BLOCKS",
+    "abbr": "Sno",
+    "color": "#888888"
+  },
+  {
+    "id": "SNOW_GOLEM_SPAWN_EGG",
+    "category": "BLOCKS",
+    "abbr": "SGS",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_CAMPFIRE",
+    "category": "DECORATIONS",
+    "abbr": "SC",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_CAMPFIRE_FIRE",
+    "category": "DECORATIONS",
+    "abbr": "SCF",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_FIRE_0",
+    "category": "MISC",
+    "abbr": "SF0",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_FIRE_1",
+    "category": "MISC",
+    "abbr": "SF1",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "SL",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_SAND",
+    "category": "BLOCKS",
+    "abbr": "SS",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_SOIL",
+    "category": "MISC",
+    "abbr": "SS",
+    "color": "#888888"
+  },
+  {
+    "id": "SOUL_TORCH",
+    "category": "DECORATIONS",
+    "abbr": "ST",
+    "color": "#888888"
+  },
+  {
+    "id": "SPAWNER",
+    "category": "MISC",
+    "abbr": "Spa",
+    "color": "#888888"
+  },
+  {
+    "id": "SPIDER_EYE",
+    "category": "MISC",
+    "abbr": "SE",
+    "color": "#888888"
+  },
+  {
+    "id": "SPIDER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "SAT",
+    "color": "#888888"
+  },
+  {
+    "id": "SPONGE",
+    "category": "MISC",
+    "abbr": "Spo",
+    "color": "#888888"
+  },
+  {
+    "id": "SPORE_BLOSSOM",
+    "category": "MISC",
+    "abbr": "SB",
+    "color": "#888888"
+  },
+  {
+    "id": "SPORE_BLOSSOM_BASE",
+    "category": "MISC",
+    "abbr": "SBB",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_BOAT",
+    "category": "MISC",
+    "abbr": "SB",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_CHEST_BOAT",
+    "category": "DECORATIONS",
+    "abbr": "SCB",
+    "color": "#a88752"
+  },
+  {
+    "id": "SPRUCE_DOOR",
+    "category": "MISC",
+    "abbr": "SD",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "SHS",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_LEAVES",
+    "category": "MISC",
+    "abbr": "SL",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_LOG",
+    "category": "BLOCKS",
+    "abbr": "SL",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_SAPLING",
+    "category": "MISC",
+    "abbr": "SS",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "SS",
+    "color": "#888888"
+  },
+  {
+    "id": "SPRUCE_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "ST",
+    "color": "#888888"
+  },
+  {
+    "id": "SPYGLASS_MODEL",
+    "category": "TOOLS",
+    "abbr": "SM",
+    "color": "#888888"
+  },
+  {
+    "id": "SQUID_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "STICK",
+    "category": "MISC",
+    "abbr": "Sti",
+    "color": "#888888"
+  },
+  {
+    "id": "STONECUTTER_SAW",
+    "category": "BLOCKS",
+    "abbr": "SS",
+    "color": "#808080"
+  },
+  {
+    "id": "STONE_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "SB",
+    "color": "#808080"
+  },
+  {
+    "id": "STONE_HOE",
+    "category": "TOOLS",
+    "abbr": "SH",
+    "color": "#808080"
+  },
+  {
+    "id": "STONE_SHOVEL",
+    "category": "TOOLS",
+    "abbr": "SS",
+    "color": "#808080"
+  },
+  {
+    "id": "STONE_SPEAR",
+    "category": "BLOCKS",
+    "abbr": "SS",
+    "color": "#808080"
+  },
+  {
+    "id": "STONE_SPEAR_IN_HAND",
+    "category": "BLOCKS",
+    "abbr": "SSI",
+    "color": "#808080"
+  },
+  {
+    "id": "STRAY_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIDER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "SSE",
+    "color": "#888888"
+  },
+  {
+    "id": "STRING",
+    "category": "MISC",
+    "abbr": "Str",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_ACACIA_LOG",
+    "category": "BLOCKS",
+    "abbr": "SAL",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_BAMBOO_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "SBB",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_BIRCH_LOG",
+    "category": "BLOCKS",
+    "abbr": "SBL",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_CHERRY_LOG",
+    "category": "BLOCKS",
+    "abbr": "SCL",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_CRIMSON_STEM",
+    "category": "MISC",
+    "abbr": "SCS",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_DARK_OAK_LOG",
+    "category": "BLOCKS",
+    "abbr": "SDO",
+    "color": "#a88752"
+  },
+  {
+    "id": "STRIPPED_JUNGLE_LOG",
+    "category": "BLOCKS",
+    "abbr": "SJL",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_MANGROVE_LOG",
+    "category": "BLOCKS",
+    "abbr": "SML",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_OAK_LOG",
+    "category": "BLOCKS",
+    "abbr": "SOL",
+    "color": "#a88752"
+  },
+  {
+    "id": "STRIPPED_SPRUCE_LOG",
+    "category": "BLOCKS",
+    "abbr": "SSL",
+    "color": "#888888"
+  },
+  {
+    "id": "STRIPPED_WARPED_STEM",
+    "category": "MISC",
+    "abbr": "SWS",
+    "color": "#888888"
+  },
+  {
+    "id": "STRUCTURE_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "SB",
+    "color": "#888888"
+  },
+  {
+    "id": "STRUCTURE_BLOCK_CORNER",
+    "category": "BLOCKS",
+    "abbr": "SBC",
+    "color": "#888888"
+  },
+  {
+    "id": "STRUCTURE_BLOCK_DATA",
+    "category": "BLOCKS",
+    "abbr": "SBD",
+    "color": "#888888"
+  },
+  {
+    "id": "STRUCTURE_BLOCK_LOAD",
+    "category": "BLOCKS",
+    "abbr": "SBL",
+    "color": "#888888"
+  },
+  {
+    "id": "STRUCTURE_BLOCK_SAVE",
+    "category": "BLOCKS",
+    "abbr": "SBS",
+    "color": "#888888"
+  },
+  {
+    "id": "SUGAR",
+    "category": "MISC",
+    "abbr": "Sug",
+    "color": "#888888"
+  },
+  {
+    "id": "SUGAR_CANE",
+    "category": "MISC",
+    "abbr": "SC",
+    "color": "#888888"
+  },
+  {
+    "id": "SUNFLOWER_BACK",
+    "category": "DECORATIONS",
+    "abbr": "SB",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_GRAVEL_0",
+    "category": "BLOCKS",
+    "abbr": "SG0",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_GRAVEL_1",
+    "category": "BLOCKS",
+    "abbr": "SG1",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_GRAVEL_2",
+    "category": "BLOCKS",
+    "abbr": "SG2",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_GRAVEL_3",
+    "category": "BLOCKS",
+    "abbr": "SG3",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_SAND_0",
+    "category": "BLOCKS",
+    "abbr": "SS0",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_SAND_1",
+    "category": "BLOCKS",
+    "abbr": "SS1",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_SAND_2",
+    "category": "BLOCKS",
+    "abbr": "SS2",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_SAND_3",
+    "category": "BLOCKS",
+    "abbr": "SS3",
+    "color": "#888888"
+  },
+  {
+    "id": "SUSPICIOUS_STEW",
+    "category": "FOOD",
+    "abbr": "SS",
+    "color": "#888888"
+  },
+  {
+    "id": "SWEET_BERRIES",
+    "category": "FOOD",
+    "abbr": "SB",
+    "color": "#888888"
+  },
+  {
+    "id": "TADPOLE_BUCKET",
+    "category": "MISC",
+    "abbr": "TB",
+    "color": "#888888"
+  },
+  {
+    "id": "TADPOLE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "TSE",
+    "color": "#888888"
+  },
+  {
+    "id": "TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "Ter",
+    "color": "#888888"
+  },
+  {
+    "id": "TIDE_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "TAT",
+    "color": "#888888"
+  },
+  {
+    "id": "TINTED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "TG",
+    "color": "#888888"
+  },
+  {
+    "id": "TIPPED_ARROW_BASE",
+    "category": "COMBAT",
+    "abbr": "TAB",
+    "color": "#888888"
+  },
+  {
+    "id": "TIPPED_ARROW_HEAD",
+    "category": "COMBAT",
+    "abbr": "TAH",
+    "color": "#888888"
+  },
+  {
+    "id": "TNT_MINECART",
+    "category": "REDSTONE",
+    "abbr": "TM",
+    "color": "#888888"
+  },
+  {
+    "id": "TORCH",
+    "category": "DECORATIONS",
+    "abbr": "Tor",
+    "color": "#888888"
+  },
+  {
+    "id": "TORCHFLOWER",
+    "category": "DECORATIONS",
+    "abbr": "Tor",
+    "color": "#888888"
+  },
+  {
+    "id": "TORCHFLOWER_SEEDS",
+    "category": "DECORATIONS",
+    "abbr": "TS",
+    "color": "#888888"
+  },
+  {
+    "id": "TRADER_LLAMA_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "TLS",
+    "color": "#888888"
+  },
+  {
+    "id": "TRAPPED_CHEST",
+    "category": "DECORATIONS",
+    "abbr": "TC",
+    "color": "#a88752"
+  },
+  {
+    "id": "TRIAL_KEY",
+    "category": "MISC",
+    "abbr": "TK",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_SIDE_ACTIVE",
+    "category": "MISC",
+    "abbr": "TSS",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_SIDE_ACTIVE_OMINOUS",
+    "category": "MISC",
+    "abbr": "TSS",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_SIDE_INACTIVE",
+    "category": "MISC",
+    "abbr": "TSS",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_SIDE_INACTIVE_OMINOUS",
+    "category": "MISC",
+    "abbr": "TSS",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_TOP_ACTIVE",
+    "category": "MISC",
+    "abbr": "TST",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_TOP_ACTIVE_OMINOUS",
+    "category": "MISC",
+    "abbr": "TST",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_TOP_EJECTING_REWARD",
+    "category": "MISC",
+    "abbr": "TST",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_TOP_EJECTING_REWARD_OMINOUS",
+    "category": "MISC",
+    "abbr": "TST",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_TOP_INACTIVE",
+    "category": "MISC",
+    "abbr": "TST",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIAL_SPAWNER_TOP_INACTIVE_OMINOUS",
+    "category": "MISC",
+    "abbr": "TST",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIPWIRE",
+    "category": "REDSTONE",
+    "abbr": "Tri",
+    "color": "#888888"
+  },
+  {
+    "id": "TRIPWIRE_HOOK",
+    "category": "REDSTONE",
+    "abbr": "TH",
+    "color": "#888888"
+  },
+  {
+    "id": "TROPICAL_FISH",
+    "category": "MISC",
+    "abbr": "TF",
+    "color": "#888888"
+  },
+  {
+    "id": "TROPICAL_FISH_BUCKET",
+    "category": "MISC",
+    "abbr": "TFB",
+    "color": "#888888"
+  },
+  {
+    "id": "TROPICAL_FISH_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "TFS",
+    "color": "#888888"
+  },
+  {
+    "id": "TUBE_CORAL",
+    "category": "MISC",
+    "abbr": "TC",
+    "color": "#888888"
+  },
+  {
+    "id": "TUBE_CORAL_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "TCB",
+    "color": "#888888"
+  },
+  {
+    "id": "TUBE_CORAL_FAN",
+    "category": "MISC",
+    "abbr": "TCF",
+    "color": "#888888"
+  },
+  {
+    "id": "TUFF",
+    "category": "MISC",
+    "abbr": "Tuf",
+    "color": "#888888"
+  },
+  {
+    "id": "TUFF_BRICKS",
+    "category": "BLOCKS",
+    "abbr": "TB",
+    "color": "#888888"
+  },
+  {
+    "id": "TURTLE_EGG",
+    "category": "MISC",
+    "abbr": "TE",
+    "color": "#888888"
+  },
+  {
+    "id": "TURTLE_EGG_SLIGHTLY_CRACKED",
+    "category": "MISC",
+    "abbr": "TES",
+    "color": "#888888"
+  },
+  {
+    "id": "TURTLE_EGG_VERY_CRACKED",
+    "category": "MISC",
+    "abbr": "TEV",
+    "color": "#888888"
+  },
+  {
+    "id": "TURTLE_HELMET",
+    "category": "COMBAT",
+    "abbr": "TH",
+    "color": "#888888"
+  },
+  {
+    "id": "TURTLE_SCUTE",
+    "category": "MISC",
+    "abbr": "TS",
+    "color": "#888888"
+  },
+  {
+    "id": "TURTLE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "TSE",
+    "color": "#888888"
+  },
+  {
+    "id": "TWISTING_VINES",
+    "category": "MISC",
+    "abbr": "TV",
+    "color": "#888888"
+  },
+  {
+    "id": "TWISTING_VINES_PLANT",
+    "category": "MISC",
+    "abbr": "TVP",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_BOTTOM_OMINOUS",
+    "category": "MISC",
+    "abbr": "VBO",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_FRONT_EJECTING",
+    "category": "MISC",
+    "abbr": "VFE",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_FRONT_EJECTING_OMINOUS",
+    "category": "MISC",
+    "abbr": "VFE",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_FRONT_OFF_OMINOUS",
+    "category": "MISC",
+    "abbr": "VFO",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_FRONT_ON_OMINOUS",
+    "category": "MISC",
+    "abbr": "VFO",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_SIDE_OFF_OMINOUS",
+    "category": "MISC",
+    "abbr": "VSO",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_SIDE_ON_OMINOUS",
+    "category": "MISC",
+    "abbr": "VSO",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_TOP_EJECTING",
+    "category": "MISC",
+    "abbr": "VTE",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_TOP_EJECTING_OMINOUS",
+    "category": "MISC",
+    "abbr": "VTE",
+    "color": "#888888"
+  },
+  {
+    "id": "VAULT_TOP_OMINOUS",
+    "category": "MISC",
+    "abbr": "VTO",
+    "color": "#888888"
+  },
+  {
+    "id": "VEX_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "VAT",
+    "color": "#888888"
+  },
+  {
+    "id": "VEX_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "VSE",
+    "color": "#888888"
+  },
+  {
+    "id": "VILLAGER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "VSE",
+    "color": "#888888"
+  },
+  {
+    "id": "VINDICATOR_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "VSE",
+    "color": "#888888"
+  },
+  {
+    "id": "VINE",
+    "category": "MISC",
+    "abbr": "Vin",
+    "color": "#888888"
+  },
+  {
+    "id": "WANDERING_TRADER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "WTS",
+    "color": "#888888"
+  },
+  {
+    "id": "WARDEN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "WSE",
+    "color": "#888888"
+  },
+  {
+    "id": "WARD_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "WAT",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_DOOR",
+    "category": "MISC",
+    "abbr": "WD",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_FUNGUS",
+    "category": "MISC",
+    "abbr": "WF",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_FUNGUS_ON_A_STICK",
+    "category": "MISC",
+    "abbr": "WFO",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_HANGING_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "WHS",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_NYLIUM",
+    "category": "MISC",
+    "abbr": "WN",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_ROOTS",
+    "category": "MISC",
+    "abbr": "WR",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_ROOTS_POT",
+    "category": "MISC",
+    "abbr": "WRP",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_SIGN",
+    "category": "DECORATIONS",
+    "abbr": "WS",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_STEM",
+    "category": "MISC",
+    "abbr": "WS",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "WT",
+    "color": "#888888"
+  },
+  {
+    "id": "WARPED_WART_BLOCK",
+    "category": "BLOCKS",
+    "abbr": "WWB",
+    "color": "#888888"
+  },
+  {
+    "id": "WATER_BUCKET",
+    "category": "MISC",
+    "abbr": "WB",
+    "color": "#888888"
+  },
+  {
+    "id": "WATER_FLOW",
+    "category": "MISC",
+    "abbr": "WF",
+    "color": "#888888"
+  },
+  {
+    "id": "WATER_OVERLAY",
+    "category": "MISC",
+    "abbr": "WO",
+    "color": "#888888"
+  },
+  {
+    "id": "WATER_STILL",
+    "category": "MISC",
+    "abbr": "WS",
+    "color": "#888888"
+  },
+  {
+    "id": "WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "WAT",
+    "color": "#888888"
+  },
+  {
+    "id": "WEATHERED_CHISELED_COPPER",
+    "category": "MISC",
+    "abbr": "WCC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_COPPER",
+    "category": "MISC",
+    "abbr": "WC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_COPPER_BULB",
+    "category": "MISC",
+    "abbr": "WCB",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_COPPER_CHAIN",
+    "category": "MISC",
+    "abbr": "WCC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_COPPER_DOOR",
+    "category": "MISC",
+    "abbr": "WCD",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_COPPER_GRATE",
+    "category": "MISC",
+    "abbr": "WCG",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_COPPER_LANTERN",
+    "category": "DECORATIONS",
+    "abbr": "WCL",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_COPPER_TRAPDOOR",
+    "category": "MISC",
+    "abbr": "WCT",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEATHERED_CUT_COPPER",
+    "category": "MISC",
+    "abbr": "WCC",
+    "color": "#e0734d"
+  },
+  {
+    "id": "WEEPING_VINES",
+    "category": "MISC",
+    "abbr": "WV",
+    "color": "#888888"
+  },
+  {
+    "id": "WEEPING_VINES_PLANT",
+    "category": "MISC",
+    "abbr": "WVP",
+    "color": "#888888"
+  },
+  {
+    "id": "WET_SPONGE",
+    "category": "MISC",
+    "abbr": "WS",
+    "color": "#888888"
+  },
+  {
+    "id": "WHEAT",
+    "category": "MISC",
+    "abbr": "Whe",
+    "color": "#888888"
+  },
+  {
+    "id": "WHEAT_SEEDS",
+    "category": "MISC",
+    "abbr": "WS",
+    "color": "#888888"
+  },
+  {
+    "id": "WHITE_BUNDLE",
+    "category": "MISC",
+    "abbr": "WB",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "WBO",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "WC",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "WC",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "WCP",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_DYE",
+    "category": "MISC",
+    "abbr": "WD",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "WGT",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_HARNESS",
+    "category": "MISC",
+    "abbr": "WH",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "WSB",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "WSG",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "WT",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WHITE_TULIP",
+    "category": "DECORATIONS",
+    "abbr": "WT",
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "WILDFLOWERS",
+    "category": "DECORATIONS",
+    "abbr": "Wil",
+    "color": "#888888"
+  },
+  {
+    "id": "WILD_ARMOR_TRIM_SMITHING_TEMPLATE",
+    "category": "MISC",
+    "abbr": "WAT",
+    "color": "#888888"
+  },
+  {
+    "id": "WIND_CHARGE",
+    "category": "MISC",
+    "abbr": "WC",
+    "color": "#888888"
+  },
+  {
+    "id": "WITCH_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "WSE",
+    "color": "#888888"
+  },
+  {
+    "id": "WITHER_ROSE",
+    "category": "DECORATIONS",
+    "abbr": "WR",
+    "color": "#888888"
+  },
+  {
+    "id": "WITHER_SKELETON_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "WSS",
+    "color": "#888888"
+  },
+  {
+    "id": "WITHER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "WSE",
+    "color": "#888888"
+  },
+  {
+    "id": "WOLF_ARMOR",
+    "category": "MISC",
+    "abbr": "WA",
+    "color": "#888888"
+  },
+  {
+    "id": "WOLF_ARMOR_OVERLAY",
+    "category": "MISC",
+    "abbr": "WAO",
+    "color": "#888888"
+  },
+  {
+    "id": "WOLF_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "WSE",
+    "color": "#888888"
+  },
+  {
+    "id": "WOODEN_HOE",
+    "category": "TOOLS",
+    "abbr": "WH",
+    "color": "#a88752"
+  },
+  {
+    "id": "WOODEN_SPEAR",
+    "category": "MISC",
+    "abbr": "WS",
+    "color": "#a88752"
+  },
+  {
+    "id": "WOODEN_SPEAR_IN_HAND",
+    "category": "MISC",
+    "abbr": "WSI",
+    "color": "#a88752"
+  },
+  {
+    "id": "WRITTEN_BOOK",
+    "category": "MISC",
+    "abbr": "WB",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_BUNDLE",
+    "category": "MISC",
+    "abbr": "YB",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_BUNDLE_OPEN_BACK",
+    "category": "MISC",
+    "abbr": "YBO",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_CANDLE",
+    "category": "DECORATIONS",
+    "abbr": "YC",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_CONCRETE",
+    "category": "BLOCKS",
+    "abbr": "YC",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_CONCRETE_POWDER",
+    "category": "BLOCKS",
+    "abbr": "YCP",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_DYE",
+    "category": "MISC",
+    "abbr": "YD",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_GLAZED_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "YGT",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_HARNESS",
+    "category": "MISC",
+    "abbr": "YH",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_SHULKER_BOX",
+    "category": "DECORATIONS",
+    "abbr": "YSB",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_STAINED_GLASS",
+    "category": "BLOCKS",
+    "abbr": "YSG",
+    "color": "#888888"
+  },
+  {
+    "id": "YELLOW_TERRACOTTA",
+    "category": "BLOCKS",
+    "abbr": "YT",
+    "color": "#888888"
+  },
+  {
+    "id": "ZOGLIN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ZSE",
+    "color": "#888888"
+  },
+  {
+    "id": "ZOMBIE_HORSE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ZHS",
+    "color": "#888888"
+  },
+  {
+    "id": "ZOMBIE_NAUTILUS_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ZNS",
+    "color": "#888888"
+  },
+  {
+    "id": "ZOMBIE_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ZSE",
+    "color": "#888888"
+  },
+  {
+    "id": "ZOMBIE_VILLAGER_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ZVS",
+    "color": "#888888"
+  },
+  {
+    "id": "ZOMBIFIED_PIGLIN_SPAWN_EGG",
+    "category": "MISC",
+    "abbr": "ZPS",
+    "color": "#888888"
+  }
 ]

@@ -30,7 +30,9 @@ class FxmlLoadTest {
                 "/fxml/item_inspector.fxml",
                 "/fxml/preview.fxml",
                 "/fxml/problems.fxml",
-                "/fxml/main.fxml"
+                "/fxml/main.fxml",
+                "/fxml/material_picker.fxml",
+                "/fxml/head_dialog.fxml"
         };
 
         for (String file : fxmlFiles) {
