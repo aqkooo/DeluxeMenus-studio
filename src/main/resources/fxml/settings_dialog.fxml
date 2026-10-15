@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ejyqyl.dmstudio.ui.dialog.SettingsDialog"
+      prefWidth="560" prefHeight="440" spacing="12">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <fx:define>
+        <ToggleGroup fx:id="themeGroup"/>
+        <ToggleGroup fx:id="langGroup"/>
+    </fx:define>
+
+    <Label text="%settings.title" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <Label text="%settings.subtitle" styleClass="field-label"/>
+
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <!-- Appearance Tab -->
+        <Tab text="%settings.tab.appearance">
+            <VBox spacing="14">
+                <padding>
+                    <Insets top="14" right="12" bottom="12" left="12"/>
+                </padding>
+
+                <Label text="%settings.theme.header" styleClass="section-header"/>
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                    </columnConstraints>
+
+                    <!-- Theme cards / buttons -->
+                    <RadioButton fx:id="rbThemeLight" text="%theme.light_gradient" toggleGroup="$themeGroup"
+                                 GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <RadioButton fx:id="rbThemeDark" text="%theme.dark_obsidian" toggleGroup="$themeGroup"
+                                 GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <RadioButton fx:id="rbThemeMidnight" text="%theme.midnight_oled" toggleGroup="$themeGroup"
+                                 GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <RadioButton fx:id="rbThemeMinecraft" text="%theme.minecraft_classic" toggleGroup="$themeGroup"
+                                 GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                </GridPane>
+
+                <Separator/>
+
+                <Label text="%settings.language.header" styleClass="section-header"/>
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <RadioButton fx:id="rbLangRu" text="%menu.language.ru" toggleGroup="$langGroup"/>
+                    <RadioButton fx:id="rbLangEn" text="%menu.language.en" toggleGroup="$langGroup"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- Editor Tab -->
+        <Tab text="%settings.tab.editor">
+            <VBox spacing="14">
+                <padding>
+                    <Insets top="14" right="12" bottom="12" left="12"/>
+                </padding>
+
+                <Label text="%settings.editor.autosave_header" styleClass="section-header"/>
+                <CheckBox fx:id="cbAutoSave" text="%settings.editor.autosave_enable"/>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="%settings.editor.autosave_interval" styleClass="field-label"/>
+                    <Spinner fx:id="spAutoSaveInterval" prefWidth="90" editable="true"/>
+                    <Label text="%settings.editor.minutes" styleClass="field-label"/>
+                </HBox>
+
+                <Separator/>
+
+                <Label text="%settings.editor.syntax_header" styleClass="section-header"/>
+                <CheckBox fx:id="cbHighlightSyntax" text="%settings.editor.highlight_syntax"/>
+            </VBox>
+        </Tab>
+
+        <!-- System Tab -->
+        <Tab text="%settings.tab.system">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="14" right="12" bottom="12" left="12"/>
+                </padding>
+
+                <GridPane hgap="12" vgap="8">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="130" prefWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <Label text="%settings.system.os" styleClass="field-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblOs" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="%settings.system.java" styleClass="field-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblJava" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="%settings.system.javafx" styleClass="field-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblJavafx" style="-fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="%settings.system.memory" styleClass="field-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblMemory" style="-fx-font-weight: bold;" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="%settings.system.config_path" styleClass="field-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtConfigPath" editable="false" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                </GridPane>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+    <!-- Bottom Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnApply" text="%dialog.button.apply" defaultButton="true" styleClass="button-primary"/>
+        <Button fx:id="btnClose" text="%dialog.button.close" cancelButton="true"/>
+    </HBox>
+</VBox>

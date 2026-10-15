@@ -188,9 +188,7 @@ public class MaterialPickerDialog {
             if (owner != null) stage.initOwner(owner);
 
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(
-                    MaterialPickerDialog.class.getResource("/css/theme-dark.css").toExternalForm()
-            );
+            com.ejyqyl.dmstudio.service.theme.ThemeService.getInstance().applyTheme(scene);
 
             MaterialPickerDialog controller = loader.getController();
             controller.stage = stage;

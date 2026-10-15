@@ -169,32 +169,32 @@ public class SimulatorDialog {
         String clickType = isLeftClick ? "Левый клик" : "Правый клик";
 
         if (result.success()) {
-            logEvent("✔ [" + clickType + "] Слот #" + slotIndex + " ('" + itemKey + "') - Условия выполнены.");
+            logEvent("[OK] [" + clickType + "] Слот #" + slotIndex + " ('" + itemKey + "') - Условия выполнены.");
         } else {
-            logEvent("✖ [" + clickType + "] Слот #" + slotIndex + " ('" + itemKey + "') - Отказано в доступе (Deny).");
+            logEvent("[DENY] [" + clickType + "] Слот #" + slotIndex + " ('" + itemKey + "') - Отказано в доступе (Deny).");
         }
 
         for (String msg : result.messages()) {
-            logEvent("  💬 [Чат] " + ColorCodeParser.stripColor(msg));
+            logEvent("  [Чат] " + ColorCodeParser.stripColor(msg));
         }
         for (String cmd : result.executedCommands()) {
-            logEvent("  ⚙ [Команда] " + cmd);
+            logEvent("  [Команда] " + cmd);
         }
 
         if (result.openGuiMenu() != null) {
             String target = result.openGuiMenu();
-            logEvent("  🚪 [Переход] [openguimenu] " + target);
+            logEvent("  [Переход] [openguimenu] " + target);
             Optional<MenuConfig> next = WorkspaceManager.getInstance().loadMenu(target);
             if (next.isPresent()) {
                 setConfig(next.get());
-                logEvent("  ✨ Открыто меню: " + target);
+                logEvent("  [Инфо] Открыто меню: " + target);
             } else {
-                logEvent("  ⚠ Меню '" + target + "' не найдено в текущей рабочей области.");
+                logEvent("  [Предупреждение] Меню '" + target + "' не найдено в текущей рабочей области.");
             }
         }
 
         if (result.shouldClose()) {
-            logEvent("  🔒 Меню закрыто командой [close].");
+            logEvent("  [Инфо] Меню закрыто командой [close].");
         }
 
         if (result.shouldRefresh()) {
@@ -223,9 +223,7 @@ public class SimulatorDialog {
             stage.initOwner(owner);
 
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(
-                    SimulatorDialog.class.getResource("/css/theme-dark.css").toExternalForm()
-            );
+            com.ejyqyl.dmstudio.service.theme.ThemeService.getInstance().applyTheme(scene);
 
             SimulatorDialog controller = loader.getController();
             controller.stage = stage;

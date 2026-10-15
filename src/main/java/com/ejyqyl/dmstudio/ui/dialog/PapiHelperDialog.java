@@ -108,9 +108,7 @@ public class PapiHelperDialog {
             stage.initOwner(owner);
 
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(
-                    PapiHelperDialog.class.getResource("/css/theme-dark.css").toExternalForm()
-            );
+            com.ejyqyl.dmstudio.service.theme.ThemeService.getInstance().applyTheme(scene);
 
             PapiHelperDialog controller = loader.getController();
             controller.stage = stage;

@@ -39,6 +39,11 @@ public class App extends Application {
 
     private void loadScene(Stage stage) {
         try {
+            String savedLang = com.ejyqyl.dmstudio.service.settings.SettingsService.getInstance().getSettings().getLanguage();
+            if ("en".equalsIgnoreCase(savedLang)) {
+                I18nService.getInstance().setLocale(java.util.Locale.ENGLISH);
+            }
+
             ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages", I18nService.getInstance().getCurrentLocale());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"), bundle);
             Parent root = loader.load();
@@ -48,7 +53,7 @@ public class App extends Application {
             controller.init(viewModel, stage);
 
             Scene scene = new Scene(root, 1366, 768);
-            scene.getStylesheets().add(getClass().getResource("/css/theme-dark.css").toExternalForm());
+            com.ejyqyl.dmstudio.service.theme.ThemeService.getInstance().applyTheme(scene);
 
             stage.setScene(scene);
             stage.setTitle(I18nService.getInstance().get("app.title"));

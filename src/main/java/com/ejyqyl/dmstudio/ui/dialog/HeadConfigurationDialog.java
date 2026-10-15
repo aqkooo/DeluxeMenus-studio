@@ -249,9 +249,7 @@ public class HeadConfigurationDialog {
             if (owner != null) stage.initOwner(owner);
 
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(
-                    HeadConfigurationDialog.class.getResource("/css/theme-dark.css").toExternalForm()
-            );
+            com.ejyqyl.dmstudio.service.theme.ThemeService.getInstance().applyTheme(scene);
 
             HeadConfigurationDialog controller = loader.getController();
             controller.stage = stage;

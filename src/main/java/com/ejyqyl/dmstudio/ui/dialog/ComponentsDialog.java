@@ -57,7 +57,7 @@ public class ComponentsDialog {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    String prefix = item.isCustom() ? "⭐ " : "📦 ";
+                    String prefix = item.isCustom() ? "[Custom] " : "";
                     setText(prefix + item.getName(lang) + " (" + item.category() + ")");
                 }
             }
@@ -163,9 +163,7 @@ public class ComponentsDialog {
             if (owner != null) stage.initOwner(owner);
 
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(
-                    ComponentsDialog.class.getResource("/css/theme-dark.css").toExternalForm()
-            );
+            com.ejyqyl.dmstudio.service.theme.ThemeService.getInstance().applyTheme(scene);
 
             ComponentsDialog controller = loader.getController();
             controller.stage = stage;

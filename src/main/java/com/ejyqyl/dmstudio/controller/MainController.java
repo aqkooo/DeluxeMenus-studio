@@ -25,6 +25,9 @@ import com.ejyqyl.dmstudio.ui.dialog.ComponentsDialog;
 import com.ejyqyl.dmstudio.ui.dialog.GradientGeneratorDialog;
 import com.ejyqyl.dmstudio.ui.dialog.PapiHelperDialog;
 import com.ejyqyl.dmstudio.ui.dialog.SimulatorDialog;
+import com.ejyqyl.dmstudio.service.theme.AppTheme;
+import com.ejyqyl.dmstudio.service.theme.ThemeService;
+import com.ejyqyl.dmstudio.ui.dialog.SettingsDialog;
 import javafx.stage.DirectoryChooser;
 
 /**
@@ -33,24 +36,12 @@ import javafx.stage.DirectoryChooser;
 public class MainController {
 
     @FXML private MenuBar menuBar;
-    @FXML private MenuItem menuNew;
-    @FXML private MenuItem menuOpen;
-    @FXML private MenuItem menuSave;
-    @FXML private MenuItem menuSaveAs;
-    @FXML private MenuItem menuOpenWorkspace;
-    @FXML private MenuItem menuExportPoster;
-    @FXML private MenuItem menuExit;
-    @FXML private MenuItem menuUndo;
-    @FXML private MenuItem menuRedo;
-    @FXML private MenuItem menuSimulator;
-    @FXML private MenuItem menuGradient;
-    @FXML private MenuItem menuComponents;
-    @FXML private MenuItem menuPapi;
-    @FXML private MenuItem menuOptimize;
-    @FXML private MenuItem menuExtractTextures;
-    @FXML private MenuItem menuAbout;
-    @FXML private RadioMenuItem menuLangRu;
-    @FXML private RadioMenuItem menuLangEn;
+    @FXML private MenuItem menuNew, menuOpen, menuSave, menuSaveAs, menuOpenWorkspace, menuExportPoster, menuExit;
+    @FXML private MenuItem menuUndo, menuRedo;
+    @FXML private MenuItem menuSimulator, menuGradient, menuComponents, menuPapi, menuOptimize, menuExtractTextures;
+    @FXML private MenuItem menuPreferences, menuAbout;
+    @FXML private RadioMenuItem menuThemeLight, menuThemeDark, menuThemeMidnight, menuThemeMinecraft;
+    @FXML private RadioMenuItem menuLangRu, menuLangEn;
 
     @FXML private MenuPropertiesController menuPropertiesController;
     @FXML private GridController gridController;
@@ -110,6 +101,35 @@ public class MainController {
         menuLangEn.setOnAction(e -> I18nService.getInstance().setLocale(Locale.ENGLISH));
 
         menuAbout.setOnAction(e -> showAboutDialog());
+
+        if (menuPreferences != null) menuPreferences.setOnAction(e -> SettingsDialog.show(stage));
+        ToggleGroup tgTheme = new ToggleGroup();
+        if (menuThemeLight != null) {
+            menuThemeLight.setToggleGroup(tgTheme);
+            menuThemeLight.setOnAction(e -> ThemeService.getInstance().setTheme(AppTheme.LIGHT_GRADIENT));
+        }
+        if (menuThemeDark != null) {
+            menuThemeDark.setToggleGroup(tgTheme);
+            menuThemeDark.setOnAction(e -> ThemeService.getInstance().setTheme(AppTheme.DARK_OBSIDIAN));
+        }
+        if (menuThemeMidnight != null) {
+            menuThemeMidnight.setToggleGroup(tgTheme);
+            menuThemeMidnight.setOnAction(e -> ThemeService.getInstance().setTheme(AppTheme.MIDNIGHT_OLED));
+        }
+        if (menuThemeMinecraft != null) {
+            menuThemeMinecraft.setToggleGroup(tgTheme);
+            menuThemeMinecraft.setOnAction(e -> ThemeService.getInstance().setTheme(AppTheme.MINECRAFT_CLASSIC));
+        }
+        syncThemeToggles();
+        ThemeService.getInstance().addThemeChangeListener(t -> syncThemeToggles());
+    }
+
+    private void syncThemeToggles() {
+        AppTheme cur = ThemeService.getInstance().getCurrentTheme();
+        if (menuThemeLight != null) menuThemeLight.setSelected(cur == AppTheme.LIGHT_GRADIENT);
+        if (menuThemeDark != null) menuThemeDark.setSelected(cur == AppTheme.DARK_OBSIDIAN);
+        if (menuThemeMidnight != null) menuThemeMidnight.setSelected(cur == AppTheme.MIDNIGHT_OLED);
+        if (menuThemeMinecraft != null) menuThemeMinecraft.setSelected(cur == AppTheme.MINECRAFT_CLASSIC);
     }
 
     private void setupBindings() {

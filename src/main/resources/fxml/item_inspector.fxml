@@ -32,12 +32,12 @@
                         <Label text="%item.material" styleClass="field-label"/>
                         <HBox spacing="4.0">
                             <ComboBox fx:id="materialCombo" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-                            <Button fx:id="btnBrowseMaterial" text="🧱" styleClass="button">
+                            <Button fx:id="btnBrowseMaterial" text="..." styleClass="button">
                                 <tooltip>
                                     <Tooltip text="%dialog.material_picker.title"/>
                                 </tooltip>
                             </Button>
-                            <Button fx:id="btnBrowseHead" text="👤" styleClass="button">
+                            <Button fx:id="btnBrowseHead" text="Head" styleClass="button">
                                 <tooltip>
                                     <Tooltip text="%dialog.head.title"/>
                                 </tooltip>

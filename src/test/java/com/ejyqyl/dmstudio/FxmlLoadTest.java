@@ -32,7 +32,12 @@ class FxmlLoadTest {
                 "/fxml/problems.fxml",
                 "/fxml/main.fxml",
                 "/fxml/material_picker.fxml",
-                "/fxml/head_dialog.fxml"
+                "/fxml/head_dialog.fxml",
+                "/fxml/settings_dialog.fxml",
+                "/fxml/simulator.fxml",
+                "/fxml/gradient_dialog.fxml",
+                "/fxml/components_dialog.fxml",
+                "/fxml/papi_helper.fxml"
         };
 
         for (String file : fxmlFiles) {

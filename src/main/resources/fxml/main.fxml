@@ -37,6 +37,16 @@
                 <SeparatorMenuItem/>
                 <MenuItem fx:id="menuExtractTextures" text="%menu.tools.extract_textures"/>
             </Menu>
+            <Menu text="%menu.settings">
+                <MenuItem fx:id="menuPreferences" text="%menu.settings.preferences" accelerator="Shortcut+,"/>
+                <SeparatorMenuItem/>
+                <Menu text="%menu.settings.theme">
+                    <RadioMenuItem fx:id="menuThemeLight" text="%theme.light_gradient"/>
+                    <RadioMenuItem fx:id="menuThemeDark" text="%theme.dark_obsidian"/>
+                    <RadioMenuItem fx:id="menuThemeMidnight" text="%theme.midnight_oled"/>
+                    <RadioMenuItem fx:id="menuThemeMinecraft" text="%theme.minecraft_classic"/>
+                </Menu>
+            </Menu>
             <Menu text="%menu.language">
                 <RadioMenuItem fx:id="menuLangRu" text="%menu.language.ru"/>
                 <RadioMenuItem fx:id="menuLangEn" text="%menu.language.en"/>
@@ -81,7 +91,7 @@
             <Separator orientation="VERTICAL"/>
             <Label fx:id="statusSlotLabel"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.0.0" styleClass="field-label"/>
+            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.1.0" styleClass="field-label"/>
         </HBox>
     </bottom>
 

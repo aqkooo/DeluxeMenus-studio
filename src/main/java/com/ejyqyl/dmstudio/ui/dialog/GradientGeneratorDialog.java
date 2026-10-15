@@ -138,9 +138,7 @@ public class GradientGeneratorDialog {
             stage.initOwner(owner);
 
             Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(
-                    GradientGeneratorDialog.class.getResource("/css/theme-dark.css").toExternalForm()
-            );
+            com.ejyqyl.dmstudio.service.theme.ThemeService.getInstance().applyTheme(scene);
 
             GradientGeneratorDialog controller = loader.getController();
             controller.stage = stage;
