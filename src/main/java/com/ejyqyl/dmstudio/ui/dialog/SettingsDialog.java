@@ -47,6 +47,8 @@ public class SettingsDialog {
     @FXML private Button btnClose;
 
     private Stage stage;
+    private AppTheme initialTheme;
+    private boolean applied = false;
 
     public static void show(Stage owner) {
         try {
@@ -78,10 +80,14 @@ public class SettingsDialog {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        if (this.stage != null) {
+            this.stage.setOnCloseRequest(e -> handleClose());
+        }
     }
 
     @FXML
     public void initialize() {
+        this.initialTheme = ThemeService.getInstance().getCurrentTheme();
         UserSettings settings = SettingsService.getInstance().getSettings();
 
         // 1. Theme Selection
@@ -153,6 +159,7 @@ public class SettingsDialog {
     }
 
     private void handleApply() {
+        this.applied = true;
         UserSettings settings = SettingsService.getInstance().getSettings();
         AppTheme chosenTheme = getSelectedTheme();
         settings.setTheme(chosenTheme);
@@ -184,6 +191,9 @@ public class SettingsDialog {
     }
 
     private void handleClose() {
+        if (!applied && initialTheme != null && ThemeService.getInstance().getCurrentTheme() != initialTheme) {
+            ThemeService.getInstance().setTheme(initialTheme);
+        }
         if (stage != null) {
             stage.close();
         }

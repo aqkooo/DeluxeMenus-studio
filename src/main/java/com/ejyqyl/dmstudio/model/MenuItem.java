@@ -1,6 +1,7 @@
 package com.ejyqyl.dmstudio.model;
 
 import com.ejyqyl.dmstudio.model.requirement.RequirementList;
+import com.ejyqyl.dmstudio.service.optimizer.ConfigOptimizerService;
 
 import java.util.*;
 
@@ -83,6 +84,29 @@ public class MenuItem {
             }
         }
         return result;
+    }
+
+    /**
+     * Removes a single numeric slot from this item's assigned slots, updating slot/slots accordingly.
+     * Returns true if the slot was present and successfully removed.
+     */
+    public boolean removeAssignedSlot(int slotToRemove) {
+        Set<Integer> assigned = getAssignedSlots();
+        if (!assigned.remove(slotToRemove)) {
+            return false;
+        }
+        if (assigned.isEmpty()) {
+            this.slot = null;
+            this.slots.clear();
+        } else if (assigned.size() == 1) {
+            this.slot = assigned.iterator().next();
+            this.slots.clear();
+        } else {
+            this.slot = null;
+            this.slots.clear();
+            this.slots.addAll(ConfigOptimizerService.compressSlotList(new ArrayList<>(assigned)));
+        }
+        return true;
     }
 
     public String getKey() { return key; }

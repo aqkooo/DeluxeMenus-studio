@@ -64,6 +64,35 @@ class ViewModelTest {
         gridVm.setMaterialForSelectedSlots("CHEST");
         assertThat(config.getItemsAtSlot(1).get(0).getMaterial()).isEqualTo("CHEST");
         assertThat(config.getItemsAtSlot(2).get(0).getMaterial()).isEqualTo("CHEST");
+
+        // Test multi-slot item isolation in clearSlot
+        gridVm.applyPresetClearAll();
+        gridVm.applyPresetBorder("GRAY_STAINED_GLASS_PANE");
+        assertThat(config.getItemsAtSlot(0)).isNotEmpty();
+        assertThat(config.getItemsAtSlot(1)).isNotEmpty();
+        gridVm.clearSlot(0);
+        assertThat(config.getItemsAtSlot(0)).isEmpty();
+        assertThat(config.getItemsAtSlot(1)).isNotEmpty();
+
+        // Test multi-slot item detachment in moveItem
+        gridVm.moveItem(1, 13, false);
+        assertThat(config.getItemsAtSlot(1)).isEmpty();
+        assertThat(config.getItemsAtSlot(13)).isNotEmpty();
+        assertThat(config.getItemsAtSlot(13).get(0).getSlot()).isEqualTo(13);
+        assertThat(config.getItemsAtSlot(2)).isNotEmpty();
+
+        // Test no-op moveItem when from == to
+        int cmdCountBefore = stack.getUndoCount();
+        gridVm.moveItem(13, 13, false);
+        assertThat(stack.getUndoCount()).isEqualTo(cmdCountBefore);
+
+        // Test clampSelectionToBounds
+        config.setSize(54);
+        gridVm.selectSlot(50);
+        assertThat(gridVm.getSelectedSlot()).isEqualTo(50);
+        config.setSize(27);
+        gridVm.clampSelectionToBounds();
+        assertThat(gridVm.getSelectedSlot()).isEqualTo(-1);
     }
 
     @Test

@@ -17,8 +17,8 @@ if [ -n "$JAVA_VER" ] && [ "$JAVA_VER" -lt 21 ]; then
 fi
 
 JAR_FILE=""
-if [ -f "$SCRIPT_DIR/target/deluxemenus-studio-1.1.0.jar" ]; then
-    JAR_FILE="$SCRIPT_DIR/target/deluxemenus-studio-1.1.0.jar"
+if [ -f "$SCRIPT_DIR/target/deluxemenus-studio-1.2.0.jar" ]; then
+    JAR_FILE="$SCRIPT_DIR/target/deluxemenus-studio-1.2.0.jar"
 else
     CANDIDATE=$(ls -1 "$SCRIPT_DIR/target"/deluxemenus-studio-*.jar 2>/dev/null | grep -v 'original-' | head -n 1 || true)
     if [ -n "$CANDIDATE" ]; then

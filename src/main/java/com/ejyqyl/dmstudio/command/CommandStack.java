@@ -92,6 +92,8 @@ public class CommandStack {
 
     public boolean canUndo() { return canUndo.get(); }
     public boolean canRedo() { return canRedo.get(); }
+    public int getUndoCount() { return undoStack.size(); }
+    public int getRedoCount() { return redoStack.size(); }
     public boolean isDirty() { return dirty.get(); }
     public void setDirty(boolean isDirty) { dirty.set(isDirty); }
 

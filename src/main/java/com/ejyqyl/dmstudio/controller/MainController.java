@@ -364,7 +364,7 @@ public class MainController {
             content.putString(placeholder);
             javafx.scene.input.Clipboard.getSystemClipboard().setContent(content);
             if (mainViewModel != null) {
-                mainViewModel.setStatusMessage("Плейсхолдер скопирован: " + placeholder);
+                mainViewModel.setStatusMessage(I18nService.getInstance().get("tools.papi.copied", placeholder));
             }
         });
     }

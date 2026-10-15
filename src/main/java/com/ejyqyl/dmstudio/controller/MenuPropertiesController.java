@@ -144,8 +144,14 @@ public class MenuPropertiesController {
         if (Objects.equals(oldType, newType)) return;
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change menu type",
-                c -> c.setMenuType(newType),
-                c -> c.setMenuType(oldType)
+                c -> {
+                    c.setMenuType(newType);
+                    mainViewModel.getGridViewModel().clampSelectionToBounds();
+                },
+                c -> {
+                    c.setMenuType(oldType);
+                    mainViewModel.getGridViewModel().clampSelectionToBounds();
+                }
         ));
     }
 
@@ -155,8 +161,14 @@ public class MenuPropertiesController {
         if (oldSize == newSize) return;
         mainViewModel.getCommandStack().execute(new UpdateMenuPropertyCommand(
                 cfg, "Change menu size",
-                c -> c.setSize(newSize),
-                c -> c.setSize(oldSize)
+                c -> {
+                    c.setSize(newSize);
+                    mainViewModel.getGridViewModel().clampSelectionToBounds();
+                },
+                c -> {
+                    c.setSize(oldSize);
+                    mainViewModel.getGridViewModel().clampSelectionToBounds();
+                }
         ));
     }
 

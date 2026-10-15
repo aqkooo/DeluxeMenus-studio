@@ -80,9 +80,10 @@ public class SimulatorDialog {
                     setText(null);
                     setContextMenu(null);
                 } else {
-                    setText("✔ " + item);
+                    setText("[+] " + item);
                     ContextMenu cm = new ContextMenu();
-                    javafx.scene.control.MenuItem remove = new javafx.scene.control.MenuItem("Удалить право");
+                    javafx.scene.control.MenuItem remove = new javafx.scene.control.MenuItem(
+                            I18nService.getInstance().get("tools.simulator.remove_perm"));
                     remove.setOnAction(ev -> {
                         playerState.removePermission(item);
                         updatePermissionsList();

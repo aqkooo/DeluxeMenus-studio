@@ -1,6 +1,7 @@
 package com.ejyqyl.dmstudio.controller;
 
 import com.ejyqyl.dmstudio.model.Action;
+import com.ejyqyl.dmstudio.model.ItemAppearance;
 import com.ejyqyl.dmstudio.model.MenuItem;
 import com.ejyqyl.dmstudio.model.requirement.Requirement;
 import com.ejyqyl.dmstudio.model.requirement.RequirementList;
@@ -25,24 +26,21 @@ import javafx.util.Duration;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Controller for Item Inspector accordion (§6.3) with live Minecraft tooltip preview.
  */
 public class ItemInspectorController {
 
-    // Identity & Appearance Controls
     @FXML private TextField itemKeyField, slotsField, dynamicAmountField, displayNameField, modelDataField, itemModelField, rgbField, enchantmentsField;
     @FXML private TextArea loreArea;
     @FXML private ComboBox<String> materialCombo, loreAppendModeCombo;
     @FXML private Button btnBrowseMaterial, btnBrowseHead;
     @FXML private Spinner<Integer> slotSpinner, prioritySpinner, amountSpinner, damageSpinner;
     @FXML private CheckBox updateCheck, unbreakableCheck, glintOverrideCheck, hideTooltipCheck, flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye;
-
-    // Minecraft Tooltip Preview
     @FXML private VBox tooltipPreviewBox;
 
-    // Click Actions
     @FXML private ComboBox<String> clickTypeCombo, newActionTypeCombo;
     @FXML private TableView<Action> actionsTable;
     @FXML private TableColumn<Action, String> colActionType, colActionArg, colActionDelay, colActionChance;
@@ -50,12 +48,16 @@ public class ItemInspectorController {
     @FXML private Spinner<Integer> newActionDelaySpinner, newActionChanceSpinner;
     @FXML private Button btnAddAction, btnDeleteAction;
 
-    // Requirements
     @FXML private ComboBox<String> reqTypeCombo;
     @FXML private CheckBox reqInvertedCheck, stopAtSuccessCheck;
     @FXML private TextField reqField1, reqField2;
     @FXML private Spinner<Integer> minReqSpinner;
     @FXML private Button btnSaveRequirement;
+
+    private static final List<String> ALL_FLAGS = List.of(
+            "HIDE_ENCHANTS", "HIDE_ATTRIBUTES", "HIDE_UNBREAKABLE", "HIDE_DESTROYS",
+            "HIDE_PLACED_ON", "HIDE_POTION_EFFECTS", "HIDE_DYE"
+    );
 
     private MainViewModel mainViewModel;
     private ItemEditorViewModel editorViewModel;
@@ -73,60 +75,45 @@ public class ItemInspectorController {
     }
 
     private void requestDebouncedCommit() {
-        if (updating) return;
-        debounceTimer.playFromStart();
+        if (!updating) debounceTimer.playFromStart();
     }
 
     private int getSpinnerValue(Spinner<Integer> spinner, int defaultValue) {
-        if (spinner == null || spinner.getValue() == null) return defaultValue;
-        return spinner.getValue();
+        return (spinner != null && spinner.getValue() != null) ? spinner.getValue() : defaultValue;
     }
 
     private void initMaterials() {
-        List<String> mats = CapabilityRegistry.getInstance().getMaterials().stream()
-                .map(MaterialDescriptor::id).toList();
+        List<String> mats = CapabilityRegistry.getInstance().getMaterials().stream().map(MaterialDescriptor::id).toList();
         materialCombo.setItems(FXCollections.observableArrayList(mats));
         materialCombo.setEditable(true);
-
         loreAppendModeCombo.setItems(FXCollections.observableArrayList("OVERRIDE", "IGNORE", "TOP", "BOTTOM"));
         loreAppendModeCombo.setValue("OVERRIDE");
 
         if (btnBrowseMaterial != null) {
             btnBrowseMaterial.setOnAction(e -> com.ejyqyl.dmstudio.ui.dialog.MaterialPickerDialog.show(
-                    materialCombo.getScene().getWindow(), materialCombo.getValue(), materialCombo::setValue
-            ));
+                    materialCombo.getScene().getWindow(), materialCombo.getValue(), materialCombo::setValue));
         }
         if (btnBrowseHead != null) {
             btnBrowseHead.setOnAction(e -> com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog.show(
-                    materialCombo.getScene().getWindow(), materialCombo.getValue(), materialCombo::setValue
-            ));
+                    materialCombo.getScene().getWindow(), materialCombo.getValue(), materialCombo::setValue));
         }
     }
 
-    private void setSpinner(Spinner<Integer> s, int min, int max, int val) {
-        s.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, val));
-        s.setEditable(true);
-    }
-
     private void initSpinners() {
-        setSpinner(slotSpinner, 0, 53, 0);
-        setSpinner(prioritySpinner, 0, 999, 0);
-        setSpinner(amountSpinner, 1, 64, 1);
-        setSpinner(damageSpinner, 0, 32767, 0);
-        setSpinner(newActionDelaySpinner, 0, 1200, 0);
-        setSpinner(newActionChanceSpinner, 0, 100, 100);
-        setSpinner(minReqSpinner, 0, 10, 0);
+        Object[][] cfgs = {{slotSpinner, 0, 53, 0}, {prioritySpinner, 0, 999, 0}, {amountSpinner, 1, 64, 1},
+                {damageSpinner, 0, 32767, 0}, {newActionDelaySpinner, 0, 1200, 0}, {newActionChanceSpinner, 0, 100, 100}, {minReqSpinner, 0, 10, 0}};
+        for (Object[] c : cfgs) {
+            @SuppressWarnings("unchecked") Spinner<Integer> s = (Spinner<Integer>) c[0];
+            s.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory((int) c[1], (int) c[2], (int) c[3]));
+            s.setEditable(true);
+        }
     }
 
     private void initClickActions() {
-        clickTypeCombo.setItems(FXCollections.observableArrayList(
-                "left_click", "right_click", "click", "shift_left_click", "shift_right_click", "middle_click"
-        ));
+        clickTypeCombo.setItems(FXCollections.observableArrayList("left_click", "right_click", "click", "shift_left_click", "shift_right_click", "middle_click"));
         clickTypeCombo.setValue("left_click");
-
-        List<String> actionPrefixes = CapabilityRegistry.getInstance().getActions().stream()
-                .map(ActionDescriptor::prefix).toList();
-        newActionTypeCombo.setItems(FXCollections.observableArrayList(actionPrefixes));
+        List<String> prefixes = CapabilityRegistry.getInstance().getActions().stream().map(ActionDescriptor::prefix).toList();
+        newActionTypeCombo.setItems(FXCollections.observableArrayList(prefixes));
         newActionTypeCombo.setValue("[console]");
 
         colActionType.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getType()));
@@ -135,44 +122,35 @@ public class ItemInspectorController {
         colActionChance.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getChance() != null ? String.valueOf(d.getValue().getChance()) : ""));
 
         btnAddAction.setOnAction(e -> {
-            String type = newActionTypeCombo.getValue();
-            String arg = newActionArgField.getText();
             int delay = getSpinnerValue(newActionDelaySpinner, 0);
             int chance = getSpinnerValue(newActionChanceSpinner, 100);
-            Action action = new Action(type, arg, delay > 0 ? delay : null, chance < 100 ? (double) chance : null);
+            Action action = new Action(newActionTypeCombo.getValue(), newActionArgField.getText(), delay > 0 ? delay : null, chance < 100 ? (double) chance : null);
             editorViewModel.addAction(action);
             newActionArgField.clear();
         });
 
         btnDeleteAction.setOnAction(e -> {
-            int selected = actionsTable.getSelectionModel().getSelectedIndex();
-            if (selected >= 0) {
-                editorViewModel.removeAction(selected);
-            }
+            int sel = actionsTable.getSelectionModel().getSelectedIndex();
+            if (sel >= 0) editorViewModel.removeAction(sel);
         });
     }
 
     private void initRequirements() {
-        List<String> reqTypes = CapabilityRegistry.getInstance().getRequirements().stream()
-                .map(RequirementDescriptor::type).toList();
+        List<String> reqTypes = CapabilityRegistry.getInstance().getRequirements().stream().map(RequirementDescriptor::type).toList();
         reqTypeCombo.setItems(FXCollections.observableArrayList(reqTypes));
         reqTypeCombo.setValue("has permission");
-
         btnSaveRequirement.setOnAction(e -> saveRequirement());
     }
 
     private void setupListeners() {
-        displayNameField.textProperty().addListener((obs, oldV, newV) -> { updateTooltipPreview(); requestDebouncedCommit(); });
-        loreArea.textProperty().addListener((obs, oldV, newV) -> { updateTooltipPreview(); requestDebouncedCommit(); });
+        displayNameField.textProperty().addListener((o, ov, nv) -> { updateTooltipPreview(); requestDebouncedCommit(); });
+        loreArea.textProperty().addListener((o, ov, nv) -> { updateTooltipPreview(); requestDebouncedCommit(); });
 
-        List<TextInputControl> textControls = List.of(displayNameField, loreArea, itemKeyField, slotsField,
-                dynamicAmountField, modelDataField, itemModelField, rgbField, enchantmentsField);
-        for (TextInputControl f : textControls) {
-            if (f != displayNameField && f != loreArea) {
-                f.textProperty().addListener((o, ov, nv) -> requestDebouncedCommit());
-            }
-            f.focusedProperty().addListener((obs, oldF, newF) -> {
-                if (!newF && debounceTimer.getStatus() == Animation.Status.RUNNING) {
+        List<TextInputControl> fields = List.of(displayNameField, loreArea, itemKeyField, slotsField, dynamicAmountField, modelDataField, itemModelField, rgbField, enchantmentsField);
+        for (TextInputControl f : fields) {
+            if (f != displayNameField && f != loreArea) f.textProperty().addListener((o, ov, nv) -> requestDebouncedCommit());
+            f.focusedProperty().addListener((obs, of, nf) -> {
+                if (!nf && debounceTimer.getStatus() == Animation.Status.RUNNING) {
                     debounceTimer.stop();
                     commitIfChanged();
                 }
@@ -181,17 +159,13 @@ public class ItemInspectorController {
 
         materialCombo.valueProperty().addListener((o, ov, nv) -> commitIfChanged());
         loreAppendModeCombo.valueProperty().addListener((o, ov, nv) -> commitIfChanged());
-
-        List.of(slotSpinner, prioritySpinner, amountSpinner, damageSpinner)
-                .forEach(s -> s.valueProperty().addListener((o, ov, nv) -> commitIfChanged()));
-
-        List.of(updateCheck, unbreakableCheck, glintOverrideCheck, hideTooltipCheck,
-                flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye)
+        List.of(slotSpinner, prioritySpinner, amountSpinner, damageSpinner).forEach(s -> s.valueProperty().addListener((o, ov, nv) -> commitIfChanged()));
+        List.of(updateCheck, unbreakableCheck, glintOverrideCheck, hideTooltipCheck, flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye)
                 .forEach(c -> c.selectedProperty().addListener((o, ov, nv) -> commitIfChanged()));
 
-        clickTypeCombo.valueProperty().addListener((obs, oldV, newV) -> {
+        clickTypeCombo.valueProperty().addListener((obs, ov, nv) -> {
             if (editorViewModel != null) {
-                editorViewModel.currentClickTypeProperty().set(newV);
+                editorViewModel.currentClickTypeProperty().set(nv);
                 editorViewModel.loadCurrentClickActions();
             }
         });
@@ -201,15 +175,9 @@ public class ItemInspectorController {
         this.mainViewModel = mainViewModel;
         this.editorViewModel = mainViewModel.getItemEditorViewModel();
         actionsTable.setItems(editorViewModel.getCurrentActions());
-
-        mainViewModel.getGridViewModel().activeItemProperty().addListener((obs, oldV, newV) -> loadItem(newV));
+        mainViewModel.getGridViewModel().activeItemProperty().addListener((obs, ov, nv) -> loadItem(nv));
         loadItem(mainViewModel.getGridViewModel().getActiveItem());
     }
-
-    private static final List<String> ALL_FLAGS = List.of(
-            "HIDE_ENCHANTS", "HIDE_ATTRIBUTES", "HIDE_UNBREAKABLE", "HIDE_DESTROYS",
-            "HIDE_PLACED_ON", "HIDE_POTION_EFFECTS", "HIDE_DYE"
-    );
 
     private List<CheckBox> getFlagBoxes() {
         return List.of(flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye);
@@ -232,22 +200,23 @@ public class ItemInspectorController {
             slotsField.setText(String.join(", ", item.getSlots()));
             prioritySpinner.getValueFactory().setValue(item.getPriority());
             amountSpinner.getValueFactory().setValue(item.getAmount());
-            dynamicAmountField.setText(item.getDynamicAmount() != null ? item.getDynamicAmount() : "");
+            dynamicAmountField.setText(Objects.toString(item.getDynamicAmount(), ""));
             damageSpinner.getValueFactory().setValue(item.getDamage() != null ? item.getDamage() : 0);
             updateCheck.setSelected(item.isUpdate());
 
-            displayNameField.setText(item.getAppearance().getDisplayName() != null ? item.getAppearance().getDisplayName() : "");
-            loreArea.setText(String.join("\n", item.getAppearance().getLore()));
-            loreAppendModeCombo.setValue(item.getAppearance().getLoreAppendMode() != null ? item.getAppearance().getLoreAppendMode() : "OVERRIDE");
-            unbreakableCheck.setSelected(Boolean.TRUE.equals(item.getAppearance().getUnbreakable()));
-            glintOverrideCheck.setSelected(Boolean.TRUE.equals(item.getAppearance().getEnchantmentGlintOverride()));
-            hideTooltipCheck.setSelected(Boolean.TRUE.equals(item.getAppearance().getHideTooltip()));
-            modelDataField.setText(item.getAppearance().getModelData() != null ? String.valueOf(item.getAppearance().getModelData()) : "");
-            itemModelField.setText(item.getAppearance().getItemModel() != null ? item.getAppearance().getItemModel() : "");
-            rgbField.setText(item.getAppearance().getRgb() != null ? item.getAppearance().getRgb() : "");
-            enchantmentsField.setText(String.join(", ", item.getAppearance().getEnchantments()));
+            ItemAppearance app = item.getAppearance();
+            displayNameField.setText(Objects.toString(app.getDisplayName(), ""));
+            loreArea.setText(String.join("\n", app.getLore()));
+            loreAppendModeCombo.setValue(app.getLoreAppendMode() != null ? app.getLoreAppendMode() : "OVERRIDE");
+            unbreakableCheck.setSelected(Boolean.TRUE.equals(app.getUnbreakable()));
+            glintOverrideCheck.setSelected(Boolean.TRUE.equals(app.getEnchantmentGlintOverride()));
+            hideTooltipCheck.setSelected(Boolean.TRUE.equals(app.getHideTooltip()));
+            modelDataField.setText(app.getModelData() != null ? String.valueOf(app.getModelData()) : "");
+            itemModelField.setText(Objects.toString(app.getItemModel(), ""));
+            rgbField.setText(Objects.toString(app.getRgb(), ""));
+            enchantmentsField.setText(String.join(", ", app.getEnchantments()));
 
-            List<String> flags = item.getAppearance().getItemFlags();
+            List<String> flags = app.getItemFlags();
             List<CheckBox> boxes = getFlagBoxes();
             for (int i = 0; i < ALL_FLAGS.size(); i++) boxes.get(i).setSelected(flags.contains(ALL_FLAGS.get(i)));
 
@@ -278,28 +247,28 @@ public class ItemInspectorController {
     }
 
     private void syncToViewModel() {
-        editorViewModel.keyProperty().set(itemKeyField.getText() != null ? itemKeyField.getText() : "");
+        editorViewModel.keyProperty().set(Objects.toString(itemKeyField.getText(), ""));
         editorViewModel.materialProperty().set(materialCombo.getValue() != null ? materialCombo.getValue() : "STONE");
         editorViewModel.slotProperty().set(getSpinnerValue(slotSpinner, 0));
-        editorViewModel.slotsStringProperty().set(slotsField.getText() != null ? slotsField.getText() : "");
+        editorViewModel.slotsStringProperty().set(Objects.toString(slotsField.getText(), ""));
         editorViewModel.priorityProperty().set(getSpinnerValue(prioritySpinner, 0));
         editorViewModel.amountProperty().set(getSpinnerValue(amountSpinner, 1));
-        editorViewModel.dynamicAmountProperty().set(dynamicAmountField.getText() != null ? dynamicAmountField.getText() : "");
+        editorViewModel.dynamicAmountProperty().set(Objects.toString(dynamicAmountField.getText(), ""));
         editorViewModel.damageProperty().set(getSpinnerValue(damageSpinner, 0));
         editorViewModel.updateProperty().set(updateCheck.isSelected());
 
-        editorViewModel.displayNameProperty().set(displayNameField.getText() != null ? displayNameField.getText() : "");
-        editorViewModel.loreTextProperty().set(loreArea.getText() != null ? loreArea.getText() : "");
+        editorViewModel.displayNameProperty().set(Objects.toString(displayNameField.getText(), ""));
+        editorViewModel.loreTextProperty().set(Objects.toString(loreArea.getText(), ""));
         editorViewModel.loreAppendModeProperty().set(loreAppendModeCombo.getValue() != null ? loreAppendModeCombo.getValue() : "OVERRIDE");
         editorViewModel.unbreakableProperty().set(unbreakableCheck.isSelected());
         editorViewModel.glintOverrideProperty().set(glintOverrideCheck.isSelected());
         editorViewModel.hideTooltipProperty().set(hideTooltipCheck.isSelected());
-        editorViewModel.itemModelProperty().set(itemModelField.getText() != null ? itemModelField.getText() : "");
-        editorViewModel.rgbProperty().set(rgbField.getText() != null ? rgbField.getText() : "");
+        editorViewModel.itemModelProperty().set(Objects.toString(itemModelField.getText(), ""));
+        editorViewModel.rgbProperty().set(Objects.toString(rgbField.getText(), ""));
 
         try {
-            int md = Integer.parseInt(modelDataField.getText().trim());
-            editorViewModel.modelDataProperty().set(md);
+            String raw = modelDataField.getText();
+            editorViewModel.modelDataProperty().set((raw != null && !raw.isBlank()) ? Integer.parseInt(raw.trim()) : 0);
         } catch (Exception e) {
             editorViewModel.modelDataProperty().set(0);
         }

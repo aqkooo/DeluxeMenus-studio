@@ -71,4 +71,27 @@ class ModelTest {
         assertThat(copy.getItems()).containsKey("fly");
         assertThat(copy.getItems().get("fly")).isNotSameAs(item);
     }
+
+    @Test
+    void testMenuItemRemoveAssignedSlot() {
+        MenuItem item = new MenuItem("border", "GRAY_STAINED_GLASS_PANE");
+        item.getSlots().add("0-8");
+        assertThat(item.getAssignedSlots()).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8);
+
+        // Remove slot 4
+        boolean removed = item.removeAssignedSlot(4);
+        assertThat(removed).isTrue();
+        assertThat(item.getAssignedSlots()).containsExactly(0, 1, 2, 3, 5, 6, 7, 8);
+        assertThat(item.getSlots()).containsExactly("0-3", "5-8");
+
+        // Remove non-existent slot
+        assertThat(item.removeAssignedSlot(99)).isFalse();
+
+        // Single slot item
+        MenuItem single = new MenuItem("btn", "STONE");
+        single.setSlot(10);
+        assertThat(single.removeAssignedSlot(10)).isTrue();
+        assertThat(single.getAssignedSlots()).isEmpty();
+        assertThat(single.getSlot()).isNull();
+    }
 }
