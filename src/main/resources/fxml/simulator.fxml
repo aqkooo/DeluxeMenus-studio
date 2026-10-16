@@ -39,12 +39,27 @@
 
         <!-- Right: Player Permissions & Live Chat / Event Console -->
         <VBox spacing="8.0" style="-fx-padding: 8;">
-            <Label text="%tools.simulator.permissions" styleClass="section-header"/>
-            <HBox spacing="6.0">
-                <TextField fx:id="newPermField" promptText="group.vip..." HBox.hgrow="ALWAYS"/>
-                <Button fx:id="btnAddPerm" text="+" styleClass="button"/>
-            </HBox>
-            <ListView fx:id="permissionsList" prefHeight="130.0"/>
+            <TabPane prefHeight="180.0" tabClosingPolicy="UNAVAILABLE">
+                <Tab text="%tools.simulator.permissions">
+                    <VBox spacing="6.0" style="-fx-padding: 6 0 0 0;">
+                        <HBox spacing="6.0">
+                            <TextField fx:id="newPermField" promptText="group.vip..." HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnAddPerm" text="+" styleClass="button"/>
+                        </HBox>
+                        <ListView fx:id="permissionsList" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </Tab>
+                <Tab text="%tools.simulator.placeholders">
+                    <VBox spacing="6.0" style="-fx-padding: 6 0 0 0;">
+                        <HBox spacing="6.0">
+                            <TextField fx:id="phKeyField" promptText="\%vault_rank\%" prefWidth="120.0"/>
+                            <TextField fx:id="phValField" promptText="VIP" HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnAddPlaceholder" text="+" styleClass="button"/>
+                        </HBox>
+                        <ListView fx:id="placeholdersList" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </Tab>
+            </TabPane>
 
             <Separator/>
 

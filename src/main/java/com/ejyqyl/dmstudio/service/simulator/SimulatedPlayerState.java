@@ -65,6 +65,22 @@ public class SimulatedPlayerState {
         return placeholders;
     }
 
+    public void setPlaceholder(String key, String value) {
+        if (key == null || key.isBlank()) return;
+        String formatted = key.trim();
+        if (!formatted.startsWith("%")) formatted = "%" + formatted;
+        if (!formatted.endsWith("%")) formatted = formatted + "%";
+        placeholders.put(formatted.toLowerCase(Locale.ROOT), value != null ? value : "");
+    }
+
+    public void removePlaceholder(String key) {
+        if (key == null || key.isBlank()) return;
+        String formatted = key.trim();
+        if (!formatted.startsWith("%")) formatted = "%" + formatted;
+        if (!formatted.endsWith("%")) formatted = formatted + "%";
+        placeholders.remove(formatted.toLowerCase(Locale.ROOT));
+    }
+
     public String resolvePlaceholder(String ph) {
         if (ph == null) return "";
         if ("%player_name%".equalsIgnoreCase(ph)) return playerName;

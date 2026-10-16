@@ -28,6 +28,7 @@ public class GridController {
     private static final DataFormat SLOT_FORMAT = new DataFormat("application/x-deluxemenus-slot");
 
     @FXML private GridPane inventoryGrid;
+    @FXML private TextField gridSearchField;
     @FXML private ToggleButton btnBrush;
     @FXML private Button btnBorder;
     @FXML private Button btnChecker;
@@ -47,6 +48,9 @@ public class GridController {
     @FXML
     public void initialize() {
         initPaletteBar();
+        if (gridSearchField != null) {
+            gridSearchField.textProperty().addListener((obs, oldV, newV) -> applyGridFilter(newV));
+        }
         if (btnBrush != null) {
             btnBrush.selectedProperty().addListener((obs, oldV, newV) -> {
                 if (newV && mainViewModel != null) {
@@ -166,6 +170,9 @@ public class GridController {
             boolean isSelected = gridViewModel.getMultiSelectedSlots().contains(i);
             slotCells.get(i).update(items, isSelected);
         }
+        if (gridSearchField != null && !gridSearchField.getText().isBlank()) {
+            applyGridFilter(gridSearchField.getText());
+        }
     }
 
     private void setupInteractivity(SlotCell slotCell, int slotIndex) {
@@ -254,6 +261,30 @@ public class GridController {
         });
     }
 
+    public void applyGridFilter(String query) {
+        if (slotCells.isEmpty() || mainViewModel == null || mainViewModel.getConfig() == null) return;
+        boolean hasFilter = query != null && !query.isBlank();
+        String q = hasFilter ? query.toLowerCase().trim() : "";
+        for (int i = 0; i < slotCells.size(); i++) {
+            if (!hasFilter) {
+                slotCells.get(i).setFilterHighlight(true, false);
+                continue;
+            }
+            List<MenuItem> items = mainViewModel.getConfig().getItemsAtSlot(i);
+            boolean match = false;
+            for (MenuItem it : items) {
+                if (it.getMaterial() != null && it.getMaterial().toLowerCase().contains(q)) { match = true; break; }
+                if (it.getAppearance() != null) {
+                    if (it.getAppearance().getDisplayName() != null && it.getAppearance().getDisplayName().toLowerCase().contains(q)) { match = true; break; }
+                    for (String line : it.getAppearance().getLore()) {
+                        if (line != null && line.toLowerCase().contains(q)) { match = true; break; }
+                    }
+                }
+            }
+            slotCells.get(i).setFilterHighlight(match, true);
+        }
+    }
+
     private ContextMenu createContextMenu(SlotCell slotCell, int slotIndex) {
         ContextMenu menu = new ContextMenu();
         I18nService i18n = I18nService.getInstance();
@@ -261,35 +292,48 @@ public class GridController {
         boolean hasItems = !items.isEmpty();
         String currentMat = hasItems ? items.get(0).getMaterial() : "STONE";
 
-        // 1. Choose Block / Item dialog
-        javafx.scene.control.MenuItem itmChoose = new javafx.scene.control.MenuItem(i18n.get("grid.context.choose_material"));
-        itmChoose.setGraphic(TextureManager.getInstance().createIconNode("CHEST", 16));
-        itmChoose.setOnAction(ev -> {
-            MaterialPickerDialog.show(slotCell.getScene().getWindow(), currentMat, chosen -> {
-                if (gridViewModel.getMultiSelectedSlots().contains(slotIndex) && gridViewModel.getMultiSelectedSlots().size() > 1) {
-                    gridViewModel.setMaterialForSelectedSlots(chosen);
-                } else {
-                    gridViewModel.changeMaterialAt(slotIndex, chosen);
-                }
-            });
-        });
+        menu.getItems().addAll(
+                createMenuItem(i18n.get("grid.context.choose_material"), "CHEST", false,
+                        ev -> MaterialPickerDialog.show(slotCell.getScene().getWindow(), currentMat, c -> setMaterial(slotIndex, c))),
+                createMenuItem(i18n.get("grid.context.configure_head"), "PLAYER_HEAD", false,
+                        ev -> com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog.show(slotCell.getScene().getWindow(), currentMat, c -> setMaterial(slotIndex, c))),
+                createQuickPaletteMenu(i18n.get("grid.context.quick_palette"), slotIndex),
+                createMenuItem(i18n.get("grid.context.insert_component"), "CRAFTING_TABLE", false, ev -> {
+                    ComponentsDialog.show(slotCell.getScene().getWindow(), slotIndex, (compItem, targetSlot) -> {
+                        mainViewModel.getCommandStack().execute(new SetItemCommand(mainViewModel.getConfig(), compItem));
+                        gridViewModel.selectSlot(targetSlot);
+                    });
+                }),
+                new SeparatorMenuItem(),
+                createMenuItem(i18n.get("grid.context.copy"), null, !hasItems, ev -> gridViewModel.copyItemAt(slotIndex)),
+                createMenuItem(i18n.get("grid.context.paste"), null, !gridViewModel.hasClipboardItem(), ev -> gridViewModel.pasteItemAt(slotIndex)),
+                createMenuItem(i18n.get("grid.context.duplicate"), null, !hasItems, ev -> gridViewModel.duplicateItemAt(slotIndex)),
+                createMenuItem(i18n.get("grid.context.lower_priority"), null, !hasItems, ev -> gridViewModel.createLowerPriorityVariant(slotIndex)),
+                new SeparatorMenuItem(),
+                createMenuItem(i18n.get("grid.context.clear"), null, !hasItems, ev -> gridViewModel.clearSlot(slotIndex))
+        );
+        return menu;
+    }
 
-        // 1b. Configure Head / HeadDatabase dialog
-        javafx.scene.control.MenuItem itmHead = new javafx.scene.control.MenuItem(i18n.get("grid.context.configure_head"));
-        itmHead.setGraphic(TextureManager.getInstance().createIconNode("PLAYER_HEAD", 16));
-        itmHead.setOnAction(ev -> {
-            com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog.show(slotCell.getScene().getWindow(), currentMat, chosen -> {
-                if (gridViewModel.getMultiSelectedSlots().contains(slotIndex) && gridViewModel.getMultiSelectedSlots().size() > 1) {
-                    gridViewModel.setMaterialForSelectedSlots(chosen);
-                } else {
-                    gridViewModel.changeMaterialAt(slotIndex, chosen);
-                }
-            });
-        });
+    private javafx.scene.control.MenuItem createMenuItem(String text, String icon, boolean disabled, javafx.event.EventHandler<javafx.event.ActionEvent> action) {
+        javafx.scene.control.MenuItem item = new javafx.scene.control.MenuItem(text);
+        if (icon != null) item.setGraphic(TextureManager.getInstance().createIconNode(icon, 16));
+        item.setDisable(disabled);
+        item.setOnAction(action);
+        return item;
+    }
 
-        // 2. Quick Palette Submenu
-        javafx.scene.control.Menu quickMenu = new javafx.scene.control.Menu(i18n.get("grid.context.quick_palette"));
-        quickMenu.setGraphic(TextureManager.getInstance().createIconNode("GRAY_STAINED_GLASS_PANE", 16));
+    private void setMaterial(int slotIndex, String chosen) {
+        if (gridViewModel.getMultiSelectedSlots().contains(slotIndex) && gridViewModel.getMultiSelectedSlots().size() > 1) {
+            gridViewModel.setMaterialForSelectedSlots(chosen);
+        } else {
+            gridViewModel.changeMaterialAt(slotIndex, chosen);
+        }
+    }
+
+    private javafx.scene.control.Menu createQuickPaletteMenu(String title, int slotIndex) {
+        javafx.scene.control.Menu menu = new javafx.scene.control.Menu(title);
+        menu.setGraphic(TextureManager.getInstance().createIconNode("GRAY_STAINED_GLASS_PANE", 16));
         String[] quickMats = {
                 "BLACK_STAINED_GLASS_PANE", "GRAY_STAINED_GLASS_PANE", "WHITE_STAINED_GLASS_PANE",
                 "LIME_STAINED_GLASS_PANE", "RED_STAINED_GLASS_PANE", "BLUE_STAINED_GLASS_PANE",
@@ -299,60 +343,9 @@ public class GridController {
         for (String qm : quickMats) {
             javafx.scene.control.MenuItem itm = new javafx.scene.control.MenuItem(qm);
             itm.setGraphic(TextureManager.getInstance().createIconNode(qm, 16));
-            itm.setOnAction(ev -> {
-                if (gridViewModel.getMultiSelectedSlots().contains(slotIndex) && gridViewModel.getMultiSelectedSlots().size() > 1) {
-                    gridViewModel.setMaterialForSelectedSlots(qm);
-                } else {
-                    gridViewModel.changeMaterialAt(slotIndex, qm);
-                }
-            });
-            quickMenu.getItems().add(itm);
+            itm.setOnAction(ev -> setMaterial(slotIndex, qm));
+            menu.getItems().add(itm);
         }
-
-        // 3. Insert Ready Component
-        javafx.scene.control.MenuItem itmInsertComp = new javafx.scene.control.MenuItem(i18n.get("grid.context.insert_component"));
-        itmInsertComp.setGraphic(TextureManager.getInstance().createIconNode("CRAFTING_TABLE", 16));
-        itmInsertComp.setOnAction(ev -> {
-            ComponentsDialog.show(slotCell.getScene().getWindow(), slotIndex, (compItem, targetSlot) -> {
-                mainViewModel.getCommandStack().execute(new SetItemCommand(mainViewModel.getConfig(), compItem));
-                gridViewModel.selectSlot(targetSlot);
-            });
-        });
-
-        // 4. Edit Actions
-        javafx.scene.control.MenuItem itmCopy = new javafx.scene.control.MenuItem(i18n.get("grid.context.copy"));
-        itmCopy.setDisable(!hasItems);
-        itmCopy.setOnAction(ev -> gridViewModel.copyItemAt(slotIndex));
-
-        javafx.scene.control.MenuItem itmPaste = new javafx.scene.control.MenuItem(i18n.get("grid.context.paste"));
-        itmPaste.setDisable(!gridViewModel.hasClipboardItem());
-        itmPaste.setOnAction(ev -> gridViewModel.pasteItemAt(slotIndex));
-
-        javafx.scene.control.MenuItem itmDup = new javafx.scene.control.MenuItem(i18n.get("grid.context.duplicate"));
-        itmDup.setDisable(!hasItems);
-        itmDup.setOnAction(ev -> gridViewModel.duplicateItemAt(slotIndex));
-
-        javafx.scene.control.MenuItem itmLowerPrio = new javafx.scene.control.MenuItem(i18n.get("grid.context.lower_priority"));
-        itmLowerPrio.setDisable(!hasItems);
-        itmLowerPrio.setOnAction(ev -> gridViewModel.createLowerPriorityVariant(slotIndex));
-
-        javafx.scene.control.MenuItem itmClear = new javafx.scene.control.MenuItem(i18n.get("grid.context.clear"));
-        itmClear.setDisable(!hasItems);
-        itmClear.setOnAction(ev -> gridViewModel.clearSlot(slotIndex));
-
-        menu.getItems().addAll(
-                itmChoose,
-                itmHead,
-                quickMenu,
-                itmInsertComp,
-                new SeparatorMenuItem(),
-                itmCopy,
-                itmPaste,
-                itmDup,
-                itmLowerPrio,
-                new SeparatorMenuItem(),
-                itmClear
-        );
         return menu;
     }
 }

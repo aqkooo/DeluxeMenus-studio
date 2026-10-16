@@ -17,6 +17,7 @@
                 <MenuItem fx:id="menuOpenWorkspace" text="%menu.file.open_workspace" accelerator="Shortcut+Shift+O"/>
                 <MenuItem fx:id="menuSave" text="%menu.file.save" accelerator="Shortcut+S"/>
                 <MenuItem fx:id="menuSaveAs" text="%menu.file.save_as" accelerator="Shortcut+Shift+S"/>
+                <MenuItem fx:id="menuDiff" text="%menu.file.diff" accelerator="Shortcut+D"/>
                 <SeparatorMenuItem/>
                 <MenuItem fx:id="menuExportPoster" text="%menu.file.export_poster"/>
                 <SeparatorMenuItem/>
@@ -31,6 +32,7 @@
                 <SeparatorMenuItem/>
                 <MenuItem fx:id="menuGradient" text="%menu.tools.gradient"/>
                 <MenuItem fx:id="menuComponents" text="%menu.tools.components"/>
+                <MenuItem fx:id="menuPagination" text="%menu.tools.pagination"/>
                 <MenuItem fx:id="menuPapi" text="%menu.tools.papi"/>
                 <SeparatorMenuItem/>
                 <MenuItem fx:id="menuOptimize" text="%menu.tools.optimize"/>
@@ -62,8 +64,15 @@
         <SplitPane fx:id="verticalSplitPane" orientation="VERTICAL" dividerPositions="0.65">
             <!-- Upper Horizontal SplitPane: 3-column layout -->
             <SplitPane fx:id="horizontalSplitPane" orientation="HORIZONTAL" dividerPositions="0.22, 0.62">
-                <!-- Left: Menu Properties -->
-                <fx:include fx:id="menuProperties" source="menu_properties.fxml"/>
+                <!-- Left: TabPane with Menu Properties and Workspace Explorer -->
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <Tab text="%tab.properties">
+                        <fx:include fx:id="menuProperties" source="menu_properties.fxml"/>
+                    </Tab>
+                    <Tab text="%tab.workspace">
+                        <StackPane fx:id="workspaceExplorerContainer"/>
+                    </Tab>
+                </TabPane>
 
                 <!-- Center: Inventory Grid -->
                 <fx:include fx:id="grid" source="grid.fxml"/>
@@ -91,7 +100,7 @@
             <Separator orientation="VERTICAL"/>
             <Label fx:id="statusSlotLabel"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.2.0" styleClass="field-label"/>
+            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.3.0" styleClass="field-label"/>
         </HBox>
     </bottom>
 

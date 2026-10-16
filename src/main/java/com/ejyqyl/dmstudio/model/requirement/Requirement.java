@@ -150,6 +150,14 @@ public class Requirement {
         setField("regex", regex);
     }
 
+    public String getExpression() {
+        return Objects.toString(fields.getOrDefault("expression", fields.get("input")), null);
+    }
+
+    public void setExpression(String expression) {
+        setField("expression", expression);
+    }
+
     public List<Action> getDenyCommands() {
         return denyCommands;
     }

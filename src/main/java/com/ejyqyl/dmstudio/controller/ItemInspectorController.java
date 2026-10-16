@@ -36,7 +36,7 @@ public class ItemInspectorController {
     @FXML private TextField itemKeyField, slotsField, dynamicAmountField, displayNameField, modelDataField, itemModelField, rgbField, enchantmentsField;
     @FXML private TextArea loreArea;
     @FXML private ComboBox<String> materialCombo, loreAppendModeCombo;
-    @FXML private Button btnBrowseMaterial, btnBrowseHead;
+    @FXML private Button btnBrowseMaterial, btnBrowseHead, btnSpecialProperties;
     @FXML private Spinner<Integer> slotSpinner, prioritySpinner, amountSpinner, damageSpinner;
     @FXML private CheckBox updateCheck, unbreakableCheck, glintOverrideCheck, hideTooltipCheck, flagEnchants, flagAttributes, flagUnbreakable, flagDestroys, flagPlacedOn, flagPotionEffects, flagDye;
     @FXML private VBox tooltipPreviewBox;
@@ -70,6 +70,9 @@ public class ItemInspectorController {
         initSpinners();
         initClickActions();
         initRequirements();
+        if (btnSpecialProperties != null) {
+            btnSpecialProperties.setOnAction(e -> openSpecialProperties());
+        }
         debounceTimer.setOnFinished(e -> commitIfChanged());
         setupListeners();
     }
@@ -357,5 +360,26 @@ public class ItemInspectorController {
 
         item.setViewRequirement(list);
         commitIfChanged();
+    }
+
+    private void openSpecialProperties() {
+        if (editorViewModel == null) return;
+        MenuItem item = editorViewModel.getCurrentItem();
+        if (item == null) return;
+        com.ejyqyl.dmstudio.ui.dialog.SpecialPropertiesDialog.show(
+                btnSpecialProperties.getScene().getWindow(),
+                item.getAppearance(),
+                updatedApp -> {
+                    item.getAppearance().setTrimMaterial(updatedApp.getTrimMaterial());
+                    item.getAppearance().setTrimPattern(updatedApp.getTrimPattern());
+                    item.getAppearance().setBaseColor(updatedApp.getBaseColor());
+                    item.getAppearance().getBannerMeta().clear();
+                    item.getAppearance().getBannerMeta().addAll(updatedApp.getBannerMeta());
+                    item.getAppearance().getPotionEffects().clear();
+                    item.getAppearance().getPotionEffects().addAll(updatedApp.getPotionEffects());
+                    commitIfChanged();
+                    updateTooltipPreview();
+                }
+        );
     }
 }

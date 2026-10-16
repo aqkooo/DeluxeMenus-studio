@@ -154,6 +154,7 @@
                         <TextField fx:id="rgbField" promptText="#FF0000"/>
                     </VBox>
                 </GridPane>
+                <Button fx:id="btnSpecialProperties" text="%inspector.special_properties" maxWidth="Infinity" styleClass="button"/>
             </VBox>
         </TitledPane>
 

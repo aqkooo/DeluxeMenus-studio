@@ -141,4 +141,19 @@ public class SlotCell extends StackPane {
             }
         }
     }
+
+    public void setFilterHighlight(boolean isMatch, boolean filterActive) {
+        if (!filterActive) {
+            setOpacity(1.0);
+            getStyleClass().remove("inventory-slot-search-match");
+        } else if (isMatch) {
+            setOpacity(1.0);
+            if (!getStyleClass().contains("inventory-slot-search-match")) {
+                getStyleClass().add("inventory-slot-search-match");
+            }
+        } else {
+            setOpacity(0.35);
+            getStyleClass().remove("inventory-slot-search-match");
+        }
+    }
 }

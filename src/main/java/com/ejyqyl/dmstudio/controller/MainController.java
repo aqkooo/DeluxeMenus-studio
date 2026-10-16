@@ -8,6 +8,7 @@ import com.ejyqyl.dmstudio.viewmodel.MainViewModel;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -36,9 +37,9 @@ import javafx.stage.DirectoryChooser;
 public class MainController {
 
     @FXML private MenuBar menuBar;
-    @FXML private MenuItem menuNew, menuOpen, menuSave, menuSaveAs, menuOpenWorkspace, menuExportPoster, menuExit;
+    @FXML private MenuItem menuNew, menuOpen, menuSave, menuSaveAs, menuDiff, menuOpenWorkspace, menuExportPoster, menuExit;
     @FXML private MenuItem menuUndo, menuRedo;
-    @FXML private MenuItem menuSimulator, menuGradient, menuComponents, menuPapi, menuOptimize, menuExtractTextures;
+    @FXML private MenuItem menuSimulator, menuGradient, menuComponents, menuPagination, menuPapi, menuOptimize, menuExtractTextures;
     @FXML private MenuItem menuPreferences, menuAbout;
     @FXML private RadioMenuItem menuThemeLight, menuThemeDark, menuThemeMidnight, menuThemeMinecraft;
     @FXML private RadioMenuItem menuLangRu, menuLangEn;
@@ -48,6 +49,7 @@ public class MainController {
     @FXML private ItemInspectorController itemInspectorController;
     @FXML private PreviewController previewController;
     @FXML private ProblemsController problemsController;
+    @FXML private StackPane workspaceExplorerContainer;
 
     @FXML private Label statusFileLabel;
     @FXML private Label statusSlotLabel;
@@ -71,6 +73,14 @@ public class MainController {
         previewController.setMainViewModel(viewModel);
         problemsController.setMainViewModel(viewModel);
 
+        if (workspaceExplorerContainer != null) {
+            com.ejyqyl.dmstudio.ui.component.WorkspaceExplorerView explorer = new com.ejyqyl.dmstudio.ui.component.WorkspaceExplorerView();
+            explorer.setOnFileSelected(path -> {
+                if (checkUnsavedChanges()) mainViewModel.openFile(path);
+            });
+            workspaceExplorerContainer.getChildren().setAll(explorer);
+        }
+
         setupBindings();
     }
 
@@ -80,6 +90,7 @@ public class MainController {
         menuOpenWorkspace.setOnAction(e -> handleOpenWorkspace());
         menuSave.setOnAction(e -> handleSave());
         menuSaveAs.setOnAction(e -> handleSaveAs());
+        if (menuDiff != null) menuDiff.setOnAction(e -> handleDiff());
         menuExportPoster.setOnAction(e -> handleExportPoster());
         menuExit.setOnAction(e -> handleExit());
 
@@ -93,6 +104,7 @@ public class MainController {
         menuSimulator.setOnAction(e -> handleSimulator());
         menuGradient.setOnAction(e -> handleGradient());
         menuComponents.setOnAction(e -> handleComponents());
+        if (menuPagination != null) menuPagination.setOnAction(e -> handlePagination());
         menuPapi.setOnAction(e -> handlePapi());
         menuOptimize.setOnAction(e -> handleOptimize());
         menuExtractTextures.setOnAction(e -> showExtractTexturesDialog());
@@ -218,45 +230,7 @@ public class MainController {
     }
 
     private void showExtractTexturesDialog() {
-        TextureExtractorService extractor = new TextureExtractorService();
-        List<Path> installed = extractor.findInstalledMinecraftJars();
-
-        FileChooser fc = new FileChooser();
-        fc.setTitle(I18nService.getInstance().get("dialog.extract_textures_prompt"));
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Minecraft JAR / Resource Pack (*.jar, *.zip)", "*.jar", "*.zip"));
-
-        Path selectedPath = null;
-        if (!installed.isEmpty()) {
-            ChoiceDialog<Path> dialog = new ChoiceDialog<>(installed.get(0), installed);
-            dialog.setTitle(I18nService.getInstance().get("dialog.extract_textures_title"));
-            dialog.setHeaderText(I18nService.getInstance().get("dialog.extract_textures_header"));
-            dialog.setContentText(I18nService.getInstance().get("dialog.extract_textures_auto"));
-            Optional<Path> res = dialog.showAndWait();
-            if (res.isPresent()) {
-                selectedPath = res.get();
-            }
-        }
-
-        if (selectedPath == null && installed.isEmpty()) {
-            File f = fc.showOpenDialog(stage);
-            if (f != null) selectedPath = f.toPath();
-        }
-
-        if (selectedPath != null) {
-            Path targetDir = TextureManager.getInstance().getDefaultTexturesDir();
-            boolean ok = extractor.extractAndBuildAtlas(selectedPath, targetDir, msg -> System.out.println("[TextureExtractor] " + msg));
-            if (ok) {
-                TextureManager.getInstance().reloadAtlas();
-                gridController.renderGrid();
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle(I18nService.getInstance().get("dialog.extract_textures_title"));
-                alert.setHeaderText(null);
-                alert.setContentText(I18nService.getInstance().get("dialog.extract_textures_success"));
-                alert.showAndWait();
-            } else {
-                showError(I18nService.getInstance().get("dialog.error_title"), "Failed to extract textures from " + selectedPath.getFileName());
-            }
-        }
+        com.ejyqyl.dmstudio.ui.dialog.TextureExtractorDialog.show(stage, gridController::renderGrid);
     }
 
     public boolean checkUnsavedChanges() {
@@ -381,5 +355,31 @@ public class MainController {
         alert.setContentText(I18nService.getInstance().get("tools.optimizer.report",
                 res.compressedRangesCount(), res.strippedFieldsCount(), res.mergedItemsCount()));
         alert.showAndWait();
+    }
+
+    private void handleDiff() {
+        if (mainViewModel == null || mainViewModel.getConfig() == null) return;
+        Path path = mainViewModel.currentFilePathProperty().get();
+        String fileName = path != null ? path.getFileName().toString() : "untitled.yml";
+        String diskYaml = "";
+        if (path != null && java.nio.file.Files.exists(path)) {
+            try {
+                diskYaml = java.nio.file.Files.readString(path);
+            } catch (IOException ignored) {}
+        }
+        String memYaml = new com.ejyqyl.dmstudio.service.yaml.YamlExportService().exportToString(mainViewModel.getConfig());
+        com.ejyqyl.dmstudio.ui.dialog.DiffDialog.show(stage, fileName, diskYaml, memYaml, this::handleSave);
+    }
+
+    private void handlePagination() {
+        Path defaultDir = (mainViewModel.currentFilePathProperty().get() != null)
+                ? mainViewModel.currentFilePathProperty().get().getParent()
+                : null;
+        com.ejyqyl.dmstudio.ui.dialog.PaginationWizardDialog.show(stage, defaultDir, firstPage -> {
+            if (firstPage != null) {
+                mainViewModel.setConfig(firstPage);
+                gridController.renderGrid();
+            }
+        });
     }
 }

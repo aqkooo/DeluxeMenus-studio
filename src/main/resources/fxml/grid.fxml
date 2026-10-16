@@ -14,6 +14,7 @@
     <!-- Preset Toolbar -->
     <HBox spacing="8.0" alignment="CENTER_LEFT">
         <Label text="%grid.title" styleClass="section-header"/>
+        <TextField fx:id="gridSearchField" promptText="%grid.search.prompt" prefWidth="220.0" style="-fx-font-size: 11px;"/>
         <Region HBox.hgrow="ALWAYS"/>
         <ToggleButton fx:id="btnBrush" text="%grid.tool.brush" styleClass="button"/>
         <Button fx:id="btnBorder" text="%grid.preset.border" styleClass="button"/>

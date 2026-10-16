@@ -102,6 +102,22 @@ public class MenuSimulatorEngine {
                     yield false;
                 }
             }
+            case "javascript", "js" -> {
+                String expr = playerState.replacePlaceholders(
+                        req.getExpression() != null ? req.getExpression() : req.getInput()
+                );
+                yield JavascriptRequirementEngine.evaluateExpression(expr);
+            }
+            case ">", ">=", "<", "<=", "==", "!=", "===", "!==" -> {
+                String in = playerState.replacePlaceholders(req.getInput());
+                String out = playerState.replacePlaceholders(req.getOutput());
+                yield JavascriptRequirementEngine.evaluateComparator(cleanType, in, out);
+            }
+            case "string contains" -> {
+                String in = playerState.replacePlaceholders(req.getInput());
+                String out = playerState.replacePlaceholders(req.getOutput());
+                yield in != null && out != null && in.contains(out);
+            }
             default -> true;
         };
 

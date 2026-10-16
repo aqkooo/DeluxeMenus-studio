@@ -36,6 +36,10 @@ public class SimulatorDialog {
     @FXML private TextField newPermField;
     @FXML private Button btnAddPerm;
     @FXML private ListView<String> permissionsList;
+    @FXML private TextField phKeyField;
+    @FXML private TextField phValField;
+    @FXML private Button btnAddPlaceholder;
+    @FXML private ListView<String> placeholdersList;
     @FXML private ListView<String> eventLogList;
     @FXML private Button btnClearLog;
     @FXML private Label statusFeedbackLabel;
@@ -95,13 +99,54 @@ public class SimulatorDialog {
             }
         });
 
+        if (btnAddPlaceholder != null) {
+            btnAddPlaceholder.setOnAction(e -> {
+                String k = phKeyField.getText();
+                String v = phValField.getText();
+                if (k != null && !k.isBlank()) {
+                    playerState.setPlaceholder(k.trim(), v != null ? v.trim() : "");
+                    phKeyField.clear();
+                    phValField.clear();
+                    updatePlaceholdersList();
+                    refreshGrid();
+                }
+            });
+        }
+
+        if (placeholdersList != null) {
+            placeholdersList.setCellFactory(lv -> new ListCell<>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                        setContextMenu(null);
+                    } else {
+                        setText(item);
+                        ContextMenu cm = new ContextMenu();
+                        javafx.scene.control.MenuItem remove = new javafx.scene.control.MenuItem(
+                                I18nService.getInstance().get("tools.simulator.remove_perm"));
+                        remove.setOnAction(ev -> {
+                            String key = item.split(" = ")[0].trim();
+                            playerState.removePlaceholder(key);
+                            updatePlaceholdersList();
+                            refreshGrid();
+                        });
+                        cm.getItems().add(remove);
+                        setContextMenu(cm);
+                    }
+                }
+            });
+        }
+
         btnResetState.setOnAction(e -> {
             playerState = new SimulatedPlayerState();
             playerField.setText(playerState.getPlayerName());
             balanceSpinner.getValueFactory().setValue(playerState.getVaultBalance());
             updatePermissionsList();
+            updatePlaceholdersList();
             eventLogList.getItems().clear();
-            logEvent("ℹ Состояние игрока сброшено к начальным значениям.");
+            logEvent("[INFO] Состояние игрока сброшено к начальным значениям.");
             refreshGrid();
         });
 
@@ -111,6 +156,7 @@ public class SimulatorDialog {
         });
 
         updatePermissionsList();
+        updatePlaceholdersList();
     }
 
     public void setConfig(MenuConfig config) {
@@ -122,7 +168,7 @@ public class SimulatorDialog {
 
         buildGrid();
         refreshGrid();
-        logEvent("▶ Запущена симуляция меню: " + title);
+        logEvent("[RUN] Запущена симуляция меню: " + title);
     }
 
     private void buildGrid() {
@@ -162,7 +208,7 @@ public class SimulatorDialog {
     private void handleSimulatedClick(int slotIndex, boolean isLeftClick) {
         SimulationResult result = engine.handleClick(slotIndex, isLeftClick);
         if (result.clickedItem() == null) {
-            logEvent("ℹ Клик по пустому слоту #" + slotIndex);
+            logEvent("[INFO] Клик по пустому слоту #" + slotIndex);
             return;
         }
 
@@ -210,6 +256,14 @@ public class SimulatorDialog {
 
     private void updatePermissionsList() {
         permissionsList.setItems(FXCollections.observableArrayList(playerState.getPermissions()));
+    }
+
+    private void updatePlaceholdersList() {
+        if (placeholdersList == null) return;
+        List<String> list = new ArrayList<>();
+        playerState.getPlaceholders().forEach((k, v) -> list.add(k + " = " + v));
+        Collections.sort(list);
+        placeholdersList.setItems(FXCollections.observableArrayList(list));
     }
 
     public static void show(Window owner, MenuConfig config) {
