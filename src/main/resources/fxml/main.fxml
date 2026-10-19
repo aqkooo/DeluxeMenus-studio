@@ -30,11 +30,13 @@
             <Menu text="%menu.tools">
                 <MenuItem fx:id="menuSimulator" text="%menu.tools.simulator" accelerator="F5"/>
                 <SeparatorMenuItem/>
-                <MenuItem fx:id="menuGradient" text="%menu.tools.gradient"/>
+                <MenuItem fx:id="menuTemplates" text="%menu.tools.templates" accelerator="Shortcut+T"/>
                 <MenuItem fx:id="menuComponents" text="%menu.tools.components"/>
                 <MenuItem fx:id="menuPagination" text="%menu.tools.pagination"/>
+                <MenuItem fx:id="menuGradient" text="%menu.tools.gradient"/>
                 <MenuItem fx:id="menuPapi" text="%menu.tools.papi"/>
                 <SeparatorMenuItem/>
+                <MenuItem fx:id="menuMigration" text="%menu.tools.migration" accelerator="Shortcut+M"/>
                 <MenuItem fx:id="menuOptimize" text="%menu.tools.optimize"/>
                 <SeparatorMenuItem/>
                 <MenuItem fx:id="menuExtractTextures" text="%menu.tools.extract_textures"/>

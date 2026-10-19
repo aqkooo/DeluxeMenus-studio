@@ -229,6 +229,8 @@ public class YamlImportService {
             item.setUpdate(Boolean.parseBoolean(String.valueOf(map.get("update"))));
         }
 
+
+
         ItemAppearance app = item.getAppearance();
         if (map.containsKey("display_name")) {
             app.setDisplayName(String.valueOf(map.get("display_name")));

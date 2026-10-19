@@ -18,7 +18,7 @@
         <Region HBox.hgrow="ALWAYS"/>
         <ToggleButton fx:id="btnBrush" text="%grid.tool.brush" styleClass="button"/>
         <Button fx:id="btnBorder" text="%grid.preset.border" styleClass="button"/>
-        <Button fx:id="btnChecker" text="%grid.preset.checker" styleClass="button"/>
+        <Button fx:id="btnTemplates" text="%grid.preset.templates" styleClass="button"/>
         <Button fx:id="btnClearAll" text="%grid.preset.clear" styleClass="button"/>
     </HBox>
 

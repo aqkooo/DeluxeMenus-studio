@@ -7,7 +7,10 @@ if not defined JAVA_BIN if exist "C:\Program Files\Eclipse Adoptium\jdk-21.0.12.
 if not defined JAVA_BIN if exist "%~dp0dist\DeluxeMenusStudio\runtime\bin\javaw.exe" set "JAVA_BIN=%~dp0dist\DeluxeMenusStudio\runtime\bin\javaw.exe"
 if not defined JAVA_BIN set "JAVA_BIN=javaw"
 
-set "JAR_FILE=%~dp0target\deluxemenus-studio-1.3.1.jar"
+set "JAR_FILE=%~dp0target\deluxemenus-studio-1.4.0.jar"
+if not exist "%JAR_FILE%" (
+    for %%f in ("%~dp0target\deluxemenus-studio-*.jar") do set "JAR_FILE=%%f"
+)
 if not exist "%JAR_FILE%" goto :need_build
 
 :launch

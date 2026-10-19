@@ -8,6 +8,8 @@ import com.ejyqyl.dmstudio.command.impl.SetItemCommand;
 import com.ejyqyl.dmstudio.model.MenuConfig;
 import com.ejyqyl.dmstudio.model.MenuItem;
 import com.ejyqyl.dmstudio.model.inventory.InventoryType;
+import com.ejyqyl.dmstudio.service.template.LayoutTemplate;
+import com.ejyqyl.dmstudio.service.template.LayoutTemplateService;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -34,15 +36,8 @@ public class GridViewModel {
     public GridViewModel(MenuConfig config, CommandStack commandStack) {
         this.config = config;
         this.commandStack = commandStack;
-        this.selectedSlot.addListener((obs, oldVal, newVal) -> {
-            int slot = newVal.intValue();
-            if (slot >= 0 && slot < config.getSize()) {
-                List<MenuItem> itemsAtSlot = config.getItemsAtSlot(slot);
-                activeItem.set(itemsAtSlot.isEmpty() ? null : itemsAtSlot.get(0));
-            } else {
-                activeItem.set(null);
-            }
-        });
+        this.selectedSlot.addListener((obs, oldVal, newVal) -> refreshActiveItem());
+        this.commandStack.addChangeListener(this::refreshActiveItem);
     }
 
     public void selectSlot(int slot) {
@@ -53,6 +48,25 @@ public class GridViewModel {
         } else {
             selectedSlot.set(-1);
         }
+    }
+
+    public void selectAllSlots() {
+        multiSelectedSlots.clear();
+        for (int i = 0; i < config.getSize(); i++) {
+            multiSelectedSlots.add(i);
+        }
+        if (config.getSize() > 0) {
+            selectedSlot.set(0);
+        }
+    }
+
+    public void selectRange(int fromSlot, int toSlot) {
+        int min = Math.max(0, Math.min(fromSlot, toSlot));
+        int max = Math.min(config.getSize() - 1, Math.max(fromSlot, toSlot));
+        for (int i = min; i <= max; i++) {
+            multiSelectedSlots.add(i);
+        }
+        selectedSlot.set(toSlot);
     }
 
     public void toggleMultiSelectSlot(int slot) {
@@ -67,13 +81,27 @@ public class GridViewModel {
         }
     }
 
-    public MenuItem createDefaultItemAt(int slot, String material) {
-        String key = "item_" + slot;
+    public void refreshActiveItem() {
+        int slot = selectedSlot.get();
+        if (slot >= 0 && slot < config.getSize()) {
+            List<MenuItem> itemsAtSlot = config.getItemsAtSlot(slot);
+            activeItem.set(itemsAtSlot.isEmpty() ? null : itemsAtSlot.get(0));
+        } else {
+            activeItem.set(null);
+        }
+    }
+
+    private String generateUniqueKey(String prefix) {
+        String key = prefix;
         int counter = 1;
         while (config.getItems().containsKey(key)) {
-            key = "item_" + slot + "_" + counter++;
+            key = prefix + "_" + counter++;
         }
-        MenuItem item = new MenuItem(key, material);
+        return key;
+    }
+
+    public MenuItem createDefaultItemAt(int slot, String material) {
+        MenuItem item = new MenuItem(generateUniqueKey("item_" + slot), material);
         item.setSlot(slot);
         item.setPriority(0);
         commandStack.execute(new SetItemCommand(config, item));
@@ -94,13 +122,8 @@ public class GridViewModel {
                 modifiedBase.removeAssignedSlot(slot);
                 commands.add(new SetItemCommand(config, modifiedBase));
 
-                String key = "item_" + slot;
-                int counter = 1;
-                while (config.getItems().containsKey(key)) {
-                    key = "item_" + slot + "_" + counter++;
-                }
                 MenuItem single = base.copy();
-                single.setKey(key);
+                single.setKey(generateUniqueKey("item_" + slot));
                 single.setMaterial(material.trim());
                 single.setSlot(slot);
                 single.getSlots().clear();
@@ -121,12 +144,7 @@ public class GridViewModel {
         for (int slot : multiSelectedSlots) {
             List<MenuItem> items = config.getItemsAtSlot(slot);
             if (items.isEmpty()) {
-                String key = "item_" + slot;
-                int counter = 1;
-                while (config.getItems().containsKey(key)) {
-                    key = "item_" + slot + "_" + counter++;
-                }
-                MenuItem itm = new MenuItem(key, material.trim());
+                MenuItem itm = new MenuItem(generateUniqueKey("item_" + slot), material.trim());
                 itm.setSlot(slot);
                 itm.setPriority(0);
                 commands.add(new SetItemCommand(config, itm));
@@ -137,13 +155,8 @@ public class GridViewModel {
                     modifiedBase.removeAssignedSlot(slot);
                     commands.add(new SetItemCommand(config, modifiedBase));
 
-                    String key = "item_" + slot;
-                    int counter = 1;
-                    while (config.getItems().containsKey(key)) {
-                        key = "item_" + slot + "_" + counter++;
-                    }
                     MenuItem single = base.copy();
-                    single.setKey(key);
+                    single.setKey(generateUniqueKey("item_" + slot));
                     single.setMaterial(material.trim());
                     single.setSlot(slot);
                     single.getSlots().clear();
@@ -158,6 +171,21 @@ public class GridViewModel {
         commandStack.execute(new BatchCommand("Change material to " + material, commands));
     }
 
+    public void setPriorityForSelectedSlots(int priority) {
+        if (multiSelectedSlots.isEmpty()) return;
+        List<Command> commands = new ArrayList<>();
+        for (int slot : multiSelectedSlots) {
+            for (MenuItem item : config.getItemsAtSlot(slot)) {
+                MenuItem copy = item.copy();
+                copy.setPriority(priority);
+                commands.add(new SetItemCommand(config, copy));
+            }
+        }
+        if (!commands.isEmpty()) {
+            commandStack.execute(new BatchCommand("Set priority to " + priority, commands));
+        }
+    }
+
     public boolean hasClipboardItem() {
         return clipboardItem != null;
     }
@@ -165,23 +193,34 @@ public class GridViewModel {
     public void clearSlot(int slot) {
         List<MenuItem> items = config.getItemsAtSlot(slot);
         if (items.isEmpty()) return;
-
         List<Command> commands = new ArrayList<>();
         for (MenuItem item : items) {
             MenuItem copy = item.copy();
-            boolean removed = copy.removeAssignedSlot(slot);
-            if (!removed) continue;
-
-            if (copy.getAssignedSlots().isEmpty()) {
-                commands.add(new RemoveItemCommand(config, item.getKey()));
-            } else {
-                commands.add(new SetItemCommand(config, copy));
+            if (copy.removeAssignedSlot(slot)) {
+                commands.add(copy.getAssignedSlots().isEmpty()
+                        ? new RemoveItemCommand(config, item.getKey())
+                        : new SetItemCommand(config, copy));
             }
         }
-        if (!commands.isEmpty()) {
-            commandStack.execute(new BatchCommand("Clear slot " + slot, commands));
-        }
+        if (!commands.isEmpty()) commandStack.execute(new BatchCommand("Clear slot " + slot, commands));
         selectSlot(slot);
+    }
+
+    public void clearSelectedSlots() {
+        if (multiSelectedSlots.isEmpty()) return;
+        List<Command> commands = new ArrayList<>();
+        for (int slot : new ArrayList<>(multiSelectedSlots)) {
+            for (MenuItem item : config.getItemsAtSlot(slot)) {
+                MenuItem copy = item.copy();
+                if (copy.removeAssignedSlot(slot)) {
+                    commands.add(copy.getAssignedSlots().isEmpty()
+                            ? new RemoveItemCommand(config, item.getKey())
+                            : new SetItemCommand(config, copy));
+                }
+            }
+        }
+        if (!commands.isEmpty()) commandStack.execute(new BatchCommand("Clear selected slots", commands));
+        selectSlot(-1);
     }
 
     public void copyItemAt(int slot) {
@@ -194,8 +233,7 @@ public class GridViewModel {
     public void pasteItemAt(int slot) {
         if (clipboardItem == null) return;
         MenuItem pasted = clipboardItem.copy();
-        String newKey = "copy_" + pasted.getKey() + "_" + slot;
-        pasted.setKey(newKey);
+        pasted.setKey("copy_" + pasted.getKey() + "_" + slot);
         pasted.setSlot(slot);
         pasted.getSlots().clear();
         commandStack.execute(new SetItemCommand(config, pasted));
@@ -204,7 +242,6 @@ public class GridViewModel {
 
     public void duplicateItemAt(int slot) {
         copyItemAt(slot);
-        // Find next empty slot
         for (int i = slot + 1; i < config.getSize(); i++) {
             if (config.getItemsAtSlot(i).isEmpty()) {
                 pasteItemAt(i);
@@ -231,11 +268,31 @@ public class GridViewModel {
 
     public void moveItem(int fromSlot, int toSlot, boolean copyOnly) {
         if (fromSlot == toSlot && !copyOnly) return;
-        List<MenuItem> items = config.getItemsAtSlot(fromSlot);
-        if (items.isEmpty()) return;
+        List<MenuItem> fromItems = config.getItemsAtSlot(fromSlot);
+        if (fromItems.isEmpty()) return;
 
-        MenuItem source = items.get(0);
+        MenuItem source = fromItems.get(0);
         List<Command> commands = new ArrayList<>();
+        List<MenuItem> toItems = config.getItemsAtSlot(toSlot);
+
+        if (!copyOnly && !toItems.isEmpty()) {
+            MenuItem dest = toItems.get(0);
+            MenuItem swappedDest = dest.copy();
+            swappedDest.removeAssignedSlot(toSlot);
+            swappedDest.setSlot(fromSlot);
+            swappedDest.getSlots().clear();
+            commands.add(new SetItemCommand(config, swappedDest));
+
+            MenuItem swappedSource = source.copy();
+            swappedSource.removeAssignedSlot(fromSlot);
+            swappedSource.setSlot(toSlot);
+            swappedSource.getSlots().clear();
+            commands.add(new SetItemCommand(config, swappedSource));
+
+            commandStack.execute(new BatchCommand("Swap items " + fromSlot + " <-> " + toSlot, commands));
+            selectSlot(toSlot);
+            return;
+        }
 
         if (!copyOnly) {
             MenuItem modifiedSource = source.copy();
@@ -249,12 +306,7 @@ public class GridViewModel {
 
         MenuItem target = source.copy();
         if (copyOnly || source.getAssignedSlots().size() > 1) {
-            String newKey = source.getKey() + "_slot" + toSlot;
-            int counter = 1;
-            while (config.getItems().containsKey(newKey)) {
-                newKey = source.getKey() + "_slot" + toSlot + "_" + counter++;
-            }
-            target.setKey(newKey);
+            target.setKey(generateUniqueKey(source.getKey() + "_slot" + toSlot));
         }
         target.setSlot(toSlot);
         target.getSlots().clear();
@@ -264,6 +316,16 @@ public class GridViewModel {
         selectSlot(toSlot);
     }
 
+    public void setItemAt(int slot, MenuItem itemTemplate) {
+        if (itemTemplate == null) return;
+        MenuItem newItem = itemTemplate.copy();
+        newItem.setKey(generateUniqueKey("item_" + slot));
+        newItem.setSlot(slot);
+        newItem.getSlots().clear();
+        commandStack.execute(new SetItemCommand(config, newItem));
+        selectSlot(slot);
+    }
+
     public void clampSelectionToBounds() {
         if (selectedSlot.get() >= config.getSize()) {
             selectSlot(-1);
@@ -271,57 +333,33 @@ public class GridViewModel {
         multiSelectedSlots.removeIf(s -> s >= config.getSize());
     }
 
-    // Presets (§6.2)
     public void applyPresetBorder(String material) {
-        int size = config.getSize();
-        int cols = config.getMenuType() == InventoryType.CHEST ? 9 : config.getMenuType().getColumns();
-        int rows = size / cols;
-
-        List<Command> commands = new ArrayList<>();
-        MenuItem borderItem = new MenuItem("border", material != null ? material : "GRAY_STAINED_GLASS_PANE");
-        borderItem.getAppearance().setDisplayName(" ");
-        borderItem.setPriority(10);
-
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1) {
-                    int slot = r * cols + c;
-                    borderItem.getSlots().add(String.valueOf(slot));
-                }
-            }
-        }
-        commands.add(new SetItemCommand(config, borderItem));
-        commandStack.execute(new BatchCommand("Apply border preset", commands));
+        Optional<LayoutTemplate> tmpl = LayoutTemplateService.getInstance().getAllTemplates().stream()
+                .filter(t -> "border_perimeter".equals(t.id()))
+                .findFirst();
+        tmpl.ifPresent(t -> commandStack.execute(LayoutTemplateService.getInstance().applyTemplate(config, t)));
         selectSlot(0);
     }
 
     public void applyPresetCheckerboard(String mat1, String mat2) {
         int size = config.getSize();
         int cols = config.getMenuType() == InventoryType.CHEST ? 9 : config.getMenuType().getColumns();
-        int rows = size / cols;
+        int rows = Math.max(1, (size + cols - 1) / cols);
 
-        List<Command> commands = new ArrayList<>();
-        MenuItem item1 = new MenuItem("checker_a", mat1 != null ? mat1 : "BLACK_STAINED_GLASS_PANE");
-        item1.getAppearance().setDisplayName(" ");
-        item1.setPriority(10);
-
-        MenuItem item2 = new MenuItem("checker_b", mat2 != null ? mat2 : "GRAY_STAINED_GLASS_PANE");
-        item2.getAppearance().setDisplayName(" ");
-        item2.setPriority(10);
+        MenuItem a = new MenuItem("checker_a", mat1 != null ? mat1 : "BLACK_STAINED_GLASS_PANE");
+        a.getAppearance().setDisplayName(" ");
+        a.setPriority(10);
+        MenuItem b = new MenuItem("checker_b", mat2 != null ? mat2 : "GRAY_STAINED_GLASS_PANE");
+        b.getAppearance().setDisplayName(" ");
+        b.setPriority(10);
 
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 int slot = r * cols + c;
-                if ((r + c) % 2 == 0) {
-                    item1.getSlots().add(String.valueOf(slot));
-                } else {
-                    item2.getSlots().add(String.valueOf(slot));
-                }
+                if (slot < size) ((r + c) % 2 == 0 ? a : b).getSlots().add(String.valueOf(slot));
             }
         }
-        commands.add(new SetItemCommand(config, item1));
-        commands.add(new SetItemCommand(config, item2));
-        commandStack.execute(new BatchCommand("Apply checkerboard preset", commands));
+        commandStack.execute(new BatchCommand("Apply checkerboard preset", List.of(new SetItemCommand(config, a), new SetItemCommand(config, b))));
         selectSlot(0);
     }
 
@@ -334,29 +372,11 @@ public class GridViewModel {
         selectSlot(-1);
     }
 
-    public void setItemAt(int slot, MenuItem itemTemplate) {
-        if (itemTemplate == null) return;
-        String key = "item_" + slot;
-        int counter = 1;
-        while (config.getItems().containsKey(key)) {
-            key = "item_" + slot + "_" + counter++;
-        }
-        MenuItem newItem = itemTemplate.copy();
-        newItem.setKey(key);
-        newItem.setSlot(slot);
-        newItem.getSlots().clear();
-        commandStack.execute(new SetItemCommand(config, newItem));
-        selectSlot(slot);
-    }
-
     public IntegerProperty selectedSlotProperty() { return selectedSlot; }
     public int getSelectedSlot() { return selectedSlot.get(); }
-
     public ObservableSet<Integer> getMultiSelectedSlots() { return multiSelectedSlots; }
-
     public ObjectProperty<MenuItem> activeItemProperty() { return activeItem; }
     public MenuItem getActiveItem() { return activeItem.get(); }
-
     public MenuConfig getConfig() { return config; }
     public CommandStack getCommandStack() { return commandStack; }
 }

@@ -626,3 +626,10 @@
     -fx-fill: #b31d28;
     -fx-font-weight: bold;
 }
+
+.inventory-slot-drag-target {
+    -fx-border-color: #38bdf8 !important;
+    -fx-border-width: 2 !important;
+    -fx-background-color: rgba(56, 189, 248, 0.25) !important;
+}
+

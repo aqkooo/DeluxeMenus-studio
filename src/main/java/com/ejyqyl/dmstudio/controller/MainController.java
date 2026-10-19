@@ -28,6 +28,8 @@ import com.ejyqyl.dmstudio.ui.dialog.PapiHelperDialog;
 import com.ejyqyl.dmstudio.ui.dialog.SimulatorDialog;
 import com.ejyqyl.dmstudio.service.theme.AppTheme;
 import com.ejyqyl.dmstudio.service.theme.ThemeService;
+import com.ejyqyl.dmstudio.ui.dialog.MigrationDialog;
+import com.ejyqyl.dmstudio.ui.dialog.TemplatesDialog;
 import com.ejyqyl.dmstudio.ui.dialog.SettingsDialog;
 import javafx.stage.DirectoryChooser;
 
@@ -39,7 +41,7 @@ public class MainController {
     @FXML private MenuBar menuBar;
     @FXML private MenuItem menuNew, menuOpen, menuSave, menuSaveAs, menuDiff, menuOpenWorkspace, menuExportPoster, menuExit;
     @FXML private MenuItem menuUndo, menuRedo;
-    @FXML private MenuItem menuSimulator, menuGradient, menuComponents, menuPagination, menuPapi, menuOptimize, menuExtractTextures;
+    @FXML private MenuItem menuSimulator, menuTemplates, menuGradient, menuComponents, menuPagination, menuPapi, menuMigration, menuOptimize, menuExtractTextures;
     @FXML private MenuItem menuPreferences, menuAbout;
     @FXML private RadioMenuItem menuThemeLight, menuThemeDark, menuThemeMidnight, menuThemeMinecraft;
     @FXML private RadioMenuItem menuLangRu, menuLangEn;
@@ -102,10 +104,12 @@ public class MainController {
         });
 
         menuSimulator.setOnAction(e -> handleSimulator());
+        if (menuTemplates != null) menuTemplates.setOnAction(e -> TemplatesDialog.show(stage, mainViewModel));
         menuGradient.setOnAction(e -> handleGradient());
         menuComponents.setOnAction(e -> handleComponents());
         if (menuPagination != null) menuPagination.setOnAction(e -> handlePagination());
         menuPapi.setOnAction(e -> handlePapi());
+        if (menuMigration != null) menuMigration.setOnAction(e -> MigrationDialog.show(stage, mainViewModel));
         menuOptimize.setOnAction(e -> handleOptimize());
         menuExtractTextures.setOnAction(e -> showExtractTexturesDialog());
 

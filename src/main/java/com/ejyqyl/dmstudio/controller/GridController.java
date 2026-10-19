@@ -1,13 +1,13 @@
 package com.ejyqyl.dmstudio.controller;
 
-import com.ejyqyl.dmstudio.command.impl.SetItemCommand;
 import com.ejyqyl.dmstudio.model.MenuConfig;
 import com.ejyqyl.dmstudio.model.MenuItem;
 import com.ejyqyl.dmstudio.model.inventory.InventoryType;
 import com.ejyqyl.dmstudio.service.i18n.I18nService;
 import com.ejyqyl.dmstudio.service.texture.TextureManager;
-import com.ejyqyl.dmstudio.ui.dialog.ComponentsDialog;
+import com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog;
 import com.ejyqyl.dmstudio.ui.dialog.MaterialPickerDialog;
+import com.ejyqyl.dmstudio.ui.dialog.TemplatesDialog;
 import com.ejyqyl.dmstudio.view.SlotCell;
 import com.ejyqyl.dmstudio.viewmodel.GridViewModel;
 import com.ejyqyl.dmstudio.viewmodel.MainViewModel;
@@ -25,13 +25,11 @@ import java.util.List;
  */
 public class GridController {
 
-    private static final DataFormat SLOT_FORMAT = new DataFormat("application/x-deluxemenus-slot");
-
     @FXML private GridPane inventoryGrid;
     @FXML private TextField gridSearchField;
     @FXML private ToggleButton btnBrush;
     @FXML private Button btnBorder;
-    @FXML private Button btnChecker;
+    @FXML private Button btnTemplates;
     @FXML private Button btnClearAll;
 
     @FXML private HBox paletteBar;
@@ -43,6 +41,7 @@ public class GridController {
     private String activePlacingMaterial = "GRAY_STAINED_GLASS_PANE";
     private MainViewModel mainViewModel;
     private GridViewModel gridViewModel;
+    private GridKeyHandler keyHandler;
     private final List<SlotCell> slotCells = new ArrayList<>();
 
     @FXML
@@ -61,11 +60,16 @@ public class GridController {
         btnBorder.setOnAction(e -> {
             if (gridViewModel != null) gridViewModel.applyPresetBorder("GRAY_STAINED_GLASS_PANE");
         });
-        btnChecker.setOnAction(e -> {
-            if (gridViewModel != null) gridViewModel.applyPresetCheckerboard("BLACK_STAINED_GLASS_PANE", "GRAY_STAINED_GLASS_PANE");
+        btnTemplates.setOnAction(e -> {
+            if (mainViewModel != null) TemplatesDialog.show(inventoryGrid.getScene().getWindow(), mainViewModel);
         });
         btnClearAll.setOnAction(e -> {
             if (gridViewModel != null) gridViewModel.applyPresetClearAll();
+        });
+
+        inventoryGrid.setFocusTraversable(true);
+        inventoryGrid.setOnKeyPressed(e -> {
+            if (keyHandler != null) keyHandler.handleKeyPressed(e);
         });
     }
 
@@ -102,7 +106,7 @@ public class GridController {
         if (btnHeadPalette != null) {
             btnHeadPalette.setOnAction(e -> {
                 Window win = inventoryGrid.getScene() != null ? inventoryGrid.getScene().getWindow() : null;
-                com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog.show(win, activePlacingMaterial, this::onSelectPaletteMaterial);
+                HeadConfigurationDialog.show(win, activePlacingMaterial, this::onSelectPaletteMaterial);
             });
         }
     }
@@ -132,6 +136,7 @@ public class GridController {
     public void setMainViewModel(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;
         this.gridViewModel = mainViewModel.getGridViewModel();
+        this.keyHandler = new GridKeyHandler(mainViewModel, gridViewModel);
 
         gridViewModel.selectedSlotProperty().addListener((obs, oldV, newV) -> renderGrid());
         gridViewModel.getMultiSelectedSlots().addListener((javafx.collections.SetChangeListener<Integer>) c -> renderGrid());
@@ -147,9 +152,7 @@ public class GridController {
         MenuConfig config = mainViewModel.getConfig();
         int size = config.getSize();
         int cols = config.getMenuType() == InventoryType.CHEST ? 9 : config.getMenuType().getColumns();
-        int rows = Math.max(1, (size + cols - 1) / cols);
 
-        // Recreate slot cell pool only when size or columns change
         if (slotCells.size() != size) {
             inventoryGrid.getChildren().clear();
             slotCells.clear();
@@ -164,7 +167,6 @@ public class GridController {
             }
         }
 
-        // Fast differential in-place update without allocating new nodes
         for (int i = 0; i < size; i++) {
             List<MenuItem> items = config.getItemsAtSlot(i);
             boolean isSelected = gridViewModel.getMultiSelectedSlots().contains(i);
@@ -176,8 +178,8 @@ public class GridController {
     }
 
     private void setupInteractivity(SlotCell slotCell, int slotIndex) {
-        // Mouse click
         slotCell.setOnMouseClicked(e -> {
+            inventoryGrid.requestFocus();
             if (e.getButton() == MouseButton.SECONDARY) {
                 if (btnBrush != null && btnBrush.isSelected()) {
                     gridViewModel.clearSlot(slotIndex);
@@ -199,6 +201,13 @@ public class GridController {
                         gridViewModel.changeMaterialAt(slotIndex, chosen);
                     });
                 } else if (e.isShiftDown()) {
+                    int prev = gridViewModel.getSelectedSlot();
+                    if (prev >= 0) {
+                        gridViewModel.selectRange(prev, slotIndex);
+                    } else {
+                        gridViewModel.selectSlot(slotIndex);
+                    }
+                } else if (e.isControlDown() || e.isShortcutDown()) {
                     gridViewModel.toggleMultiSelectSlot(slotIndex);
                 } else {
                     gridViewModel.selectSlot(slotIndex);
@@ -206,14 +215,14 @@ public class GridController {
             }
         });
 
-        // Context menu (RMB)
         slotCell.setOnContextMenuRequested(e -> {
             if (btnBrush != null && btnBrush.isSelected()) return;
-            ContextMenu menu = createContextMenu(slotCell, slotIndex);
+            ContextMenu menu = GridContextMenuBuilder.build(
+                    slotCell, slotIndex, mainViewModel, gridViewModel, activePlacingMaterial, this::setActivePlacingMaterial
+            );
             menu.show(slotCell, e.getScreenX(), e.getScreenY());
         });
 
-        // Drag to paint with Brush or standard Drag and Drop
         slotCell.setOnDragDetected(e -> {
             if (btnBrush != null && btnBrush.isSelected()) {
                 slotCell.startFullDrag();
@@ -242,11 +251,20 @@ public class GridController {
         slotCell.setOnDragOver(e -> {
             if (e.getDragboard().hasString()) {
                 e.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                if (!slotCell.getStyleClass().contains("inventory-slot-drag-target")) {
+                    slotCell.getStyleClass().add("inventory-slot-drag-target");
+                }
             }
             e.consume();
         });
 
+        slotCell.setOnDragExited(e -> {
+            slotCell.getStyleClass().remove("inventory-slot-drag-target");
+            e.consume();
+        });
+
         slotCell.setOnDragDropped(e -> {
+            slotCell.getStyleClass().remove("inventory-slot-drag-target");
             Dragboard db = e.getDragboard();
             boolean success = false;
             if (db.hasString()) {
@@ -283,69 +301,5 @@ public class GridController {
             }
             slotCells.get(i).setFilterHighlight(match, true);
         }
-    }
-
-    private ContextMenu createContextMenu(SlotCell slotCell, int slotIndex) {
-        ContextMenu menu = new ContextMenu();
-        I18nService i18n = I18nService.getInstance();
-        List<MenuItem> items = mainViewModel.getConfig().getItemsAtSlot(slotIndex);
-        boolean hasItems = !items.isEmpty();
-        String currentMat = hasItems ? items.get(0).getMaterial() : "STONE";
-
-        menu.getItems().addAll(
-                createMenuItem(i18n.get("grid.context.choose_material"), "CHEST", false,
-                        ev -> MaterialPickerDialog.show(slotCell.getScene().getWindow(), currentMat, c -> setMaterial(slotIndex, c))),
-                createMenuItem(i18n.get("grid.context.configure_head"), "PLAYER_HEAD", false,
-                        ev -> com.ejyqyl.dmstudio.ui.dialog.HeadConfigurationDialog.show(slotCell.getScene().getWindow(), currentMat, c -> setMaterial(slotIndex, c))),
-                createQuickPaletteMenu(i18n.get("grid.context.quick_palette"), slotIndex),
-                createMenuItem(i18n.get("grid.context.insert_component"), "CRAFTING_TABLE", false, ev -> {
-                    ComponentsDialog.show(slotCell.getScene().getWindow(), slotIndex, (compItem, targetSlot) -> {
-                        mainViewModel.getCommandStack().execute(new SetItemCommand(mainViewModel.getConfig(), compItem));
-                        gridViewModel.selectSlot(targetSlot);
-                    });
-                }),
-                new SeparatorMenuItem(),
-                createMenuItem(i18n.get("grid.context.copy"), null, !hasItems, ev -> gridViewModel.copyItemAt(slotIndex)),
-                createMenuItem(i18n.get("grid.context.paste"), null, !gridViewModel.hasClipboardItem(), ev -> gridViewModel.pasteItemAt(slotIndex)),
-                createMenuItem(i18n.get("grid.context.duplicate"), null, !hasItems, ev -> gridViewModel.duplicateItemAt(slotIndex)),
-                createMenuItem(i18n.get("grid.context.lower_priority"), null, !hasItems, ev -> gridViewModel.createLowerPriorityVariant(slotIndex)),
-                new SeparatorMenuItem(),
-                createMenuItem(i18n.get("grid.context.clear"), null, !hasItems, ev -> gridViewModel.clearSlot(slotIndex))
-        );
-        return menu;
-    }
-
-    private javafx.scene.control.MenuItem createMenuItem(String text, String icon, boolean disabled, javafx.event.EventHandler<javafx.event.ActionEvent> action) {
-        javafx.scene.control.MenuItem item = new javafx.scene.control.MenuItem(text);
-        if (icon != null) item.setGraphic(TextureManager.getInstance().createIconNode(icon, 16));
-        item.setDisable(disabled);
-        item.setOnAction(action);
-        return item;
-    }
-
-    private void setMaterial(int slotIndex, String chosen) {
-        if (gridViewModel.getMultiSelectedSlots().contains(slotIndex) && gridViewModel.getMultiSelectedSlots().size() > 1) {
-            gridViewModel.setMaterialForSelectedSlots(chosen);
-        } else {
-            gridViewModel.changeMaterialAt(slotIndex, chosen);
-        }
-    }
-
-    private javafx.scene.control.Menu createQuickPaletteMenu(String title, int slotIndex) {
-        javafx.scene.control.Menu menu = new javafx.scene.control.Menu(title);
-        menu.setGraphic(TextureManager.getInstance().createIconNode("GRAY_STAINED_GLASS_PANE", 16));
-        String[] quickMats = {
-                "BLACK_STAINED_GLASS_PANE", "GRAY_STAINED_GLASS_PANE", "WHITE_STAINED_GLASS_PANE",
-                "LIME_STAINED_GLASS_PANE", "RED_STAINED_GLASS_PANE", "BLUE_STAINED_GLASS_PANE",
-                "STONE", "OAK_PLANKS", "CHEST", "DIAMOND", "GOLD_INGOT", "EMERALD",
-                "NETHERITE_SWORD", "COMPASS", "CLOCK", "BOOK", "FEATHER", "BARRIER", "PLAYER_HEAD"
-        };
-        for (String qm : quickMats) {
-            javafx.scene.control.MenuItem itm = new javafx.scene.control.MenuItem(qm);
-            itm.setGraphic(TextureManager.getInstance().createIconNode(qm, 16));
-            itm.setOnAction(ev -> setMaterial(slotIndex, qm));
-            menu.getItems().add(itm);
-        }
-        return menu;
     }
 }

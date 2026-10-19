@@ -545,3 +545,10 @@
 .yaml-comment { -fx-fill: #aaaaaa; -fx-font-style: italic; }
 .yaml-placeholder { -fx-fill: #ff55ff; }
 .yaml-action { -fx-fill: #ffff55; -fx-font-weight: bold; }
+
+.inventory-slot-drag-target {
+    -fx-border-color: #38bdf8 !important;
+    -fx-border-width: 2 !important;
+    -fx-background-color: rgba(56, 189, 248, 0.25) !important;
+}
+
