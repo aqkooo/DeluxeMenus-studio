@@ -4,6 +4,7 @@ import com.ejyqyl.dmstudio.model.Action;
 import com.ejyqyl.dmstudio.model.MenuConfig;
 import com.ejyqyl.dmstudio.model.MenuItem;
 import com.ejyqyl.dmstudio.model.inventory.InventoryType;
+import com.ejyqyl.dmstudio.service.i18n.I18nService;
 import com.ejyqyl.dmstudio.service.yaml.YamlExportService;
 
 import java.io.File;
@@ -51,13 +52,19 @@ public class PaginationService {
     public List<MenuConfig> generatePages(PaginationOptions options) {
         List<MenuConfig> pages = new ArrayList<>();
         int total = Math.max(1, options.totalPages());
-        String base = options.baseKey() != null && !options.baseKey().isBlank() ? options.baseKey().trim() : "menu";
+        String rawBase = options.baseKey() != null && !options.baseKey().isBlank() ? options.baseKey().trim() : "menu";
+        String base = rawBase.replaceAll("[^a-zA-Z0-9_-]", "_");
+
+        String pattern = options.titlePattern() != null && !options.titlePattern().isBlank()
+                ? options.titlePattern() : "&8Menu (Page {page}/{total})";
+
+        I18nService i18n = I18nService.getInstance();
 
         for (int p = 1; p <= total; p++) {
             MenuConfig cfg = new MenuConfig();
             cfg.setSize(options.size());
             cfg.setMenuType(InventoryType.CHEST);
-            String title = options.titlePattern()
+            String title = pattern
                     .replace("{page}", String.valueOf(p))
                     .replace("{total}", String.valueOf(total));
             cfg.setMenuTitle(title);
@@ -73,7 +80,7 @@ public class PaginationService {
             if (p > 1 && options.prevSlot() >= 0 && options.prevSlot() < options.size()) {
                 MenuItem prevBtn = new MenuItem("nav_prev", options.prevMaterial());
                 prevBtn.setSlot(options.prevSlot());
-                prevBtn.getAppearance().setDisplayName("&a< Предыдущая страница");
+                prevBtn.getAppearance().setDisplayName(i18n.get("dialog.pagination.prev_btn_name"));
                 prevBtn.getClickHandlers().getLeftClickCommands().add(
                         new Action("[openguimenu]", base + "_" + (p - 1), null, null)
                 );
@@ -84,7 +91,7 @@ public class PaginationService {
             if (p < total && options.nextSlot() >= 0 && options.nextSlot() < options.size()) {
                 MenuItem nextBtn = new MenuItem("nav_next", options.nextMaterial());
                 nextBtn.setSlot(options.nextSlot());
-                nextBtn.getAppearance().setDisplayName("&aСледующая страница >");
+                nextBtn.getAppearance().setDisplayName(i18n.get("dialog.pagination.next_btn_name"));
                 nextBtn.getClickHandlers().getLeftClickCommands().add(
                         new Action("[openguimenu]", base + "_" + (p + 1), null, null)
                 );
@@ -95,8 +102,8 @@ public class PaginationService {
             if (options.infoSlot() >= 0 && options.infoSlot() < options.size()) {
                 MenuItem infoBtn = new MenuItem("nav_info", options.infoMaterial());
                 infoBtn.setSlot(options.infoSlot());
-                infoBtn.getAppearance().setDisplayName("&eСтраница " + p + " из " + total);
-                infoBtn.getAppearance().getLore().add("&7Кликайте по стрелкам для навигации");
+                infoBtn.getAppearance().setDisplayName(i18n.get("dialog.pagination.info_btn_name", p, total));
+                infoBtn.getAppearance().getLore().add(i18n.get("dialog.pagination.info_btn_lore"));
                 cfg.getItems().put("nav_info", infoBtn);
             }
 
@@ -107,15 +114,20 @@ public class PaginationService {
     }
 
     public List<Path> savePagesToDirectory(List<MenuConfig> pages, File targetDir, String baseKey) throws IOException {
+        if (targetDir == null) {
+            throw new IllegalArgumentException("targetDir must not be null");
+        }
         if (!targetDir.exists()) {
             Files.createDirectories(targetDir.toPath());
         }
         YamlExportService exporter = new YamlExportService();
         List<Path> written = new ArrayList<>();
+        String safeBase = (baseKey != null && !baseKey.isBlank())
+                ? baseKey.trim().replaceAll("[^a-zA-Z0-9_-]", "_") : "menu";
 
         for (int i = 0; i < pages.size(); i++) {
             MenuConfig cfg = pages.get(i);
-            String fileName = baseKey + "_" + (i + 1) + ".yml";
+            String fileName = safeBase + "_" + (i + 1) + ".yml";
             File targetFile = new File(targetDir, fileName);
             exporter.exportToFile(cfg, targetFile.toPath());
             written.add(targetFile.toPath());

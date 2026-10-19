@@ -123,8 +123,16 @@ public class HeadConfigurationDialog {
             String tooltip = "#" + head.id() + " - " + head.getLocalizedName(isRu);
             Tooltip.install(tile, new Tooltip(tooltip));
 
+            if (selectedCatalogHead != null && selectedCatalogHead.id().equals(head.id())) {
+                tile.setStyle("-fx-border-color: -accent; -fx-border-width: 2px; -fx-border-radius: 4px;");
+            }
+
             tile.setOnMouseClicked(e -> {
                 selectedCatalogHead = head;
+                for (javafx.scene.Node n : headsTilePane.getChildren()) {
+                    n.setStyle("");
+                }
+                tile.setStyle("-fx-border-color: -accent; -fx-border-width: 2px; -fx-border-radius: 4px;");
                 updateCatalogSelection();
                 if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
                     confirmSelection();

@@ -100,7 +100,7 @@
             <Separator orientation="VERTICAL"/>
             <Label fx:id="statusSlotLabel"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.3.0" styleClass="field-label"/>
+            <Label fx:id="statusValidationLabel" text="DeluxeMenus Studio v1.3.1" styleClass="field-label"/>
         </HBox>
     </bottom>
 

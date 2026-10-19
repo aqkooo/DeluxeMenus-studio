@@ -1,7 +1,6 @@
 package com.ejyqyl.dmstudio.ui.dialog;
 
 import com.ejyqyl.dmstudio.model.MenuConfig;
-import com.ejyqyl.dmstudio.model.MenuItem;
 import com.ejyqyl.dmstudio.service.i18n.I18nService;
 import com.ejyqyl.dmstudio.service.project.WorkspaceManager;
 import com.ejyqyl.dmstudio.service.render.ColorCodeParser;
@@ -86,8 +85,7 @@ public class SimulatorDialog {
                 } else {
                     setText("[+] " + item);
                     ContextMenu cm = new ContextMenu();
-                    javafx.scene.control.MenuItem remove = new javafx.scene.control.MenuItem(
-                            I18nService.getInstance().get("tools.simulator.remove_perm"));
+                    MenuItem remove = new MenuItem(I18nService.getInstance().get("tools.simulator.remove_perm"));
                     remove.setOnAction(ev -> {
                         playerState.removePermission(item);
                         updatePermissionsList();
@@ -124,8 +122,7 @@ public class SimulatorDialog {
                     } else {
                         setText(item);
                         ContextMenu cm = new ContextMenu();
-                        javafx.scene.control.MenuItem remove = new javafx.scene.control.MenuItem(
-                                I18nService.getInstance().get("tools.simulator.remove_perm"));
+                        MenuItem remove = new MenuItem(I18nService.getInstance().get("tools.simulator.remove_perm"));
                         remove.setOnAction(ev -> {
                             String key = item.split(" = ")[0].trim();
                             playerState.removePlaceholder(key);
@@ -139,6 +136,27 @@ public class SimulatorDialog {
             });
         }
 
+        // Styled monospaced console log
+        eventLogList.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("-fx-background-color: transparent;");
+                } else {
+                    setText(item);
+                    String color = "#c9d1d9";
+                    if (item.contains("[OK]") || item.contains("[УСПЕХ]")) color = "#2ea043";
+                    else if (item.contains("[DENY]") || item.contains("[ОТКАЗ]")) color = "#cf222e";
+                    else if (item.contains("[RUN]") || item.contains("[СТАРТ]")) color = "#0969da";
+                    else if (item.contains("[INFO]") || item.contains("[ИНФО]")) color = "#787f8f";
+                    else if (item.contains("[WARN]") || item.contains("[Предупреждение]")) color = "#d97706";
+                    setStyle("-fx-text-fill: " + color + "; -fx-font-family: 'JetBrains Mono', Consolas, monospace; -fx-font-size: 11px;");
+                }
+            }
+        });
+
         btnResetState.setOnAction(e -> {
             playerState = new SimulatedPlayerState();
             playerField.setText(playerState.getPlayerName());
@@ -146,7 +164,7 @@ public class SimulatorDialog {
             updatePermissionsList();
             updatePlaceholdersList();
             eventLogList.getItems().clear();
-            logEvent("[INFO] Состояние игрока сброшено к начальным значениям.");
+            logEvent(I18nService.getInstance().get("tools.simulator.log_reset"));
             refreshGrid();
         });
 
@@ -168,7 +186,7 @@ public class SimulatorDialog {
 
         buildGrid();
         refreshGrid();
-        logEvent("[RUN] Запущена симуляция меню: " + title);
+        logEvent(I18nService.getInstance().get("tools.simulator.log_start", title));
     }
 
     private void buildGrid() {
@@ -207,41 +225,43 @@ public class SimulatorDialog {
 
     private void handleSimulatedClick(int slotIndex, boolean isLeftClick) {
         SimulationResult result = engine.handleClick(slotIndex, isLeftClick);
+        I18nService i18n = I18nService.getInstance();
+
         if (result.clickedItem() == null) {
-            logEvent("[INFO] Клик по пустому слоту #" + slotIndex);
+            logEvent(i18n.get("tools.simulator.log_empty_slot", slotIndex));
             return;
         }
 
         String itemKey = result.clickedItem().getKey();
-        String clickType = isLeftClick ? "Левый клик" : "Правый клик";
+        String clickType = isLeftClick ? i18n.get("tools.simulator.click_left") : i18n.get("tools.simulator.click_right");
 
         if (result.success()) {
-            logEvent("[OK] [" + clickType + "] Слот #" + slotIndex + " ('" + itemKey + "') - Условия выполнены.");
+            logEvent(i18n.get("tools.simulator.log_success", clickType, slotIndex, itemKey));
         } else {
-            logEvent("[DENY] [" + clickType + "] Слот #" + slotIndex + " ('" + itemKey + "') - Отказано в доступе (Deny).");
+            logEvent(i18n.get("tools.simulator.log_deny", clickType, slotIndex, itemKey));
         }
 
         for (String msg : result.messages()) {
-            logEvent("  [Чат] " + ColorCodeParser.stripColor(msg));
+            logEvent(i18n.get("tools.simulator.log_chat", ColorCodeParser.stripColor(msg)));
         }
         for (String cmd : result.executedCommands()) {
-            logEvent("  [Команда] " + cmd);
+            logEvent(i18n.get("tools.simulator.log_command", cmd));
         }
 
         if (result.openGuiMenu() != null) {
             String target = result.openGuiMenu();
-            logEvent("  [Переход] [openguimenu] " + target);
+            logEvent(i18n.get("tools.simulator.log_opengui", target));
             Optional<MenuConfig> next = WorkspaceManager.getInstance().loadMenu(target);
             if (next.isPresent()) {
                 setConfig(next.get());
-                logEvent("  [Инфо] Открыто меню: " + target);
+                logEvent(i18n.get("tools.simulator.log_opened", target));
             } else {
-                logEvent("  [Предупреждение] Меню '" + target + "' не найдено в текущей рабочей области.");
+                logEvent(i18n.get("tools.simulator.log_not_found", target));
             }
         }
 
         if (result.shouldClose()) {
-            logEvent("  [Инфо] Меню закрыто командой [close].");
+            logEvent(i18n.get("tools.simulator.log_close"));
         }
 
         if (result.shouldRefresh()) {

@@ -78,6 +78,7 @@ public class PapiHelperDialog {
             if (stage != null) stage.close();
         });
 
+        papiTable.setPlaceholder(new Label(I18nService.getInstance().get("tools.papi.not_found")));
         updateList();
     }
 

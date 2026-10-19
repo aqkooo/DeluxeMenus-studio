@@ -17,8 +17,8 @@ if [ -n "$JAVA_VER" ] && [ "$JAVA_VER" -lt 21 ]; then
 fi
 
 JAR_FILE=""
-if [ -f "$SCRIPT_DIR/target/deluxemenus-studio-1.3.0.jar" ]; then
-    JAR_FILE="$SCRIPT_DIR/target/deluxemenus-studio-1.3.0.jar"
+if [ -f "$SCRIPT_DIR/target/deluxemenus-studio-1.3.1.jar" ]; then
+    JAR_FILE="$SCRIPT_DIR/target/deluxemenus-studio-1.3.1.jar"
 else
     CANDIDATE=$(ls -1 "$SCRIPT_DIR/target"/deluxemenus-studio-*.jar 2>/dev/null | grep -v 'original-' | head -n 1 || true)
     if [ -n "$CANDIDATE" ]; then
@@ -30,7 +30,7 @@ if [ -z "$JAR_FILE" ] || [ ! -f "$JAR_FILE" ]; then
     echo "[DeluxeMenus Studio] Скомпилированный JAR-файл не найден. Запуск сборки..."
     if command -v mvn >/dev/null 2>&1; then
         mvn clean package -DskipTests
-        JAR_FILE="$SCRIPT_DIR/target/deluxemenus-studio-1.3.0.jar"
+        JAR_FILE="$SCRIPT_DIR/target/deluxemenus-studio-1.3.1.jar"
     else
         echo "[DeluxeMenus Studio] Ошибка: Maven не найден для автоматической сборки." >&2
         exit 1

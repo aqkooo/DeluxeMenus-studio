@@ -328,8 +328,13 @@ public class ItemInspectorController {
             reqInvertedCheck.setSelected(first.isInverted());
             minReqSpinner.getValueFactory().setValue(viewReq.getMinimumRequirements() != null ? viewReq.getMinimumRequirements() : 0);
             stopAtSuccessCheck.setSelected(Boolean.TRUE.equals(viewReq.getStopAtSuccess()));
-            reqField1.setText(String.valueOf(first.getFields().getOrDefault("permission", first.getFields().getOrDefault("input", ""))));
-            reqField2.setText(String.valueOf(first.getFields().getOrDefault("amount", first.getFields().getOrDefault("output", ""))));
+            Object v1 = first.getFields().get("permission");
+            if (v1 == null) v1 = first.getFields().get("input");
+            reqField1.setText(v1 != null ? v1.toString() : "");
+
+            Object v2 = first.getFields().get("amount");
+            if (v2 == null) v2 = first.getFields().get("output");
+            reqField2.setText(v2 != null ? v2.toString() : "");
         } else {
             reqInvertedCheck.setSelected(false);
             minReqSpinner.getValueFactory().setValue(0);
@@ -350,8 +355,12 @@ public class ItemInspectorController {
 
         Requirement req = new Requirement(type);
         req.setInverted(inverted);
-        if (!reqField1.getText().isBlank()) req.setField(type.contains("permission") ? "permission" : "input", reqField1.getText().trim());
-        if (!reqField2.getText().isBlank()) req.setField(type.contains("money") ? "amount" : "output", reqField2.getText().trim());
+        if (reqField1.getText() != null && !reqField1.getText().isBlank()) {
+            req.setField(type.contains("permission") ? "permission" : "input", reqField1.getText().trim());
+        }
+        if (reqField2.getText() != null && !reqField2.getText().isBlank()) {
+            req.setField(type.contains("money") ? "amount" : "output", reqField2.getText().trim());
+        }
 
         RequirementList list = new RequirementList();
         list.addRequirement("req_1", req);

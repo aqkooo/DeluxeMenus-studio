@@ -72,6 +72,7 @@ public class ProblemsController {
             });
             return row;
         });
+        problemsTable.setPlaceholder(new Label(I18nService.getInstance().get("problems.no_issues")));
     }
 
     public void setMainViewModel(MainViewModel mainViewModel) {

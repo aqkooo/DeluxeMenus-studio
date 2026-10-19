@@ -2,6 +2,7 @@ package com.ejyqyl.dmstudio.service.optimizer;
 
 import com.ejyqyl.dmstudio.model.MenuConfig;
 import com.ejyqyl.dmstudio.model.MenuItem;
+import com.ejyqyl.dmstudio.service.i18n.I18nService;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class ConfigOptimizerService {
      */
     public OptimizationResult optimize(MenuConfig config) {
         if (config == null || config.getItems() == null || config.getItems().isEmpty()) {
-            return new OptimizationResult(0, 0, 0, List.of("Конфигурация не содержит предметов для оптимизации."));
+            return new OptimizationResult(0, 0, 0, List.of(I18nService.getInstance().get("tools.optimizer.no_items")));
         }
 
         List<String> log = new ArrayList<>();
@@ -59,7 +60,7 @@ public class ConfigOptimizerService {
                     compressedRanges += (currentSlots.size() - compressed.size());
                     item.setSlots(compressed);
                     item.setSlot(null);
-                    log.add("Сжаты слоты предмета '" + item.getKey() + "': " + currentSlots.size() + " -> " + compressed.size() + " диапазонов.");
+                    log.add(I18nService.getInstance().get("tools.optimizer.compressed", item.getKey(), currentSlots.size(), compressed.size()));
                 }
             }
         }
@@ -95,7 +96,7 @@ public class ConfigOptimizerService {
 
                 newItemsMap.put(primary.getKey(), primary);
                 mergedCount += (group.size() - 1);
-                log.add("Объединено " + group.size() + " идентичных предметов в '" + primary.getKey() + "' (слоты: " + compressed + ")");
+                log.add(I18nService.getInstance().get("tools.optimizer.merged", group.size(), primary.getKey(), compressed));
             }
         }
 

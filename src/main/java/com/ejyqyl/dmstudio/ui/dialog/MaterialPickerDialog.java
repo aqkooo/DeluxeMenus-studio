@@ -134,6 +134,8 @@ public class MaterialPickerDialog {
         }
     }
 
+    private StackPane selectedTile;
+
     private StackPane createTile(String matId) {
         StackPane tile = new StackPane();
         tile.setPrefSize(48, 48);
@@ -146,7 +148,17 @@ public class MaterialPickerDialog {
 
         Tooltip.install(tile, new Tooltip(matId));
 
+        if (customInputField.getText() != null && customInputField.getText().equalsIgnoreCase(matId)) {
+            selectedTile = tile;
+            tile.setStyle("-fx-border-color: -accent; -fx-border-width: 2px; -fx-border-radius: 4px;");
+        }
+
         tile.setOnMouseClicked(e -> {
+            if (selectedTile != null) {
+                selectedTile.setStyle("");
+            }
+            selectedTile = tile;
+            tile.setStyle("-fx-border-color: -accent; -fx-border-width: 2px; -fx-border-radius: 4px;");
             customInputField.setText(matId);
             if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
                 confirmSelection();

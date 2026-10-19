@@ -34,7 +34,7 @@ public class PaginationWizardDialog {
 
         VBox root = new VBox(14);
         root.setPadding(new Insets(18));
-        root.setPrefWidth(460);
+        root.setPrefWidth(480);
         root.getStyleClass().add("root");
 
         Label header = new Label(I18nService.getInstance().get("dialog.pagination.header"));
@@ -73,22 +73,30 @@ public class PaginationWizardDialog {
 
         // 5. Navigation Slots
         Label lblPrev = new Label(I18nService.getInstance().get("dialog.pagination.prev_slot"));
-        Spinner<Integer> spPrev = new Spinner<>(0, 53, 18);
+        Spinner<Integer> spPrev = new Spinner<>(0, 26, 18);
         spPrev.setEditable(true);
         grid.add(lblPrev, 0, 4);
         grid.add(spPrev, 1, 4);
 
         Label lblNext = new Label(I18nService.getInstance().get("dialog.pagination.next_slot"));
-        Spinner<Integer> spNext = new Spinner<>(0, 53, 26);
+        Spinner<Integer> spNext = new Spinner<>(0, 26, 26);
         spNext.setEditable(true);
         grid.add(lblNext, 0, 5);
         grid.add(spNext, 1, 5);
 
         Label lblInfo = new Label(I18nService.getInstance().get("dialog.pagination.info_slot"));
-        Spinner<Integer> spInfo = new Spinner<>(0, 53, 22);
+        Spinner<Integer> spInfo = new Spinner<>(0, 26, 22);
         spInfo.setEditable(true);
         grid.add(lblInfo, 0, 6);
         grid.add(spInfo, 1, 6);
+
+        // Dynamic slot bounds when menu size changes
+        cbSize.valueProperty().addListener((obs, oldV, newV) -> {
+            int maxSlot = (newV != null ? newV : 27) - 1;
+            spPrev.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, maxSlot, maxSlot - 8));
+            spNext.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, maxSlot, maxSlot));
+            spInfo.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, maxSlot, maxSlot - 4));
+        });
 
         // 6. Perimeter Border
         CheckBox cbBorder = new CheckBox(I18nService.getInstance().get("dialog.pagination.include_border"));
@@ -125,18 +133,22 @@ public class PaginationWizardDialog {
         btnCancel.setOnAction(e -> dialog.close());
 
         btnGenerate.setOnAction(e -> {
-            String baseKey = txtBase.getText().trim();
-            if (baseKey.isBlank()) baseKey = "shop";
-            int pagesCount = spPages.getValue();
-            int size = cbSize.getValue();
-            int prevSlot = spPrev.getValue();
-            int nextSlot = spNext.getValue();
-            int infoSlot = spInfo.getValue();
+            String rawBase = txtBase.getText() != null ? txtBase.getText().trim() : "shop";
+            String baseKey = rawBase.isBlank() ? "shop" : rawBase;
+            int pagesCount = spPages.getValue() != null ? spPages.getValue() : 3;
+            int size = cbSize.getValue() != null ? cbSize.getValue() : 27;
+            int prevSlot = spPrev.getValue() != null ? spPrev.getValue() : 18;
+            int nextSlot = spNext.getValue() != null ? spNext.getValue() : 26;
+            int infoSlot = spInfo.getValue() != null ? spInfo.getValue() : 22;
             boolean border = cbBorder.isSelected();
-            File outDir = new File(txtDir.getText().trim());
+            String dirStr = txtDir.getText() != null ? txtDir.getText().trim() : ".";
+            File outDir = new File(dirStr.isBlank() ? "." : dirStr);
+
+            String titlePat = txtTitle.getText() != null && !txtTitle.getText().isBlank()
+                    ? txtTitle.getText().trim() : "&8Shop (Page {page}/{total})";
 
             PaginationService.PaginationOptions opts = new PaginationService.PaginationOptions(
-                    baseKey, txtTitle.getText().trim(), pagesCount, size,
+                    baseKey, titlePat, pagesCount, size,
                     prevSlot, nextSlot, infoSlot, "ARROW", "ARROW", "BOOK", border
             );
 

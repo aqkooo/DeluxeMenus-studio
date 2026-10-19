@@ -276,7 +276,7 @@ public class MainController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(I18nService.getInstance().get("dialog.info_title"));
             alert.setHeaderText(null);
-            alert.setContentText("Рабочая область успешно открыта: обнаружено " + count + " меню.");
+            alert.setContentText(I18nService.getInstance().get("dialog.workspace.opened", count));
             alert.showAndWait();
         }
     }
@@ -293,10 +293,10 @@ public class MainController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle(I18nService.getInstance().get("dialog.info_title"));
                 alert.setHeaderText(null);
-                alert.setContentText("Постер меню успешно сохранён: " + file.getName());
+                alert.setContentText(I18nService.getInstance().get("dialog.poster.saved", file.getName()));
                 alert.showAndWait();
             } catch (Exception ex) {
-                showError(I18nService.getInstance().get("dialog.error_title"), "Не удалось экспортировать постер: " + ex.getMessage());
+                showError(I18nService.getInstance().get("dialog.error_title"), I18nService.getInstance().get("dialog.poster.error", ex.getMessage()));
             }
         }
     }

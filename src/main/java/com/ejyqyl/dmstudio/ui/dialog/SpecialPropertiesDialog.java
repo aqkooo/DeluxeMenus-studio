@@ -107,6 +107,7 @@ public class SpecialPropertiesDialog {
         ObservableList<String> bannerLayers = FXCollections.observableArrayList(copy.getBannerMeta());
         ListView<String> bannerList = new ListView<>(bannerLayers);
         bannerList.setPrefHeight(120);
+        bannerList.setPlaceholder(new Label(I18nService.getInstance().get("dialog.special_props.no_layers")));
 
         HBox addBannerBox = new HBox(6);
         ComboBox<String> cbPat = new ComboBox<>(FXCollections.observableArrayList(BANNER_PATTERNS));
@@ -132,6 +133,7 @@ public class SpecialPropertiesDialog {
         ObservableList<String> potionList = FXCollections.observableArrayList(copy.getPotionEffects());
         ListView<String> potListView = new ListView<>(potionList);
         potListView.setPrefHeight(130);
+        potListView.setPlaceholder(new Label(I18nService.getInstance().get("dialog.special_props.no_effects")));
 
         HBox addPotBox = new HBox(6);
         ComboBox<String> cbPotType = new ComboBox<>(FXCollections.observableArrayList(POTION_TYPES));

@@ -60,7 +60,7 @@ public final class TextureExtractorDialog {
                 Alert err = new Alert(Alert.AlertType.ERROR);
                 err.setTitle(I18nService.getInstance().get("dialog.error_title"));
                 err.setHeaderText(null);
-                err.setContentText("Failed to extract textures from " + selectedPath.getFileName());
+                err.setContentText(I18nService.getInstance().get("dialog.extract_textures_failed", selectedPath.getFileName()));
                 err.showAndWait();
             }
         }

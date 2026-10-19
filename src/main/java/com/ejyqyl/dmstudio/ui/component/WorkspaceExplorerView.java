@@ -58,6 +58,10 @@ public class WorkspaceExplorerView extends VBox {
         fileListView = new ListView<>(filteredList);
         VBox.setVgrow(fileListView, Priority.ALWAYS);
 
+        Label emptyPlaceholder = new Label(I18nService.getInstance().get("workspace.empty_placeholder"));
+        emptyPlaceholder.setStyle("-fx-font-size: 11px; -fx-text-fill: #787f8f;");
+        fileListView.setPlaceholder(emptyPlaceholder);
+
         fileListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(Path item, boolean empty) {
@@ -66,10 +70,32 @@ public class WorkspaceExplorerView extends VBox {
                     setText(null);
                     setGraphic(null);
                     setContextMenu(null);
+                    setTooltip(null);
                 } else {
                     Path root = WorkspaceManager.getInstance().currentWorkspaceProperty().get();
-                    String display = root != null ? root.relativize(item).toString() : item.getFileName().toString();
-                    setText(display);
+                    String display;
+                    try {
+                        display = (root != null) ? root.relativize(item).toString().replace('\\', '/') : item.getFileName().toString();
+                    } catch (Exception ex) {
+                        display = (item.getFileName() != null) ? item.getFileName().toString() : item.toString();
+                    }
+
+                    HBox cellBox = new HBox(8);
+                    cellBox.setAlignment(Pos.CENTER_LEFT);
+
+                    Label badge = new Label("YML");
+                    badge.setStyle("-fx-background-color: rgba(9, 105, 218, 0.12); -fx-text-fill: #0969da; -fx-font-size: 9px; -fx-font-weight: bold; -fx-padding: 2 5 2 5; -fx-background-radius: 4px;");
+
+                    Label nameLabel = new Label(display);
+                    nameLabel.setStyle("-fx-font-size: 12px;");
+                    HBox.setHgrow(nameLabel, Priority.ALWAYS);
+
+                    cellBox.getChildren().addAll(badge, nameLabel);
+                    setGraphic(cellBox);
+                    setText(null);
+
+                    Tooltip tt = new Tooltip(item.toAbsolutePath().toString());
+                    setTooltip(tt);
 
                     ContextMenu cm = new ContextMenu();
                     MenuItem openItem = new MenuItem(I18nService.getInstance().get("workspace.menu_open"));
@@ -80,7 +106,10 @@ public class WorkspaceExplorerView extends VBox {
                     MenuItem revealItem = new MenuItem(I18nService.getInstance().get("workspace.menu_reveal"));
                     revealItem.setOnAction(ev -> {
                         try {
-                            if (Desktop.isDesktopSupported()) Desktop.getDesktop().open(item.getParent().toFile());
+                            Path parent = item.getParent();
+                            if (parent != null && parent.toFile().exists() && Desktop.isDesktopSupported()) {
+                                Desktop.getDesktop().open(parent.toFile());
+                            }
                         } catch (Exception ignored) {}
                     });
 
@@ -140,8 +169,16 @@ public class WorkspaceExplorerView extends VBox {
         if (filter.isEmpty()) {
             filteredList.setAll(all);
         } else {
+            Path root = WorkspaceManager.getInstance().currentWorkspaceProperty().get();
             filteredList.setAll(all.stream()
-                    .filter(p -> p.getFileName().toString().toLowerCase(Locale.ROOT).contains(filter))
+                    .filter(p -> {
+                        String name = (p.getFileName() != null) ? p.getFileName().toString().toLowerCase(Locale.ROOT) : "";
+                        String rel = "";
+                        try {
+                            if (root != null) rel = root.relativize(p).toString().toLowerCase(Locale.ROOT);
+                        } catch (Exception ignored) {}
+                        return name.contains(filter) || rel.contains(filter);
+                    })
                     .toList());
         }
     }
